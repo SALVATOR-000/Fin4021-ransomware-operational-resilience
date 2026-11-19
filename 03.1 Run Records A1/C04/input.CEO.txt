@@ -1,0 +1,471 @@
+C04 · Monday, 16 November 2026 · 18:00 HKT · H+10
+Facts at release. The original gateway remains impaired. Independently measured demand includes about 4,200 queued payment instructions, with time-sensitive SME payroll among them. A secondary process can handle up to 400 verified instructions an hour if approved. Some customers retried transfers after a timeout. Call volumes have doubled, and some customers report that they cannot reach a branch. The facilitator will supply the authorised dispatch records from the first card.
+• Q10 · SEC. a. Decide whether to use the secondary process and how to prioritise eligible queued payments. b. Define the control for retried payments and possible duplicate entries before processing.
+• Q11 · LC. a. Review the record for the Commissioner’s notification and decide the next action based on the method, timing and evidence actually logged. b. Review the HKMA record and decide what initial or follow-up supervisory contact to make now.
+• Q12 · COM. a. Decide whether and how to update the public service status, using the prior published status if available. b. Choose a practical way to reach and assist customers unable to use the usual channels.
+
+Sealed SEC answer for C04:
+<<<
+SEC RESPONSE - C04 (Mon 16 Nov 2026, 18:00 HKT, H+10) - Unit Q10 a and b. Locked before colleagues' answers.
+
+Internal bank procedure (PH01): N/A for both units. PH01 is not in my allowed manifest, so no internal basis and no conflict check is possible.
+
+Fact status I am working from
+- Released by the card: the original gateway is still impaired; about 4,200 payment instructions are queued, including time-sensitive SME payroll; a secondary process can handle up to 400 verified instructions an hour if approved; some customers retried transfers after a timeout.
+- Unverified or unknown: how many of the 4,200 are payroll; how many are retries; whether any instruction was already sent before the gateway failed; whether the attacker altered or added queued instructions; whether the secondary process shares hosts, credentials or keys with the gateway; whether it has been tested; clearing cut-off times; the bank's own tolerance for disruption and continuity plan terms.
+- Arithmetic: 4,200 at 400 an hour is at least 10.5 hours of continuous processing with no holds.
+
+---
+
+Q10a - Use of the secondary process and prioritisation
+
+Decision. Yes, use the secondary process, on security conditions, starting with a pilot. SEC gives the security clearance; the crisis management team (CMT) gives the activation approval. The 400-an-hour ceiling is not raised by weakening verification. The evidence hold on the original gateway from C01 stays in force.
+
+Security conditions before the first release (SEC gates)
+
+| Gate | Condition | Evidence SEC needs |
+|---|---|---|
+| 1. Independence | The secondary process does not run on, route through or share accounts, keys or secrets with the isolated gateway. No vendor account is used. It uses only secrets rotated under C03 | Network path and account review; rotation record |
+| 2. Clean source | Instructions are taken from the original channel records carrying the customer's authentication, not from files on the impaired gateway | Source confirmed by the payments information owner |
+| 3. Verification | Each instruction is checked field by field against the customer's original: payer, payee, amount, value date, reference. Payroll batches have their record count and total confirmed with the SME's authorised contact by call-back to a number on file | Verification record per item or batch |
+| 4. Authorisation | Maker and checker for every release, plus one added approval layer for the bypass. Normal fraud and sanctions screening stays in the path | Approval matrix signed by the information owner |
+| 5. Duplicate gate | The Q10b control is in force | See Q10b |
+| 6. Logging | Every release is logged with operator, approver and time, to a store outside the compromised environment | Log sample |
+| 7. Change control | Emergency change record opened and approved | Change record |
+
+Simulated actions for the log
+1. 18:00-18:30 - SEC and payments operations check gates 1 to 7.
+2. 18:30 - SEC clearance and payments operations' recommendation go to CMT for the activation decision.
+3. 18:45 - Pilot of 20 verified payroll instructions. Reconcile end to end: released count and value equal ledger debits and equal receiving-side acknowledgements.
+4. 19:15 - Full rate if the pilot reconciles. Reconciliation checkpoint every hour.
+5. 01:00-03:00 on 17 Nov - heightened monitoring around the attacker's 02:00 deadline.
+
+Prioritisation of eligible instructions (professional judgment). An instruction is eligible only if it is verified, has passed the duplicate gate, has passed screening and has not been cancelled by the customer.
+- Priority 1: SEC-cleared SME payroll, earliest value date first, then time of original submission.
+- Priority 2: other instructions with a value date of today or tomorrow, and verified urgent cases referred by branches or the contact centre. Up to 40 an hour are reserved for these referrals.
+- Priority 3: all remaining eligible instructions in order of original submission.
+- Held: items that fail verification, suspected duplicates, items with no authenticated customer origin, screening alerts, and later-dated items that can wait for the gateway.
+Order is not set by customer size or relationship. High-value items get an extra call-back, not a higher place.
+
+Stop triggers (any one pauses releases; SEC or the payments operations lead may pause without prior approval and then informs CMT)
+- A reconciliation break at any checkpoint.
+- A released item later found to be a duplicate or of unverified origin.
+- Any indicator of compromise on the secondary process or its accounts.
+- Evidence that queued instructions were altered.
+
+Accountable owner: SEC for the security clearance and stop authority. Executing parties: payments operations (verification, release, reconciliation), the payments information owner (approvals), IT Operations (running the process), CMT (activation).
+
+Time (judgment targets): as in the actions above. Best case for clearing all 4,200 is about 05:45 HKT on Tue 17 Nov (10.5 hours from 19:15), assuming no holds and continuous staffing. This is a projection, not a commitment.
+
+Destination and channel: the secondary process, under an emergency change record; clearance and status to CMT, LC, COM and IT Operations over the out-of-band bridge; every decision entered in the incident log.
+
+Basis
+- R07, SPM TM-G-2 Business Continuity Planning, s.4.3.2, PDF p.11: the alternate processing phase "may entail record reconstruction and verification, establishment of new controls, alternate manual processes, and different ways of dealing with customers and counterparties". s.4.2.2, PDF p.10: the crisis process includes a "clear internal decision-making process and criteria for activation of the BCP and/or alternate sites". HKMA supervisory guidance for all authorized institutions; it applies because a critical service is being resumed by an alternate method. It supports CMT approval and the verification gates.
+- R07 s.3.2.2, PDF p.8: "The result of the time-frame assessment in the business impact analysis is the key determination factor for the recovery priority of individual services." R06, SPM OR-2, s.3.4, PDF p.6: "an AI should prioritise a critical operation that would more sooner breach its tolerance for disruption over one that is less time sensitive". Both are written for planning and board oversight; I apply them as the principle behind time-sensitive payroll first. Missing fact: the bank's own impact analysis and tolerance figures. If they set a different order, that order governs.
+- R14b, Annex to HKMA circular "Good practices for operational resilience", PDF pp.1-2, item 1 "Built-in bypass options": bypass enabling "the download of the latest payment transactions for manual approval and processing to support payment operations", with "a predefined additional layer of approval matrix to ensure proper authorisation, and reconciliation procedures to maintain accuracy following a bypass". Authority: observed good practice; R14a, PDF p.2, says institutions "are encouraged to review the good practices in detail, consider their applicability". Not a requirement, but directly on point for gates 4 and the hourly reconciliation.
+- R09, SPM TM-E-1, s.9.5.4, PDF p.37: when Internet banking is not accessible, "AIs should ensure that their other service channels will have the capacity and related operational procedures to provide an acceptable level of service to their customers", naming funds transfers as a critical function.
+- R08, SPM TM-G-1, s.4.2.4, PDF p.18: "only properly tested and approved systems are promoted to the production environment". s.4.3.1, PDF p.19: "no single person can effect changes to the production environment without the review and approval of other authorized personnel". s.4.3.2-4.3.3, PDF pp.19-20, on emergency changes (quoted in C01). Missing fact: whether the secondary process was tested. If it was not, the pilot is extended and full rate waits for two clean checkpoints.
+- R02, OCCICS Code of Practice (Generic), s.7.2.4(a), PDF p.34: "Business continuity management focuses on sustaining the CI operator's ability to continue essential operation during disruptions arising from computer-security incidents." R01, Cap. 653, s.27(5), PDF p.43: "A CI operator must implement an emergency response plan." with Schedule 3 Part 2 item 5, PDF p.93: "A recovery plan for resuming the provision of essential services". Missing fact: the bank's plan; where it prescribes the secondary process, the plan is followed.
+
+No direct rule located in assigned sources for the security gates, the pilot size, the priority classes, the reserved capacity or the stop triggers. Files: all. Terms: regex "manual process|manual intervention|bypass|break-the-glass|workaround|alternate process|alternative process"; regex "tolerance for disruption|prioriti|recovery priority|time-critical|time-sensitive|payroll|salary" (no hit for payroll or salary); regex "failover|fail-over|fallback|alternate site". These are professional judgment: the attacker had command access, so the queue cannot be trusted until checked against the customer's original.
+
+---
+
+Q10b - Control for retried payments and possible duplicates before processing
+
+Decision. A mandatory duplicate gate sits in front of the secondary process. No instruction is released without passing it, and no exact duplicate is released automatically.
+
+The control
+1. One register. Payments operations builds a single instruction register from every source: the 4,200 queued items, retries after the timeout, transfers re-entered at branches or by the contact centre today, items in flight when the gateway failed, and everything the secondary process itself releases.
+2. Matching key. Payer account, payee account or identifier, amount, currency, value date and customer reference. For payroll, also employer, pay period, record count and batch total.
+   - Same key twice in the incident window: suspected duplicate.
+   - Same payer, payee and amount with a different reference or time: possible duplicate.
+3. Already-paid check. Each item is checked against the ledger and independent outbound records for a debit or a message already sent. Items in flight at the failure are held as "status unknown" until an independent record shows they did not settle. They are not resent on assumption.
+4. One release only. Each verified instruction gets a unique processing identifier. The secondary process rejects any identifier already marked released, and the register is updated before the next batch, so a re-run cannot pay twice.
+5. Disposition. Suspected and possible duplicates are held. The earliest authenticated original is released only after the customer, or the SME's authorised contact, confirms by call-back to a number on file. Other copies are cancelled with a record. Call-backs are worked in the Q10a priority order.
+6. Unverified origin. A queued item with no matching authenticated customer record is not treated as a duplicate. It is held and passed to the forensic team as possible tampering.
+7. Dual control. A maker runs the matching; a checker reviews the exception list independently; SEC attests to the matching logic and the integrity of the register.
+8. After each hourly batch. Released count and value must equal ledger debits and receiving-side acknowledgements. A break is a stop trigger under Q10a.
+9. At source. Mobile transfer submission stays closed, and IT Operations confirms the timeout path is not accepting further entries. Branches and the contact centre check the register before keying any transfer for a customer who says an earlier attempt failed.
+
+Accountable owner: SEC for the control design and its attestation. Executing parties: payments operations (register, matching, call-backs), the payments information owner (dispositions), IT Operations (processing identifier and source closure), branches and contact centre (register check).
+
+Time and triggers (judgment targets): gate built and proven on the pilot by 18:45 HKT; in force before the first full-rate release at 19:15; exception list reviewed hourly. Observable trigger: zero releases without a "passed" entry in the register.
+
+Destination and channel: the instruction register in the restricted incident workspace; exception list to the payments information owner; summary counts to CMT, LC and COM.
+
+Basis
+- R14b, PDF p.1, item 1 "Auto-switching capabilities": controls include "controlled auto-retry logic (e.g. duplication checks when re-attempting transactions)"; PDF p.2: "reconciliation procedures to maintain accuracy following a bypass". Encouraged good practice (R14a, PDF p.2), directly on duplicate checks for retried transactions. It gives no method.
+- R09 s.5.1.2, PDF p.19: "AIs should also implement sufficient controls to maintain and verify the integrity of the information processed by their Internet banking systems.", for example to "reconcile data file balances after transaction updates and to check the integrity of data transmitted between different systems". HKMA supervisory guidance; it applies to instructions submitted through mobile and Internet banking, and I use it as principle for other channels.
+- R07 s.4.3.2, PDF p.11 (quoted above): "record reconstruction and verification, establishment of new controls".
+- R08 s.4.3.1, PDF p.19 (quoted above): supports maker and checker.
+- R05, HKMA circular, PDF p.1, "Immediate incident response" (checked against the scan in C01): "The top priority should be to safeguard the interests of customers who have been or may be affected by the incident." A double debit is direct customer harm.
+
+No direct rule located in assigned sources for the matching key, the unique processing identifier, call-back confirmation, treatment of in-flight items or the register. Files: all. Terms: regex "duplicat|reconcil|retry|re-attempt|idempot" (relevant hits R14b pp.1-2 and R09 p.19 only); regex "integrity of (transactions|data|information|records)|transaction integrity|data integrity|accuracy, completeness|non-repudiation|authoris(ation|ed) of transactions"; regex "fund transfer|funds transfer|transaction limit|notif(y|ication) (to )?customers? (promptly|immediately)|unauthori[sz]ed transaction" in R09. These are professional judgment.
+
+---
+
+Facts SEC passes to the incident team (18:30 clearance, then hourly)
+
+| Fact | Status at 18:00 | Used by |
+|---|---|---|
+| Secondary process cleared on security grounds | Pending gates; result 18:30 | CMT |
+| Processing capacity | Up to 400 verified instructions an hour; not to be exceeded by cutting checks | CMT, COM |
+| Earliest clearance of the queue | About 05:45 on 17 Nov at best; projection only | COM (no promise to customers), CMT |
+| Retries | Some customers retried; count unknown until the register is built | COM, CMT |
+| Advice that reduces duplicates | Customers should not resubmit; branches check the register before re-keying | COM (Q12) |
+| Queued instructions altered by the attacker | Unknown; each item is verified against the customer's original | LC, CMT |
+| Continuity procedures activated | Will be true on CMT approval | LC: R02 s.7.3.4(c), PDF p.36, "has triggered or is likely to trigger the activation of business continuity or disaster recovery procedures"; R02 Annex F item D(2), PDF p.45 |
+| Possible material change notification | For LC to assess: R01 s.22(2)(a), PDF p.33, "a material change occurs to the design, configuration, security or operation of a critical computer system", notifiable "within 1 month after the date on which the event occurs". SEC will supply the technical description | LC |
+| Dispatch records from the first card | SEC holds none and cannot attest to what was sent or when | LC (Q11) |
+
+Limitations: text search and page reads only. Not available to me: the bank's business continuity plan, impact analysis and tolerance figures, and the secondary process's test records.
+>>>
+
+Sealed LC answer for C04:
+<<<
+LC response, C04 Q11 — locked at 18:00 HKT, Monday 16 November 2026 (H+10), before colleagues' answers.
+
+On the logged record, both notifications were made in time, but neither is evidenced by a receipt, and the written record to the Commissioner cannot be shown to have been filed. I therefore re-confirm both by telephone now and file the written record tonight, before the 12-hour limit expires at 20:00 HKT.
+
+Internal bank procedure: N/A for both units. PH01 is not in my allowed manifest (search "PH01": 0 hits).
+
+## Q11a — Commissioner's notification: review and next action
+
+**Review of the record.**
+- Method: telephone to the designated number, with no specified form. This is a permitted initial route. The logged content covers the nature of the incident and names the payment gateway, which is what the statute requires of a notification not made in the specified form.
+- Timing: 08:30 HKT, 30 minutes after awareness at 08:00. The 12-hour limit runs to 20:00 HKT today.
+- Evidence: no receiving officer's name, reference number or receipt is recorded. The answer to my question about an alternative filing route is not recorded either.
+- Written record (R02 Annex E): decided for 10:00 HKT, but there is no record of SEC's terminal release, a dispatch or a receipt. I treat it as not filed.
+- Interim update decided at C03: not dispatched.
+
+**Decision and action.**
+1. Telephone the designated number at 18:10 HKT. I will:
+   - confirm that the 08:30 notification was received;
+   - restate the notification in full (nature and system), so this call stands on its own inside the 12 hours;
+   - record the officer's name, post and reference;
+   - ask again what alternative filing route applies, and record the answer;
+   - give the update set out in step 2.
+2. File Annex E through the secure filing channel by 19:00 HKT, and in any event before 20:00 HKT. It is the written record, and it also protects the bank if the 08:30 call is ever disputed. It carries the facts known at 18:00 and so absorbs the undispatched interim update:
+   - seriousness box [a] (core function disrupted);
+   - nature: unauthorised access, ransomware or malware, and data breach;
+   - 80 customers' data verified as exported; the wider set unverified;
+   - a vendor support credential was used; the supply-chain box stays unticked unless SEC confirms;
+   - awareness at 08:00 HKT on 16/11/2026; earliest identifiable time from SEC;
+   - ransom demand received, no payment made;
+   - gateway still impaired, about 4,200 instructions queued.
+3. Keep proof: the channel's submission receipt or dispatch record, telephone system records for the 08:30 and 18:10 calls, my notes, and a second staff member on the 18:10 call as witness.
+4. If the channel shows an earlier submission, I retrieve its receipt and file the 18:00 facts as supplementary information instead.
+
+**Condition and fallback.** SEC must release the terminal from the C01 evidence hold, or supply a clean device, now. If there is no secure-channel access by 19:30 HKT:
+- the evidenced 18:10 call stands as the notification;
+- I ask the Commissioner's office for another specified route;
+- I escalate to the CEO, with a checkpoint at 09:00 HKT on Tuesday 17 November.
+
+**Owner and executing party.** LC is accountable and makes the call and the filing. SEC executes the terminal release.
+
+**Deadlines.**
+- 20:00 HKT today: 12-hour limit for the notification.
+- 08:30 HKT, Wednesday 18 November 2026: written record, 48 hours after the logged 08:30 call.
+- Monday 30 November 2026: written report (Annex F).
+
+**Recipient and channel.** The Commissioner of Critical Infrastructure (Computer-system Security), by the designated telephone number and the designated secure filing channel.
+
+**Basis and application.**
+- R01, Cap. 653 (statute, version date 2026-09-10):
+  - s.28(2)(b)(ii) (p.44): a notification outside the specified form must "include information on the nature of the computer-system security incident and identify the critical computer system concerned". The logged 08:30 content does both.
+  - s.28(2)(a) and Schedule 6 item 1(a) (pp.44, 97): the 12-hour limit; the 08:30 call is inside it.
+  - s.28(3) (p.44): the operator "must subsequently submit a written record of the computer-system security incident concerned in the specified form and way". Schedule 6 item 2 (p.97): "48 hours after the notification concerned is made under section 28(1)".
+  - s.67(1)(a)(iii) (pp.83–84): a document is served on a regulating authority if "it is sent in the form of an electronic record to an address in an information system specified by the authority for the purpose". This presumption covers documents, not a telephone call, so the call needs its own corroboration and the filing needs a dispatch record.
+  - s.28(5)–(6) (p.44): failure is an offence. s.65(1)(a)(ii) (p.82): the defence requires that "the defendant took all reasonable precautions and exercised all due diligence". Evidence of each step supports that.
+- R02, OCCICS Code of Practice (Generic) v1.0 (code of practice):
+  - para 7.3.6(b) (p.36): the operator "may first make the notification to a designated telephone number", then submit the form "within 48 hours of the notification".
+  - Annex E (p.42): "All fields should be completed as far as practicable based on the information available."
+  - para 7.2.3(a)(v)(4) (p.32): "Recording the incident response process, including details of the incident, actions taken and decisions made".
+- No direct rule located in assigned sources requiring a receipt or reference number for a telephone notification. Obtaining one is professional judgment.
+
+## Q11b — HKMA record: review and contact now
+
+**Review of the record.**
+- The initial report was made at 08:15 HKT, 15 minutes after awareness, with written confirmation by 08:45.
+- Updates followed at 10:00, 12:15 and 13:00. Substance and timing fit "immediately".
+- No acknowledgement or receipt is recorded for any contact.
+- The route of the 08:45 confirmation and the mode of the 10:00 update are unknown.
+- SEC's clearance of corporate email was never recorded.
+
+**Decision and action.** A follow-up contact now, built to stand alone as if it were the first.
+1. Telephone the supervisory contact at 18:25 HKT, or the out-of-hours contact the bank holds. I confirm receipt of each earlier report and record the officer's name and the time.
+2. Send a consolidated written situation report by 19:30 HKT. It sets out the full chronology of earlier reports and their content, gives the 18:00 status, and asks for written acknowledgement.
+3. Ask whether the HKMA requires any prescribed form or reporting arrangement.
+
+**18:00 status to report.**
+- The original gateway remains impaired at H+10.
+- About 4,200 payment instructions are queued, including time-sensitive SME payroll.
+- A secondary process can handle up to 400 verified instructions an hour if approved. On those figures the present queue needs at least 10.5 hours. The decision is pending.
+- Some customers retried transfers; a duplicate control is being defined before any processing.
+- Call volumes have doubled and some customers cannot reach a branch; COM's measures follow.
+- Data: 80 customers verified; the wider set stated as SEC reports it at the time of the call.
+- Ransom: no payment and no contact, unchanged.
+- Cap. 653: the notification was made and the written record is being filed tonight.
+- Copies of any public materials issued are attached.
+
+**Conditional step.** Missing facts: whether the secondary process is approved, and whether the business continuity plan (BCP) has been formally activated at any point today. If either is so, I tell the HKMA at once and start periodic progress reports.
+
+**Owner and executing party.** LC is accountable and makes the call. SEC confirms the technical figures and the email route. COM supplies the public materials.
+
+**Timing.** Call at 18:25 HKT; written report by 19:30 HKT; next updates at 21:00 HKT and 08:00 HKT on Tuesday. Earlier triggers:
+- approval or start of the secondary process;
+- duplicate payments found;
+- a payroll cut-off missed;
+- restoration of the gateway;
+- any public statement.
+
+**Recipient and channel.** HKMA Banking Supervision contact, by telephone, then in writing. I use corporate email only if SEC confirms it is safe; otherwise a route agreed on the call.
+
+**Basis and application.**
+- R05, HKMA circular (22 June 2010), supervisory circular. Quotes checked against the scan.
+  - p.2, "Reporting incident to the HKMA": "The HKMA may require the AI concerned to provide further information or updates."
+  - p.3, first paragraph: "The HKMA should be kept informed during the process and copies of public communication materials should be submitted to the HKMA for reference."
+- R07 SPM TM-G-2 para 1.3.3 (p.5, non-statutory guideline): "AIs should inform the HKMA promptly if their BCP is activated. The HKMA should also receive periodic progress reports upon being notified until the final resolution of the crisis."
+- R06 SPM OR-2 para 8.3 (p.13, non-statutory guideline): "Communication, where appropriate, should take place during the incident (e.g. to provide performance metrics)". This supports giving the queue and capacity figures.
+- R09 SPM TM-E-1 para 8.2.5 (p.33, statutory guideline): notify "in accordance with the relevant arrangements set out by the HKMA from time to time". Those arrangements are not in my manifest, so I ask.
+- No direct rule located in assigned sources on acknowledgement, receipt or update frequency. The consolidated report and the update rhythm are professional judgment.
+
+## Search record and limits
+
+- Regex "acknowledg|receipt|reference number|progress report", all documents: 18 hits; relevant ones only at R07 p.5 and R02 p.46.
+- Regex "supplementary|further information or updates|update" in R02: 14 hits; relevant one at p.37, para 7.3.7(a).
+- Regex "service of notice|served|electronic" in R01: 18 hits; relevant ones at pp.83–85 (s.67).
+- Earlier searches for an HKMA form or channel still stand: hits only at R02 pp.36–37 and R09 p.33.
+- The card gives no new fact on the wider data set or on any published status, so I state none.
+
+## Simulated actions for the facilitator to log
+
+1. 18:05 — LC asks SEC for immediate terminal release or a clean device.
+2. 18:10 — LC telephones the Commissioner's designated number, with a witness.
+3. 18:25 — LC telephones the HKMA contact.
+4. By 19:00 — LC files Annex E and saves the receipt.
+5. By 19:30 — LC sends the consolidated written report to the HKMA.
+6. 19:30 — fallback check on the secure channel.
+7. 21:00 — next HKMA update.
+>>>
+
+Sealed COM answer for C04:
+<<<
+COM RESPONSE, CARD C04 (Monday 16 November 2026, 18:00 HKT, H+10). Locked before seeing colleagues' answers. Units answered: Q12a, Q12b only.
+
+Both decisions are yes: publish a service status update at 18:30 HKT that replaces this morning's service lines, and switch to a "the bank calls you" model, backed by a call-back request and a priority desk in branches. All actions below are simulated, for the facilitator to log.
+
+Source position for both units
+- PH01 is not in my allowed manifest, so "Internal bank procedure" is N/A throughout.
+- The R05 quotations were checked against the page images (PDF pages 1 to 3).
+- The only prior published status I can rely on is the morning holding statement in the handoff (released 08:45 to 09:00). No record supplied to me shows that the 10:00 update, the reply to the reporter or the C03 data statement were issued, so I do not assume they were.
+
+---
+
+UNIT Q12a: Updating the public service status
+
+Decision and action
+- Yes, publish a dated service status update now. It is written as "what has changed since this morning's statement" and replaces each service line in it.
+- It gives the queue size and processing rate in plain numbers, tells customers who retried what to do, and changes the "call the hotline" advice, which is no longer working.
+
+What changes against the prior published status
+
+| Morning statement | Status at 18:00 | Treatment in the update |
+|---|---|---|
+| Outbound local transfers and payroll submission unavailable | Gateway still impaired; about 4,200 instructions queued | Say so, with the number |
+| Resumption time being verified | Secondary process possible at up to 400 an hour, if approved | Conditional wording, see below |
+| Do not re-submit | Some customers retried after a timeout | Say what happens to repeats |
+| Call the hotline for time-critical payments | Call volumes doubled | Replace with the call-back route (Q12b) |
+| Branches are open | Some customers cannot reach a branch | Give actual hours and the priority desk |
+| Authorities notified or being notified | LC is reviewing the records on this card | Not restated unless LC confirms |
+| Effect on customer information being verified | Export of 80 customers' data was confirmed at C03 | Must not be repeated as "being verified" |
+| Next update by 10:00 | No record that it was issued | Apologise if it was missed |
+
+Hold conditions (dependencies on this card)
+- Q10a (SEC): whether the secondary process is approved and how payments are prioritised. Version 1 below is used only if it is approved and running; otherwise Version 2.
+- Q10b (SEC): the control for repeats. The bracketed sentence on contacting customers is used only if that is the control SEC adopts.
+- Q11 (LC): what the notification records actually show. If the morning statement said "have notified" and the logged record shows notification came later than the release time, this update states the accurate time and I record the discrepancy for HKMA.
+- Customer information: before release I check the dispatch log for a public data statement. If one was issued, the update refers to it. If none was issued, the data paragraph from my C03 answer, as approved by the Chief Executive, goes into this update or out alongside it. I will not publish a service update that still says the effect on customer information is "being verified".
+- Operations confirms balances are still viewable and the branch hours.
+- If the Chief Executive or SEC prefer not to publish the figures, the fallback is "will continue overnight and into tomorrow".
+
+Wording
+"Lan Tidal Bank: service status update. Issued [18:30] HKT, 16 November 2026. This replaces the service information in our statement of this morning.
+[We said we would update customers by 10:00. We are sorry this update is later than promised.]
+Still not available: sending new local transfers and payroll through our mobile app and online banking. We do not yet have a restoration time for the normal service.
+Queued instructions: about 4,200 payment instructions are waiting to be sent.
+[Version 1: We have started sending them through an alternative process, with time-critical payroll first. It can handle at most about 400 instructions an hour, so this will continue overnight and into tomorrow.]
+[Version 2: We are preparing an alternative way to send them and will announce when it starts.]
+If you sent an instruction more than once: please do not send it again. We check queued instructions for repeats before paying [and will contact you before paying anything that looks like a repeat].
+If you have since paid another way: tell us, so that we can cancel the queued instruction.
+Still available: [balances can be viewed in the mobile app]. [Branch hours tonight and tomorrow.]
+How to reach us: our phone lines are very busy. You do not need to call to keep your place in the queue. Business customers with queued payroll will be called by the bank. Other customers can ask for a call back [routes as confirmed]; you will be given a reference number and our caller will quote it. We will never ask for your password, PIN or one-time passcode.
+Costs: you will not bear bank fees or charges caused by this disruption. If you incur a loss because of it, you can register a claim through the same routes.
+Next update: 21:00 HKT tonight and 07:00 HKT tomorrow."
+
+Notes on the wording
+- The apology sentence is used only if the dispatch log shows no update went out after the morning statement.
+- The costs line repeats Line A, already approved by the Chief Executive.
+
+Status of facts
+- Confirmed (card): gateway still impaired; about 4,200 queued instructions including time-sensitive SME payroll; some customers retried; call volumes doubled.
+- Not yet decided or verified: use of the secondary process; the repeat control; a restoration time.
+- Not asserted: that queued instructions are "safe", or any completion time.
+
+Accountable owner and executing parties
+- Owner: COM.
+- Approver: Chief Executive.
+- Fact check: SEC and Operations. Clearance: LC, who also sends the HKMA copy and can use the text in its supervisory contact under Q11b.
+- Executing: digital channels team, contact-centre head (recorded message), branch network head (door notices).
+
+HKT deadlines
+- 18:10: fact requests and dispatch-log check.
+- 18:15: Frontline Instruction No. 4 to staff.
+- 18:30: target release.
+- 18:45: latest release.
+- 21:00 tonight and 07:00 on 17 November: further updates, and at any change in the secondary process or restoration.
+
+Recipients and channels
+- Public and customers: website status notice; mobile app and internet banking log-in notice; a recorded status message at the start of the hotline; branch door notices; verified social media accounts.
+- Media: press release by email to newsdesks.
+- Customers with queued instructions: a targeted push or SMS with no link.
+- HKMA: copy via LC.
+- At minimum I use the channel the morning statement actually used, as shown in the log.
+
+Basis, direct rules (external)
+- R09, SPM TM-E-1 (statutory guideline under Banking Ordinance §7(3)), section 8.2.2, PDF p.33: AIs should "inform them of the key facts relating to the incident and the steps that customers may take". Footnote 26 gives as examples "any estimated service resumption time".
+- R09 section 8.2.3, PDF p.33: a press release or similarly effective notice is expected "if the AI does not have reasonable confidence that the service can be resumed in the near future."
+- Scope of R09: C03 confirmed that mobile transfer submission is interrupted. R09 section 1.2.2 footnote 1 (PDF p.4) defines internet banking as covering "personal computers and mobile devices". The channel fact missing at C01 is now supplied.
+- R05, HKMA circular (22 June 2010), PDF p.2: notices should include "the steps that affected customers need to take in the circumstances in order to gain or regain access to the relevant banking services or to protect their interests."
+- R05, PDF p.3: "consistent and up-to-date messages are conveyed to all relevant parties on a timely basis" and "copies of public communication materials should be submitted to the HKMA for reference."
+
+General principles
+- R06, SPM OR-2 (non-statutory), section 8.3, PDF p.13: "Communication, where appropriate, should take place during the incident (e.g. to provide performance metrics)". This supports publishing the queue and rate figures.
+- R07, SPM TM-G-2 (non-statutory), section 4.7.1, PDF pp.13 to 14: "ongoing and clear communication is likely to assist in maintaining the confidence of customers".
+- R14b, HKMA good-practice annex (1 April 2026), PDF p.1: "duplication checks when re-attempting transactions". This is good practice, not a requirement; the control itself is SEC's.
+
+No direct rule located in assigned sources
+- No source sets how often to update, whether to publish queue numbers, or how to correct an earlier public statement.
+- Searches recorded: "duplicat" (R14b p.1; R07 p.5, unrelated), "resumption time", "customer" in R14b, "communicat" in R06, the regex "alternative|contingency|manual" in R09.
+
+Professional judgment
+- Publishing the numbers lets SME customers plan payroll: 4,200 instructions at 400 an hour is at least ten and a half hours.
+- Correcting any inaccurate earlier line in the open protects trust and matches what the regulators will see.
+- The 21:00 and 07:00 update times fit an overnight run and the start of the next business day.
+
+Internal bank procedure: N/A (PH01 absent).
+
+---
+
+UNIT Q12b: Reaching and helping customers who cannot use the usual channels
+
+Decision and action
+- I choose a "the bank calls you" model, so customers no longer have to get through to us.
+- I ask the heads of the branch network, contact centre and SME banking to execute it, and the crisis management team chair to approve the staffing and hours.
+
+The model
+1. Proactive calls. Relationship managers and redeployed head-office staff call the customers behind the 4,200 queued instructions, payroll first, using the list from Operations and SEC. They give status, capture "already paid another way" or cancellation requests, support whatever confirmation SEC's repeat control needs, and register claims.
+2. Call-back request for everyone else. Three routes:
+   - an option at the very start of the hotline;
+   - a "request a call" function inside the logged-in app or internet banking, if SEC and IT confirm it is available and trusted;
+   - a paper slip at any branch.
+   Each request gets a reference number and a stated call-back window. Our caller quotes the reference and never asks for passwords or codes.
+3. Recorded status message. It plays at the start of the hotline, so customers who only want the status do not need an agent.
+4. Branches. Those still staffed stay open later tonight, and all eight open early tomorrow. Each has a priority desk for payroll and time-critical payments and for elderly customers or customers with disabilities. A greeter at the door has the printed status notice.
+5. Customers flagged in our records as elderly or needing assistance who have a queued instruction are called proactively.
+6. No new unverified channels. Social media is for information only; account matters are not handled there.
+
+Missing facts and conditional actions
+- "Cannot reach a branch" may mean by phone or in person. I have asked the branch network head which; the model covers both.
+- Normal branch closing times are not on the card. If branches have already closed, the early opening and the call-back route carry the load tonight.
+
+Wording for customers
+- Uses the "How to reach us" paragraph in Q12a.
+- Call-back acknowledgement: "Your call-back reference is [number]. We will call you [within three hours for payroll or time-critical payments / by 12:00 tomorrow for other matters]. Our caller will quote this reference and will never ask for your password, PIN or one-time passcode."
+
+Accountable owner and executing parties
+- Owner: COM for the design, customer wording, staff script and reporting.
+- Executing: contact-centre head (recorded message, call-back queue); branch network head (hours, priority desk, slips); SME banking head (proactive calls); Operations and SEC (customer lists).
+- Approval of redeployment and hours: crisis management team chair.
+
+HKT deadlines
+- 18:15: Frontline Instruction No. 4, with the call-back script and unchanged identity checks.
+- 18:30: recorded message and hotline call-back option live; proactive payroll calls begin.
+- 22:00: proactive calls pause for the night.
+- 07:30 on 17 November: calls resume.
+- Hourly: abandoned-call rate, call-back backlog and branch queues reported to the crisis management team; totals passed to LC.
+
+Recipients and channels
+- SME payroll customers: outbound calls.
+- All other customers: hotline call-back, in-app request, branch slip and priority desk.
+- Staff: Instruction No. 4 by briefing call and intranet.
+
+Basis, direct rules (external)
+- R05, PDF p.3, heading "Handling of customers' and media's enquiry": "It is therefore essential for the AI concerned to deploy swiftly adequate resources and communication channels (e.g. customer service hotlines and extended office hours of branch services) to handle such enquiries." It applies because call volumes have doubled and customers report they cannot get through.
+- R09 section 9.5.4, PDF p.37: "if an Internet banking system is temporarily not accessible, AIs should ensure that their other service channels will have the capacity and related operational procedures to provide an acceptable level of service to their customers, taking into account the anticipated customers expectation, in relation to critical functions (e.g. funds transfers, securities trading)". It applies because mobile transfer submission is down and the other channels are overloaded.
+- R05, PDF p.1: "The AI should proactively notify the customers affected or likely to be affected through the most effective means". The bank knows who is behind the queued instructions, so calling them is the most effective means.
+- R02, Code of Practice (Generic), section 7.3.4(f), PDF p.36: "a material number of customer enquiries or complaints". This is why the hourly totals go to LC.
+
+General principles
+- R07 section 4.3.1, PDF p.11: "AIs should also consider a staff rotation plan in order to cover extended working hours for business recovery."
+- R07 section 4.3.2, PDF p.11: alternate processing may entail "different ways of dealing with customers and counterparties".
+- R14b, PDF p.8: some AIs "have introduced contingent staffing" to "support potential manual workarounds" (good practice).
+
+No direct rule located in assigned sources
+- No source prescribes a call-back service, a call-back time, specific branch hours, or priority handling for elderly customers or customers with disabilities.
+- Searches recorded: the regex "call-back|callback|call back" (1 unrelated hit, R09 p.4), the regex "extended office hours|office hours", the regex "vulnerable|elderly|disabilit|accessib" (no customer-vulnerability rule found), "hotline", "customer service".
+
+Professional judgment
+- Calling customers is better than adding lines: the bank already knows who has a queued payment, and each call removes several inbound attempts.
+- A reference number on every call-back protects against impersonation, which matters because customer phone numbers are in the attacker's hands.
+- The call-back windows are estimates, to be adjusted to actual backlog.
+
+Internal bank procedure: N/A (PH01 absent).
+
+---
+
+Flag outside these two units
+- At C03 I set an 18:00 decision point on precautionary notices to the wider data group of up to 18,000. No card reports the scope result. I have asked the Chief Executive and LC for that decision now.
+
+Simulated actions for the facilitator's log (all HKT, 16 November 2026)
+- 18:10: COM checks the dispatch log for the morning statement's actual wording and channel, and for any later public statement.
+- 18:10: COM asks SEC for the secondary-process decision, priority order and repeat control.
+- 18:10: COM asks LC what the notification records show.
+- 18:10: COM asks Operations for balance-viewing status, branch hours and the list of customers with queued instructions.
+- 18:15: Frontline Instruction No. 4 issued.
+- 18:30, latest 18:45: service status update released on Chief Executive approval; copy to HKMA via LC.
+- 18:30: recorded hotline message and call-back option live; proactive payroll calls begin.
+- 21:00: next public update.
+- 22:00: proactive calls pause.
+- 07:00 on 17 November: public update.
+- 07:30 on 17 November: proactive calls resume.
+>>>
+
+Facilitator handoffs given to the roles for C04:
+SEC: none.
+LC:
+Q02a | Telephone report to the HKMA as a significant incident, then written confirmation and a 10:00 update | LC | Call 08:15 HKT; written confirmation by 08:45 HKT; update 10:00 HKT; all 16 November 2026 | HKMA, the bank's usual Banking Supervision contact, by telephone then in writing | Call: executed in simulation at 08:15 HKT, content as in LC's sealed C01 list "Information to send now"; acknowledgement not verified. Written confirmation: executed in simulation by 08:45 HKT; whether it went by corporate email or by an out-of-band route cannot be verified (no card records SEC's email confirmation); receipt not verified. 10:00 update (the demand, the unverified data claim and the no-payment posture, as decided at C02): executed in simulation at 10:00 HKT through the same contact; whether by telephone or in writing cannot be verified; receipt not verified.
+Q02b | Telephone notification under section 28 of Cap. 653 | LC | Call completed 08:30 HKT, 16 November 2026 | Commissioner of Critical Infrastructure (Computer-system Security), designated telephone number, through the bank's verified telephone route | Executed in simulation at 08:30 HKT. Content logged: nature of the incident (unauthorised commands encrypted gateway components); system involved (the payment gateway); brief summary (outbound domestic transfers and payroll submission disrupted, core function affected, bank aware at 08:00 HKT, earliest time of the activity unknown); a contact point; LC asked what alternative way applies if the secure filing terminal stays down. No specified form was used for this call. Receiving officer's name, reference number and receipt: not verified (no card records them).
+C01 awareness time (HKT) | Designation status | Actual notification: time (HKT), channel, form used, receipt status
+08:00 HKT, 16 November 2026 (card C01: the bank confirms the unauthorised commands) | Effective critical infrastructure operator designation; domestic transfer and payroll processing is a core function of the designated infrastructure; the payment gateway is a designated critical computer system (card C01) | HKMA: 08:15 telephone, 08:45 written confirmation, 10:00 update; no form; receipts not verified (see Q02a). Later HKMA contact decided at C03: telephone update on the privacy incident at 12:15 HKT and written confirmation by 13:00 HKT, both executed in simulation; receipts not verified. Commissioner: 08:30 telephone; no specified form; receipt not verified (see Q02b). Written record in the specified form (R02 Annex E) through the secure filing channel: decided at C02 for filing by 10:00 HKT on 16 November after SEC confirms that the terminal is released under the C01 evidence hold; card C02 states that the verified secure filing channel is available; no run record shows SEC's release, a dispatch or a receipt, so the filing cannot be verified. Interim update to the Commissioner through the secure channel, decided at C03 for "today": scheduled; no dispatch recorded as at 18:00 HKT.
+COM:
+Q03b | First public service status: holding statement in Chinese and English, in COM's C01 wording with compensation Line A. Wording points: a cybersecurity incident is disrupting part of the payment processing system; outbound local transfers and payroll submission are unavailable; balances can be viewed in the mobile app and branches are open; incident response procedures activated and the relevant authorities notified or being notified; the extent, the resumption time and any effect on customer information are being verified; customers are asked not to re-submit instructions and to call the hotline for time-critical payments; scam warning; next update by 10:00 HKT | COM (approver: Chief Executive; HKMA copy via LC) | Released between 08:45 and 09:00 HKT, 16 November 2026 | Public, customers and media: website homepage and newsroom, press release by email to newsdesks, the bank's verified social media accounts, same text to branches and contact centre | Executed in simulation. Cannot be verified: which wording branch applied ("have notified" or "are notifying"; full text or card-confirmed facts only) and whether the website or the fallback channels were used, because no card records SEC's channel confirmation or the outcome of the HKMA call.
+
+Using this card, your facilitator handoffs and the three sealed role
+submissions, return one final record for each scored unit in this card.
+
+Unit ID | Original answer reference | CONFIRM or OVERRIDE | Reason |
+Final action and condition | Accountable owner | HKT time, deadline or
+trigger | Recipient and channel | Final external basis |
+Final internal basis | Dispatch instruction.
+
+Give a specific reason for each confirmation or override. Use OVERRIDE
+with "Missing recommendation" as the original answer reference when
+needed. For an unchanged, adequate citation or search record, you may
+reference the exact unit and field in its sealed answer. For any new or
+corrected basis, provide the exact location and short verbatim quote, or
+the search record and professional judgment required by the common prompt.
+For the dispatch instruction use EXECUTE NOW, SCHEDULE, HOLD, or NO ACTION
+and state any execution dependency. Finish with the order of any actions
+that depend on one another on this card.

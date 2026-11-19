@@ -1,0 +1,464 @@
+C02 · Monday, 16 November 2026 · 09:30 HKT · H+1:30
+Facts at release. The attacker demands 6 BTC by 02:00 HKT on 17 November and claims to have copied customer files. The attacker provides a screenshot showing several rows of apparent identity data. Its origin is unverified. A Hong Kong support vendor operated a remote access account for the gateway and says it can preserve session logs on request. The verified secure filing channel is now available. Branch staff have received calls asking whether funds have disappeared. A reporter asks whether the bank has paid a ransom and requests a comment by 10:00 HKT.
+• Q04 · SEC. a. Decide how to validate the sample while limiting further exposure of customer data. b. Decide what evidence to request from the vendor and how to receive it.
+• Q05 · LC. a. Recommend a payment posture and specify the legal or other checks that would change or constrain it. b. Decide whether any contact with the attacker should be authorised at this point, and define who can authorise and conduct that contact.
+• Q06 · COM. a. Decide the wording and distribution of instructions for branch and contact-centre staff. b. Decide whether and how to answer the reporter before the deadline, taking account of the public status supplied by the facilitator.
+
+Sealed SEC answer for C02:
+<<<
+SEC RESPONSE - C02 (Mon 16 Nov 2026, 09:30 HKT, H+1:30) - Unit Q04 a and b. Locked before colleagues' answers.
+
+Internal bank procedure (PH01): N/A for both units. PH01 is not in my allowed manifest, so no internal basis and no conflict check is possible.
+
+Fact status I am working from
+- Released by the card: a 6 BTC demand with a 02:00 HKT 17 Nov deadline; a claim that customer files were copied; a screenshot with several rows of apparent identity data; a Hong Kong support vendor operated a remote access account for the gateway and offers to preserve session logs on request.
+- Unverified or unknown: whether the screenshot rows are the bank's data; which system they came from; when and how they were taken; the volume; whether the vendor account was the route for the unauthorised commands; whether the vendor itself is compromised; whether the vendor holds any bank customer data; the vendor contract terms; how and to whom the screenshot was delivered.
+- Carried from C01: the vendor's remote access to the gateway stays suspended (C01 Step 2), and the evidence register is open.
+
+---
+
+Q04a - Validating the sample while limiting further exposure
+
+Decision. Validate the screenshot in-house, in a closed two-person cell, using only what the bank already holds. No request to the attacker for more "proof", no visit to attacker links or leak sites, and no upload to any outside service. The screenshot is handled as three things at once: evidence, possible customer personal data, and a possibly hostile file. Until a result is issued, the status given to everyone is "claim unverified".
+
+Simulated actions for the log
+1. 09:30 - Intake control. The original message and file are preserved with headers and metadata, hashed (SHA-256) and entered in the evidence register. All other copies are recalled, and everyone who has seen or forwarded it is listed. No further circulation by email or chat.
+2. 09:35 - The file is opened only on an isolated analysis workstation with no production connection.
+3. 09:40 - Validation cell: one SEC forensic analyst and one delegate of the customer-data owner (privacy officer's office). Both named in the log; no one else views the rows.
+4. 09:40-10:30 - Comparison, by read-only logged queries against the customer master and against gateway transfer and payroll file layouts:
+   - Do the individuals exist in bank records, and do the values match exactly?
+   - Does the layout (column order, headers, internal reference numbers) match a specific bank system or file type?
+   - How current are the values, which indicates when the data was copied?
+   - Are the individuals bank customers, or payees in SME payroll files who may not be bank customers?
+5. In parallel - corroboration from C01 evidence: outbound traffic records for large transfers, gateway file and database access logs, and staging archives on the imaged hosts.
+6. 10:30 - Result memo containing no personal data: number of rows checked, number matched, data categories (for example name, identity card number), likely source system, and a confidence level. Matched individuals are listed by internal customer reference only, held in the restricted evidence store.
+
+Outcome classes and their limits (professional judgment)
+- Match: those rows are genuine bank data from an identified source. This does not prove the volume claimed, or that the data was taken in this incident and not earlier or from another holder such as the vendor.
+- Partial or inconclusive: reported as such, with the corroboration work continuing.
+- No match: the sample is not shown to be bank data. This does not disprove copying.
+- Production records show what the systems hold now; logs on compromised hosts may have been altered. Offline copies and central logs are more reliable but only to their capture time. Neither alone settles whether data left the bank.
+
+Stop and escalation triggers
+- Any match: the incident commander, LC and the privacy officer are told within 15 minutes.
+- Data that could only have come from a system outside the gateway: the C01 trigger applies and containment scope is reviewed.
+- Active content or malware in the file: validation stops and the file is handled as a malware sample.
+
+Accountable owner: SEC. Executing parties: the validation cell. Legal classification, notifications and any contact with the attacker are LC's units; SEC's validation needs no attacker contact.
+
+Time (judgment targets): intake controls 09:30; status line "claim unverified, validation under way" to COM and LC by 09:50, ahead of the reporter's 10:00 deadline; preliminary result 10:30; corroboration update 12:00. The attacker's 02:00 deadline is not treated as a validation deadline.
+
+Destination and channel: result memo to the incident commander, LC and the privacy officer by the out-of-band bridge and the restricted incident workspace. COM receives the status line only, never the rows.
+
+Basis
+- R10, Cap. 486, Schedule 1, Principle 4(1), PDF p.169: personal data held by a data user is to be "protected against unauthorized or accidental access, processing, erasure, loss or use", with s.4, PDF p.21: "A data user shall not do an act, or engage in a practice, that contravenes a data protection principle". Binding statute. It applies if the rows are personal data the bank holds (s.2, PDF p.15: data "from which it is practicable for the identity of the individual to be directly or indirectly ascertained"). That is the fact under test, so I apply the protection from intake as a precaution.
+- R11, PCPD Guidance, PDF p.1: "A data breach is generally regarded as a suspected or actual breach of the security of personal data held by a data user", and PDF p.4, Step 1: "the data user shall promptly gather all relevant information of the data breach to assess the impact on data subjects and to identify appropriate mitigation measures". Non-binding PCPD guidance; a suspected breach is enough to trigger it.
+- R16b, HKMA circular "Customer Data Protection", PDF p.2, heading "Controls for handling incidents involving loss or leakage of customer data": procedures should cover "ascertaining the nature of the incidents, the causes of the incidents and identity of customers affected". Annex C(i), PDF p.4: access rights "should be granted on a need-to-have basis only". HKMA supervisory circular to all authorized institutions; supports the two-person cell.
+- R02, OCCICS Code of Practice (Generic), s.7.2.3(a)(v)(2)-(3), PDF p.32: "Digital evidence handling, including identification, collection, acquisition, preservation of evidence and chain of custody;" and "Investigating the cause and impact of the incident;". Authority and scope as in my C01 answer.
+- Fact for LC, not my decision: R02 s.7.3.4(d), PDF p.36, lists as a serious-incident criterion an incident that "has caused or is likely to cause the leakage of material volume of customer data". The incident is already serious on the core-function ground; the validation result feeds LC's reporting content.
+- Check for LC: R10 s.2 "matching procedure", PDF p.15, concerns automated comparison for "10 or more data subjects" for the purpose of adverse action. Not my purpose, and the sample is several rows.
+
+No direct rule located in assigned sources for how to validate an attacker-supplied sample, who may view it, isolated handling, or refusing further samples. Files: all. Terms: regex "exfiltrat|leak|dark web|screenshot|sample"; regex "mask|redact|anonymis|pseudonym|need-to-know|need to know|need basis|need-to-have"; "data processor"; regex "ransom payment|pay the ransom|extortion|blackmail|bitcoin|BTC|virtual asset" (one unrelated hit, R16c p.101). Those details are professional judgment: each extra copy or extra sample increases exposure, and a few matched rows cannot support conclusions about scale.
+
+---
+
+Q04b - Evidence to request from the vendor and how to receive it
+
+Decision. Accept the vendor's offer now. Issue a written preservation and production request covering more than session logs. Receive the material as original exports with hashes, over a bank-controlled encrypted route, into the evidence intake. Treat it as the vendor's own account until reconciled with bank-side records. The vendor's remote access to the gateway stays suspended, and the vendor does not log in to "help" or to collect anything.
+
+Preserve immediately (no deletion, no alteration, log rotation suspended) and produce:
+1. Remote access session records for the gateway account: start and end times with time zone and clock source, source addresses and devices, the named individual behind each session, authentication and multi-factor events, commands or session recordings, and file transfers (names, sizes, direction).
+2. Account administration: who held the credentials, whether shared, how stored, last password and multi-factor changes, joiners and leavers.
+3. Vendor-side systems used to reach the bank: logs of the remote access tool, gateway or jump host, and security alerts and images of the workstations used.
+4. Any bank data the vendor holds: configuration copies, file extracts, tickets with attachments, as an inventory first. This tests whether the screenshot could have come from the vendor's holdings.
+5. Support tickets and change records for gateway work, the staff access list and any subcontractors.
+6. A signed statement of what was preserved, by whom, when and with which tool; whether the vendor has detected any compromise of its own; and its log retention period.
+Look-back: all retained sessions for 90 days to 09:30 on 16 Nov, with the 14 days before 08:00 on 16 Nov first (judgment). The vendor is also asked not to contact the attacker or media and to refer all queries to the bank.
+
+How it is received
+- Request: written notice from SEC with the vendor relationship owner, wording cleared by LC, sent to the contact in the contract and confirmed by call-back to a number already on file, not one taken from recent messages.
+- Format: native exports, not screenshots or edited summaries, with a SHA-256 manifest created at export and a signed custody form.
+- Transfer: a bank-hosted encrypted file transfer, or bank-issued encrypted media collected in person by the evidence custodian with a signed hand-over. Passphrase by a separate channel. Never ordinary email, the suspended remote access path or the isolated gateway segment.
+- Receipt: quarantine intake, malware scan, hash verification, entry in the evidence register continuing custody from vendor to bank, analysis on copies only.
+- Reconciliation: against bank-side remote access, privileged access and firewall logs. A discrepancy is escalated to LC, with independent collection at the vendor by the bank's forensic firm if the contract allows.
+
+Accountable owner: SEC. Executing parties: vendor relationship owner (sends), evidence custodian (receives), forensic staff (verify), LC (contract rights and wording).
+
+Time and triggers (judgment targets): request issued 09:45; vendor's written preservation confirmation 10:30; gateway account session records 12:00; remaining items 18:00. If there is no confirmation by 10:30, a refusal, or signs of deletion, LC is asked to serve formal contractual notice and the incident commander is told.
+
+Basis
+- R12, SPM SA-2 Outsourcing, s.2.1.1, PDF p.4: "AIs should therefore continue to retain ultimate control of the outsourced activity." s.2.8.1, PDF p.8: "data retrieved from the service providers are accurate and available in Hong Kong on a timely basis". s.2.6.4, PDF p.7: "AIs should establish reporting procedures which can promptly escalate problems relating to the outsourced activity". HKMA supervisory guidance. Missing fact: whether this support arrangement is "outsourcing" as defined in s.1.1.1, PDF p.2. If it is, these apply directly; if not, I rely on them as principle and on the items below.
+- R16b Annex I, PDF p.8: "AIs should require their outsourcing operators and other service providers that store, transport or have access to customer data to comply with the AIs' data security policies and procedures". Annex C(vii), PDF p.5, on remote access by service providers: "the data being transmitted should be subject to strong data encryption". Supports the encrypted transfer. Missing fact: whether the vendor had access to customer data.
+- R02 s.7.2.3(a)(v)(2), PDF p.32 (quoted above): chain of custody extends to evidence obtained from the vendor.
+- R01, Cap. 653, Schedule 3 Part 1 item 3(h), PDF p.92: the security management plan covers "managing contracts and other communications with suppliers of computer-related services and products adopted for the systems". Missing fact: the plan and the contract.
+- R02 s.6.2.25(e), PDF p.21: "The CI operator should reserve audit and compliance monitoring rights to verify that external service providers have implemented sufficient controls over its CCSs." and s.6.2.18(b), PDF p.17: "logging and monitoring remote access activities, and revoking authority and access rights when they are no longer needed". These are generic-code provisions. For a designated bank, R03 s.6.2.25(a), PDF p.19, and s.6.2.18(a), PDF p.16, point to an HKMA circular of 21 December 2023 and to C-RAF, neither of which is in my manifest. I use the R02 text as general principle only.
+- R08, SPM TM-G-1, s.3.2.3, PDF p.13: "monitoring of the activities performed by privileged and emergency IDs (e.g. peer reviews of activity logs)". Bank-side records of the vendor account should exist for reconciliation; whether they do is unverified.
+- R03 s.6.2.19(b)(ii), PDF p.16: "perform malware scans on portable computing devices and removable storage media to prevent a CCS from malware infection". Supports scanning the media on receipt.
+- R03 s.6.2.13(b), PDF p.14: "where a password is the single authentication factor used by suppliers for maintenance and support, the password should be changed after every use". Missing fact: how the vendor account authenticated. The account stays suspended; credentials are reset before any reinstatement.
+- Conditional on the vendor being a data processor (unknown): R10 Schedule 1, Principle 4(2), PDF pp.169-170: "the data user must adopt contractual or other means to prevent unauthorized or accidental access, processing, erasure, loss or use of the data transferred to the data processor for processing"; R11, PDF p.4: "Requiring the data processor to take immediate remedial measures and to notify the data user of the progress".
+- Context, not a current duty: R01 s.37(2), PDF pp.52-53, lets a magistrate's warrant authorise requirements on "an organization having, or appearing to have, control over the investigated system (other than the investigated CI operator)". Whether the vendor has such control is unknown. No warrant or notice exists.
+
+No direct rule located in assigned sources for the specific log types, look-back period, export format, hashing, transfer method or deadlines. Files: all. Terms: regex "session log|session record|access log|activity log" (one hit, R08 p.13); regex "remote access|remote connection|remote support|vendor"; "service provider" in R12; regex "supplier|third party|service provider|contractor" in R01. These are professional judgment: the vendor may bear liability, so its records need integrity controls and independent corroboration.
+
+---
+
+Facts SEC passes to the incident team (09:50 status, 10:30 result, then every 30 minutes)
+
+| Fact | Status at 09:30 | Used by |
+|---|---|---|
+| Screenshot rows are bank customer data | Unverified; result due 10:30 | LC, COM |
+| Data was copied out in this incident | Unverified; no evidence either way | LC, COM |
+| Volume or categories of data affected | Unknown | LC (R16a form, PDF p.2: "Types of personal data involved") |
+| Individuals may include SME payroll payees who are not bank customers | Possibility under test | LC, COM |
+| Vendor remote access account for the gateway existed | Confirmed by card | LC (R02 Annex F nature box "Supply chain attack", PDF p.43; R16a p.2 service-provider question) |
+| That account was used for the unauthorised commands | Unverified | LC |
+| Vendor access to the gateway | Suspended since C01 | LC, CMT |
+| Customer funds or balances altered | SEC holds no evidence of this and has not verified ledger integrity; a reconciliation check is requested from core banking operations, time to be confirmed by its owner | COM (branch calls), CMT |
+| Ransom paid | SEC has no record of any payment or attacker contact; the decision is LC's unit | COM, LC |
+
+Limitations: text search and page reads only. Not available to me: the vendor contract, the bank's security management and emergency response plans, C-RAF, and the HKMA third-party circular of 21 December 2023 cited by R03.
+>>>
+
+Sealed LC answer for C02:
+<<<
+LC response, C02 Q05 — locked at 09:30 HKT, Monday 16 November 2026 (H+1:30), before colleagues' answers.
+
+My recommendation is no payment and no contact with the attacker at this point. No assigned source prohibits or permits a ransom payment in terms, so the posture is professional judgment, bounded by two statutes that can make a payment criminal.
+
+Internal bank procedure: N/A for both units. PH01 is not in my allowed manifest (search "PH01": 0 hits).
+
+## Q05a — Payment posture
+
+**Decision and action.** I recommend to the Board that the bank does not pay. No payment is authorised. I place a hold on any preparatory step: opening a virtual-asset account, buying BTC or engaging a payment intermediary. The attacker's deadline of 02:00 HKT on 17 November is not a legal deadline and does not drive the bank's governance.
+
+Reasons (professional judgment):
+- Paying gives no assurance of decryption and cannot retrieve copied data. The copy claim and the screenshot are unverified.
+- Paying discharges no duty. The Cap. 653, HKMA and privacy paths all continue.
+- The recipient is unidentified, which creates the criminal exposure set out below.
+- Restoration from failover or backup is the recovery route. R04 SPM TM-C-1 para 4.3 (p.8, statutory guideline) points to backups "in order to recover and restore critical data promptly".
+
+**Checks that constrain the posture.** Each unresolved check blocks payment.
+1. Proceeds-of-crime gate (R16c, Cap. 455): no payment without a prior disclosure and the consent of an authorised officer.
+2. Terrorist-financing gate (R16d, Cap. 575): no payment unless SEC's attribution work and screening show no indication that the recipient is a terrorist or terrorist associate. If there is any indication, payment needs a licence from the Secretary for Security.
+3. Sanctions: no direct rule located in assigned sources. External counsel must clear this (judgment).
+4. Authorities: the Police are informed and their view obtained; the HKMA is told before any change of posture; any requirement from the Commissioner's officers is followed.
+5. Insurance policy conditions: unknown; to be checked (judgment).
+
+**Facts that would trigger a Board review.**
+- SEC's validation shows the sample is genuine, or shows the scale of data copied (Q04).
+- Failover and backups are verified as unable to restore the core function within the bank's tolerance for disruption.
+- The Police or an authorised officer gives a view.
+- A new attacker message arrives.
+Even then, payment is possible only if checks 1 to 3 are cleared in writing.
+
+**Owner and executing party.**
+- LC is accountable for the advice and clears each legal check in writing.
+- The Board, or its delegated committee, decides any departure from "do not pay". The Chief Executive and crisis team cannot authorise payment alone (judgment).
+- The bank's disclosure officer makes the Cap. 455 disclosure.
+- SEC supplies attribution and the evidence pack.
+
+**Timing (my targets, judgment).**
+- 09:35 HKT: written advice and payment hold issued.
+- By 10:30 HKT: Police report and precautionary disclosure made.
+- By 12:00 HKT: Board or committee confirms the posture.
+- 18:00 and 23:00 HKT: scheduled reviews, or earlier on any trigger above.
+
+**Recipient and channel.**
+- Advice goes to the Chief Executive and Board chair by telephone bridge and a written note, on a channel SEC confirms is uncompromised.
+- The hold goes to Treasury and Finance.
+- The disclosure goes to an authorised officer. R16c s.2(1) (p.6) includes "any police officer". The filing channel is not in the assigned sources.
+
+**Basis and application.**
+- R16c, Cap. 455 Organized and Serious Crimes Ordinance (statute, version date 2025-09-19):
+  - s.25(1) (p.82): an offence if a person "knowing or having reasonable grounds to believe that any property in whole or in part directly or indirectly represents any person's proceeds of an indictable offence, he deals with that property". Penalty is up to $5,000,000 and 14 years.
+  - s.2(6)(a)(i) (p.11): proceeds include "any payments or other rewards received by him at any time" in connection with the offence. A ransom is that, once received.
+  - Schedule 1 item 12 (pp.100–101) lists "section 23(1) and (4) blackmail". That blackmail is indictable is my professional knowledge; the Theft Ordinance is not in the manifest.
+  - Judgment: the sources do not settle whether paying from the bank's own funds is "dealing". I treat the risk as real and use the statutory route.
+  - s.25A(2)(a) (p.83): "that disclosure is made before he does that act and he does that act with the consent of an authorized officer".
+  - s.25A(1) (p.83): a person who knows or suspects property is intended for use in connection with an indictable offence "shall as soon as it is reasonable for him to do so disclose that knowledge or suspicion". Missing fact: whether the demand names a wallet address. If it does, I disclose now on a precautionary basis.
+  - s.25A(5) (p.84): an offence to disclose "any matter which is likely to prejudice any investigation". Knowledge of the disclosure stays restricted.
+- R16d, Cap. 575 United Nations (Anti-Terrorism Measures) Ordinance (statute, version date 2019-06-20):
+  - s.8(a) (p.20): must not, without a licence, "make any property or financial (or related) services available, by any means, directly or indirectly, to or for the benefit of a person knowing that, or being reckless as to whether, the person is a terrorist or terrorist associate".
+  - s.14(1) (p.57): up to 14 years' imprisonment.
+  - s.12(1) (p.36): duty to disclose where a person "knows or suspects that any property is terrorist property".
+  - Application: the attacker's identity is unknown, so paying an anonymous wallet without checks risks recklessness. The motive appears financial; s.2(1) (p.9) requires a "political, religious or ideological cause", and no such fact is on the card.
+- R01, Cap. 653 s.36(2)(e) (p.52): if an investigation is directed and the further power is authorised, officers may require the bank "to carry out any remedial measures, or to cease carrying on any activities, in relation to the investigated threat or incident". No such requirement is on the card.
+- R06 SPM OR-2 para 3.4 (p.6, non-statutory guideline): "The Board bears ultimate responsibility for ensuring that an AI remains operationally resilient." This is a general principle; reserving the payment decision to the Board is my judgment.
+- R11, PCPD guidance (non-statutory), p.4, Step 2: "Notifying the relevant law enforcement agencies if identity theft or other criminal activities have been or are likely to be committed". This supports the Police report.
+
+## Q05b — Contact with the attacker
+
+**Decision and action.** No contact is authorised at this point: no reply, acknowledgement, negotiation, request for more samples or request for more time. The bank is receive-only. SEC preserves every inbound message, the screenshot and channel details as evidence. The no-contact perimeter covers all staff, branches, the contact centre, COM and the support vendor.
+
+**Conditions before any contact could be authorised later (all required).**
+1. The Police have been consulted and the contact does not cut across their investigation or any Commissioner requirement.
+2. There is a written, limited purpose, for example proof that SEC cannot obtain another way.
+3. LC clears a script with:
+   - no offer or promise to pay;
+   - no admission;
+   - no mention of reports to the Police or regulators;
+   - no customer data sent or solicited beyond a minimum agreed with SEC.
+4. Any discussion of payment terms stays reserved to the Board.
+
+**Who authorises and who conducts (judgment).**
+- Authoriser: the Chief Executive as crisis team chair, in writing, on a joint recommendation from LC and SEC, with the Board chair informed.
+- Conductor: one designated specialist, either directed by the Police or a professional negotiator retained through external counsel.
+- Method: a segregated channel set up by SEC, with a full transcript kept.
+- No bank employee, executive or vendor acts alone.
+
+**Timing.** The instruction is effective at 09:30 HKT and issued by 09:40 HKT. It is reviewed at the 12:00 checkpoint after Police consultation and SEC's validation, and no later than 23:00 HKT.
+
+**Recipient and channel.** The instruction goes to the Chief Executive and crisis team. SEC and COM carry it into staff and vendor instructions. My legal line for COM's Q06a wording is: "Do not respond to anyone claiming to be the attacker; pass any message to SEC."
+
+**Basis and application.**
+- No direct rule located in assigned sources on contact or negotiation with an attacker.
+- R07 SPM TM-G-2 para 4.2.1 (p.9, non-statutory guideline): "AIs should establish a CMT to respond to and manage the various stages of a crisis." This supports crisis-team-level authority; who may contact an attacker is left to judgment.
+- R02 Code of Practice (Generic) para 7.2.3(a)(i) and (v)(2) (p.32, code of practice): the emergency response plan should specify "The role of senior management" and cover "chain of custody". The bank's plan is not in my manifest. If it names an authoriser, that person is used.
+- R16c s.25A(5) (p.84) and R16d s.12(5) (p.37): no contact may reveal a disclosure or prejudice an investigation.
+- R05 HKMA circular, p.2, heading "Public announcement", fourth paragraph (checked against the scan): communications are weighed against "whether a public announcement may prejudice any ongoing criminal proceedings or any investigation". This is a general principle only.
+
+## Carried forward from C01
+
+- The secure filing channel is now available, so I file the Annex E written record now under R01 s.28(3). It records the ransom demand and the data-copy claim as unverified.
+- The 10:00 HKT update to the HKMA includes the demand, the unverified data claim and the no-payment posture.
+- Privacy path: R11 p.1 treats "a suspected or actual breach of the security of personal data" as a data breach. The notification decision follows SEC's validation.
+- Fact for COM's Q06b: as at 09:30 HKT no ransom has been paid and none is authorised. Nothing is to be said about reports to law enforcement.
+
+## Search record and limits
+
+- "ransom": 9 hits (R02 pp.35, 42, 43; R04 p.8; R11 p.2; R14b p.5; R16a p.4); none on payment.
+- Regex "extortion|blackmail|bitcoin|virtual asset|cryptocurrency|negotiat": 3 hits (R12 p.5 and R14b p.7, both "renegotiated"; R16c p.101).
+- Regex "sanction|threat actor|attacker|hacker|law enforcement": 17 hits; none for "sanction" and none on contacting an attacker.
+- "crisis management": R07 only.
+- "knows or suspects": R16c p.83; R16d pp.36–37.
+- Not in the manifest: the Theft Ordinance, sanctions legislation, the bank's emergency response plan and its insurance policy.
+>>>
+
+Sealed COM answer for C02:
+<<<
+COM RESPONSE, CARD C02 (Monday 16 November 2026, 09:30 HKT, H+1:30). Locked before seeing colleagues' answers. Units answered: Q06a, Q06b only.
+
+Both decisions are yes: a new frontline instruction goes out at 09:45 HKT, and the reporter gets a written reply at 09:55 HKT, before the 10:00 deadline. The reply states that no payment has been made only if the Chief Executive and LC confirm that fact by 09:50; otherwise a no-details reply goes at the same time. All actions below are simulated, for the facilitator to log.
+
+Source position for both units
+- PH01 is not in my allowed manifest, so "Internal bank procedure" is N/A throughout.
+- R05 is a scan; the R05 quotations below were checked against the page images of PDF pages 1 to 3.
+- The card does not say whether any payment has been made, whether customer funds are intact, or whether the screenshot is genuine. I treat all three as unverified.
+
+How I have taken account of the public status in the handoff
+- The holding statement is out, but the handoff cannot confirm which wording or channel was used. My wording therefore says "the incident the bank announced this morning" and does not quote it, link to the website, or restate whether authorities "have been" notified.
+- Simulated action, 09:35: I pull the as-released text and channel from the dispatch log entry for the 08:45 to 09:00 release. If it is available by 09:50, I align the terms exactly; if not, the neutral wording stands.
+- Compensation Line A is approved by the Chief Executive, so staff may use it whichever public text was released.
+- The 10:00 update is still due. It will carry the same lines as below on service, funds and customer information, and will not raise the ransom question unprompted.
+
+---
+
+UNIT Q06a: Instructions for branch and contact-centre staff
+
+Decision and action
+- Issue "Frontline Instruction No. 2" at 09:45, replacing the 08:15 script.
+- It gives exact lines for five questions, a strict "do not comment" rule on ransom and data claims, tighter identity checks, escalation routes and enquiry logging.
+- Staff are not told the demand amount, the deadline or the screenshot; they do not need those facts to do their job.
+
+Hold conditions (dependencies on this card)
+- Funds line A is used only if Operations and SEC confirm in writing by 09:40 that no unauthorised movement of customer funds has been identified. Otherwise line B is the default.
+- LC clears the instruction against its payment posture and attacker-contact decisions (Q05a, Q05b), so that no frontline line reveals or contradicts them.
+- SEC confirms internal email and intranet are trusted for distribution. If not, managers brief by phone and distribute printed cards.
+
+Wording
+"FRONTLINE INSTRUCTION No. 2. Issued 09:45 HKT, 16 Nov 2026. Internal only. Replaces the 08:15 script. Do not forward, photograph or post.
+
+What you can say
+1. Service: 'Outbound local transfers and payroll submission are currently unavailable because of the incident the bank announced this morning. You can view your balance in the mobile app and our branches are open. We do not yet have a confirmed restoration time. Please do not re-submit instructions. If your payment is time-critical I can record your case now.'
+2. 'Has my money gone?'
+   - Line A (only if confirmed, see hold conditions): 'The bank has not identified any unauthorised movement of customer funds. I can check your balance with you now, or you can view it in the app. If you see a transaction you do not recognise, tell me and I will report it straight away.'
+   - Line B (default): 'The incident has disrupted the sending of outbound local transfers and payroll. I can check your balance with you now, or you can view it in the app. If you see a transaction you do not recognise, tell me and I will report it straight away. If a payment you sent has not arrived, please do not send it again; we are checking each instruction and will confirm its status to you.'
+3. 'Has my personal information been taken?': 'The bank is urgently checking whether any customer information is affected. If yours is, the bank will contact you directly. Please be alert to unexpected calls, messages or emails. We will never ask for your password or one-time passcode.'
+4. 'Was the bank hacked? Is there a ransom? Has the bank paid?': 'The bank has announced an incident affecting its payment processing system and is investigating. I am not able to comment beyond the bank's official statements.'
+5. Fees and losses: 'You will not bear bank fees or charges caused by this disruption. If you incur a loss because of it, I can register your claim now.' Record name, contact, what happened and amount. Do not promise an amount or a date.
+
+What you must do
+6. Complete full identity checks on every request, with no exceptions. Take extra care with changes to contact details, password or token resets and new payees. Report suspected impersonation to the fraud team.
+7. Escalate at once to your manager, who calls the incident desk: any unrecognised transaction; any customer who says someone has shown or sent them their bank data; anyone claiming to hold bank data or to act for those behind the incident; any threat. Do not engage, negotiate, click links or open attachments.
+8. Media or anyone recording: do not comment. Take name, outlet and number and pass to Corporate Communications. Regulator or police callers: pass to Legal and Compliance.
+9. Log every enquiry by type: service, funds, data, claim, complaint, media. Managers send totals to Corporate Communications at 10:15 and every 30 minutes after.
+
+What you must not do
+10. Do not say funds or data are 'safe', 'unaffected' or 'affected' beyond the lines above. Do not guess the cause, who is responsible or when service will return. Do not confirm, deny or discuss any ransom, payment or contact with any third party. Do not post about the incident or discuss it outside the bank.
+If a question is not covered: 'I do not have that information. I will take your details and we will come back to you.'"
+
+Status of facts in the instruction
+- Confirmed (C01 card, not updated at C02): outbound domestic transfers and payroll submission are disrupted; mobile balances are viewable; branches are open.
+- Being verified, so not asserted: whether customer data was copied; whether funds are intact; restoration time; status of instructions already submitted.
+
+Accountable owner and executing parties
+- Owner: COM.
+- Fact check: SEC and Operations. Clearance: LC.
+- Approver: the crisis management team chair, verbally and logged. The Chief Executive approves the two new lines (funds line A and the ransom line), because they go beyond the wording he has already approved.
+- Executing: branch network head and the eight branch managers; contact-centre head and team leaders; SME banking head for relationship managers; the social media response team and switchboard receive the same instruction.
+
+HKT deadlines
+- 09:35: fact requests sent.
+- 09:40: five-minute briefing call with branch managers and contact-centre team leaders.
+- 09:45: written instruction issued.
+- 10:00: each manager confirms staff are briefed; confirmations logged. Instruction No. 3 follows if the 10:00 update changes any line.
+- 10:15, then every 30 minutes: enquiry totals to COM, passed to LC.
+
+Recipients and channels
+- Briefing call, then the intranet knowledge base and frontline email marked internal.
+- Printed desk card in branches, collected at close.
+- Fallback: phone call-out and SMS to managers' mobiles.
+
+Basis, direct rules (external)
+- R05, HKMA circular "Incident response and management procedures" (22 June 2010), PDF p.3, heading "Handling of customers' and media's enquiry": "a proper communication strategy should be formulated by the senior management to ensure that consistent and up-to-date messages are conveyed to all relevant parties on a timely basis."
+- Same paragraph: "deploy swiftly adequate resources and communication channels (e.g. customer service hotlines and extended office hours of branch services) to handle such enquiries."
+- Authority and scope: HKMA supervisory circular to all AIs, covering "any significant incident"; R06 (SPM OR-2) section 8.5, PDF pp.13 to 14, confirms it is current. It applies because branches are already taking calls about missing funds.
+- R07, SPM TM-G-2, section 4.7.2, PDF p.14: "The BCP should clearly indicate who can speak to the media, and have pre-arrangements for redirecting external communications to designated staff during a disaster." This is the basis for the media referral rule. R07 is a non-statutory guidance note.
+- R07 section 4.7.3, PDF p.14: recovery status should be "promptly and consistently communicated to all staff", using channels such as "broadcasting of messages to mobile phones of staff, AIs' websites, e-mails, intranet and instant messaging". This is the basis for the distribution and fallback.
+- R09, SPM TM-E-1 (statutory guideline under Banking Ordinance §7(3)), section 4.4.2, PDF p.17: AIs should offer a channel "available at all times for customers to seek and obtain help with respect to possible unauthorized transactions". This supports item 2 and the escalation of unrecognised transactions.
+- R11, PCPD Guidance on Data Breach Handling (June 2023), PDF p.1, "What is a data breach?": "a suspected or actual breach of the security of personal data". The attacker's claim makes this a suspected breach.
+- R11, PDF p.4, Step 1: staff who first discover a breach "should consider whether to escalate the incident to the dedicated data breach response team/senior management/data protection officer". This supports escalation item 7. R11 is regulator guidance, not statute.
+- R02, Code of Practice (Generic), section 7.3.4(f), PDF p.36: seriousness includes "a material number of customer enquiries or complaints". This is why the tallies go to LC. The Code is practical guidance (section 1.1.4).
+
+General principles
+- R05, PDF p.1: "The top priority should be to safeguard the interests of customers who have been or may be affected by the incident."
+- R09 section 4.3.1, PDF p.16: "sufficient advance guidance and training are given to officers who handle customers' enquiries".
+
+No direct rule located in assigned sources
+- No source prescribes the content of a frontline script, what staff may be told about a ransom demand, or who approves internal instructions.
+- Searches recorded: "enquiries", "customer service", "staff" in R07, "unauthorized transactions" in R09, the regex "frontline|front-line|front line" (only R08 p.20, an IT helpdesk reference), the regex "training|awareness" in R05 (0 hits), and the regex "rumour|rumor|misinformation|run on|deposit" (nothing on point).
+
+Professional judgment
+- Need-to-know on the demand and screenshot: this limits leaks and avoids staff repeating unverified attacker claims.
+- Two funds lines: staff must not reassure beyond what is verified, but need something concrete to offer, namely an immediate balance check.
+- Tighter identity checks: if identity data has been copied, impersonation attempts are the likely next harm.
+- The 09:45 release time and the 30-minute tally cycle.
+
+Internal bank procedure: N/A (PH01 absent).
+
+---
+
+UNIT Q06b: Answering the reporter before 10:00
+
+Decision and action
+- Yes, answer in writing by email at 09:55, attributed to "a Lan Tidal Bank spokesperson".
+- No interview, no background briefing, no off-record remarks. A phone call only to confirm receipt.
+- The same reactive line is given to any other outlet that asks.
+- A copy goes to HKMA through LC at or just before sending.
+- The reply is logged as a reply to a press enquiry.
+- The deadline is never missed: if Reply A's conditions are not met by 09:50, Reply B goes at 09:55.
+
+Release conditions for Reply A (dependency on Q05a and Q05b)
+1. The Chief Executive and LC confirm in writing by 09:50 that no payment has been made or authorised. I ask the finance head to confirm the same.
+2. LC confirms the sentence does not constrain or contradict its payment posture, and that the reply discloses nothing likely to prejudice an investigation.
+3. The Chief Executive approves the text.
+
+Reply A
+"Lan Tidal Bank has not made any payment to any party in connection with the incident we announced this morning. [We have not identified any unauthorised movement of customer funds.] Our investigation is continuing [and we are working with the relevant authorities], and it would not be appropriate to comment on its details. We are verifying whether any customer information is affected and will tell customers directly if it is. Our next update will be issued at 10:00 HKT and we will send it to you."
+
+Bracketed text in Reply A
+- The funds sentence is included only if Operations and SEC give the same written confirmation as for staff line A.
+- "working with the relevant authorities" is included only if LC confirms at 09:50 that notifications have actually been made. This is consistent with either earlier wording.
+
+Reply B (default if any condition for Reply A fails)
+"We are not commenting on the details of the incident we announced this morning while the investigation is under way. We are verifying whether any customer information is affected and will tell customers directly if it is. Our next update will be issued at 10:00 HKT and we will send it to you."
+
+If the reporter asks whether a demand was received
+"We are not commenting on the details of the investigation." We never deny that a demand exists.
+
+What neither reply contains
+- The amount, currency or deadline of the demand.
+- The screenshot or the data claim.
+- The vendor's remote access account.
+- Any attribution.
+- Whether any report has been made to a named agency.
+- Any statement of future intention on payment. A "will not pay" line would be added only if the Chief Executive adopts that posture on LC's recommendation and LC clears publication. I do not recommend it at this card.
+
+Status of facts
+- Confirmed: an incident is public; a comment is requested by 10:00.
+- Being verified: whether any payment has been made (not stated on the card); whether funds are intact; whether the screenshot is genuine bank data.
+
+Accountable owner and executing parties
+- Owner: COM (drafts and sends).
+- Approver: Chief Executive; alternate is the crisis management team chair if he is unreachable by 09:50.
+- Clearance: LC. Fact check: SEC and Operations. HKMA copy: executed by LC.
+
+HKT deadlines
+- 09:35: confirmation requests sent.
+- 09:50: cut-off for Reply A conditions.
+- 09:55: reply sent.
+- 10:00: scheduled public update issued with the same lines.
+
+Recipient and channel
+- The reporter, by email from the Corporate Communications mailbox.
+- HKMA copy through LC's supervisory contact.
+- Entry in the dispatch log.
+
+Basis, direct rules (external)
+- R05, PDF p.3: "The HKMA should be kept informed during the process and copies of public communication materials should be submitted to the HKMA for reference." A reply for publication is public communication material, so HKMA gets the copy.
+- R05, PDF p.3: "consistent and up-to-date messages are conveyed to all relevant parties on a timely basis". This is why the reply matches the staff lines and the 10:00 update.
+- R05, PDF p.2, heading "Public announcement", 4th paragraph: "the need to keep the public informed may need to be weighed against the relevant legal considerations, including where appropriate whether a public announcement may prejudice any ongoing criminal proceedings or any investigation" and "If in doubt, AIs should consult the Hong Kong Monetary Authority (HKMA)." This is the basis for LC clearance and for withholding the demand details.
+- R09 section 8.2.2, PDF pp.32 to 33: "consistent and up-to-date messages are conveyed to all relevant parties (e.g. customers, media and business partners) on a timely basis".
+- R07 section 4.7.2, PDF p.14: "Important conversations with external parties should be properly logged for future reference." Together with the "who can speak to the media" sentence quoted in Q06a, this supports a single written reply from Corporate Communications.
+- R02 Annex F, section E, PDF p.46, lists "Reply to press enquiry was made/issued". This is why the reply is time-stamped for LC's later written report.
+
+Rule applicable but a fact is missing
+- R16c, Cap. 455, s.25A(5), PDF p.84: "A person commits an offence if, knowing or suspecting that a disclosure has been made under subsection (1) or (4), he discloses to any other person any matter which is likely to prejudice any investigation which might be conducted following that first-mentioned disclosure."
+- R16d, Cap. 575, s.12(5), PDF p.37, has a parallel restriction where the suspicion concerns terrorist property.
+- Both are statute. Missing fact: whether any such disclosure has been made or is planned; that sits with LC. Conditional action: LC clears the reply, and both versions already exclude the demand details and any reference to a report.
+- R11, PDF p.8, "When to notify?": "A notification should generally be given as soon as practicable after becoming aware of the incident, regardless of the progress of any internal investigation." Missing fact: whether the sample is genuine (SEC, Q04a). I therefore keep the "verifying" line and do not confirm a data breach to the reporter.
+
+No direct rule located in assigned sources
+- No source says whether a bank should confirm or deny a ransom demand or payment to the media, sets a time for answering a press enquiry, or names who approves a media reply.
+- Searches recorded: "ransom" (9 hits: R02 pp.35, 42, 43; R04 p.8; R11 p.2; R14b p.5; R16a p.4; none on payment or public comment), the regex "virtual asset|bitcoin|BTC|cryptocurrenc" (0 hits), the regex "extortion|blackmail|demand" (only an offence listing at R16c p.101), "likely to prejudice any investigation", "press release", and the regex "spokesperson|spokesman|speak to the media|who can speak".
+
+Professional judgment
+- Answering rather than staying silent: a non-reply invites "bank will not say whether it paid", which would feed the fears already reaching branches.
+- A plain statement of present fact on payment, if confirmed, calms customers without disclosing investigative detail. It speaks only as at 09:55.
+- Declining detail is honest; denying a demand would not be.
+- Not volunteering the data claim to one reporter: it is unverified and customers should hear first from the bank.
+
+Flag for the Chief Executive and LC (outside my two units)
+- Whether the bank publicly acknowledges the unverified data claim needs a decision. I suggest revisiting it as soon as SEC has a first result on the sample, or at once if the attacker publishes.
+
+Internal bank procedure: N/A (PH01 absent).
+
+---
+
+Simulated actions for the facilitator's log (all HKT, 16 November 2026)
+- 09:35: COM requests written confirmation from the Chief Executive, LC and the finance head on payment status.
+- 09:35: COM requests confirmation from Operations and SEC on customer funds.
+- 09:35: COM asks LC for notification status and clearance of both texts.
+- 09:35: COM asks SEC whether internal email and intranet are trusted.
+- 09:35: COM pulls the as-released holding statement and channel from the dispatch log.
+- 09:40: briefing call with branch managers and contact-centre team leaders.
+- 09:45: Frontline Instruction No. 2 issued (funds line A or B according to the confirmation received).
+- 09:50: cut-off; COM selects Reply A or Reply B.
+- 09:55: reply emailed to the reporter; copy to HKMA via LC; logged as a reply to a press enquiry.
+- 10:00: scheduled public update issued with the same lines; managers' briefing confirmations logged.
+- 10:15: first enquiry tally to COM and LC.
+>>>
+
+Facilitator handoffs given to the roles for C02:
+SEC: none.
+LC: none.
+COM:
+Q03b | Public holding statement in Chinese and English, in COM's C01 wording with compensation Line A, approved by the Chief Executive; release conditions and fallbacks as in COM's sealed C01 answer | COM (approver: Chief Executive; HKMA copy via LC) | Target release 08:45 HKT, latest 09:00 HKT, 16 November 2026 | Public, customers and media: website homepage and newsroom, press release by email to newsdesks, the bank's verified social media accounts, same text to branches and contact centre | Executed in simulation: released between 08:45 and 09:00 HKT on 16 November 2026 under the approved release rules. Cannot be verified: which wording branch applied ("have notified" or "are notifying"; full text or card-confirmed facts only) and whether the website or the fallback channels were used, because no card records SEC's channel confirmation or the outcome of the HKMA call. The 10:00 HKT update is scheduled and has not been issued.
+
+Using this card, your facilitator handoffs and the three sealed role
+submissions, return one final record for each scored unit in this card.
+
+Unit ID | Original answer reference | CONFIRM or OVERRIDE | Reason |
+Final action and condition | Accountable owner | HKT time, deadline or
+trigger | Recipient and channel | Final external basis |
+Final internal basis | Dispatch instruction.
+
+Give a specific reason for each confirmation or override. Use OVERRIDE
+with "Missing recommendation" as the original answer reference when
+needed. For an unchanged, adequate citation or search record, you may
+reference the exact unit and field in its sealed answer. For any new or
+corrected basis, provide the exact location and short verbatim quote, or
+the search record and professional judgment required by the common prompt.
+For the dispatch instruction use EXECUTE NOW, SCHEDULE, HOLD, or NO ACTION
+and state any execution dependency. Finish with the order of any actions
+that depend on one another on this card.

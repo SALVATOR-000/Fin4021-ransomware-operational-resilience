@@ -1,0 +1,30 @@
+{
+ "run": "A1",
+ "facilitator_session": "d4255cc9-51ad-4f99-a5dc-b6c385449b88",
+ "agents": {
+  "SEC": "a940b407d8b75f824",
+  "LC": "af7a33376ae10ba23",
+  "COM": "a4f57c91d83e8342b",
+  "CEO": "a478d33b7858ffb72"
+ },
+ "turn": {
+  "SEC": 8,
+  "LC": 8,
+  "COM": 9,
+  "CEO": 8
+ },
+ "card_in_progress": null,
+ "cards_done": [
+  "C01",
+  "C02",
+  "C03",
+  "C04",
+  "C05",
+  "C06",
+  "C07",
+  "C08",
+  "Q25"
+ ],
+ "note": "COM transcript has one extra facilitator message (resume at C05), so COM parser turn numbers are card number + 1 from C06 on (C06 = turn 7). SEC and LC: turn = card number. CEO: turn = card number.",
+ "finished": "2026-11-18 02:07:32 HKT"
+}

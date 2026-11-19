@@ -1,0 +1,22 @@
+# A1 · C06 · 状态登记（主持人）
+
+依据：`CEO.final.md`（六个单元 CEO 都标 CONFIRM）。条目用英文、香港时间，只摘 CEO 最终记录里的字段。登记办法见 `00 运行记录.md` 第九节。
+
+Q16a | Hold: no staged production recovery and no production use of the recovery image in any mode; the secondary process is the only permitted service mode; mismatch investigation; both SEC reports issued as "not passed"; authorisation gate of eight conditions adopted by the Chief Executive, who signs condition 8 only when conditions 1-7 are recorded; four stages if the gate is later passed | SEC (decision: Chief Executive as crisis management team chair) | Hold recorded 20:00 HKT 17 November 2026; SEC reports 21:00; preliminary mismatch classification by 23:00; earliest gate review 08:00 HKT 18 November, only if conditions 1-7 are recorded | Chief Executive, payments information owner, LC and IT Operations | Hold: executed in simulation at 20:00 HKT. Mismatch investigation: executed in simulation from 20:15 HKT; result not recorded. SEC reports: executed in simulation at 21:00 HKT with the overall result "not passed". Gate review: scheduled, conditional.
+
+Q16b | Stop and rollback criteria fixed for any later authorised stage | SEC | In force from the first production transaction of any authorised stage | Emergency change record; the three duty holders | Criteria attached and briefed: executed in simulation at 20:00 HKT. No production activity authorised.
+
+Q17a | Staged release to the forensic firm: a minimised, masked data set now; the full image only by supervised access inside the bank's offline laboratory on a written statement of need; a full copy leaves only if that is unworkable, with LC's written approval and SEC's sign-off; conditions before transfer, on transfer and on use | LC (SEC prepares, hashes and delivers) | Conditions to the firm 20:10 HKT 17 November 2026; minimised set released by 22:00 if the conditions are signed; supervised access from 08:00 HKT 18 November if justified | The retained Hong Kong forensic firm, by hand delivery of encrypted media or supervised access | Conditions sent: executed in simulation at 20:10 HKT. Release of the minimised set: on hold until the firm signs; cannot be verified. Full copy: not executed.
+
+Q17b | Board escalation: telephone the chair, circulate a paper, hold a Board or committee meeting; four decisions (recovery gate; minute "do not pay"; remediation principle and budget; oversight arrangements) | LC (Chief Executive presents) | Chair telephoned by 20:30 HKT 17 November 2026; paper by 21:30; meeting by 22:00 | Board chair and directors, or the delegated committee | Call: executed in simulation at 20:30 HKT. Paper: executed in simulation by 21:30 HKT. Meeting and its decisions: cannot be verified (no card records them).
+
+Q18a | Customer status update, Version 2 (hold): the payment service has not been restarted; queue figures from Operations; payroll apology and priority; compensation line; fake-page warning; pause notice kept in draft | COM (approver: Chief Executive; clearance and HKMA copy: LC) | Target release 20:45 HKT 17 November 2026, latest 21:00; next update 07:00 HKT 18 November | Website status notice, app and internet banking notice, recorded hotline message, verified social media accounts, press release, targeted push or SMS with no link, relationship manager calls to SME payroll customers | Scheduled at C06.
+
+Q18b | Verified call and written operational notice to the two counterparties (status "not restarted"; provisional schedule of unsettled items; act only on verified contacts; update schedule), and the same notice proactively to other banks and counterparties with unsettled items | COM (executing: head of payment operations; approver: Chief Executive) | Requests verified and acknowledged by 20:30 HKT 17 November 2026; call and notice 21:30; from 18 November updates at 08:00, 13:00 and 18:00 daily | Named operations contacts at each counterparty, by verified phone call then the secure channel already agreed, or by hand or courier if SEC has not confirmed the channel | Call-back verification: executed in simulation at 20:30 HKT. Notice: scheduled for 21:30.
+
+## 到 C07（11 月 18 日 12:00 HKT）时的变化
+
+- Q18a：最迟发布时间 21:00 已过，CEO 的暂缓决定和批准都在最终记录里，转为已模拟执行（版本 2）；所用的队列数字无法核实。07:00 的更新没有附加条件，转为已模拟执行。
+- Q18b：21:30 的通知，渠道一项原决定写了后备做法，转为已模拟执行；对手方的答复没有记录。18 日 08:00 的例行更新转为已模拟执行。
+- 闸门复核（最早 18 日 08:00）：条件 1 至 7 是否已记录，没有卡披露；没有复核或授权的记录。
+- C07 卡面写明：取证伙伴交付了网关、身份系统和供应商远程访问服务的带时间戳记录，部分时钟相差最多四分钟；一台隔离主机上出现了事件中见过的新指标，与原始入侵的关系未核实；经验证的文件确认同样的 320 名受影响客户，并更正其中 12 人的联系方式；31 名客户报告疑似诈骗。

@@ -1,0 +1,7 @@
+C04 · Monday, 16 November 2026 · 18:00 HKT · H+10
+Facts at release. The original gateway remains impaired. Independently measured demand includes about 4,200 queued payment instructions, with time-sensitive SME payroll among them. A secondary process can handle up to 400 verified instructions an hour if approved. Some customers retried transfers after a timeout. Call volumes have doubled, and some customers report that they cannot reach a branch. The facilitator will supply the authorised dispatch records from the first card.
+• Q10 · SEC. a. Decide whether to use the secondary process and how to prioritise eligible queued payments. b. Define the control for retried payments and possible duplicate entries before processing.
+• Q11 · LC. a. Review the record for the Commissioner’s notification and decide the next action based on the method, timing and evidence actually logged. b. Review the HKMA record and decide what initial or follow-up supervisory contact to make now.
+• Q12 · COM. a. Decide whether and how to update the public service status, using the prior published status if available. b. Choose a practical way to reach and assist customers unable to use the usual channels.
+
+Facilitator handoff to SEC for C04: none.

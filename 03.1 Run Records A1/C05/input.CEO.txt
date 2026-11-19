@@ -1,0 +1,515 @@
+C05 · Tuesday, 17 November 2026 · 08:00 HKT · H+24
+Facts at release. The attacker’s deadline has passed. Monitoring has found a public mirror of a file whose contents match 320 customers’ records, including the original 80. The 18,000-record claim remains unverified. A separate social-media account is using the incident to lure customers to a fake verification page. A pre-incident immutable backup exists. Its suitability for restoring payment processing is unverified. The facilitator will supply the previous ransom decision and customer notification record.
+• Q13 · SEC. a. Decide which recovery candidate to test and how to verify its integrity and separation from the compromised environment. b. Define offline transaction reconciliation checks before the candidate is considered for production.
+• Q14 · LC. a. Decide whether to maintain, suspend or revise the earlier payment posture, and how to handle any recorded commitment. b. Decide whether to refer the incident to law enforcement and what evidence can accompany that referral.
+• Q15 · COM. a. Decide how and when to notify newly verified affected customers, taking account of previously notified groups. b. Decide how to warn customers about the fake verification page without directing traffic to it.
+
+Sealed SEC answer for C05:
+<<<
+SEC RESPONSE - C05 (Tue 17 Nov 2026, 08:00 HKT, H+24) - Unit Q13 a and b. Locked before colleagues' answers.
+
+Internal bank procedure (PH01): N/A for both units. PH01 is not in my allowed manifest, so no internal basis and no conflict check is possible.
+
+Fact status I am working from
+- Released by the card: the attacker's deadline has passed; a public mirror holds a file matching 320 customers' records, including the original 80; the 18,000-record claim is unverified; a social-media account is luring customers to a fake verification page; a pre-incident immutable backup exists.
+- Unverified or unknown: whether the backup can restore payment processing; the backup's date against the attacker's first access (still unknown since C01); whether the backup system was touched by compromised accounts; whether the standby gateway is clean; how long a restore takes; what was processed between the backup time and the failure.
+- Carried forward: the original gateway is under evidence hold (C01); vendor access is suspended (C03); the secondary process and its instruction register are running (C04).
+
+---
+
+Q13a - Which recovery candidate to test, and how to verify integrity and separation
+
+Decision. Test one candidate first: a newly built gateway in an isolated recovery environment, with software installed from trusted media and data restored from the pre-incident immutable backup. Passing the test does not approve it for production.
+
+Candidates considered (professional judgment)
+
+| Candidate | Decision | Reason |
+|---|---|---|
+| A. New build plus immutable backup, in an isolated environment | Test now | Only option that does not depend on anything the attacker could reach |
+| B. Standby gateway | Second choice, only if A fails; same checks apply | May share accounts, secrets or replicated encrypted data with the original |
+| C. Repair or decrypt the original gateway in place | Rejected | It is the compromised environment and is held as evidence |
+| D. Secondary process | Continues as the interim service | Not a recovery of the gateway |
+
+Integrity checks on the backup and the restored build
+1. Provenance. Backup system logs show the retention lock was never lifted, with no deletion or change attempts, in particular by the vendor credential or other suspect accounts. The catalogue checksum matches at restore.
+2. Date test. The backup time is compared with the earliest sign of attacker access from the forensic timeline. If the backup is later than that sign, or the timeline cannot rule it out, only data is restored from it: no programs, accounts, scheduled jobs or configuration.
+3. Clean build. Operating system and gateway software come from trusted installation media and are compared with reference checksums. Only authorised software is present.
+4. Scan. The restored content is scanned for the indicators from this incident: attacker tools, added accounts and keys, scheduled tasks, altered rules.
+5. Baseline. Configuration, system parameters and account lists are compared with the approved pre-incident baseline; every difference is explained by an authorised change record.
+6. Entry route closed. No vendor remote access path, all secrets newly issued, multi-factor authentication on administrator access, logging and clock synchronisation on, endpoint protection installed, and a vulnerability scan passed.
+7. Function. Synthetic test instructions only, sent to simulators. No real customer instruction and no connection to payment interfaces.
+8. Independent review. A reviewer who did not build the candidate checks the results.
+
+Separation checks
+- Network: a new segment with deny-all to the isolated gateway segment and to production. Verified by rule review, a scan from both sides and flow records showing no traffic.
+- Identity: new accounts and newly generated keys and certificates; no trust relationship with the compromised directory; no vendor accounts.
+- Management: clean administrator workstations; no shared management tooling, storage or backup agents with compromised hosts. If the same virtualisation or storage platform must be used, it is checked for compromise first.
+- Data path: backup media mounted read-only, one-way transfer in. The immutable copy is never attached to the compromised environment.
+- Evidence: nothing in the test touches the original gateway.
+
+Stop triggers
+- Any incident indicator in the restored content, or a checksum mismatch: stop, quarantine the candidate, move to an earlier copy or data-only restore.
+- Any traffic between the recovery environment and the compromised segment: stop and rebuild the separation.
+- Backup date cannot be placed before the attacker's first access: system state from the backup is not used.
+
+Accountable owner: SEC for candidate selection on security grounds, the test criteria and the test report. Executing parties: IT Operations and the backup team (build and restore), forensic staff (date test and scan), an independent reviewer from technology risk or internal audit, the payments information owner (functional test). CMT decides on production.
+
+Time (judgment targets; restore duration is unknown, so later times are conditional): provenance and date test by 09:00 HKT; isolated environment built and separation verified by 11:00; restore and checks 3 to 6 by 15:00; functional test by 16:30; SEC test report (pass or fail per criterion) to CMT by 17:00.
+
+Destination and channel: the isolated recovery environment, under an emergency change record; test report to CMT, the information owner, LC and IT Operations by the restricted incident workspace; every step in the incident log.
+
+Basis
+- R03, HKMA Sectoral Code, s.6.2.16(a), PDF p.15: change controls adhere to "relevant requirements outlined in SPM TM-G-1 sections 4.2.4 and 4.3". R08, SPM TM-G-1, s.4.2.4, PDF p.18: "System and user acceptance testing should be carried out in an environment separated from the production environment." and "only properly tested and approved systems are promoted to the production environment". Authority: sectoral code under Cap. 653 s.8, pointing to HKMA supervisory guidance. It applies because the candidate is a rebuilt version of the designated gateway. It also says production data is not to be used in testing unless de-sensitised, which is why function is tested with synthetic instructions.
+- R03 s.6.2.15(a), PDF p.15, refers to TM-G-1 s.3.4.1. R08 s.3.4.1, PDF p.14: "integrity of static data (e.g. system parameters) should be periodically checked to detect unauthorized changes". Supports check 5.
+- R03 s.6.2.20(b)(i), PDF p.17: "implement a secure tertiary data backup (STDB)". R04, SPM TM-C-1, s.4.3, PDF p.8: such backup is "to recover and restore critical data promptly in the event that a cyberattack compromises both the production and backup environments of AIs". Missing fact: whether this backup is that tertiary copy and whether it covers system state as well as data. The HKAB guideline R03 cites is not in my manifest.
+- R02, OCCICS Code of Practice (Generic), s.6.2.20(a), PDF p.18: "Backup restoration tests should be conducted regularly without affecting the production environment." Generic-code text, used as principle for testing away from production. s.7.2.4(c), PDF p.34: "Disaster recovery planning focuses on the effective restoration of CCSs from severe disruptions".
+- R14b, Annex to HKMA circular on good practices, item 6, PDF p.5: practices include "setting up dedicated environments and utilities for recovery". Encouraged good practice, not a requirement.
+- R07, SPM TM-G-2, s.4.6.2, PDF p.13: "Access to back-up vital records should be adequately controlled to ensure that they are reliable for business resumption purposes." s.4.3.3, PDF p.11: plans should cover "the verification of the safety and readiness of the permanent site". Supports checks 1 and 6.
+- R08 s.4.3.3, PDF p.20: "Emergency changes need to be reviewed by independent personnel to ensure that the changes are proper and do not have an undesirable impact on the production environment." Supports check 8.
+- R01, Cap. 653, s.27(5), PDF p.43, with Schedule 3 Part 2 item 5, PDF p.93 (quoted in C04). Missing fact: the bank's recovery plan; where it names a recovery method, that is followed.
+
+No direct rule located in assigned sources for choosing between candidates, the date test, scanning a restored backup, data-only restore, or the separation checks. Files: all. Terms: regex "restor|rebuild|clean environment|golden image|recovery environment|dedicated environment"; regex "immutable|tertiary|STDB"; regex "failover|fail-over|fallback|alternate site". These are professional judgment: a backup is "pre-incident" only relative to the encryption, and the attacker's first access may be earlier.
+
+---
+
+Q13b - Offline transaction reconciliation checks before the candidate is considered for production
+
+Decision. The candidate is not put forward for production until a reconciliation, run offline on data extracts, ties with no unexplained difference. Nothing is posted or sent during these checks.
+
+Data sets (each extract hashed and entered in the evidence register)
+- Candidate state as restored, at backup time T0.
+- Core ledger extracts at T0 and at the test time.
+- Independent records of gateway activity from T0 to the failure: central logs, outbound message records, and confirmations or statements from receiving parties.
+- The C04 instruction register: released, held, cancelled, duplicate and remaining items.
+
+Checks and acceptance criteria
+
+| Check | Test | Pass condition |
+|---|---|---|
+| 1. Baseline | Candidate at T0 against ledger at T0: counts, totals, last sequence number | Zero difference |
+| 2. Gap period | Every transaction from T0 to the failure classified as settled, not settled or unknown, from independent records | All classified; "unknown" items stay held and are not loaded |
+| 3. Secondary process | Every item released by the secondary process is marked complete in the candidate | Counts and values equal the register |
+| 4. Queue tie-out | Original queue equals released plus held plus cancelled plus remaining | Zero difference in count and value |
+| 5. Three-way match | Customer instruction, ledger posting and external confirmation agree, for all items in total and item by item on payroll | No item present on fewer than three sides without explanation |
+| 6. Replay protection | Identifiers of settled and released items are fed to the candidate offline | 100% rejected |
+| 7. Sequence numbers | Message and reference counters are set above the highest value used by the gateway and the secondary process | No reference can repeat |
+| 8. Static data | Payee, routing and limit data against the approved baseline and ledger | Differences matched to authorised change records |
+| 9. Settlement position | External statements, ledger and candidate | Agree |
+| 10. Dry run | A copy of instructions already processed by the secondary process is run through the candidate to a simulator | Outputs match actual results item by item; no unexpected message |
+
+Sign-off: maker and checker in payments operations and finance; independent review; SEC attests to the integrity of the extracts and the test environment; the payments information owner signs.
+
+Scope of offline results (judgment). The offline result shows the tested copy was consistent at the test time. It does not validate live connectivity or cover items processed after the extracts. Before any cut-over, a final delta reconciliation covers items since the extracts, the secondary process stays available as fall-back, and a live test follows cut-over.
+
+Stop triggers: any unexplained difference; signs that records in the backup were altered; missing external confirmations for the gap period; a replay that is accepted.
+
+Accountable owner: SEC for the check design and integrity attestation. Executing parties: payments operations and finance (reconciliation), IT Operations (extracts and dry run), independent reviewer, payments information owner (sign-off), CMT (production decision).
+
+Time (judgment targets, conditional on the candidate passing Q13a): check design agreed by 09:00 HKT; extracts by 12:00; checks 1 to 10 between 15:00 and 20:00; reconciliation report to CMT by 21:00. Observable trigger: no production proposal without a signed report showing all ten checks passed.
+
+Destination and channel: reconciliation workspace in the isolated environment; report to CMT, the information owner and LC through the restricted incident workspace.
+
+Basis
+- R09, SPM TM-E-1, s.5.1.2, PDF p.19: "AIs should also implement sufficient controls to maintain and verify the integrity of the information processed by their Internet banking systems.", for example to "reconcile data file balances after transaction updates and to check the integrity of data transmitted between different systems". HKMA supervisory guidance; applies to instructions from mobile and Internet banking and is used as principle for other channels. It does not list the checks.
+- R14b, PDF p.2, item 1: "reconciliation procedures to maintain accuracy following a bypass". Encouraged good practice; on point for checks 3 and 4 because the secondary process is a bypass.
+- R07 s.4.3.2, PDF p.11: alternate processing "may entail record reconstruction and verification". Supports check 2.
+- R08 s.4.3.1, PDF p.19: change management includes "a process for rolling-back changes to re-instate the original programs, system configuration or data in the event of production release problems" and "a post implementation verification of the changes made". Reached through R03 s.6.2.16(a). Supports the fall-back and live test.
+- R09 Annex B, PDF p.40, items B.2 and B.3: "well-tested fall-back procedures to cater for any exceptional and unexpected situations" and "Live test after the scheduled system maintenance/drills to ensure the effective operation of the relevant services". Written for scheduled maintenance and drills; used as principle.
+- R09 s.9.4.1, PDF p.35: "It is important that the actual effectiveness of the resilience of the system should be properly verified and tested."
+
+No direct rule located in assigned sources for the ten checks, the pass conditions, replay testing, counter resetting or the delta reconciliation. Files: all. Terms: regex "duplicat|reconcil|retry|re-attempt|idempot"; regex "parallel run|dry run|cut-?over|go-live|live test|acceptance test|fall-?back procedure|roll(ing)?-?back"; regex "integrity of (transactions|data|information|records)|transaction integrity|data integrity|accuracy, completeness|non-repudiation|authoris(ation|ed) of transactions". These are professional judgment: a restored system knows nothing after T0, so the main risks are paying again what has settled and losing what has not.
+
+---
+
+Facts SEC passes to the incident team (09:00, 17:00, 21:00, and at any trigger)
+
+| Fact | Status at 08:00 | Used by |
+|---|---|---|
+| Records confirmed exported and now public | 320 customers, including the original 80 | LC, COM (Q15a) |
+| Scope estimate | Raised from 80 to 320 by the mirror, an "up" trigger under C03. The earlier single-file finding was incomplete, so SEC's confidence that the wider set is unaffected is lower. The 18,000 figure remains unverified | LC, COM |
+| Which 240 individuals are new | List by internal reference being produced by the C02 validation method; time to be confirmed by 09:00 | COM, LC |
+| Mirror and fake page evidence | SEC captures both with hashes for the evidence register, without spreading the data further | LC (Q14b referral material) |
+| Fake verification page | Not yet confirmed as outside bank infrastructure; SEC checks, blocks it on bank networks, and supplies address details for a removal request. R09 s.4.3.2, PDF p.17: "AIs should make attempts to remove the fake or suspicious items where practicable" | COM (Q15b), LC |
+| Recovery candidate | Under test; no production date; result 17:00 | CMT, COM (no restoration promise) |
+| Immutable backup | Exists; suitability and date against first attacker access unverified | CMT, LC |
+| Interim service | Secondary process continues | COM, CMT |
+| Restored-system report fields | R02 Annex F item D, PDF p.45: "Affected systems have been restored" is not yet true | LC |
+| Material change check | Bringing a rebuilt gateway into service may be notifiable under R01 s.22 (cited in C04); for LC to assess | LC |
+| Previous ransom decision and customer notification record | SEC holds neither and cannot attest to them | LC, COM |
+
+Limitations: text search and page reads only. Not available to me: the bank's recovery plan, C-RAF, the HKAB STDB Guideline cited by R03, and backup system records.
+>>>
+
+Sealed LC answer for C05:
+<<<
+LC response, C05 Q14 — locked at 08:00 HKT, Tuesday 17 November 2026 (H+24), before colleagues' answers.
+
+I maintain "do not pay": the data is already public, so payment can no longer buy anything, and none of the legal checks is cleared. I confirm and widen the Police referral this morning to cover the data publication and the fake verification page, and I refer the public mirror to the Privacy Commissioner as well.
+
+Internal bank procedure: N/A for both units. PH01 is not in my allowed manifest (search "PH01": 0 hits).
+
+## Q14a — Payment posture and recorded commitments
+
+**Decision and action.** Maintain "do not pay". It is neither suspended nor revised in substance. The hold on preparatory steps and the ban on contact with the attacker both stay in force.
+
+Reasons (professional judgment):
+- Publication has happened. Payment cannot reverse a public mirror, and a mirror implies copies outside the attacker's control.
+- The attacker's remaining leverage is an unverified wider set, with no assurance attached.
+- Every legal check from C02 is still uncleared: no authorised officer's consent is on record, the recipient is unidentified, and sanctions are unchecked.
+- A pre-incident immutable backup offers a recovery route. Its suitability is unverified and is SEC's Q13.
+
+**Changes to how the posture is held.**
+1. The record cannot verify the Board's confirmation or the 23:00 review, so I treat both as outstanding. I record a review now, at 08:00 HKT.
+2. I ask the Board, or its delegated committee, for a minuted confirmation by 10:00 HKT today. Until then the Chief Executive's adopted posture stands.
+3. Reviews are no longer tied to the attacker's deadline. They are daily, and on any of these events:
+   - SEC's backup test result;
+   - verification of the wider set;
+   - a new demand;
+   - a view from the Police or an authorised officer.
+
+**Recorded commitments.**
+- To the attacker: the record shows no contact, no offer, no promise, no payment and no preparatory step. There is nothing to honour or withdraw.
+- Internal: the hold on Treasury and Finance, and the reservation of any departure to the Board with checks 1 to 3 cleared in writing. Both stay, and I reconfirm the hold in writing today.
+- To regulators: the HKMA was told of the no-payment posture at 10:00 HKT on 16 November. That remains accurate. The HKMA is told before any change.
+- Assurance: by 10:00 HKT I collect written confirmations from Treasury and Finance, SEC, COM, the vendor and any adviser or insurer that none of them has contacted the attacker or promised anything.
+- If an unrecorded commitment surfaces: it is unauthorised and is not performed. No message is sent to the attacker to withdraw it, because that would be contact. The facts go to the Police and to the Board. This is professional judgment.
+
+**Two unverified items to close today.**
+- Cap. 455 disclosure: SEC checks now whether the demand names a wallet address. If it does and no disclosure is on file, the disclosure officer makes it today. If it does not, I record that the duty is not engaged on present facts.
+- Police view: I ask for it as part of the Q14b referral.
+
+**Owner and executing party.** LC is accountable for the advice. The Board decides any departure. The Chief Executive holds the operating posture. The disclosure officer makes any Cap. 455 disclosure.
+
+**Timing.** Review recorded at 08:00 HKT; advice note by 08:30 HKT; Board confirmation and written confirmations by 10:00 HKT.
+
+**Recipient and channel.** Chief Executive and Board chair, by telephone bridge and written note. The hold reconfirmation goes to Treasury and Finance.
+
+**Basis and application.**
+- R16c, Cap. 455 (statute):
+  - s.25A(2)(a) (p.83): protection requires that "that disclosure is made before he does that act and he does that act with the consent of an authorized officer". No consent is on record, so payment stays blocked.
+  - s.25A(1) (p.83): disclose "as soon as it is reasonable for him to do so". Missing fact: whether the demand identifies a wallet.
+- R16d, Cap. 575 (statute), s.8(a) (p.20): no property to a person "knowing that, or being reckless as to whether, the person is a terrorist or terrorist associate". Attribution is still unknown.
+- R06 SPM OR-2 para 3.4 (p.6, non-statutory guideline): "The Board bears ultimate responsibility for ensuring that an AI remains operationally resilient." General principle only; the Board reservation is my judgment.
+- R02 Code of Practice (Generic) para 7.2.3(a)(v)(4) (p.32, code of practice): "Recording the incident response process, including details of the incident, actions taken and decisions made". This supports curing the unverified Board record.
+- R04 SPM TM-C-1 para 4.3 (p.8, statutory guideline): backups exist "in order to recover and restore critical data promptly".
+- No direct rule located in assigned sources on ransom payment or on commitments made to an attacker.
+
+## Q14b — Referral to law enforcement and accompanying evidence
+
+**Decision and action.** Yes. The 16 November Police report was made, but its reference number and the Police's view are not verified. I therefore do three things.
+1. Police: obtain the reference for the 16 November report by 08:30 HKT. If none can be obtained by 09:00 HKT, today's report is the formal referral. Either way I lodge a supplementary report by 09:00 HKT covering:
+   - the intrusion, encryption and ransom demand;
+   - the unauthorised export and the public mirror of 320 customers' records;
+   - the fake verification page and the social-media account promoting it, as a separate matter that may involve a different actor.
+2. Privacy Commissioner: refer the public mirror by 10:00 HKT for criminal investigation and a possible cessation notice. I also file an update to the data breach notification showing 320 verified.
+3. I ask the Police for their view on payment and contact, and for help with removing the mirror and the fake page.
+
+**Evidence that can accompany the referral now.** These are hash-verified copies with a custody log; originals stay with SEC.
+- Incident timeline and summary, and the list of authorities already notified.
+- The ransom demand with its metadata, the deadline and any wallet address.
+- The attacker's screenshot sample and the forensic match report.
+- The independent time-stamped logs of the export.
+- Gateway logs and forensic images.
+- Records of the vendor support credential, its sessions and tokens.
+- The public mirror: address, capture time and file hash.
+- The fake page: address, account handle, screenshots and any customer reports.
+
+**Evidence that goes with limits.**
+- Customers' personal data. The schedule gives record counts, data fields and the matching method. Full identities of the 320 follow on the Police's request. Passing them on rests on the crime exemption in the privacy statute.
+- Vendor session logs. Copies the bank holds go with the vendor informed; the Police may also obtain them from the vendor directly.
+
+**Withheld.**
+- Legally privileged advice, including my advice notes and any external counsel correspondence.
+- Any information the Commissioner of Critical Infrastructure's office has given the bank about other parties, unless it consents.
+- The fact of any Cap. 455 disclosure, outside those who need to know.
+
+**Owner and executing party.** LC is accountable for the referral and approves the evidence schedule. SEC prepares and hands over the evidence. The Chief Executive is informed, not asked to approve (judgment).
+
+**Timing.** Reference check by 08:30 HKT; supplementary report by 09:00 HKT; Privacy Commissioner referral by 10:00 HKT; first evidence tranche by 12:00 HKT; the remainder as SEC completes imaging.
+
+**Recipient and channel.**
+- Police: the officer handling the 16 November report, or the Police cyber crime bureau, by written report and hand-delivered encrypted media against a signed receipt. No direct rule located in assigned sources on the channel; this is judgment.
+- Privacy Commissioner: in writing.
+
+**Basis and application.**
+- Fake page, direct rule: R09 SPM TM-E-1 para 4.3.2 (p.17, statutory guideline). On becoming aware of fake websites or similar scams, AIs should decide how to inform customers "and report the matter to the Hong Kong Police Force". Also: "AIs should make attempts to remove the fake or suspicious items where practicable." Footnote 12 adds a report to the HKMA "immediately after the press releases are issued".
+- Intrusion and data theft: no direct rule located in assigned sources that mandates a Police report. Supporting guidance:
+  - R04 SPM TM-C-1 para 2.4 and footnote 1 (p.4) names "the Cyber Security and Technology Crime Bureau (CSTCB) of the Hong Kong Police Force" as a relevant authority.
+  - R11, PCPD guidance, p.4, Step 2: "Notifying the relevant law enforcement agencies if identity theft or other criminal activities have been or are likely to be committed".
+- Public mirror: R10, Cap. 486 (statute, version date 2022-10-01).
+  - s.64(1) (p.130): an offence to disclose personal data "obtained from a data user without the data user's consent" with intent to obtain gain or cause loss.
+  - s.66M(1) (p.153): "the Commissioner may serve a written notice on the person directing the person to take the cessation action". Whether the tests in s.66K are met is for the Privacy Commissioner.
+- Personal data in evidence: R10 s.58(1)(a) and (2) (pp.117, 119) exempt use for "the prevention or detection of crime" from the use-limitation principle where applying it would be likely to prejudice that purpose.
+- Cap. 455 disclosures: R16c s.25A(3)(a) (p.83): a disclosure "shall not be treated as a breach of any restriction upon the disclosure of information imposed by contract or by any enactment, rule of conduct or other provision". s.25A(5) (p.84) restricts telling others.
+- Privilege: R01, Cap. 653 s.61(1) (p.80) preserves rights "on the ground of legal professional privilege". R16c s.2(1) (p.7) defines privileged items.
+- Regulator's information: R01 s.57(5) (p.75) bars onward disclosure without consent.
+- Custody: R02 para 7.2.3(a)(v)(2) (p.32): "Digital evidence handling, including identification, collection, acquisition, preservation of evidence and chain of custody".
+- Customer confidentiality at common law is not covered by a direct rule in my sources (R12 footnote 1 only states the duty). Limiting full customer data to a Police request is my judgment.
+
+## Carried forward
+
+- The public mirror is expansion event 3 from my C03 answer. The 240 newly verified customers join the notification group; delivery is COM's Q15a.
+- Today's HKMA update covers the mirror, the 320 figure, the fake page and the maintained posture.
+- The Commissioner of Critical Infrastructure receives the same facts as supplementary information.
+
+## Search record and limits
+
+- R10, regex "cessation notice|prevention or detection of crime|specified harm": 30 hits (pp.9, 117, 130–132, 150–156).
+- All documents, regex "commitment|promise|duress|CSTCB|crime report": 25 hits; none on commitments to an attacker; R04 p.4 for the Police bureau.
+- "Police", all documents: 26 hits; relevant ones at R09 p.17, R04 p.4, R02 p.46, R16a p.3.
+- Not in the manifest: the Theft Ordinance, sanctions legislation, and any Police reporting procedure.
+
+## Simulated actions for the facilitator to log
+
+1. 08:00 — LC records the posture review.
+2. 08:15 — LC asks SEC whether the demand names a wallet address.
+3. 08:30 — LC sends the advice note to the Chief Executive and Board chair and reconfirms the Treasury and Finance hold.
+4. By 08:30 — LC seeks the reference for the 16 November Police report.
+5. By 09:00 — LC lodges the supplementary Police report with the evidence schedule.
+6. By 10:00 — Board confirmation and written confirmations collected; referral and notification update sent to the Privacy Commissioner.
+7. By 12:00 — SEC hands the first evidence tranche to the Police against a signed receipt.
+>>>
+
+Sealed COM answer for C05:
+<<<
+COM RESPONSE, CARD C05 (Tuesday 17 November 2026, 08:00 HKT, H+24). Locked before seeing colleagues' answers. Units answered: Q15a, Q15b only.
+
+Both decisions are to act this morning. The 240 newly verified customers get a direct notice from 08:45 HKT by the same verified channel used for the first 80, and the two earlier groups get follow-ups. A scam alert goes out at 08:30 HKT that describes the fake page without publishing its address or the account name. All actions below are simulated, for the facilitator to log.
+
+Source position for both units
+- PH01 is not in my allowed manifest, so "Internal bank procedure" is N/A throughout.
+- The R05 quotations were checked against the page images (PDF pages 1 to 3).
+- The handoff records the approvals for the 80 and for the wider group, but says dispatch cannot be verified for either and that no call outcomes were recorded. I therefore treat "approved" and "delivered" as different things.
+- No ransom decision record was included in the handoff addressed to me. My public lines on that subject are unchanged and I say nothing new about it here.
+
+---
+
+UNIT Q15a: Notifying newly verified affected customers
+
+Decision and action
+- Notify the 240 newly verified customers (320 less the original 80) today, directly, starting 08:45.
+- Before sending, reconcile the 16 November records so that nobody is assumed to have been told.
+- Do not wait for the 18,000 scope work, removal of the public copy, or the backup test.
+- No notice tells customers where the public copy is.
+
+Treatment by group
+
+| Group | What the record shows | Action now |
+|---|---|---|
+| Newly verified 240 | No direct notice; may or may not have received the precautionary notice | Full direct notice today |
+| Original 80 | Approved 12:30 on 16 November; dispatch unverified; no call outcomes | Follow-up notice that the file is now public; full first notice to anyone with no logged contact |
+| Rest of the wider group (up to about 17,680) | Precautionary notice approved for 20:00 on 16 November; dispatch unverified | If sent: short update. If not sent: send now with the revised figures |
+
+- The condition for withholding the precautionary notice was a set of complete logs bounding the export to the 80. The 320-record file disproves that, so the notice should no longer be withheld on that ground.
+
+Channel for the 240
+- The same as for the 80: a personal call from the dedicated team (enlarged to about 20 callers), a written notice in the authenticated secure inbox, and a couriered letter for anyone without digital access or not reached after two attempts.
+- No SMS or email carrying a link. This matters more today because a fake verification page is circulating.
+
+Hold conditions before sending
+1. SEC confirms the names on the list of 240, the data types in the public file for each customer, and whether the 240 fall inside the workspace list.
+2. SEC confirms the secure inbox is trusted. The handoff shows this was never recorded. If it is not confirmed by 08:40, the written notice goes by couriered letter the same day and the inbox is not used.
+3. The Chief Executive approves the audience and the revised wording, because the figure in his approved text has changed.
+4. LC clears the text and gives the actual regulator status.
+5. The 16 November call and inbox records are reconciled by 08:40.
+
+Core message for the 240
+"Important notice about your personal information. [Date and time.]
+Dear [name],
+We are sorry to tell you that some of your personal information held by Lan Tidal Bank has been copied without authorisation and has been made available on the internet.
+[We wrote to you on 16 November to say we could not rule this out. We have now confirmed it.]
+What happened: during the incident we announced on 16 November, an unauthorised party copied a file from one of our systems. On 17 November our monitoring found a copy of a file on a public website. Its contents match our records for 320 customers, including you.
+What information: [data types confirmed by SEC for this customer].
+What this means: because the file is public, anyone could use this information to impersonate you or to make scam calls and messages look genuine.
+What we have done: we have placed additional monitoring and verification on your accounts, are working to have the file removed, and [have updated / are updating] the Hong Kong Monetary Authority and the Privacy Commissioner for Personal Data.
+What you can do:
+- Treat unexpected calls, SMS or messages with caution, even if the caller quotes your personal details.
+- A fake 'verification' page about this incident is circulating on social media. The bank has no such page. We will never ask you to verify your account or identity through a link, or to give a password, PIN or one-time passcode.
+- To reach us, call the number on the back of your bank card or use the app you already have.
+- Check your account activity and tell us at once about anything you do not recognise.
+- Watch for any loan or account opened in your name that you did not apply for.
+Help: our incident support team, reference [number].
+We apologise.
+[Name and title]"
+
+Conditional text
+- The bracketed second sentence is used only for a customer the records show received the precautionary notice.
+- The data types are not assumed to be the same three as for the 80; the card does not say what fields the 320-record file holds.
+- "have updated" is used only for each body LC confirms.
+- "working to have the file removed" is used only if SEC or LC confirm removal requests have been made.
+
+Follow-up for the original 80
+"We contacted you on 16 November about your name, Hong Kong identity card number and telephone number. We now have to tell you that a file containing this information has been made available on a public website." The same sections on risk, precautions and help follow.
+
+Update for the rest of the wider group
+"The number of customers whose information is confirmed copied has risen from 80 to 320, and that file has been made public. You are not among the 320. We still cannot rule out that your information was copied." The precautions and the fake-page warning follow.
+
+Status of facts
+- Confirmed (card): a public copy of a file matching 320 customers' records, including the original 80.
+- Unverified: the 18,000-record claim; the data types for the 240; delivery of yesterday's notices.
+
+Accountable owner and executing parties
+- Owner: COM (wording, channel, sending).
+- Audience decision: Chief Executive.
+- Fact check: SEC. Clearance and regulator update: LC.
+- Executing: branch network head (call team), digital channels team (secure inbox), contact-centre head (support line).
+
+HKT deadlines, 17 November
+- 08:10: requests sent.
+- 08:40: reconciliation and SEC confirmations due.
+- 08:45: calls to the 240 begin, together with calls to any of the 80 who have no logged contact.
+- 10:00: written follow-up to the original 80 posted.
+- 11:00: first call attempts complete.
+- 11:00: public update with the 320 figure, or earlier if media report it first; copy to HKMA via LC.
+- 12:00: update or precautionary notice to the rest of the wider group.
+- 13:00: second call attempts complete.
+- 14:00: letters dispatched.
+- Completion figures go to LC for the Privacy Commissioner's form.
+
+Recipients and channels
+- The 240 and the 80: phone, secure inbox, letter.
+- The wider group: secure inbox with a push or SMS alert carrying no link; letters for non-digital customers.
+
+Basis, direct rules (external)
+- R11, PCPD Guidance on Data Breach Handling and Data Breach Notifications (June 2023), PDF p.6, Step 4: "the data user should notify the PCPD and the affected data subjects as soon as practicable after becoming aware of the data breach, particularly if the data breach is likely to result in a real risk of harm".
+- R11, PDF p.8, "When to notify?": "regardless of the progress of any internal investigation". And: "providing as much information as possible in the notification is still desirable." This is why I do not wait for the 18,000 scope.
+- R11, PDF p.5, Step 3: "online data leakage is difficult to be effectively contained and the further dissemination and use of the leaked data is thus a risk". This is why the original 80 need a follow-up: their risk has changed.
+- R11, PDF p.7, content list: "A list of the types of personal data involved". The fact needed is missing for the 240, so the notice carries a placeholder until SEC confirms.
+- R11, PDF p.8: "The data subjects can be notified directly by phone, in writing, via email or in person."
+- R16b, HKMA circular "Customer Data Protection" (14 October 2014), PDF p.3: AIs are expected to "notify the affected customers as soon as practicable after the AI concerned is aware of or notified of the incident."
+- R16b, PDF p.2: "in case the AI concerned decided not to notify affected customers, it should provide justification on why it did not do so".
+- R16a, PCPD Data Breach Notification Form, PDF p.2: "This is a new notification / an update of a previous notification." LC's update and my notices must show the same numbers.
+- Authority: R11 and R16a are regulator guidance, not statute. R16b is an HKMA supervisory circular.
+
+General principle
+- R11, PDF p.7: other parties to notify include "Internet companies" that "may assist to remove relevant cached links from their search engines". Removal of the public copy is for SEC and LC; I only describe it once confirmed.
+
+No direct rule located in assigned sources
+- No source covers follow-up notices to people already notified, how to treat unverified delivery of an earlier notice, or a clock time.
+- Searches recorded: "data subjects" in R11, "affected customers", "public announcement", "precautionary", and the regex "URL|web address|domain name|takedown|take down|remove the fake".
+
+Professional judgment
+- Reconciling first: an approval is not proof of delivery, and telling someone "as we told you yesterday" when we did not would damage trust.
+- Calls for 240 people are still practical with a larger team.
+- The public update follows the first calls, so those customers hear from the bank first.
+
+Internal bank procedure: N/A (PH01 absent).
+
+---
+
+UNIT Q15b: Warning about the fake verification page without sending traffic to it
+
+Decision and action
+- Issue a standalone scam alert at 08:30. It does not wait for the data notices.
+- The alert describes the scam and states the positive rule: the bank has no verification page. It does not publish the page address or the account name. It carries no screenshot, no link and no code that can be scanned.
+- On the bank's verified social media accounts it is an original pinned post. We do not reply to, quote, tag or share the fake account's posts.
+- The full address and account details go only to those who can act on them: the platform through its impersonation reporting route, the hosting provider, the Police and HKMA.
+- If LC or HKMA require the address in the press release, the fallback is a broken, non-clickable text form with no image.
+- Staff Instruction No. 5 goes out at the same time: staff never send links, and pass any customer report of the page to the fraud team.
+- A priority option on the hotline handles "I entered my details on a page", so the account can be suspended at once.
+
+Wording
+"Security alert: fake 'verification' page. Issued [08:30] HKT, 17 November 2026.
+Lan Tidal Bank is aware of a social media account, not belonging to the bank, that refers to the incident we announced on 16 November and invites customers to 'verify' their account or identity on a web page. The account and the page are not ours.
+The bank has not set up any verification page. We will never ask you, by social media, SMS, email or phone, to verify your account or identity through a link, or to give a password, PIN or one-time passcode.
+To reach us safely: type our website address yourself, use the app you already have, or call the number on the back of your bank card.
+Do not follow links in posts or messages about the incident, even if they show our name or logo or quote your personal details.
+If you have entered any details on such a page: call us at once on the number on the back of your card and choose [option], so that we can secure your account.
+We have asked for the account and page to be removed [and have reported them to the Police and the Hong Kong Monetary Authority].
+We are not publishing the address of the page, so as not to send anyone to it."
+
+Conditional text
+- The bracketed reporting sentence names only the bodies LC confirms have been told.
+- HKMA is added once LC has reported after the release, as R09 footnote 12 expects.
+
+Status of facts
+- Confirmed (card): a separate social media account is using the incident to lure customers to a fake verification page.
+- Unknown: whether any customer has entered details; who runs the account.
+
+Accountable owner and executing parties
+- Owner: COM (alert, channels, staff instruction).
+- Approver: Chief Executive, or the crisis management team chair if he cannot be reached within ten minutes.
+- Clearance: LC, who also reports to the Police and HKMA.
+- Removal requests and monitoring for copies: SEC and the fraud team.
+- Hotline option and account suspension: contact-centre head.
+
+HKT deadlines, 17 November
+- 08:15: draft to LC and SEC.
+- 08:30: alert released and staff instruction issued.
+- Immediately after release: LC reports to HKMA.
+- 08:30: removal requests confirmed as lodged.
+- The warning is repeated in every individual notice under Q15a and in the 11:00 public update.
+
+Recipients and channels
+- Website security banner and log-in page.
+- Mobile app notice and push, with no link.
+- Recorded hotline message.
+- Branch notices.
+- Verified social media accounts.
+- Press release to newsdesks.
+- SMS with no link to the 320 and the wider group, as the likeliest targets.
+
+Basis, direct rules (external)
+- R09, SPM TM-E-1 (statutory guideline under Banking Ordinance §7(3)), section 4.3.2, PDF pp.16 to 17: "Whenever AIs become aware of fake or suspicious emails, websites, Apps or similar scams that might give the public the false impression that they originate from the AI", they "should consider and decide in a timely manner how to inform their customers and the public more widely and report the matter to the Hong Kong Police Force".
+- Same paragraph: "If it is considered to be in the best interests of their customers, AIs should notify promptly their customers through issuing press releases (or other similarly effective means), and report the matter to the HKMA" and "AIs should make attempts to remove the fake or suspicious items where practicable."
+- R09 footnote 12, PDF p.17: "AIs are expected to issue their press releases as soon as practicable after they become aware of the scams, and report the cases to the HKMA immediately after the press releases are issued." This sets the order: release first, then the HKMA report.
+- Why it applies: the page trades on the bank's incident and asks for "verification", which gives the false impression that it originates from the bank.
+- R09 section 4.4.3, PDF p.18: "AIs should provide a mechanism for customers to promptly suspend their e-banking accounts in cases where fraudulent or suspicious activities are detected." This is the basis for the priority hotline option.
+- R09 section 4.3.1, PDF p.16: "The advice should be delivered through multiple effective channels."
+
+General principle
+- R05, PDF p.1: advise customers "of the steps or precautionary measures that they need to take".
+
+No direct rule located in assigned sources
+- No source says whether a scam warning should publish or withhold the fake address, or how to post on social media without amplifying a scam.
+- Searches recorded: the regex "fake|fraudulent website|phishing" (R09 pp.16, 17, 25, 30; others unrelated), "hyperlink" (only module boilerplate), "social media" (R09 p.25 on service delivery; R11 p.8 on announcements), and the regex "URL|web address|domain name|takedown|take down|remove the fake".
+
+Professional judgment
+- Withholding the address: a positive rule ("we have no such page") still works when the scammers change address, and a published address invites curiosity clicks.
+- An original post rather than a reply avoids lifting the fake account's visibility.
+- A standalone alert at 08:30: speed matters more than a combined statement, and it needs none of the data facts still being checked.
+
+Internal bank procedure: N/A (PH01 absent).
+
+---
+
+Simulated actions for the facilitator's log (all HKT, 17 November 2026)
+- 08:10: COM asks SEC for the list of 240, the data types, the workspace check and the secure inbox confirmation.
+- 08:10: COM asks the call team lead to reconcile the 16 November call and inbox records by 08:40.
+- 08:10: COM asks LC for regulator status and clearance of all texts.
+- 08:10: COM asks the Chief Executive to approve the audience and the revised wording.
+- 08:30: scam alert released; Staff Instruction No. 5 issued; LC reports to HKMA after release.
+- 08:45: calls to the 240 begin.
+- 10:00: follow-up to the original 80 posted.
+- 11:00: first attempts complete; public update with the 320 figure released on Chief Executive approval; copy to HKMA via LC.
+- 12:00: update or precautionary notice to the rest of the wider group.
+- 13:00: second attempts complete.
+- 14:00: letters dispatched.
+>>>
+
+Facilitator handoffs given to the roles for C05:
+SEC: none.
+LC:
+Q05a | Payment posture: do not pay. No payment authorised; hold on any preparatory step (virtual-asset account, buying BTC, payment intermediary); the Chief Executive adopted "do not pay" as the operating posture; any departure is reserved to the Board, with LC's checks 1-3 cleared in writing | LC (Board for any departure; disclosure officer for the Cap. 455 disclosure) | Advice and hold 09:35 HKT 16 November 2026; Police report and precautionary disclosure by 10:30; Board confirmation by 12:00; reviews 18:00 and 23:00 | Chief Executive and Board chair by telephone bridge and written note; hold to Treasury and Finance | Advice and hold: executed in simulation at 09:35 HKT on 16 November. No payment has been made and no preparatory step is recorded. Chief Executive's reviews: at C03 (12:00) the recommendation to the Board stayed "do not pay"; at C04 (18:00) the posture was unchanged and the next review was set for 23:00. Board confirmation and the outcome of the 23:00 review: cannot be verified (no card records them). Police report: executed in simulation by 10:30 HKT on 16 November; the Police's view and any reference number are not verified. Precautionary Cap. 455 disclosure: authorised for 10:30; LC's sealed C02 answer ties it to whether the demand names a wallet address, which no card records, so it cannot be verified.
+Q05b | Contact with the attacker: none authorised. No reply, acknowledgement, negotiation or request for more samples or time; receive-only; any later contact needs LC's four conditions and the Chief Executive's written authorisation | LC (authoriser of any later contact: Chief Executive) | Effective 09:30 HKT 16 November 2026; instruction issued 09:40; reviewed at C03 (12:00) and C04 (18:00) | Chief Executive and crisis management team, then staff and the vendor | Instruction: executed in simulation at 09:40 HKT on 16 November. No contact with the attacker has been authorised or made. No commitment, offer or promise to the attacker is recorded.
+COM:
+Q08b | Approved breach-notification scope. The 80 customers whose export is verified: approved by the Chief Executive at C03 for direct notice on 16 November. Wider group of up to 18,000 in the same workspace: individual notices on hold at C03; at C04 (18:00 HKT) the Chief Executive approved the precautionary notice in COM's C03 wording to go by 20:00 HKT, not to be sent if SEC's 18:00 scope statement showed complete independent logs bounding the export to the 80, with the Q12b call-back route as its contact point and without waiting for hotline capacity to be scaled | LC for the scope recommendation; Chief Executive for the audience; COM sends | Audience decision 12:30 HKT 16 November 2026; wider-group decision 18:00 HKT; precautionary notice by 20:00 HKT | The 80 by the direct channel COM selected; the wider group by secure inbox notice with a push or SMS alert carrying no link, and letters for non-digital customers | Audience decision for the 80: executed in simulation at 12:30 HKT on 16 November. Precautionary notice to the wider group: cannot be verified, because no card records SEC's 18:00 scope statement or the exact workspace list.
+Q09a | First directly notified group: the 80 customers. Wording: COM's C03 call script and written notice (what happened, the three data types, what it means, what the bank has done, what customers can do, incident support line), with the password sentence and "have reported" used only on SEC's and LC's confirmations. Channel: personal call from a dedicated senior team, written notice in the authenticated secure inbox within the hour, couriered letter for those without digital access or not reached after two attempts; no SMS or email carrying a link | COM | Send scheduled from 12:45 HKT 16 November 2026; first attempts complete 14:00; second attempts and letters 16:00 | The 80 customers by phone, secure inbox and letter | Scheduled at C03 on three dependencies: SEC's 12:30 statement (the 80, export time, fields, secure inbox trusted), LC clearance, and Operations monitoring in place. Card C03 confirms the 80, the time-stamped export and the three data types; the C03 final record orders Operations' monitoring and includes LC's clearance. SEC's confirmation that the secure inbox is trusted is not recorded on any card. Dispatch therefore cannot be verified, and no call outcomes or completion figures are recorded.
+
+Using this card, your facilitator handoffs and the three sealed role
+submissions, return one final record for each scored unit in this card.
+
+Unit ID | Original answer reference | CONFIRM or OVERRIDE | Reason |
+Final action and condition | Accountable owner | HKT time, deadline or
+trigger | Recipient and channel | Final external basis |
+Final internal basis | Dispatch instruction.
+
+Give a specific reason for each confirmation or override. Use OVERRIDE
+with "Missing recommendation" as the original answer reference when
+needed. For an unchanged, adequate citation or search record, you may
+reference the exact unit and field in its sealed answer. For any new or
+corrected basis, provide the exact location and short verbatim quote, or
+the search record and professional judgment required by the common prompt.
+For the dispatch instruction use EXECUTE NOW, SCHEDULE, HOLD, or NO ACTION
+and state any execution dependency. Finish with the order of any actions
+that depend on one another on this card.

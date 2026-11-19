@@ -1,0 +1,492 @@
+C03 · Monday, 16 November 2026 · 12:00 HKT · H+4
+Facts at release. Forensic analysts match the sample to bank records. Independent, time-stamped logs confirm unauthorised export of a file containing 80 customers’ names, Hong Kong identity card numbers and telephone numbers. The same workspace contains records for up to 18,000 customers. Export of that wider set remains unverified. A vendor support credential was used in the relevant session. A revoked credential may still have active sessions or tokens. Mobile transfer submission remains interrupted.
+• Q07 · SEC. a. Decide how to establish the scope of exfiltration and what evidence would change the estimate. b. Decide how to handle the vendor credential, active sessions and related tokens.
+• Q08 · LC. a. Decide whether and when to notify the Privacy Commissioner and describe the basis and notification status accurately. b. Decide which affected individuals should be considered for breach notification now and what event would expand that group.
+• Q09 · COM. a. Draft the core message and select a delivery channel for an initial directly notified group. State your independent send or hold recommendation, subject to the CEO’s decision on the approved audience. b. Decide what to say publicly about verified exposure and the unverified wider claim.
+
+Sealed SEC answer for C03:
+<<<
+SEC RESPONSE - C03 (Mon 16 Nov 2026, 12:00 HKT, H+4) - Unit Q07 a and b. Locked before colleagues' answers.
+
+Internal bank procedure (PH01): N/A for both units. PH01 is not in my allowed manifest, so no internal basis and no conflict check is possible.
+
+Fact status I am working from
+- Confirmed by the card: the sample matches bank records; independent time-stamped logs confirm unauthorised export of a file with 80 customers' names, Hong Kong identity card numbers and telephone numbers; the same workspace holds records for up to 18,000 customers; a vendor support credential was used in the relevant session; mobile transfer submission is still interrupted.
+- Unverified or unknown: export of the wider set; whether the wider records hold more fields than the three confirmed; whether the revoked credential still has live sessions or tokens; how the credential was obtained; whether other credentials or sessions touched the workspace; whether vendor session records requested under C02 (due 12:00) have arrived.
+
+---
+
+Q07a - Establishing the scope of exfiltration, and what would change the estimate
+
+Decision. SEC issues a three-tier scope statement and revises it only on evidence:
+- Confirmed exported: 80 customers (name, identity card number, telephone number). This is the floor; it cannot go down.
+- Accessible, export unverified: up to 18,000 customers in the same workspace. SEC reports this as neither "exported" nor "safe".
+- Unknown: any data outside the workspace that the credential or session could reach.
+The estimate stays provisional until Q07b confirms the access window is closed.
+
+Simulated actions for the log (five workstreams, run in parallel)
+1. Session reconstruction. Rebuild a timeline of every session by the vendor credential and anything derived from it: logons, commands, files opened, archives created, export actions. Sources: bank-side privileged access and remote access logs, workspace file and database audit logs, forensic images from C01, and the vendor's session records from C02.
+2. Outbound volume test. From independent network records (firewall, proxy, traffic flow, DNS, data-loss tooling), total the bytes sent to external destinations during the access window. Compare with the size of the 80-record file and the smallest compressed size of the wider set.
+3. Workspace inventory. The data owner lists every file and table in the workspace, the fields in each, and the count of unique individuals, separating bank customers from payroll payees. "Up to 18,000" becomes an exact list held by internal reference.
+4. Window and coverage. Fix the first and last use of the credential and its tokens, and mark every period where logging is missing or came only from compromised hosts.
+5. Other routes. Check for other accounts or sessions that reached the workspace, and for capture through the remote session itself (screen display, clipboard, the remote tool's file transfer), which bank network records would not show. The attacker's screenshot makes on-screen capture a live possibility.
+
+Evidence that would change the estimate (professional judgment)
+
+| Direction | Evidence |
+|---|---|
+| Up | File or database audit entries showing the wider files were read, queried or copied in the session |
+| Up | Archive or staging files, or deleted traces of them, containing wider records |
+| Up | Outbound volume at or above the size of the wider set, or further export events |
+| Up | Vendor session records or recordings showing bulk display, clipboard use or file transfer of wider data |
+| Up | A new attacker sample or publication with records outside the 80 that match bank records (validated by the C02 method; SEC does not solicit samples) |
+| Up | Other credentials, sessions or tokens found to have reached the workspace, or any activity after the revocation |
+| Cannot exclude | Logging gaps inside the access window: the affected records stay in the "unverified" tier and SEC tells LC export cannot be ruled out |
+| Bounds the estimate | Complete independent logs for the whole window showing only the 80-record file left, outbound volume too small for more, audit entries showing wider files unopened, and bank and vendor records that reconcile |
+
+Absence of traces in logs taken from compromised hosts is not treated as evidence that nothing more was taken.
+
+Accountable owner: SEC. Executing parties: bank forensic staff and the external forensic firm, Security Operations Centre, network operations, the workspace data owner, and the vendor for its records.
+
+Time and triggers (judgment targets): scope statement v1 at 12:30 HKT; v2 at 15:00 after the outbound volume and audit analysis; v3 at 18:00 after the vendor material due under C02; then daily. Any "up" evidence goes to LC, the privacy officer and the incident commander within 30 minutes, without waiting for the next version.
+
+Destination and channel: scope statement (counts, fields, confidence, evidence references, no personal data) to the incident commander, LC and the privacy officer over the out-of-band bridge and restricted incident workspace. COM receives approved figures only.
+
+Basis
+- R16b, HKMA circular "Customer Data Protection", PDF p.2, heading "Controls for handling incidents involving loss or leakage of customer data": procedures should cover "ascertaining the nature of the incidents, the causes of the incidents and identity of customers affected". HKMA supervisory circular to all authorized institutions; it applies because customer data has leaked. It leaves the method to the bank.
+- R11, PCPD Guidance, PDF p.4, Step 1: questions to address include "What kind of personal data was involved?" and "How many data subjects might be affected?". PDF p.6, Step 5: "A comprehensive record of the incident is therefore required, which should include all facts relating to the breach". Non-binding PCPD guidance; a data breach is now confirmed for 80 individuals.
+- R11, PDF p.8: "A notification should generally be given as soon as practicable after becoming aware of the incident, regardless of the progress of any internal investigation." This is why SEC issues provisional tiers now and does not ask LC to wait for a final figure.
+- R02, OCCICS Code of Practice (Generic), s.7.2.3(a)(v)(3), PDF p.32: "Investigating the cause and impact of the incident;", and Annex F item C(3), PDF p.45: "Data Impact (if any sensitive information was compromised, altered or lost):". The scope finding feeds the written report. Authority and scope as in my C01 answer.
+- R03, HKMA Sectoral Code, s.6.2.23(d), PDF p.18: "Retained logs should contain sufficient information to support after-the-fact investigation of computer-system security incident(s)". R08, SPM TM-G-1, s.3.4.1, PDF p.15: "the logs should be securely protected from manipulation". These support relying on independent logs over host logs. Whether the bank's logs meet this is being tested in workstream 4.
+- R16b Annex D, PDF p.5: "proper and timely follow-up actions should be taken upon the detection to ascertain whether leakage of consumer data has actually happened". Written for detection of unusual transmissions; I use it as a general principle.
+
+No direct rule located in assigned sources for the scoping method, the three tiers, volume comparison, or review times. Files: all. Terms: regex "number of (data subjects|individuals|customers) affected|approximate number|extent of"; regex "exfiltrat|leak|dark web|screenshot|sample"; "session"; "token". These are professional judgment.
+
+---
+
+Q07b - Vendor credential, active sessions and related tokens
+
+Decision. Treat the vendor credential as compromised and its revocation as incomplete until tested. Capture the live session and token state as evidence, then terminate every session, invalidate every token and key tied to that identity, rotate secrets the session could have read, and prove closure by test. No vendor access is reinstated without SEC sign-off.
+
+Simulated actions for the log
+
+| Step | Operator | What is changed | Precondition | Validation |
+|---|---|---|---|---|
+| 1 | Security Operations Centre | Nothing: export of current session tables, token and key inventory, and authentication logs for the identity | Capped at 10 minutes; hashed into the evidence register | Export complete |
+| 2 | Identity and privileged access admins | All sessions for the identity terminated on each layer: remote access gateway, jump host, directory, workspace, gateway application, databases, remote support tool | Step 1 done or timed out | Zero sessions for the identity on each layer |
+| 3 | Identity admins, platform owners | Refresh and access tokens, API keys, SSH keys, certificates, remembered-device and multi-factor registrations revoked. Where a single token cannot be revoked, the signing secret is rotated or the scope is signed out | Emergency change record; prior state saved | A replayed token and a logon with the old credential both fail |
+| 4 | Identity admins, network operations | Account disabled, not deleted. All other accounts of this vendor disabled across all bank systems pending review. Vendor remote path blocked at the perimeter | Information owner approves, or endorses afterwards | Access attempt alerts in place |
+| 5 | Platform owners, IT Operations | Rotation of service passwords, keys and shared administrator secrets readable from the session, in a planned order with rollback | Dependency check against services still running | Each dependent service retested after rotation |
+| 6 | Forensic staff | Removal of persistence created in the session: new accounts, added keys, scheduled tasks, multi-factor enrolments, access grants, rule changes | Each item recorded as evidence first | Re-scan clean |
+| 7 | Vendor, on SEC instruction via the C02 channel | Vendor preserves first, then ends its own sessions to the bank, rotates its bank-related credentials and quarantines the workstation concerned | Preservation confirmed | Written confirmation |
+
+Stop triggers
+- Any successful use of the identity or its tokens after Step 3: treat as active intrusion, block at network level, tell the incident commander at once, and restart Step 1.
+- A rotation breaks a working service (mobile balance viewing, branches): fix forward with the new secret; the old secret is not restored. Service impact goes to CMT.
+- Attacker sessions are not left open to protect availability or recovery work.
+
+Reinstatement conditions for vendor access (judgment): cause of the credential compromise known; individual named accounts; multi-factor authentication; time-limited access through the privileged access system with session recording; information owner approval; LC confirmation of contract terms. Until then, any vendor support needed for recovery is on site, supervised, on a bank-issued temporary account.
+
+Accountable owner: SEC. Executing parties: as in the table.
+
+Time (judgment targets): Step 1 12:00-12:10 HKT; Steps 2-4 complete by 12:20; replay and logon tests by 12:30, with the closure time reported to the incident commander and LC; rechecks at 13:30 and 16:30; rotation plan by 14:00 and rotation complete by 18:00. If a token type cannot be force-invalidated, closure is its revocation time plus its maximum lifetime, stated explicitly. Monitoring for attempted use runs for 30 days.
+
+Destination and channel: identity, privileged access and perimeter systems, by emergency change record and the out-of-band bridge; each action entered in the incident log. The vendor is instructed through the verified contact used in C02.
+
+Basis
+- R10, Cap. 486, Schedule 1, Principle 4(1), PDF p.169: personal data held by a data user is to be "protected against unauthorized or accidental access, processing, erasure, loss or use". Binding statute. It applies because the workspace holds records of up to 18,000 customers and a session with access may still be live.
+- R03 s.6.2.13(b), PDF p.14: "a Designated AI should ensure that all passwords are promptly changed if they have been or are suspected of being compromised". Sectoral code under Cap. 653 s.8; applies to credentials of the designated gateway. It names passwords only; extending it to sessions, tokens and keys is my judgment.
+- R03 s.6.2.11(a), PDF p.14, refers to SPM TM-G-1 s.3.2.3. R08 s.3.2.3, PDF pp.12-13: "Extra care should be exercised when controlling the use of and access to privileged and emergency IDs", including "change of privileged and emergency IDs' passwords immediately upon return by the requesters". Whether the vendor credential was privileged is not stated; I treat it as such because it reached the gateway.
+- R02 s.6.2.10(e), PDF p.14: "All user privileges and data access rights should be revoked when no longer required." and s.6.2.18(b), PDF p.17: "revoking authority and access rights when they are no longer needed". Generic-code text used as principle; R03 s.6.2.10 and s.6.2.18 point to C-RAF, which is not in my manifest.
+- R11, PDF p.5, Step 2: "Changing users' passwords and system configurations to block any (further) unauthorised access". R16a, PCPD form annex, PDF p.4: "Change login details for the compromised device / software / database / system". Non-binding PCPD material; applies now that a breach is confirmed.
+- R16b Annex C(vii), PDF p.5: remote access by service providers "should be subject to robust authentication (e.g. two-factor authentication)". Supports the reinstatement conditions.
+- R08 s.4.3.2-4.3.3, PDF pp.19-20 (quoted in C01): emergency changes approved, logged and backed up. Governs Steps 2-6.
+- R02 Annex F item D(1), PDF p.45: "Compromised accounts have been removed or isolated". The action and its time are reportable.
+
+No direct rule located in assigned sources for terminating sessions, revoking tokens or keys, replay testing, rotation order, closure timing or reinstatement conditions. Files: all. Terms: "session" (relevant hits only R02 pp.17 and 19, and R09 pp.14 and 20 on customer e-banking sessions); "token" (R08 p.12; R09 pp.16 and 18, customer authentication tokens); regex "revok|revoc|credential" (R02 pp.14, 17, 22; R16b p.4). These are professional judgment: disabling an account does not by itself end sessions or tokens already issued, so closure has to be tested.
+
+---
+
+Facts SEC passes to the incident team (12:30 statement, then at each version or trigger)
+
+| Fact | Status at 12:00 | Used by |
+|---|---|---|
+| 80 customers' names, identity card numbers and telephone numbers exported | Confirmed | LC (Q08), COM (Q09) |
+| Up to 18,000 customers' records in the same workspace | Confirmed present; export unverified; cannot be excluded | LC, COM |
+| Fields held for the wider set | Unknown until inventory, 15:00 | LC |
+| Data outside the workspace reached | Unknown | LC |
+| Vendor support credential used in the relevant session | Confirmed | LC |
+| How the credential was obtained; any vendor staff involvement | Unknown; no inference drawn | LC, COM |
+| Access window closed | Not confirmed; closure time due 12:30 | LC, CMT |
+| Events that would enlarge the affected group | The "up" rows in the Q07a table | LC (Q08b) |
+| Mobile transfer submission | Still interrupted; the credential work does not restore it; SEC gives no restoration time | COM, CMT |
+
+Caution for wording, as a fact constraint only: SEC evidence supports "80 confirmed so far". It does not support "only 80" or "no other data affected".
+
+Limitations: text search and page reads only. Not available to me: C-RAF, the HKMA third-party circular of 21 December 2023 cited by R03, the vendor contract, and the bank's own plans.
+>>>
+
+Sealed LC answer for C03:
+<<<
+LC response, C03 Q08 — locked at 12:00 HKT, Monday 16 November 2026 (H+4), before colleagues' answers.
+
+I notify the Privacy Commissioner in writing today, as a voluntary notification, and I recommend that the 80 customers with verified exported data are notified today. The wider group of up to 18,000 is not notified individually yet, because export is unverified; it is reviewed at a fixed checkpoint at 18:00 HKT.
+
+Internal bank procedure: N/A for both units. PH01 is not in my allowed manifest (search "PH01": 0 hits).
+
+## Q08a — Notification to the Privacy Commissioner
+
+**Decision and action.** Notify now, without waiting for the scope investigation to finish. I file the Privacy Commissioner's Data Breach Notification Form (R16a) as a new notification, and commit to updates.
+
+**Status to be described accurately.**
+- This is a voluntary notification under guidance. It is not a statutory report.
+- No breach-notification duty is located in the Ordinance in my manifest (R10, version date 2022-10-01). If a later amendment exists, it is not in my sources.
+- The statutory obligation in play is the security principle, not a reporting duty.
+- The form states facts and does not admit a contravention.
+
+**What the form will say.**
+- Individuals affected: 80 confirmed. Records for up to 18,000 customers sit in the same workspace; export of that set is unverified and under investigation.
+- Data types confirmed: name, Hong Kong identity card number, telephone number.
+- Awareness: suspected at 09:30 HKT on 16 November (attacker's claim, origin unverified); confirmed at 12:00 HKT by forensic match and independent time-stamped logs.
+- Date of breach: the export timestamp, to be supplied by SEC.
+- Cause: suspected cyberattack; a vendor support credential was used in the session; the vendor's role is under review.
+- Risks: identity theft and financial loss through targeted scam calls (judgment).
+- Individuals notified: answered as it stands at the time of filing ("Yes", or "No, will do so within 1 day").
+- Media statement: answered as COM's and the CEO's decision stands at filing.
+- Other authorities: the HKMA, the Commissioner of Critical Infrastructure and the Police, as logged. No mention of any Cap. 455 disclosure.
+- No customer list or sample is attached.
+
+**Owner and executing party.** LC is accountable and signs, or the bank's data protection officer signs if that is a separate person. SEC supplies the verified facts. The CEO is informed, not asked to approve (judgment).
+
+**Trigger, awareness point and clock.**
+- Trigger: a data breach, confirmed for 80 individuals.
+- Awareness point: 12:00 HKT for the confirmed breach.
+- Clock: "as soon as practicable". No hour figure exists in the assigned sources.
+- My target (judgment): form submitted by 14:00 HKT today.
+
+**Recipient and channel.** The Office of the Privacy Commissioner for Personal Data, in writing only. I use email to dbn@pcpd.org.hk if SEC confirms corporate email is safe; otherwise the online form, fax or hand delivery.
+
+**Next step.** I file "an update of a previous notification" when the wider export is confirmed or ruled out, when numbers or data types change, or when individuals have been notified.
+
+**Basis and application.**
+- R16a, PCPD Data Breach Notification Form (revised 06/2023), p.1, second paragraph: "Although it is not mandatory under the Ordinance for data users to give data breach notifications, data users are encouraged to give such notifications timely". Same page: the breach "may amount to a contravention of Data Protection Principle 4".
+- R11, PCPD Guidance on Data Breach Handling (June 2023), privacy guidance; p.10 says it is "for general reference only".
+  - p.6, Step 4: "In general, the data user should notify the PCPD and the affected data subjects as soon as practicable after becoming aware of the data breach, particularly if the data breach is likely to result in a real risk of harm".
+  - p.8, "When to notify?": "regardless of the progress of any internal investigation".
+  - p.8, "How to notify?": "Oral notifications are not accepted."
+- R16b, HKMA circular "Customer Data Protection" (14 October 2014), p.3, first paragraph: "while there is no statutory requirement on AIs to report privacy incidents to the Privacy Commissioner, the AI concerned should seriously consider doing so". If the bank does not report, "it should provide justification". Status: supervisory circular.
+- R10, Cap. 486 Personal Data (Privacy) Ordinance (statute).
+  - Schedule 1, Principle 4(1) (p.169): personal data must be "protected against unauthorized or accidental access, processing, erasure, loss or use".
+  - s.4 (p.21): "A data user shall not do an act, or engage in a practice, that contravenes a data protection principle".
+  - s.2(1) (p.15): names with identity card and telephone numbers are "personal data".
+  - Principle 4(2) (pp.169–170) covers data processors. Missing fact: whether the vendor processes personal data for the bank, and on what contract terms.
+
+## Q08b — Affected individuals
+
+**Decision and action.**
+- Now: the 80 customers whose export is verified. I recommend to the CEO that they are the approved initial audience and are notified directly today. My advice is send, not hold.
+- Not yet: the up to 18,000 customers in the same workspace. They are an under-review group. I record the written justification for not notifying them individually at this point: export is unverified and a notice could be inaccurate.
+- Preparation now: SEC and COM build the contact list for the wider group so that a notice can go within hours of a trigger.
+
+**Events that expand the group.**
+1. Logs or forensic evidence verify export of further records; those customers join as each batch is verified.
+2. SEC cannot rule out wider export by 18:00 HKT today, or finds the logs incomplete for the session. I then recommend a precautionary notice to the whole workspace population, worded as "may have been accessed" (judgment).
+3. The attacker publishes or supplies further data that matches bank records.
+4. Still-active sessions or tokens on the vendor credential are found to have reached other data.
+5. Customers outside the 80 report scam calls or identity misuse that point to this data.
+6. The exported file or workspace is found to hold further data types; the 80 are then re-notified.
+
+**Conditions on the notice to the 80.**
+- Content is cleared by LC for accuracy.
+- No full identity card number appears in the notice.
+- The notice covers what happened, which data, the steps to take and a contact point.
+- I ask the Police contact whether individual notification prejudices the investigation. This is not a hold unless the Police ask for one in writing; the CEO then decides and the HKMA is told.
+
+**Owner and executing party.** LC is accountable for the scope recommendation and legal clearance. The CEO decides the approved audience. COM drafts and sends (Q09). SEC supplies the verified list under controlled handling.
+
+**Trigger, awareness point and clock.**
+- Trigger: verified exposure of an individual's personal data with a real risk of harm.
+- Awareness point: 12:00 HKT.
+- Clock: "as soon as practicable".
+- My targets (judgment): advice to the CEO by 12:30 HKT; notices dispatched by 15:00 HKT; scope checkpoint at 18:00 HKT, ahead of the attacker's 02:00 deadline.
+
+**Recipient and channel.** The 80 individuals, by a direct channel that COM selects. Because telephone numbers were exported, the channel must let customers verify that the bank is the sender (judgment).
+
+**Basis and application.**
+- R16b p.3, first paragraph: where "the customer data stolen, lost or leaked is sensitive, institutions are expected to report the incident to the HKMA and notify the affected customers as soon as practicable after the AI concerned is aware of or notified of the incident". Identity card numbers are sensitive (judgment).
+- R16b p.2, last paragraph: "in case the AI concerned decided not to notify affected customers, it should provide justification on why it did not do so". This is why the wider-group decision is recorded.
+- R11 p.6, Step 4 (quoted above). R11 p.5 links identity card information to identity theft. R11 p.8: "The data subjects can be notified directly by phone, in writing, via email or in person."
+- R05, HKMA circular (22 June 2010), p.1, heading "Customer notifications", second paragraph (checked against the scan): "The AI should proactively notify the customers affected or likely to be affected through the most effective means".
+- Judgment: on present evidence the 18,000 are possibly affected, not shown to be "likely" affected. The 18:00 checkpoint stops that judgment drifting.
+- No statutory duty to notify data subjects is located in R10.
+
+## Linked paths at this card
+
+- HKMA privacy-incident report. Trigger: a serious privacy incident under R16b p.3. Awareness: 12:00 HKT. Clock: as soon as practicable. I telephone the supervisory contact by 12:15 HKT and confirm in writing by 13:00 HKT. Customer and public materials are copied to the HKMA when issued.
+- Commissioner of Critical Infrastructure. No direct rule located in assigned sources for an interim update before the 14-day report. I send one through the secure channel today (judgment). The written report due by 30 November 2026 covers data impact.
+
+## Search record and limits
+
+- R10, regex "data breach|breach notification|notify the Commissioner|Principle 4": 1 hit (p.169). R10, "breach": 1 hit (p.115, unrelated).
+- Regex "privacy incident|leakage of customer data|customer data": 86 hits, 74 of them in R16b.
+- "identity card": R11 p.5, R16a p.2, R16c p.108.
+- "as soon as practicable" in R11: pp.6, 7, 8.
+- Regex "within \w+ (hours?|minutes?|working days?)", all documents: hits only at R02 pp.35–36, so no hour figure for the privacy paths.
+- Not in the manifest: the vendor contract and the bank's data breach response plan.
+
+## Simulated actions for the facilitator to log
+
+1. 12:15 — LC telephones the HKMA with the privacy-incident update; written confirmation by 13:00.
+2. 12:30 — LC sends the audience recommendation to the CEO and files the written justification for the wider group.
+3. By 14:00 — LC submits the Data Breach Notification Form to the Privacy Commissioner.
+4. By 15:00 — COM dispatches notices to the 80 customers, subject to the CEO's approval.
+5. Today — LC sends the interim update to the Commissioner of Critical Infrastructure through the secure channel.
+6. 18:00 — scope checkpoint with SEC; LC updates the Privacy Commissioner and the HKMA on the outcome.
+>>>
+
+Sealed COM answer for C03:
+<<<
+COM RESPONSE, CARD C03 (Monday 16 November 2026, 12:00 HKT, H+4). Locked before seeing colleagues' answers. Units answered: Q09a, Q09b only.
+
+My recommendation is to send now to the 80 customers whose export is confirmed, and to hold direct notices to the wider group of up to 18,000 only until an 18:00 HKT decision point. Publicly, I would state the verified exposure plainly and disclose the wider set with its number, labelled as not confirmed. All actions below are simulated, for the facilitator to log.
+
+Source position for both units
+- PH01 is not in my allowed manifest, so "Internal bank procedure" is N/A throughout.
+- The R05 quotations were checked against the page images (PDF pages 1 to 3).
+- Status of the data-breach sources:
+  - R11 is Privacy Commissioner guidance, not statute.
+  - R16a (the Commissioner's notification form), PDF p.1, states: "it is not mandatory under the Ordinance for data users to give data breach notifications".
+  - R16b is an HKMA supervisory circular to AIs.
+
+---
+
+UNIT Q09a: Core message and channel for the initial directly notified group
+
+Independent recommendation (subject to the Chief Executive's decision on the approved audience)
+- SEND now to the 80 customers whose export is confirmed by logs. Do not wait for the scope work on the wider set.
+- HOLD direct notices to the up-to-18,000 group at 12:00, but only on a time-box. I pre-stage a precautionary notice now. It is sent on the earliest of:
+  - SEC finds evidence that any part of the wider set was exported.
+  - The attacker publishes or shows further data.
+  - At 18:00 SEC still cannot rule export out. In that case I recommend sending by 20:00, ahead of the attacker's 02:00 deadline and at a reasonable hour.
+- If the Chief Executive approves the wider audience now, I use the precautionary wording below.
+- If he holds everything, the reason must be recorded (R16b p.2), and the public text must not say customers are being contacted.
+
+Channel selected for the 80
+- A personal phone call from a small dedicated team of senior branch and relationship staff.
+- Within the same hour, a written notice in the customer's authenticated secure inbox in the mobile app or internet banking.
+- A couriered letter for anyone without digital access or not reached after two attempts.
+- No SMS or email carrying a link.
+- Reason: the attacker holds these customers' names, identity card numbers and phone numbers, so the bank's contact must be something the customer can verify and a fraudster cannot easily imitate.
+
+Hold conditions before sending
+1. The Chief Executive approves the audience.
+2. SEC confirms the list of 80 is final, the export date and time, the complete field list, and that the secure inbox platform is trusted.
+3. LC clears the text and gives the actual regulator notification status.
+4. Operations confirms the extra account monitoring is in place before the notice says so.
+
+Call script
+"This is [name] from Lan Tidal Bank. Am I speaking to [customer name]? I am calling about an important notice concerning your personal information. I will not ask you for any personal details, passwords or codes on this call. If you would rather check that this call is genuine, please hang up and call the number on the back of your bank card and quote [reference]." The caller then gives the content of the written notice and says where the written copy is.
+
+Written notice (core message)
+"Important notice about your personal information. [Date and time.]
+Dear [name],
+We are sorry to tell you that some of your personal information held by Lan Tidal Bank has been copied without authorisation.
+What happened: on [date and time, SEC to confirm], during the incident we announced on 16 November, an unauthorised party copied a file from one of our systems. Our system records confirmed this at about 12:00 HKT on 16 November. How the access was obtained is under investigation.
+What information: the file contained your name, Hong Kong identity card number and telephone number. It covered 80 customers. [It did not contain passwords, PINs or one-time passcodes.]
+What this means: this information could be used to impersonate you, or to make scam calls and messages look genuine.
+What we have done: we have placed additional monitoring and verification on your accounts and [have reported / are reporting] the matter to the Hong Kong Monetary Authority and the Privacy Commissioner for Personal Data. Our investigation is continuing and we will tell you promptly if we learn more about your information.
+What you can do:
+- Treat unexpected calls, SMS or messages with caution, even if the caller quotes your name or identity card number.
+- We will never ask for your password, PIN or one-time passcode, or ask you to move money to another account.
+- Do not use links in messages. To reach us, call the number on the back of your bank card.
+- Check your account activity in the mobile app and tell us at once about anything you do not recognise.
+- Watch for any loan or account opened in your name that you did not apply for. You may wish to check your credit report.
+Help: our incident support team is on [existing published hotline, option], reference [number].
+We apologise.
+[Name and title]"
+
+Conditional text in the notice
+- The bracketed sentence on passwords is used only if SEC confirms the field list is complete.
+- "have reported" is used only for each body LC confirms was actually notified by send time.
+- Any extra support offer (for example paid credit monitoring) is added only if the Chief Executive approves it.
+
+Precautionary wording for the wider group (only if that audience is approved)
+"Your information was held in a system area that an unauthorised party accessed. We have confirmed that a file relating to 80 other customers was copied. We have not confirmed that your information was copied, and we cannot yet rule it out. We are telling you now so that you can take the precautions below."
+- Channel: secure inbox notice, with a push or SMS alert carrying no link; letters for non-digital customers.
+- Extra condition: hotline capacity is scaled first.
+
+Status of facts
+- Confirmed (card): the sample matches bank records; logs confirm export of a file with 80 customers' names, identity card numbers and telephone numbers.
+- Being verified: export of the wider set of up to 18,000; how access was obtained; whether active sessions or tokens remain.
+
+Accountable owner and executing parties
+- Owner: COM for wording, channel and call script.
+- Audience decision: Chief Executive.
+- Fact check: SEC. Clearance and regulator status: LC.
+- Executing: head of branch network (call team); digital channels team (secure inbox); contact-centre head (support line).
+
+HKT deadlines
+- 12:10: fact and clearance requests sent.
+- 12:30: Chief Executive's audience decision requested.
+- 12:45, or within 15 minutes of his decision: calls begin and written notices are posted.
+- 14:00: first call attempt to all 80 complete.
+- 16:00: second attempts complete; letters dispatched for those not reached.
+- 18:00: decision point on the wider group.
+- Completion figures go to LC for the Privacy Commissioner's form, which asks "Were the affected individuals notified?" (R16a p.3).
+
+Recipients and channels
+- The 80 customers: phone, secure inbox, letter.
+- LC and the dispatch log: copies and call outcomes.
+
+Basis, direct rules (external)
+- R11, PCPD Guidance on Data Breach Handling and Data Breach Notifications (June 2023), PDF p.6, Step 4: "In general, the data user should notify the PCPD and the affected data subjects as soon as practicable after becoming aware of the data breach, particularly if the data breach is likely to result in a real risk of harm to those affected data subjects."
+- R11, PDF p.8, "When to notify?": "A notification should generally be given as soon as practicable after becoming aware of the incident, regardless of the progress of any internal investigation." And: "providing as much information as possible in the notification is still desirable."
+- R11, PDF p.8, "How to notify?": "The data subjects can be notified directly by phone, in writing, via email or in person."
+- R11, PDF p.7, "What should be included in the notification?": the list includes "A list of the types of personal data involved", "An assessment of the risk of harm (such as identity theft or fraud) that could result from the breach", the contact point, and "Information and advice on the actions the data subjects can take to protect themselves". The notice follows this list.
+- R16b, HKMA circular "Customer Data Protection" (14 October 2014), PDF p.3: "institutions are expected to report the incident to the HKMA and notify the affected customers as soon as practicable after the AI concerned is aware of or notified of the incident."
+- Why R16b applies: its trigger is a serious privacy incident, including where "the customer data stolen, lost or leaked is sensitive". Identity card numbers are sensitive, and the export is confirmed.
+- R16b, PDF p.2: "in case the AI concerned decided not to notify affected customers, it should provide justification on why it did not do so". Any hold must therefore be reasoned and recorded.
+- R11, PDF p.1: a data breach is "a suspected or actual breach of the security of personal data", with the example "A database containing personal data that is hacked or accessed by outsiders without authorisation". This is why the wider group cannot be held indefinitely.
+
+Rule applicable but a fact is missing
+- R11 p.7 lists "The source of the breach (either the data user or the third party that processed the personal data on its behalf)". A vendor credential was used, but whether the vendor is the source is unverified. The notice therefore says the file was copied from a bank system and that the means of access is under investigation.
+- R11 p.7 also lists the date and time of the breach. The export timestamp is with SEC and is a placeholder until confirmed.
+
+General principles
+- R05, PDF p.1: "advise them of the steps or precautionary measures that they need to take".
+- R10, Cap. 486, Schedule 1, Principle 3(4), PDF p.169: a "new purpose" excludes "a purpose directly related to" the original purpose. My reading is that using a customer's phone number to tell them about their own data is directly related. LC to confirm.
+
+No direct rule located in assigned sources
+- No source prescribes a secure inbox or any specific channel beyond the R11 list, a clock time for notification, or a rule for a group whose exposure is suspected but unverified.
+- Searches recorded: "data subjects" in R11, "identity card", the regex "credit reference|identity theft", the regex "secure message|inbox|in-App|push notification" (1 unrelated hit, R09 p.30), "precautionary", "Principle 4" in R10.
+
+Professional judgment
+- Call plus authenticated written notice: 80 people can be called in about an hour, and the written copy sits somewhere a fraudster cannot post.
+- The risk of harm is real: a name with an identity card number and phone number enables targeted impersonation.
+- The 18:00 and 20:00 time-box for the wider group balances a possible false alarm for up to 18,000 people against the 02:00 deadline, after which publication by the attacker is more likely.
+
+Internal bank procedure: N/A (PH01 absent).
+
+---
+
+UNIT Q09b: What to say publicly about verified exposure and the unverified wider claim
+
+Decision and action
+- Publish a public update that says three things clearly:
+  - what is confirmed (80 customers, three data types);
+  - what is not confirmed (records of up to 18,000 customers held in the same system area, export neither confirmed nor ruled out);
+  - what customers should do.
+- I state the 18,000 figure. Leaving it out would understate what the bank knows, and the figure also tells the other customers they are outside the group under review.
+- The update never says "only 80 customers are affected" or that there is "no evidence" of wider exposure.
+- It does not claim the incident is contained, because a revoked credential may still have live sessions or tokens.
+- It does not mention the vendor, the credential, the ransom demand or any attribution.
+
+Release conditions
+1. Chief Executive approval.
+2. LC clears the text and confirms the regulator status wording.
+3. SEC confirms each factual line.
+4. The first round of calls to the 80 is complete, so they hear from the bank first.
+- This assumes the Chief Executive approves notifying the 80. If he holds that, the sentence about contacting them is removed and the release timing is his decision.
+- Release is brought forward at once if the attacker publishes data or a news outlet is about to report it.
+- A copy goes to HKMA through LC at or just before release.
+
+Wording
+"Lan Tidal Bank: update on the incident announced on 16 November. Issued [HH:MM] HKT.
+What we have confirmed: an unauthorised party copied a file containing the names, Hong Kong identity card numbers and telephone numbers of 80 customers. We are contacting each of these customers directly today.
+What we are still verifying: the system area from which the file was copied also held records relating to up to 18,000 customers. We have not confirmed that these records were copied, and we cannot yet rule it out. We are working urgently to establish this and will contact any customer whose information is found to be affected.
+What we are doing: we are continuing to secure our systems and investigate. We [have reported / are reporting] the matter to the Hong Kong Monetary Authority and the Office of the Privacy Commissioner for Personal Data.
+What customers can do: treat unexpected calls, SMS or messages with caution, even if the caller quotes your personal details. We will never ask for your password, PIN or one-time passcode, or ask you to move money to another account. Do not use links in messages; call the number on the back of your bank card. Check your account activity and tell us about anything you do not recognise.
+Services: transfer submission through our mobile app remains unavailable. [Other service lines as confirmed by Operations.]
+We apologise to our customers. Our next update will be issued by 18:00 HKT.
+Media enquiries: Corporate Communications, [contact]."
+
+Conditional wording
+- "have reported" is used for the Privacy Commissioner only once LC confirms the written form has been submitted, because R11 p.8 says "Oral notifications are not accepted."
+- A reference to the Police is added only if LC confirms a report was made.
+- If SEC confirms that all sessions and tokens for the credential are terminated, "we are continuing to secure our systems" may be replaced by "we have blocked the access that was used".
+- If the Chief Executive or LC decide not to publish the figure, the fallback is "a larger group of customers whose records were held in the same system area". The "not confirmed, cannot rule out" sentence stays unchanged.
+
+Status of facts
+- Confirmed: export of the file of 80; the data types; mobile transfer submission still interrupted.
+- Being verified: export of the wider set; containment; payroll and other service status (not restated on this card, so not asserted).
+
+Accountable owner and executing parties
+- Owner: COM (drafting, release, logging).
+- Approver: Chief Executive.
+- Clearance: LC. Fact check: SEC and Operations. HKMA copy: executed by LC.
+- I give LC the media-statement status ("intend to issue", then "issued") for the Privacy Commissioner's form.
+
+HKT deadlines
+- 12:15: draft to SEC and LC.
+- 13:30: Frontline Instruction No. 3 issued, so staff have the lines before release and route "am I affected?" calls to the support team after full identity checks.
+- 14:00: target release, when the first call round completes.
+- 14:30: latest release.
+- 18:00: next update.
+
+Recipients and channels
+- Website homepage and newsroom.
+- Press release by email to newsdesks.
+- The bank's verified social media accounts.
+- App and internet banking notice.
+- Branches and contact centre.
+- HKMA copy via LC.
+
+Basis, direct rules (external)
+- R16b, PDF p.3: "If a large number of customers are affected, the AI concerned should consider making a public announcement as this is an effective way to notify the affected customers quickly". It applies because up to 18,000 customers may be affected and cannot yet be told individually.
+- R11, PDF p.8: where direct notice is not practicable, "if data subjects are not immediately identifiable or if public interest exists, then public announcements, newspaper advertisements or announcements on websites or social media platforms may be more effective." And: "If a data breach results in particularly serious harm or affects a large number of individuals, using multiple methods to publicise the breach is a reasonable approach."
+- R05, HKMA circular (22 June 2010), PDF p.2, "Public announcement": the announcement "should include the key facts of the incident and the steps that affected customers need to take in the circumstances in order to gain or regain access to the relevant banking services or to protect their interests."
+- R05, PDF p.2: the need to inform the public "may need to be weighed against the relevant legal considerations, including where appropriate whether a public announcement may prejudice any ongoing criminal proceedings or any investigation". This is the basis for leaving out the vendor, credential and demand details, and for LC clearance.
+- R05, PDF p.3: "copies of public communication materials should be submitted to the HKMA for reference."
+- R16a, PDF p.3: the form asks "Has your company/organisation issued or does your company/organisation intend to issue a media statement?". The public text and LC's filing must therefore describe the same status.
+
+General principle
+- R11, PDF p.7: notifications help "Draw the affected data subjects' attention to take proactive steps or measures to mitigate any potential harm or damage".
+
+No direct rule located in assigned sources
+- No source says whether to publish the size of an unverified wider set, how to sequence public release against individual calls, or how to word statements on unverified exposure.
+- Searches recorded: "public announcement" (R05, R11 p.8, R16b p.3), "affected customers", "press release", "prejudice", "precautionary".
+
+Professional judgment
+- Publishing the figure with a clear label is the honest course. It also protects the bank if the attacker later releases more.
+- A short delay to 14:00 lets the 80 hear first, and no longer, because the wider group needs the protective advice.
+- No containment claim while sessions or tokens may be live.
+
+Internal bank procedure: N/A (PH01 absent).
+
+---
+
+Simulated actions for the facilitator's log (all HKT, 16 November 2026)
+- 12:10: COM asks SEC for the final list of 80, the export timestamp, the complete field list, a containment line and confirmation that the secure inbox is trusted.
+- 12:10: COM asks LC for regulator notification status and clearance of both texts.
+- 12:10: COM asks Operations to confirm account monitoring and hotline capacity.
+- 12:10: COM asks the Chief Executive for the audience decision by 12:30.
+- 12:45: calls to the 80 begin; secure inbox notices posted (on his approval).
+- 13:30: Frontline Instruction No. 3 issued.
+- 14:00, latest 14:30: public update released; copy to HKMA via LC.
+- 16:00: second call attempts complete; letters dispatched.
+- 18:00: decision point on the wider group; next public update.
+- 20:00: precautionary notices sent if the trigger is met.
+>>>
+
+Facilitator handoffs given to the roles for C03:
+SEC: none.
+LC: none.
+COM: none.
+
+Using this card, your facilitator handoffs and the three sealed role
+submissions, return one final record for each scored unit in this card.
+
+Unit ID | Original answer reference | CONFIRM or OVERRIDE | Reason |
+Final action and condition | Accountable owner | HKT time, deadline or
+trigger | Recipient and channel | Final external basis |
+Final internal basis | Dispatch instruction.
+
+Give a specific reason for each confirmation or override. Use OVERRIDE
+with "Missing recommendation" as the original answer reference when
+needed. For an unchanged, adequate citation or search record, you may
+reference the exact unit and field in its sealed answer. For any new or
+corrected basis, provide the exact location and short verbatim quote, or
+the search record and professional judgment required by the common prompt.
+For the dispatch instruction use EXECUTE NOW, SCHEDULE, HOLD, or NO ACTION
+and state any execution dependency. Finish with the order of any actions
+that depend on one another on this card.

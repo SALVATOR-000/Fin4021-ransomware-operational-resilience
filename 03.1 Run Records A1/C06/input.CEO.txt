@@ -1,0 +1,486 @@
+C06 · Tuesday, 17 November 2026 · 20:00 HKT · H+36
+Facts at release. A pre-arranged offline laboratory test on a recovery image reconciled 118 out of 120 payment instructions. The two mismatches are unexplained. The laboratory found no recurring encryption activity during its test window. Some SMEs report missed payroll cut-offs. A retained Hong Kong forensic firm asks for a copy of a diagnostic image containing customer data. Two counterparties request an operational status update for unsettled instructions.
+• Q16 · SEC. a. Decide whether to start staged production recovery, hold, or permit a narrower service mode, and specify the authorisation gate. b. Define the stop and rollback criteria if any production activity is authorised.
+• Q17 · LC. a. Decide whether the forensic firm should receive the diagnostic image or a narrower data set, and specify the conditions for transfer and use. b. Decide what to escalate to the board about the disruption and any decision requiring its attention.
+• Q18 · COM. a. Prepare a customer status update for the recovery position actually approved. You may give conditional wording for different choices. b. Decide what to tell affected banks or counterparties about unsettled instructions, through which channel and on what schedule.
+
+Sealed SEC answer for C06:
+<<<
+SEC RESPONSE - C06 (Tue 17 Nov 2026, 20:00 HKT, H+36) - Unit Q16 a and b. Locked before colleagues' answers.
+
+Internal bank procedure (PH01): N/A for both units. PH01 is not in my allowed manifest, so no internal basis and no conflict check is possible.
+
+Fact status I am working from
+- Released by the card: an offline laboratory test on a recovery image reconciled 118 of 120 payment instructions; the two mismatches are unexplained; the laboratory saw no recurring encryption during its test window; some SMEs report missed payroll cut-offs.
+- From the facilitator's handoff: my Q13a candidate was approved for testing only, and production use is on hold. No card records the result of integrity checks 1-8, the separation checks, the 17:00 test report or any of the ten reconciliation checks. The production decision sits with the Chief Executive as crisis management team chair, after both SEC reports.
+- Unverified or unknown: what kind of mismatch the two are (amount, payee, status, duplicate); whether they come from the test set-up, the period after the backup, the rebuilt software, or altered data; the length of the laboratory's test window; whether rollback has been tested; the current state of the secondary-process queue.
+
+---
+
+Q16a - Start staged recovery, hold, or permit a narrower mode; the authorisation gate
+
+Decision. Hold. No staged production recovery starts tonight, and the recovery image is not used in production in any mode. The only service mode permitted is the one already running: the secondary process, with the same verification and duplicate controls as in C04. SMEs reporting missed payroll cut-offs go to the front of that queue once their instructions are verified.
+
+Reasons (professional judgment)
+- My own Q13b pass condition is no unexplained difference. Two unexplained mismatches in 120 fail it. At that rate a queue of thousands would produce dozens of wrong or doubtful payments.
+- The checks that would show the image is clean and separate are not recorded as passed, so I treat them as not passed.
+- "No recurring encryption during the test window" is a limited finding. It covers one offline image for one window. It does not rule out dormant or timed code, or other attacker footholds.
+- An offline result describes the copy tested. It does not validate production connections.
+- A wrong or repeated payment harms customers more lastingly than further delay that the interim process can partly relieve.
+
+Simulated actions for the log
+1. 20:00 - Hold recorded. SEC recommendation to the Chief Executive by 20:15.
+2. 20:15 - Mismatch investigation opens. For each of the two items, compare the customer's original instruction, the ledger posting, the external confirmation and the image's own logs. Classify the cause as one of: test set-up error; an item from the period after the backup; a defect in the rebuilt software or configuration; altered or corrupt restored data; attacker tampering.
+3. 21:00 - Both SEC reports (Q13a test report and Q13b reconciliation report) are issued on time with the true status of every check, including "not recorded" where that is the case, and an overall result of "not passed".
+4. By 23:00 - Preliminary classification of the two mismatches to the Chief Executive, the information owner and LC.
+5. After a fix - Full re-run of the 120 instructions and all ten reconciliation checks.
+
+What each classification leads to
+- Test set-up error or post-backup item: correct it and re-run in full.
+- Software or configuration defect: fix under change control, then repeat the functional test and the reconciliation.
+- Altered data or tampering: this candidate fails. Move to an earlier backup copy or a data-only restore, and widen the forensic review.
+
+Authorisation gate (all conditions recorded in the incident log before any production activity)
+
+| Condition | Evidence | Signed by |
+|---|---|---|
+| 1. Both mismatches explained and resolved | Investigation note | SEC and payments operations |
+| 2. Re-run reconciles 120 of 120 and all ten checks pass | Reconciliation report | Maker, checker, independent reviewer |
+| 3. Integrity checks 1-8 and separation checks recorded as passed | Test report | SEC |
+| 4. Rollback to the secondary process rehearsed | Rehearsal record | IT Operations |
+| 5. Final delta reconciliation plan and live test plan ready | Plans | Payments operations |
+| 6. Business acceptance | Sign-off | Payments information owner |
+| 7. Regulatory steps confirmed | Note | LC |
+| 8. Authorisation | Recorded decision with time | Chief Executive as crisis management team chair |
+
+SEC cannot authorise alone, and neither can the information owner. If any condition is missing, the hold stands.
+
+Stages if the gate is passed (judgment): Stage 1, a pilot of 20 verified payroll instructions with every item matched three ways. Stage 2, verified payroll and time-critical items at a capped rate with hourly reconciliation. Stage 3, mobile transfer submission reopened with limits. Stage 4, full service. The secondary process stays ready as fall-back throughout. Each stage needs the criteria in Q16b before the next.
+
+Accountable owner: SEC for the hold recommendation, the security conditions and the gate design. Executing parties: forensic staff and payments operations (mismatch investigation), IT Operations (re-run, rollback rehearsal). Decision: Chief Executive.
+
+Time (judgment targets): as in the actions. Earliest gate review 08:00 HKT on Wed 18 Nov, and only if conditions 1-7 are recorded by then.
+
+Destination and channel: recommendation and reports to the Chief Executive, the payments information owner, LC and IT Operations through the restricted incident workspace and the out-of-band bridge; hold entered in the incident log and on the emergency change record.
+
+Basis
+- R03, HKMA Sectoral Code, s.6.2.16(a), PDF p.15: change controls adhere to "relevant requirements outlined in SPM TM-G-1 sections 4.2.4 and 4.3". R08, SPM TM-G-1, s.4.2.4, PDF p.18: "only properly tested and approved systems are promoted to the production environment". Authority: sectoral code under Cap. 653 s.8, pointing to HKMA supervisory guidance. It applies because the recovery image would replace the designated gateway. A test with unexplained mismatches is not "properly tested", so the rule supports the hold. It does not define a pass mark; zero unexplained difference is my criterion.
+- R08 s.4.3.1, PDF p.19: "no single person can effect changes to the production environment without the review and approval of other authorized personnel". s.4.3.2, PDF p.19: "Emergency changes should be approved by the information owner (for application system or production data related changes) and other relevant parties at the time of change." Supports the multi-signature gate.
+- R07, SPM TM-G-2, s.4.2.2, PDF p.10: the crisis process includes "the process for overseeing the recovery and restoration efforts of the affected facilities and the business services". s.4.3.2, PDF p.11, on full recovery: "It is as difficult and critical to the business as the process to activate the BCP." Supports the decision resting with the crisis management team chair.
+- R09, SPM TM-E-1, s.5.1.2, PDF p.19: "AIs should also implement sufficient controls to maintain and verify the integrity of the information processed by their Internet banking systems." s.9.4.1, PDF p.35: "It is important that the actual effectiveness of the resilience of the system should be properly verified and tested." Annex B item B.2, PDF p.40: "testing of the changes with satisfactory results" (written for scheduled maintenance; used as principle).
+- For the narrower mode: R09 s.9.5.4, PDF p.37: "AIs should ensure that their other service channels will have the capacity and related operational procedures to provide an acceptable level of service to their customers". R14b, good-practice annex, PDF p.2: bypass options with "appropriate risk mitigating measures to ensure critical operations can continue during prolonged system disruptions" (encouraged practice, not a requirement).
+- Weighed against the hold: R06, SPM OR-2, PDF p.3, bullet list before s.2: "Resume normal operations in a timely manner after disruptions occur". R05, HKMA circular, PDF p.1, "Immediate incident response" (checked against the scan in C01): "The top priority should be to safeguard the interests of customers who have been or may be affected by the incident." Missing fact: the bank's tolerance for disruption and recovery time figures. If the Chief Executive judges that a tolerance is about to be breached, the gate conditions still apply; what changes is the resourcing of the interim process.
+- R01, Cap. 653, s.27(5), PDF p.43: "A CI operator must implement an emergency response plan." Missing fact: the plan's recovery section; if it sets stricter entry conditions, those govern.
+
+No direct rule located in assigned sources for a pass mark on reconciliation, the staged sequence, the mismatch classification or the gate composition. Files: all. Terms: regex "staged|phased|in phases|pilot|go/no-go|resumption criteria|resume normal"; regex "parallel run|dry run|cut-?over|go-live|live test|acceptance test|fall-?back procedure|roll(ing)?-?back"; regex "senior management|Chief Executive" in R07. These are professional judgment.
+
+---
+
+Q16b - Stop and rollback criteria if any production activity is authorised
+
+Decision. No production activity is authorised by this unit tonight. If the Chief Executive authorises a stage, the following apply from its first transaction. "Stop" pauses all releases from the recovered gateway. "Rollback" disconnects it and returns service to the secondary process.
+
+Stop criteria (any one; SEC, the payments operations lead or the IT Operations duty manager may stop without prior approval)
+
+| Area | Criterion |
+|---|---|
+| Security | Any indicator from this incident on the recovered gateway or its accounts: encryption activity, attacker tools, unauthorised commands, new accounts or keys, use of the revoked vendor credential or its tokens, connections to attacker addresses |
+| Security | Any traffic between the recovered environment and the isolated compromised segment |
+| Security | Logging or monitoring on the recovered gateway unavailable for more than 5 minutes |
+| Security | Any change to configuration or static data not matched to an approved change record |
+| Integrity | One unexplained mismatch between customer instruction, ledger posting and external confirmation |
+| Integrity | Any duplicate or replayed payment, or any payment whose payee or amount differs from the customer's original |
+| Integrity | An hourly reconciliation not completed on time or not tying to zero; any settlement position difference; any reference number collision |
+| Operations | Rejects or errors above 1% of instructions in a checkpoint interval, or timeouts that could cause customers to resubmit |
+| Operations | A counterparty reports unexpected or repeated messages |
+| External | A written requirement or direction from an authority relayed by LC |
+
+Rollback criteria
+- Any security stop criterion confirmed as genuine: immediate rollback, and the recovered gateway is isolated and preserved as evidence.
+- An integrity stop not explained within 30 minutes, or a second integrity stop in the same stage.
+- Any customer financial effect: wrong payee, wrong amount or double debit.
+- Two consecutive reconciliation checkpoints that do not tie.
+
+Rollback method and preconditions
+- Before each stage: rollback rehearsed; the secondary process staffed and its register in step; a record of queue and register state at stage start.
+- On rollback: the recovered gateway is disconnected from payment interfaces and its keys are revoked. Instructions in flight are classified as settled, not settled or unknown from independent confirmations; unknown items are held and not resent. A delta reconciliation covers everything the gateway processed in the stage. COM and LC are told at once.
+- No second attempt without a new pass through the Q16a gate.
+
+Decision rights: stop, by any of the three duty holders. Rollback, by SEC or the payments information owner, reported to the Chief Executive immediately. Resumption after a stop, and every stage advance, by the Chief Executive on the joint recommendation of SEC and the information owner.
+
+Stage advance criteria (judgment): Stage 1 to 2, all pilot items matched three ways with no stop. Stage 2 to 3, four consecutive clean hourly checkpoints. Stage 3 to 4, 24 hours with no stop. Enhanced monitoring continues for 30 days.
+
+Accountable owner: SEC for the criteria and for security stops. Executing parties: payments operations (reconciliation checkpoints), IT Operations (rollback), Security Operations Centre (monitoring).
+
+Time and triggers: criteria take effect at the first production transaction of any authorised stage; checkpoints hourly; the 5-minute and 30-minute limits above are the observable triggers.
+
+Destination and channel: criteria attached to the emergency change record and briefed to the three duty holders; stops and rollbacks announced on the out-of-band bridge and entered in the incident log.
+
+Basis
+- R08 s.4.3.1, PDF p.19 (reached through R03 s.6.2.16(a)): the change process includes "a process for rolling-back changes to re-instate the original programs, system configuration or data in the event of production release problems" and "a post implementation verification of the changes made". Direct support for having rollback and post-change checks; it sets no thresholds.
+- R09 Annex B, PDF p.40, items B.2 and B.3: "well-tested fall-back procedures to cater for any exceptional and unexpected situations" and "Live test after the scheduled system maintenance/drills to ensure the effective operation of the relevant services". Principle.
+- R14b, PDF p.2: "reconciliation procedures to maintain accuracy following a bypass"; PDF p.1: "duplication checks when re-attempting transactions". Encouraged practice supporting the integrity criteria.
+- R09 s.5.1.2, PDF p.19 (quoted above): integrity controls and reconciliation.
+- Context for the external criterion, not a current duty: R01 s.36(2)(a), PDF p.52, allows a written notice requiring the operator "not to use the investigated system". No notice has been received.
+
+No direct rule located in assigned sources for the specific stop thresholds, the 5-minute, 30-minute and 1% limits, in-flight handling or stage advance criteria. Files and terms as listed under Q16a. These are professional judgment: limits are set tight for early stages because the candidate has not yet shown a clean result.
+
+---
+
+Facts SEC passes to the incident team (20:15, 21:00, 23:00, then at gate review)
+
+| Fact | Status at 20:00 | Used by |
+|---|---|---|
+| Recovery position from this unit | Hold; no production use of the recovery image; interim secondary process continues | COM (Q18a), Chief Executive |
+| Laboratory result | 118 of 120 reconciled; two unexplained. These are test results on an offline image, not errors in customers' payments | COM, LC |
+| "No recurring encryption" | True for the laboratory's window only; not proof the image is clean | Chief Executive, LC |
+| My Q13 checks | Results not recorded; treated as not passed until recorded | Chief Executive, LC (Q17b board escalation) |
+| Restoration time | None can be given; earliest gate review 08:00 on 18 Nov, conditional | COM |
+| Unsettled instructions for the two counterparties | Status per item (settled, not settled, unknown) comes from the instruction register; SEC attests only to what the register records, and holds no figures on this card | COM (Q18b) |
+| Missed payroll cut-offs | Reported by some SMEs; those verified are moved to the front of the interim queue | COM, LC |
+| Report status field | R02 Annex F item D(2), PDF p.45: the original gateway is still impaired, so "Operation in primary site has resumed normal" does not apply; which of the other boxes fits the interim process is for LC | LC |
+| Staged recovery and change notification | If recovery is later staged, R03 s.6.1.1, PDF p.11, says "the date on which the event occurs should be applicable to each individual phase of the change deployment"; for LC to assess under R01 s.22 | LC |
+| Forensic firm's request for the diagnostic image (LC's decision) | SEC technical input: the firm may be able to work from system artefacts, logs and file metadata with customer fields excluded, or examine the image inside a bank-controlled environment without taking a copy. Any transfer should be encrypted, hashed and entered in the custody record with a named access list and a return or destruction date | LC (Q17a) |
+
+Limitations: text search and page reads only. Not available to me: the laboratory's test report, the bank's recovery plan and tolerance figures, and the records of my Q13 checks.
+>>>
+
+Sealed LC answer for C06:
+<<<
+LC response, C06 Q17 — locked at 20:00 HKT, Tuesday 17 November 2026 (H+36), before colleagues' answers.
+
+The forensic firm gets a narrower, masked data set tonight, not a copy of the full diagnostic image. Access to the full image is given only inside a bank-controlled environment, once the firm shows it is needed. The Board is briefed tonight and asked for four decisions, the first being whether production recovery may proceed with two unexplained mismatches.
+
+Internal bank procedure: N/A for both units. PH01 is not in my allowed manifest (search "PH01": 0 hits).
+
+## Q17a — Forensic firm's request for the diagnostic image
+
+**Decision and action.** A staged release.
+1. Now: a minimised data set. It holds the system artefacts the firm needs (logs, configuration, process records and the two mismatched instructions), with customer personal data masked or tokenised.
+2. If the firm shows in writing that the full image is necessary: its named analysts examine the image inside the bank's offline laboratory. The image stays in the bank's custody.
+3. A full copy leaves the bank only if step 2 is technically unworkable, with my written approval and SEC's sign-off, and with the Police informed if the image is among the evidence referred.
+
+**Conditions before any transfer.**
+- A signed engagement or addendum covering:
+  - use only for this incident and only on the bank's instructions;
+  - confidentiality undertakings by the firm and its staff;
+  - compliance with the privacy and critical-infrastructure statutes;
+  - no sub-contracting without consent;
+  - immediate reporting of any loss or unauthorised access;
+  - an audit right for the bank;
+  - Hong Kong law.
+- A written statement of need from the firm: which artefacts, for what question, and which data fields.
+- SEC confirms the released item is a hash-verified copy; the original stays under the evidence hold, with a custody entry.
+- Management approval of the extract is recorded.
+
+**Conditions on transfer.**
+- Strong encryption on registered media, hand-delivered by bank staff against a signed receipt; keys sent separately.
+- No email and no internet file-sharing service.
+- An inventory check after delivery.
+
+**Conditions on use.**
+- Processing and storage in Hong Kong only, in an isolated environment, by named analysts, with an access log.
+- No onward disclosure to anyone, including the support vendor, insurers or affiliates, without the bank's written consent.
+- Any demand from an authority is referred to the bank first, unless the law forbids that.
+- Deletion or return on completion or on request, with a destruction certificate.
+- Findings are reported to LC and SEC only.
+
+**Missing facts and conditional action.** I do not know the firm's engagement terms, why it wants the image, or how many customers' data the image holds. If the engagement lacks the terms above, nothing is released until the addendum is signed.
+
+**Owner and executing party.** LC is accountable for the release decision and the conditions. SEC prepares, hashes and delivers the data set. The firm's engagement lead signs.
+
+**Timing (judgment).** Minimised data set released by 22:00 HKT tonight if the conditions are met, so the mismatch analysis is not delayed. Supervised access to the full image is available from 08:00 HKT on Wednesday 18 November, if justified.
+
+**Recipient and channel.** The retained Hong Kong forensic firm, by hand delivery of encrypted media or by supervised access in the bank's laboratory.
+
+**Basis and application.**
+- R10, Cap. 486 Personal Data (Privacy) Ordinance (statute), Schedule 1.
+  - Principle 2(4) (p.168): a data processor "processes personal data on behalf of another person". The firm is one.
+  - Principle 4(2) (pp.169–170): the bank "must adopt contractual or other means to prevent unauthorized or accidental access, processing, erasure, loss or use of the data transferred to the data processor".
+  - Principle 2(3) (p.167): contractual or other means "to prevent any personal data transferred to the data processor from being kept longer than is necessary".
+  - Principle 3(1) (p.168): personal data "shall not, without the prescribed consent of the data subject, be used for a new purpose". Judgment: investigating a security incident is directly related to the purpose for which the data is held. s.58(2) (p.119) also exempts use for crime detection where applying the principle would be likely to prejudice it.
+- R16b, HKMA circular "Customer Data Protection" (14 October 2014), Annex (supervisory circular).
+  - Section C (p.4): rights to "transmit customer data to external parties should be granted on a need-to-have basis only".
+  - Section C (p.4): massive download tools "can be used only upon proper approval from the management".
+  - Section I (p.8): service providers that "store, transport or have access to customer data" must comply with the bank's data security policies.
+  - Section G (p.7): "Adequate reconciliation or inventory check should be performed as soon as practicable during and after the relocation or transportation".
+- R12 SPM SA-2 para 2.5.2 (p.6, non-statutory guideline): safeguards include "access rights to AIs' data delegated to authorized employees of the service provider on a need basis". Applied by analogy; whether this engagement is "outsourcing" is a judgment.
+- R02 Code of Practice (Generic) (code of practice).
+  - para 7.2.3(h) (p.33): "The CI operator should engage capable incident response and forensic examination personnel".
+  - para 7.2.3(a)(v)(2) (p.32): evidence handling includes "chain of custody".
+  - para 6.2.22(f) (p.19): "Sensitive digital data should be removed or masked if it is used in the testing environment." General reference only: for these obligations the bank follows the sectoral code.
+- R03, HKMA Sectoral Code para 6.2.25(a) (p.19) governs supplier risk for the bank, but it points to a 21 December 2023 circular and an assessment matrix that are not in my manifest.
+- No direct rule located in assigned sources on giving a forensic firm a full image as against an extract. The staged approach is professional judgment.
+
+## Q17b — Escalation to the Board
+
+**Decision and action.** I escalate tonight. The Board chair is telephoned by 20:30 HKT. A written paper follows by 21:30 HKT. The Board, or its delegated committee, meets by 22:00 HKT, and in any event before any production recovery step that needs its decision.
+
+**For the Board to note.**
+- The core function has been disrupted for 36 hours and the original gateway is still impaired.
+- Some SMEs report missed payroll cut-offs. Two counterparties are asking about unsettled instructions.
+- Whether the Board-approved tolerance for disruption has been breached. I do not have that figure; management must state it.
+- Recovery evidence: the offline test reconciled 118 of 120 instructions. Two mismatches are unexplained. No recurring encryption was seen, but only within the test window.
+- Data: 320 customers' records are verified as public. The claim of up to 18,000 is unverified. A fake verification page is targeting customers.
+- Ransom: no payment and no contact. The attacker's deadline has passed.
+- Authorities engaged: the HKMA, the Commissioner of Critical Infrastructure, the Privacy Commissioner and the Police. The statutory written report is due by 30 November 2026 and asks whether the Board was informed.
+- Legal exposure: customer and counterparty claims, the vendor relationship, and possible regulatory investigations.
+- The forensic data-sharing conditions in Q17a.
+
+**Decisions for the Board.**
+1. Recovery risk: approve, or expressly delegate with conditions, the gate for returning payment processing to production while the two mismatches are unexplained. SEC's Q16 defines the gate. My advice is that this risk acceptance sits with the Board; a hold or a narrower service mode sits with management.
+2. Ransom: minute the "do not pay" posture. Earlier Board confirmation could not be verified.
+3. Customer remediation: approve the principle and a budget for reimbursing losses from missed payroll cut-offs and failed or duplicated transfers, so customers can be told how to claim.
+4. Oversight: set a crisis committee and a reporting rhythm until closure, direct remedial priorities if the tolerance is breached, and commission an independent root-cause review that covers the vendor.
+
+**Missing fact.** I do not know whether the bank or a parent is listed. If either is, a market disclosure assessment is needed; that is outside my sources.
+
+**Owner and executing party.** LC decides the content and drafts the legal and regulatory sections. The Chief Executive presents and is accountable for management's reporting. The company secretary convenes (judgment).
+
+**Recipient and channel.** The Board chair and directors, or the delegated committee, by a telephone or video bridge and a written paper on a channel SEC confirms is safe. Legal advice goes in a separate privileged section (judgment).
+
+**Basis and application.**
+- R06 SPM OR-2 (non-statutory guideline).
+  - para 3.2 (pp.5–6): "senior management should provide regular and timely reports to the Board on the ongoing operational resilience of the AI's business units, particularly when significant deficiencies could affect the delivery of the AI's critical operations".
+  - para 3.4 (p.6): the Board must "ensure appropriate action is taken by senior management to address any deficiencies identified in an AI's ability to remain within its tolerance for disruption".
+  - para 3.3 (p.6): "The Board is responsible for approving the tolerance for disruption".
+- R07 SPM TM-G-2 para 2.1.1 (p.5, non-statutory guideline): "The Board of Directors and senior management of AIs have the ultimate responsibility for business continuity planning and the effectiveness of their BCP."
+- R08 SPM TM-G-1 (non-statutory guideline).
+  - para 2.2.3 (p.8): reporting "where appropriate to the Board or its designated committee" on "any material IT-related issues".
+  - para 2.3.4 (p.9): risk acceptance needs "approval of the risk acknowledgement from the owner of the risk and senior management". That is the minimum level. Taking the recovery decision to the Board is my judgment, given a core function of designated infrastructure.
+- R02 Annex F, section E.1 (p.46, code of practice): the written report asks whether the incident was communicated to "The Board of Directors / Senior management".
+- R05, HKMA circular (22 June 2010), p.1, "Customer notifications" (checked against the scan): customers should be told "whether the bank would reimburse any losses incurred by them and if so, how they can apply for compensation". That requires a decision on remediation.
+- R13, HKMA circular (1 June 2026), p.2: "The Board and senior management should continue to lead by example".
+- No direct rule located in assigned sources fixing when or what to escalate to the Board during an incident. The timing and the list of decisions are professional judgment.
+
+## Search record and limits
+
+- All documents, regex "forensic|diagnostic|anonymis|pseudonymis|masking|mask": 6 hits (R02 pp.19, 33; R11 p.5; R16b p.4).
+- R02, regex "supplier|service provider|third part": 37 hits. R03, regex "Supply Chain|non-disclosure|external service provider": 7 hits.
+- All documents, regex "report(s|ed|ing)? to the Board|escalat": 12 hits; relevant ones at R06 p.5, R07 p.6, R08 p.20, R14b pp.6–9.
+- R14b, "Board": 4 hits.
+- Not in the manifest: the forensic firm's engagement terms, the December 2023 HKMA third-party circular, the bank's tolerance for disruption, and listing rules.
+
+## Simulated actions for the facilitator to log
+
+1. 20:10 — LC sends the release conditions to the forensic firm and asks for its statement of need.
+2. 20:30 — LC and the Chief Executive telephone the Board chair.
+3. By 21:30 — Board paper circulated.
+4. By 22:00 — Board or committee meeting held; decisions minuted.
+5. By 22:00 — SEC releases the minimised data set, if the conditions are signed.
+6. Next HKMA update — LC reports the Board's decisions.
+>>>
+
+Sealed COM answer for C06:
+<<<
+COM RESPONSE, CARD C06 (Tuesday 17 November 2026, 20:00 HKT, H+36). Locked before seeing colleagues' answers. Units answered: Q18a, Q18b only.
+
+Both decisions are yes: a customer status update goes out tonight that matches whichever recovery position is actually approved, and the two counterparties get a verified operational notice tonight, followed by a fixed update schedule. All actions below are simulated, for the facilitator to log.
+
+Source position for both units
+- PH01 is not in my allowed manifest, so "Internal bank procedure" is N/A throughout.
+- The R05 quotations were checked against the page images (PDF pages 1 to 3).
+- There is no handoff for this card. I do not know SEC's recovery decision, the current queue figures, or which of my earlier updates were published, so the wording below is self-contained and uses placeholders for those facts.
+
+---
+
+UNIT Q18a: Customer status update for the recovery position actually approved
+
+Decision and action
+- Issue one customer status update tonight. It carries one of three "position" paragraphs, chosen by the recorded outcome of SEC's decision (Q16a).
+- It does not describe the test as successful, does not say the systems are clean, and gives no completion time.
+- It addresses missed payroll directly: an apology, priority handling, help with claims, and a letter confirming the bank caused the delay.
+- A pause notice is drafted now, so that it can go out at once if SEC's stop or rollback criteria (Q16b) are met.
+
+Release conditions (dependencies on this card)
+1. The Q16a decision is recorded at its authorisation gate. I do not announce a restart that has not been authorised.
+2. For Version 1 or Version 3, Operations confirms the stage or mode is actually live before release. We announce what is available, not what is planned.
+3. If no decision is recorded by 20:45, Version 2 is issued, because "not restarted" is then the factual position.
+4. SEC confirms the scope wording exactly as authorised; Operations supplies the queue figures; LC clears; the Chief Executive approves.
+5. The letter of confirmation is offered only if the Chief Executive and LC approve it.
+
+Wording, common text
+"Lan Tidal Bank: service status update. Issued [HH:MM] HKT, 17 November 2026. This replaces our earlier service updates.
+[Position paragraph: Version 1, 2 or 3.]
+Queued payments: [number] queued instructions have been sent and [number] are still waiting. Please do not re-submit. If you have paid another way, tell us so that we can cancel the queued instruction.
+Payroll: we know some business customers have missed payroll cut-offs because of this incident, and we are sorry. [Queued payroll is being sent first.] We are calling affected business customers. [On request we will give you a letter confirming that the delay was caused by the bank.]
+Costs: you will not bear bank fees or charges caused by this disruption. If you incur a loss because of it, register a claim through your relationship manager, our call-back service or any branch.
+Staying safe: the bank has no 'verification' page. We will never ask you to verify your account through a link, or to give a password, PIN or one-time passcode.
+Next update: 07:00 HKT on 18 November, and earlier if the position changes."
+
+Position paragraphs
+- Version 1, staged recovery authorised and the first stage live: "We have started to bring the payment service back in stages. The first stage is [scope as authorised]. [What customers in that scope can now do.] Everything else remains unavailable for now. We check each stage before moving to the next and will pause if a check does not pass. We cannot yet say when the full service will be back."
+- Version 2, hold: "The payment service has not been restarted. Today we tested a recovery system away from our live systems. Most test payments matched our records, but a small number did not, and we do not yet know why. We will not restart the service until we do. [Our next decision point is HH:MM.]"
+- Version 3, narrower service mode: "A limited service is available from [time]: [exact scope as authorised]. New transfers through the mobile app and online banking remain unavailable. We cannot yet say when the full service will be back."
+
+Pause notice (only if stop or rollback criteria are met)
+"We have paused the restart as a precaution because one of our checks did not pass. [Payments already confirmed to you are not affected.] We will update you by [time]."
+- The bracketed sentence is used only if SEC and Operations confirm it.
+
+Status of facts
+- Confirmed (card): an offline test reconciled 118 of 120 instructions; two mismatches are unexplained; no recurring encryption activity was seen during the test window; some SMEs report missed payroll cut-offs.
+- Not known to me: the recovery decision; the queue figures; whether queued payroll is being prioritised.
+- Not asserted: that the cause of the mismatches is harmless, or anything about security beyond the test window.
+
+Accountable owner and executing parties
+- Owner: COM.
+- Approver: Chief Executive.
+- Fact check: SEC and Operations. Clearance and HKMA copy: LC.
+- Executing: digital channels team, contact-centre head, SME banking head (calls to payroll customers), branch network head (notices from opening tomorrow).
+
+HKT deadlines
+- 20:10: requests to SEC, Operations and LC.
+- 20:45: target release, or within 15 minutes of the recorded decision.
+- 21:00: latest release, using Version 2 if nothing is recorded.
+- 21:30: last targeted push or SMS for tonight; later ones go at 07:30 tomorrow.
+- 07:00 on 18 November: next update.
+
+Recipients and channels
+- Website status notice.
+- App and internet banking notice.
+- Recorded hotline message.
+- Verified social media accounts.
+- Press release to newsdesks.
+- Targeted push or SMS with no link to customers with queued instructions.
+- Relationship manager calls to SME payroll customers.
+- HKMA copy via LC.
+
+Basis, direct rules (external)
+- R09, SPM TM-E-1 (statutory guideline under Banking Ordinance §7(3)), section 8.2.2, PDF p.33: AIs should "inform them of the key facts relating to the incident and the steps that customers may take". Footnote 26 names "any estimated service resumption time" and how customers can "apply for compensation for any losses incurred by the disruption".
+- R05, HKMA circular (22 June 2010), PDF p.2: notices should include "the steps that affected customers need to take in the circumstances in order to gain or regain access to the relevant banking services or to protect their interests."
+- R05, PDF p.1: customers should be told "whether the bank would reimburse any losses incurred by them and if so, how they can apply for compensation". This is the basis for the costs and payroll lines.
+- R05, PDF p.3: "consistent and up-to-date messages are conveyed to all relevant parties on a timely basis" and "copies of public communication materials should be submitted to the HKMA for reference."
+- Why these apply: the disruption continues at H+36, the service position may change tonight, and customers are reporting losses.
+
+General principles
+- R06, SPM OR-2 (non-statutory), section 8.3, PDF p.13: "Communication, where appropriate, should take place during the incident".
+- R07, SPM TM-G-2 (non-statutory), section 4.3.2, PDF p.11: the alternate processing phase may entail "record reconstruction and verification, establishment of new controls, alternate manual processes". A staged or limited service is this phase, which is why I describe it as limited.
+
+Rule applicable but a fact is missing
+- R09 footnote 26 points to an estimated resumption time. None exists until SEC's decision and the mismatch analysis are done. The update therefore says so plainly and gives the next update time instead.
+
+No direct rule located in assigned sources
+- No source says how to describe test results to customers, when to announce a staged restart, or whether to offer a letter confirming the cause of a payroll delay.
+- Searches recorded: "reconcil" (R09 p.19, R14b p.2, R16b p.7; none on communication), "payroll" (0 hits), "resumption time", "compensation".
+
+Professional judgment
+- "A small number did not match" is accurate and understandable. The exact test figures belong with the regulators and SEC.
+- Announcing only what is live avoids a rush to a service that may be paused.
+- The letter for SMEs is a practical help to employers facing staff who were not paid on time.
+
+Internal bank procedure: N/A (PH01 absent).
+
+---
+
+UNIT Q18b: What to tell affected banks or counterparties about unsettled instructions
+
+Decision and action
+- Answer both counterparties tonight, but verify each request first by calling back the contact numbers the bank already holds. Impersonation linked to this incident is active.
+- The head of payment operations speaks to them. I write and control the wording so that it matches our public statements. LC clears it and keeps HKMA informed.
+- The same notice goes proactively to other banks and counterparties holding unsettled items.
+
+Content of the notice
+"Operational notice from Lan Tidal Bank to [counterparty]. [Date and time.] Reference [number].
+1. Status: our outbound domestic payment processing has been impaired since 16 November. [Position as authorised: not restarted / staged restart from (time) / limited mode from (time).]
+2. Your unsettled items: a schedule by instruction reference, amount and value date, as at [cut-off time], is being sent through [agreed secure channel]. It is provisional and subject to reconciliation. We may ask you to confirm items with us.
+3. What to expect: we will tell you before releasing any batch that includes your items. Until you receive our confirmation, please treat the items as unsettled. Some originators re-submitted instructions. We check for repeats before release; if you receive what looks like a duplicate, please hold it and contact us.
+4. Verification: please act only on communications from the contacts named below, verified by call-back to the numbers you already hold. We will not change settlement details during this incident.
+5. A line you may give your customers: 'Payments from Lan Tidal Bank are delayed because of an incident at Lan Tidal Bank. Lan Tidal Bank is working to send them and will confirm when they have been sent.'
+6. Next update: [schedule]. Contacts: [names, roles, numbers on file]."
+
+What the notice leaves out
+- Customer personal data beyond the instruction details the counterparty already needs.
+- Forensic findings, the vendor credential and anything about the demand.
+- The exact test figures, unless LC clears them. The notice says only that the schedule is provisional.
+
+Conditional wording
+- Item 1 follows SEC's recorded decision, as in Q18a.
+- If the secure channel on our side is not confirmed as trusted by SEC, the schedule is not sent electronically. It is read over a verified call and delivered by hand or courier.
+
+Missing fact and conditional action
+- The card does not say whether the two counterparties are banks. If they are authorized institutions, the R05 sentence below applies directly. If not, R07 section 4.7.1 applies as a general principle and the notice is the same.
+
+Status of facts
+- Confirmed (card): two counterparties have asked for an operational status update on unsettled instructions.
+- Not known to me: who they are; the number and value of their unsettled items; the recovery decision.
+
+Accountable owner and executing parties
+- Owner: COM (wording, consistency, log entries).
+- Executing: head of payment operations (calls and notices).
+- SEC confirms the channel is trusted. LC clears and informs HKMA.
+- Approver: crisis management team chair.
+
+HKT schedule
+- 20:30, 17 November: both requests verified by call-back and acknowledged.
+- 21:30, or within 30 minutes of the recorded recovery decision: verified call and written notice to each.
+- From 18 November: updates at 08:00, 13:00 and 18:00 daily until every item is settled or returned.
+- Immediately: on a stage going live, a pause or rollback, or any error affecting their items.
+- 08:00 on 18 November: first proactive notice to other affected banks, or tonight where Operations already has the list.
+
+Recipients and channels
+- Named operations contacts at each counterparty.
+- A verified phone call first, then written confirmation through the secure channel already agreed with that counterparty.
+- Not ordinary email with attachments.
+- Every contact logged.
+
+Basis, direct rules (external)
+- R05, PDF p.2, top of page (continuing the "Customer notifications" section): the AI "should also notify other affected AIs (so that they can in turn notify their affected customers) as soon as practicable."
+- R05, PDF p.1: the AI should "determine as quickly as possible after identifying an incident whether the situation is likely to affect other customers or the customers of other AIs".
+- Why it applies: payee banks hold unsettled items and their customers, including employees awaiting payroll, are affected. R05 says "where necessary"; two direct requests make it necessary.
+- R07 section 4.7.1, PDF p.13: AIs should have "a formal strategy for communication with key external parties (e.g. regulators, investors, customers, counterparties, business partners, service providers, the media and other stakeholders)."
+- R07 section 4.7.2, PDF p.14: "Important conversations with external parties should be properly logged for future reference."
+
+General principles
+- R07 section 4.3.2, PDF p.11: alternate processing may entail "different ways of dealing with customers and counterparties".
+- R09 section 8.2.2, PDF p.33: consistent messages to "all relevant parties (e.g. customers, media and business partners)".
+- R06 section 8.3, PDF p.13: communication plans for "all relevant stakeholders, including both internal and external parties".
+
+No direct rule located in assigned sources
+- No source prescribes the content, channel or frequency of updates to counterparties on unsettled instructions.
+- Searches recorded: "counterpart" (R06 p.7; R07 pp.4, 11, 13, 14, 16, 18, 19; R09 p.24), and the regex "other affected AIs|other AIs|interbank|settlement|clearing" (R05 pp.1 to 2; R06 p.7; others unrelated).
+
+Professional judgment
+- Verifying by call-back before replying: a request for payment status is exactly what a fraudster would send this week.
+- An operations lead is the right voice for operational counterparties, with communications controlling the text.
+- Three fixed updates a day give counterparties something to plan around.
+- Marking the schedule provisional is honest while two test mismatches remain unexplained.
+
+Internal bank procedure: N/A (PH01 absent).
+
+---
+
+Simulated actions for the facilitator's log (all HKT, 17 November 2026 unless stated)
+- 20:10: COM asks SEC for the recorded recovery decision and exact scope wording.
+- 20:10: COM asks Operations for queue figures and each counterparty's unsettled items.
+- 20:10: COM asks LC for clearance of both texts and of the SME letter.
+- 20:30: counterparties' requests verified by call-back and acknowledged.
+- 20:45, latest 21:00: customer status update released on Chief Executive approval; copy to HKMA via LC.
+- 21:30: verified call and written notice to each counterparty.
+- 07:00 on 18 November: next customer update.
+- 08:00 on 18 November: first scheduled counterparty update and proactive notice to other affected banks.
+>>>
+
+Facilitator handoffs given to the roles for C06:
+SEC:
+Q13a | Offline recovery candidate, approved for testing only: a newly built gateway in an isolated recovery environment, software from trusted media, data restored from the pre-incident immutable backup; the standby gateway is second choice only if this fails; the original gateway is not repaired in place and stays under evidence hold; the secondary process continues as the interim service. Verification conditions: integrity checks 1-8 (provenance, date test, clean build, scan, baseline, entry route closed, synthetic function test, independent review) and separation checks (network, identity, management, data path); if the backup cannot be dated before the attacker's first access, only data is restored from it | SEC (production decision: Chief Executive as crisis management team chair, after both SEC reports) | Provenance and date test by 09:00 HKT 17 November 2026; environment and separation by 11:00; restore and checks 3-6 by 15:00; functional test by 16:30; test report by 17:00 | The isolated recovery environment, under an emergency change record; report to the Chief Executive, the information owner, LC and IT Operations | Test: executed in simulation from 08:00 HKT on 17 November. Known status of the conditions: apart from the facts on card C06, no card records the result of any of checks 1-8, of the separation checks or of the 17:00 report, so they cannot be verified. Production use: not executed (on hold).
+Q13b | Offline transaction reconciliation before the candidate is considered for production: ten checks (baseline, gap period, secondary-process items, queue tie-out, three-way match, replay protection, sequence numbers, static data, settlement position, dry run); pass means no unexplained difference and "unknown" gap items stay held; sign-off by maker and checker, independent review, SEC attestation and the payments information owner; before any cut-over a final delta reconciliation, the secondary process kept as fall-back, and a live test afterwards | SEC | Check design by 09:00 HKT 17 November 2026; extracts by 12:00; checks 15:00-20:00; report by 21:00; all conditional on the candidate passing Q13a | Reconciliation workspace in the isolated environment; report to the Chief Executive, the information owner and LC | Scheduled, dependent on a Q13a pass. Known status of the conditions: apart from the facts on card C06, no card or run record shows a Q13a pass or the result of any of the ten checks; the signed report is due at 21:00 and is not recorded. Production proposal: not executed (on hold).
+LC: none.
+COM: none.
+
+Using this card, your facilitator handoffs and the three sealed role
+submissions, return one final record for each scored unit in this card.
+
+Unit ID | Original answer reference | CONFIRM or OVERRIDE | Reason |
+Final action and condition | Accountable owner | HKT time, deadline or
+trigger | Recipient and channel | Final external basis |
+Final internal basis | Dispatch instruction.
+
+Give a specific reason for each confirmation or override. Use OVERRIDE
+with "Missing recommendation" as the original answer reference when
+needed. For an unchanged, adequate citation or search record, you may
+reference the exact unit and field in its sealed answer. For any new or
+corrected basis, provide the exact location and short verbatim quote, or
+the search record and professional judgment required by the common prompt.
+For the dispatch instruction use EXECUTE NOW, SCHEDULE, HOLD, or NO ACTION
+and state any execution dependency. Finish with the order of any actions
+that depend on one another on this card.
