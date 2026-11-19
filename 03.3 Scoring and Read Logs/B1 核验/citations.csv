@@ -1,0 +1,766 @@
+file,card,role,kind,unit,doc,pages_stated,status,found_on,words,over25,quote
+C01/COM.raw.md,C01,COM,original,,R09,,NOT-FOUND,,3,False,shortly after commencement
+C01/COM.raw.md,C01,COM,original,,PH01,,NOT-FOUND,,10,False,Mobile banking may be temporarily unavailable; our branches are open.
+C01/COM.raw.md,C01,COM,original,,PH01,,NOT-FOUND,,6,False,We have informed the relevant authorities
+C01/COM.raw.md,C01,COM,original,,PH01,,NOT-FOUND,,5,False,Was there a ransom demand?
+C01/COM.raw.md,C01,COM,original,,PH01,,NOT-FOUND,,4,False,Our investigation is ongoing.
+C01/COM.raw.md,C01,COM,original,,PH01,,NOT-FOUND,,8,False,being checked; we will give them by [time]
+C01/COM.raw.md,C01,COM,original,,PH01,,NOT-FOUND,,6,False,we cannot yet give a time.
+C01/COM.raw.md,C01,COM,original,,PH01,,NOT-FOUND,,4,False,your money is safe
+C01/COM.raw.md,C01,COM,original,,PH01,,NOT-FOUND,,3,False,no data affected
+C01/COM.raw.md,C01,COM,original,,R05,2,NOT-FOUND,,4,False,a cyber security incident
+C01/COM.raw.md,C01,COM,original,,R05,,NOT-FOUND,,3,False,a system incident
+C01/COM.raw.md,C01,COM,original,,R05,,OK-NOPAGE,1,5,False,Incident response and management procedures
+C01/COM.raw.md,C01,COM,original,,R05,,OK-NOPAGE,1,5,False,whenever any significant incident occurs
+C01/COM.raw.md,C01,COM,original,,R05,1,OK,1,3,False,Immediate incident response
+C01/COM.raw.md,C01,COM,original,,R05,1,OK,1,21,False,The top priority should be to safeguard the interests of customers who have been or may be affected by the incident.
+C01/COM.raw.md,C01,COM,original,,R05,1,OK,1,54,True,"The AI should proactively notify the customers affected or likely to be affected through the most effective means and advise them of the steps or precautionary measures that they need to take as well as whether the bank would reimburse any losses incurred by them and if so, how they can apply for compensation"
+C01/COM.raw.md,C01,COM,original,,R05,2,OK,2,10,False,consider making a public announcement where the situation so warrants
+C01/COM.raw.md,C01,COM,original,,R05,2,FRAGMENTS,2,44,True,"(a) ... the disruption of any essential and critical banking service channel (e.g. branch services, e-banking, ATM services, etc.) or the disruption may last for a prolonged period of time; or (b) where a large number of customers have been or may be affected"
+C01/COM.raw.md,C01,COM,original,,R05,2,OK,2,16,False,include the key facts of the incident and the steps that affected customers need to take
+C01/COM.raw.md,C01,COM,original,,R05,3,OK,3,6,False,Handling of customers' and media's enquiry
+C01/COM.raw.md,C01,COM,original,,R05,3,OK,3,13,False,copies of public communication materials should be submitted to the HKMA for reference
+C01/COM.raw.md,C01,COM,original,,R05,3,OK,3,18,False,deploy swiftly adequate resources and communication channels (e.g. customer service hotlines and extended office hours of branch services)
+C01/COM.raw.md,C01,COM,original,,R09,,OK-NOPAGE,1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40,4,False,Risk Management of E-banking
+C01/COM.raw.md,C01,COM,original,,R09,,OK-NOPAGE,6,9,False,AIs should comply with the requirements in this module
+C01/COM.raw.md,C01,COM,original,,R09,,NOT-FOUND,,6,False,cyber attacks ... or service interruptions
+C01/COM.raw.md,C01,COM,original,,R09,32-33,NOT-FOUND,,44,True,"AIs should proactively notify the customers affected, or likely to be affected, through the most effective means (including considering the possibility of making a press release) and inform them of the key facts relating to the incident and the steps that customers may take"
+C01/COM.raw.md,C01,COM,original,,R09,,FRAGMENTS,33,18,False,any estimated service resumption time and ... how customers can protect their interests (e.g. apply for compensation ...)
+C01/COM.raw.md,C01,COM,original,,R09,33,OK,33,53,True,an AI is expected to issue a press release (or make a similarly effective notification) shortly after the commencement of any disruption to its critical e-banking service that could affect a significant number of customers if the AI does not have reasonable confidence that the service can be resumed in the near future.
+C01/COM.raw.md,C01,COM,original,,R06,13,OK,13,15,False,"Communication plans for reporting incidents to all relevant stakeholders, including both internal and external parties"
+C01/COM.raw.md,C01,COM,original,,R07,14,FRAGMENTS,14,21,False,The BCP should clearly indicate who can speak to the media ... Important conversations with external parties should be properly logged
+C01/COM.raw.md,C01,COM,original,,R02,32,OK,32,13,False,"Communication plan with internal and external stakeholders, including employees, customers and the public"
+C01/COM.raw.md,C01,COM,original,,R02,33,OK,33,12,False,"multiple channels (e.g. phone, email) are available to effectively communicate with stakeholders"
+C01/COM.raw.md,C01,COM,original,,R02,46,FRAGMENTS,46,16,False,Has the incident been communicated to the media? ... Press release ... Please specify the date
+C01/COM.raw.md,C01,COM,original,,R16b,,OK-NOPAGE,1;7,3,False,Customer Data Protection
+C01/COM.raw.md,C01,COM,original,,PH01,,DOC,R05;R09,4,False,the most effective means
+C01/COM.raw.md,C01,COM,original,,PH01,,NOT-FOUND,,3,False,shortly after commencement
+C01/LC.raw.md,C01,LC,original,Q02a,R05,,OK-NOPAGE,1,5,False,Incident response and management procedures
+C01/LC.raw.md,C01,LC,original,Q02a,R05,2,OK,2,5,False,Reporting incident to the HKMA
+C01/LC.raw.md,C01,LC,original,Q02a,R05,2,OK,2,31,True,"once an AI has become aware that a significant incident has occurred, the AI concerned should notify the HKMA immediately and provide it with whatever information is available at the time."
+C01/LC.raw.md,C01,LC,original,Q02a,R05,2,OK,2,18,False,an AI should not wait until it has rectified the problem before reporting the incident to the HKMA.
+C01/LC.raw.md,C01,LC,original,Q02a,R05,3,OK,3,6,False,Handling of customers' and media's enquiry
+C01/LC.raw.md,C01,LC,original,Q02a,R05,3,OK,3,13,False,copies of public communication materials should be submitted to the HKMA for reference.
+C01/LC.raw.md,C01,LC,original,Q02a,R06,13,OK,13,6,False,existing HKMA guidance on incident management
+C01/LC.raw.md,C01,LC,original,Q02a,R09,1;33,OK,33,23,False,the AI concerned should notify the HKMA promptly in accordance with the relevant arrangements set out by the HKMA from time to time.
+C01/LC.raw.md,C01,LC,original,Q02a,R09,1;33,NOT-FOUND,,6,False,cyber attacks ... or service interruptions
+C01/LC.raw.md,C01,LC,original,Q02a,R04,4,OK,4,10,False,should also promptly report significant cyber incidents to the HKMA
+C01/LC.raw.md,C01,LC,original,Q02a,R08,14,OK,14,17,False,should include timely reporting to the HKMA of any confirmed IT-related fraud cases or major security breaches.
+C01/LC.raw.md,C01,LC,original,Q02a,R07,5,OK,5,11,False,AIs should inform the HKMA promptly if their BCP is activated.
+C01/LC.raw.md,C01,LC,original,Q02a,PH01,,OK-NOPAGE,5,9,False,LC owns every report to a regulator or authority
+C01/LC.raw.md,C01,LC,original,Q02a,R05,,DOC,PH01,11,False,"This playbook does not restate their triggers, recipients or time limits."
+C01/LC.raw.md,C01,LC,original,Q02a,R05,,DOC,PH01,17,False,"The initial report goes on the facts held at the time, with unverified items marked as unverified"
+C01/LC.raw.md,C01,LC,original,Q02a,R05,,DOC,PH01,14,False,LC updates the HKMA supervisory contact every four hours during the first 24 hours
+C01/LC.raw.md,C01,LC,original,Q02a,R05,,OK-NOPAGE,2,3,False,notify the HKMA
+C01/LC.raw.md,C01,LC,original,Q02b,R01,43-44,OK,3;43,6,False,Obligation to notify computer-system security incidents
+C01/LC.raw.md,C01,LC,original,Q02b,R01,43-44,OK,44,14,False,the operator must notify the Commissioner of the incident in accordance with subsection (2).
+C01/LC.raw.md,C01,LC,original,Q02b,R01,44,OK,44,15,False,must be made as soon as practicable and in any event within the specified time
+C01/LC.raw.md,C01,LC,original,Q02b,R01,653;2026,PAGE,44,27,True,"despite not being made in the specified form and way, include information on the nature of the computer-system security incident and identify the critical computer system concerned."
+C01/LC.raw.md,C01,LC,original,Q02b,R01,653;2026,FRAGMENTS,44,19,False,subsequently submit a written record ... in the specified form and way to the Commissioner within the specified time.
+C01/LC.raw.md,C01,LC,original,Q02b,R01,97,OK,97,28,True,"has disrupted, is disrupting or is likely to disrupt the core function of the critical infrastructure concerned—12 hours after the CI operator concerned becomes aware of the incident"
+C01/LC.raw.md,C01,LC,original,Q02b,R01,97,OK,97,11,False,48 hours after the notification concerned is made under section 28(1).
+C01/LC.raw.md,C01,LC,original,Q02b,R01,97,OK,97,13,False,14 days after the date on which the CI operator concerned becomes aware
+C01/LC.raw.md,C01,LC,original,Q02b,R01,10,OK,10,14,False,"any other act done, without lawful authority, on or through the critical computer system"
+C01/LC.raw.md,C01,LC,original,Q02b,R01,10,OK,10,9,False,has an actual adverse effect on the computer-system security
+C01/LC.raw.md,C01,LC,original,Q02b,R01,15,OK,15;18,7,False,category 1 obligations and category 2 obligations
+C01/LC.raw.md,C01,LC,original,Q02b,R01,20,OK,20,4,False,more than one way
+C01/LC.raw.md,C01,LC,original,Q02b,R02,653,PAGE,4,3,False,not subsidiary legislation
+C01/LC.raw.md,C01,LC,original,Q02b,R02,36,OK,36,28,True,"At the point the CI operator has a reasonable degree of certainty that a computer-system security incident has occurred, the CI operator is deemed to have become aware"
+C01/LC.raw.md,C01,LC,original,Q02b,R02,653,PAGE,36,13,False,the CI operator may first make the notification to a designated telephone number
+C01/LC.raw.md,C01,LC,original,Q02b,R02,653,PAGE,36,6,False,within 48 hours of the notification
+C01/LC.raw.md,C01,LC,original,Q02b,R02,653,PAGE,36;37,3,False,sector specific requirements
+C01/LC.raw.md,C01,LC,original,Q02b,R02,4,OK,4,8,False,through secured channels as advised by regulating authorities
+C01/LC.raw.md,C01,LC,original,Q02b,R03,3,OK,3,14,False,should refer to guidance published by the Commissioner in relation to category 3 obligations
+C01/LC.raw.md,C01,LC,original,Q02b,PH01,,NOT-FOUND,,21,False,"Cap. 653, section 28 and Schedule 6, and the Commissioner's Code of Practice section 7.3 and its Annexes E and F"
+C01/LC.raw.md,C01,LC,original,Q02b,PH01,,OK-NOPAGE,5,9,False,checked by a second LC officer within 30 minutes
+C01/LC.raw.md,C01,LC,original,Q02b,PH01,,FRAGMENTS,5,18,False,If the normal filing terminal is unavailable ... SEC logs within 30 minutes whether it can be released
+C01/LC.raw.md,C01,LC,original,Q02b,PH01,,OK-NOPAGE,5,8,False,or asks the recipient which alternative it accepts
+C01/LC.raw.md,C01,LC,original,Q02b,PH01,,OK-NOPAGE,2,16,False,"No internal condition, review or approval may delay an action needed to meet an external deadline."
+C01/LC.raw.md,C01,LC,original,Q02b,PH01,,OK-NOPAGE,2,6,False,30 minutes before the external deadline
+C01/LC.raw.md,C01,LC,original,Q02b,PH01,,OK-NOPAGE,10,4,False,as soon as practicable
+C01/LC.raw.md,C01,LC,original,Q02b,R03,,NOT-FOUND,,8,False," (5 hits, none a form) and R02 for "
+C01/LC.raw.md,C01,LC,original,Q02b,R01,,OK-NOPAGE,97,5,False,14 days after the date
+C01/SEC.raw.md,C01,SEC,original,,PH01,,OK-NOPAGE,4;11,5,False,a critical operation is disrupted
+C01/SEC.raw.md,C01,SEC,original,Q01a,PH01,,OK-NOPAGE,7,3,False,the route used
+C01/SEC.raw.md,C01,SEC,original,Q01a,R05,,OK-NOPAGE,1,5,False,Incident response and management procedures
+C01/SEC.raw.md,C01,SEC,original,Q01a,R05,1,OK,1,3,False,Immediate incident response
+C01/SEC.raw.md,C01,SEC,original,Q01a,R05,1,OK,1,42,True,The AI concerned should immediately analyse the cause of the incident and as soon as practicable rectify or contain the problem. The top priority should be to safeguard the interests of customers who have been or may be affected by the incident.
+C01/SEC.raw.md,C01,SEC,original,Q01a,R09,32,OK,32,21,False,The top priority should be to protect the interests of customers who have been or may be affected by the incident.
+C01/SEC.raw.md,C01,SEC,original,Q01a,R02,33,OK,33,20,False,"the CI operator should prioritize incidents which had impacted business operations, require swift damage containment or need immediate system recovery."
+C01/SEC.raw.md,C01,SEC,original,Q01a,R02,32,OK,32,7,False,Containing the incident to prevent further harm
+C01/SEC.raw.md,C01,SEC,original,Q01a,R01,653;43,OK,43,9,False,A CI operator must implement an emergency response plan.
+C01/SEC.raw.md,C01,SEC,original,Q01a,R01,653;33-34,OK,34,10,False,affects— (i) the computer-system security of the critical computer system
+C01/SEC.raw.md,C01,SEC,original,Q01a,R03,11,OK,11,10,False,the moment when a change is deployed to production environments
+C01/SEC.raw.md,C01,SEC,original,Q01a,R03,7,OK,7,9,False,may also be regarded as components of the CCS
+C01/SEC.raw.md,C01,SEC,original,Q01a,R06,3,NOT-FOUND,,13,False,disruptions to an AI's critical operations must not exceed its 'tolerance for disruption'
+C01/SEC.raw.md,C01,SEC,original,Q01a,R11,4;2,OK,4,8,False,Shutting down or isolating the compromised/ breached system/server
+C01/SEC.raw.md,C01,SEC,original,Q01a,PH01,,OK-NOPAGE,3,22,False,Isolate a system or segment | SEC | Head of IT Operations; CMT chair if a working customer service will be removed
+C01/SEC.raw.md,C01,SEC,original,Q01a,PH01,,OK-NOPAGE,7,32,True,SEC isolates at the network layer first: the affected segment and the route used. Hosts are not powered off. Services still working are kept running unless SEC finds active spread to them.
+C01/SEC.raw.md,C01,SEC,original,Q01a,PH01,,OK-NOPAGE,6,9,False,"If destructive activity is still spreading, containment goes first"
+C01/SEC.raw.md,C01,SEC,original,Q01b,PH01,,DOC,R02;R03,5,False,cannot be deleted or altered
+C01/SEC.raw.md,C01,SEC,original,Q01b,PH01,,DOC,R02,3,False,Earliest Identifiable Time
+C01/SEC.raw.md,C01,SEC,original,Q01b,PH01,,DOC,R02,3,False,Time Becoming Aware
+C01/SEC.raw.md,C01,SEC,original,Q01b,R02,32,OK,32,14,False,"Digital evidence handling, including identification, collection, acquisition, preservation of evidence and chain of custody"
+C01/SEC.raw.md,C01,SEC,original,Q01b,R02,33,OK,33,9,False,"Otherwise, more time should be allocated to evidence collection"
+C01/SEC.raw.md,C01,SEC,original,Q01b,R02,33,OK,33,8,False,engage capable incident response and forensic examination personnel
+C01/SEC.raw.md,C01,SEC,original,Q01b,R03,18,OK,18,25,False,The logs should be retained for a minimum period of 6 months. Such logs should be secured so that they cannot be deleted or altered
+C01/SEC.raw.md,C01,SEC,original,Q01b,R01,653;52,OK,52;53,7,False,to preserve the state of the system
+C01/SEC.raw.md,C01,SEC,original,Q01b,R11,4;2,OK,4,13,False,Keeping records of the occurrence of the breach and all follow-up actions taken
+C01/SEC.raw.md,C01,SEC,original,Q01b,R02,32,OK,32,3,False,chain of custody
+C01/SEC.raw.md,C01,SEC,original,Q01b,PH01,,OK-NOPAGE,6,10,False,At declaration SEC places an evidence hold on affected systems.
+C01/SEC.raw.md,C01,SEC,original,Q01b,PH01,,OK-NOPAGE,6,37,True,"The evidence custodian is an SEC designate who does not administer the affected systems. Every item gets an evidence ID, source, time with clock offset, collector and witness, tool, SHA-256 hash, storage location and a transfer record."
+C02/COM.raw.md,C02,COM,original,,PH01,,NOT-FOUND,,5,False,hold the text and escalate
+C02/COM.raw.md,C02,COM,original,,R05,,OK-NOPAGE,1,5,False,Incident response and management procedures
+C02/COM.raw.md,C02,COM,original,,R05,3,OK,3,6,False,Handling of customers' and media's enquiry
+C02/COM.raw.md,C02,COM,original,,R05,3,OK,3,18,False,deploy swiftly adequate resources and communication channels (e.g. customer service hotlines and extended office hours of branch services)
+C02/COM.raw.md,C02,COM,original,,R05,3,OK,3,14,False,consistent and up-to-date messages are conveyed to all relevant parties on a timely basis
+C02/COM.raw.md,C02,COM,original,,R09,33,OK,33,20,False,"consistent and up-to-date messages are conveyed to all relevant parties (e.g. customers, media and business partners) on a timely basis"
+C02/COM.raw.md,C02,COM,original,,R09,17,FRAGMENTS,17,23,False,convenient and easily accessible channel ... available at all times for customers to seek and obtain help with respect to possible unauthorized transactions
+C02/COM.raw.md,C02,COM,original,,R09,18,OK,18,19,False,a mechanism for customers to promptly suspend their e-banking accounts in cases where fraudulent or suspicious activities are detected
+C02/COM.raw.md,C02,COM,original,,R07,14,FRAGMENTS,14,16,False,"how the status of recovery can be promptly and consistently communicated to all staff, ... branches"
+C02/COM.raw.md,C02,COM,original,,R07,14,OK,14,8,False,broadcasting of messages to mobile phones of staff
+C02/COM.raw.md,C02,COM,original,,PH01,,OK-NOPAGE,3,10,False,Approve staff and frontline scripts | COM | LC clears
+C02/COM.raw.md,C02,COM,original,,PH01,,OK-NOPAGE,11,7,False,Staff refer all media enquiries to COM.
+C02/COM.raw.md,C02,COM,original,,PH01,,OK-NOPAGE,11,8,False,The bank never denies receipt of a demand.
+C02/COM.raw.md,C02,COM,original,,PH01,,OK-NOPAGE,12,16,False,"Staff, branches, COM and vendors never reply to an attacker; they pass any message to SEC."
+C02/COM.raw.md,C02,COM,original,,PH01,,OK-NOPAGE,13,6,False,Staff may promise this at once.
+C02/COM.raw.md,C02,COM,original,,PH01,,OK-NOPAGE,13,5,False,Staff do not promise reimbursement.
+C02/COM.raw.md,C02,COM,original,,PH01,,NOT-FOUND,,3,False,do not resubmit
+C02/COM.raw.md,C02,COM,original,,PH01,1,NOT-FOUND,,7,False,The bank has not paid a ransom
+C02/COM.raw.md,C02,COM,original,,PH01,3,NOT-FOUND,,4,False,Reported to the Police
+C02/COM.raw.md,C02,COM,original,,PH01,,NOT-FOUND,,5,False,working with the relevant authorities
+C02/COM.raw.md,C02,COM,original,,R05,2,OK,2,33,True,"the need to keep the public informed may need to be weighed against the relevant legal considerations, including where appropriate whether a public announcement may prejudice any ongoing criminal proceedings or any investigation"
+C02/COM.raw.md,C02,COM,original,,R05,2,OK,2,12,False,"If in doubt, AIs should consult the Hong Kong Monetary Authority (HKMA)."
+C02/COM.raw.md,C02,COM,original,,R05,3,OK,3,13,False,copies of public communication materials should be submitted to the HKMA for reference.
+C02/COM.raw.md,C02,COM,original,,R09,33,PAGE,6,9,False,AIs should comply with the requirements in this module
+C02/COM.raw.md,C02,COM,original,,R16c,455;84,OK,84,33,True,"commits an offence if, knowing or suspecting that a disclosure has been made under subsection (1) or (4), he discloses to any other person any matter which is likely to prejudice any investigation"
+C02/COM.raw.md,C02,COM,original,,R16d,575;37,OK,37,18,False,shall not disclose to another person any information or other matter which is likely to prejudice any investigation
+C02/COM.raw.md,C02,COM,original,,R07,14,FRAGMENTS,14,21,False,The BCP should clearly indicate who can speak to the media ... Important conversations with external parties should be properly logged
+C02/COM.raw.md,C02,COM,original,,R02,46,FRAGMENTS,46,11,False,Reply to press enquiry was made/issued ... Please specify the date
+C02/COM.raw.md,C02,COM,original,,R11,8,OK,8,3,False,When to notify?
+C02/COM.raw.md,C02,COM,original,,R11,8,OK,8,18,False,"as soon as practicable after becoming aware of the incident, regardless of the progress of any internal investigation"
+C02/COM.raw.md,C02,COM,original,,R16b,,OK-NOPAGE,1;7,3,False,Customer Data Protection
+C02/COM.raw.md,C02,COM,original,,R16b,3,OK,3,20,False,notify the affected customers as soon as practicable after the AI concerned is aware of or notified of the incident
+C02/COM.raw.md,C02,COM,original,,PH01,,OK-NOPAGE,3,27,True,Approve public statements and replies to media | CMT chair; alternate COO if the chair is unreachable for 15 minutes | LC clears; SEC and Operations fact-check
+C02/COM.raw.md,C02,COM,original,,PH01,,OK-NOPAGE,11,22,False,The bank never denies receipt of a demand. It states whether a payment has been made only as a verified present fact.
+C02/COM.raw.md,C02,COM,original,,PH01,,OK-NOPAGE,12,7,False,Any departure is for the Board alone.
+C02/COM.raw.md,C02,COM,original,,PH01,,OK-NOPAGE,12,5,False,Treasury holds all preparatory steps
+C02/COM.raw.md,C02,COM,original,,PH01,,FRAGMENTS,10,16,False,An unverified claim ... does not by itself make everyone in the store a notification batch.
+C02/COM.raw.md,C02,COM,original,,PH01,,FRAGMENTS,5;9,13,False,"at once on any of: ... an extortion demand, ... a public statement"
+C02/COM.raw.md,C02,COM,original,,R16b,,OK-NOPAGE,3;7,4,False,as soon as practicable
+C02/LC.raw.md,C02,LC,original,Q05a,R16c,83,FRAGMENTS,16;18;23;82;83;84;92;114,42,True,"(b) was used in connection with; or (c) is intended to be used in connection with, an indictable offence, he shall as soon as it is reasonable for him to do so disclose that knowledge or suspicion ... to an authorized officer."
+C02/LC.raw.md,C02,LC,original,Q05a,R16c,455;2025,PAGE,83,21,False,that disclosure is made before he does that act and he does that act with the consent of an authorized officer
+C02/LC.raw.md,C02,LC,original,Q05a,R16c,6,OK,6,6,False,disposing of or converting the property
+C02/LC.raw.md,C02,LC,original,Q05a,R16c,6,OK,6,4,False,(a) any police officer
+C02/LC.raw.md,C02,LC,original,Q05a,R16d,20,FRAGMENTS,20,30,True,"make any property ... available ... to or for the benefit of a person knowing that, or being reckless as to whether, the person is a terrorist or terrorist associate"
+C02/LC.raw.md,C02,LC,original,Q05a,R11,2;4,OK,4,21,False,Notifying the relevant law enforcement agencies if identity theft or other criminal activities have been or are likely to be committed
+C02/LC.raw.md,C02,LC,original,Q05a,PH01,,OK-NOPAGE,12,19,False,The Board's policy is that the bank does not pay a ransom. Any departure is for the Board alone.
+C02/LC.raw.md,C02,LC,original,Q05a,PH01,455;575,PAGE,12,13,False,"Treasury holds all preparatory steps (virtual-asset accounts, purchases, intermediaries) until the Board decides."
+C02/LC.raw.md,C02,LC,original,Q05a,PH01,,OK-NOPAGE,3,15,False,Any payment to an attacker | Board only (section 12) | LC written legal gates
+C02/LC.raw.md,C02,LC,original,Q05a,PH01,,OK-NOPAGE,3,10,False,Report to the Police | LC | CMT chair informed
+C02/LC.raw.md,C02,LC,original,Q05a,PH01,455,DOC,R16c,6,False,as soon as it is reasonable
+C02/LC.raw.md,C02,LC,original,Q05b,R05,2,OK,2,9,False,may prejudice any ongoing criminal proceedings or any investigation
+C02/LC.raw.md,C02,LC,original,Q05b,PH01,,OK-NOPAGE,12,25,False,"None, unless the CMT chair authorises it in writing on a joint LC and SEC recommendation, for a stated limited purpose, after consulting the Police."
+C02/LC.raw.md,C02,LC,original,Q05b,PH01,,OK-NOPAGE,6,15,False,"Nobody requests further samples, visits attacker links or uploads attacker material to an outside service."
+C02/LC.raw.md,C02,LC,original,Q05b,R16b,3,OK,3;7,4,False,as soon as practicable
+C02/LC.raw.md,C02,LC,original,Q05b,PH01,,NOT-FOUND,,5,False,no payment has been made
+C02/SEC.raw.md,C02,SEC,original,Q04a,PH01,,NOT-FOUND,,4,False,no data was taken
+C02/SEC.raw.md,C02,SEC,original,Q04a,R10,486;4;169,FRAGMENTS,169,30,True,"All practicable steps shall be taken to ensure that any personal data ... held by a data user is protected against unauthorized or accidental access, processing, erasure, loss or use"
+C02/SEC.raw.md,C02,SEC,original,Q04a,R11,1,OK,1,5,False,What is a data breach?
+C02/SEC.raw.md,C02,SEC,original,Q04a,R11,1,OK,1,11,False,a suspected or actual breach of the security of personal data
+C02/SEC.raw.md,C02,SEC,original,Q04a,R11,4;1,OK,4,20,False,the data user shall promptly gather all relevant information of the data breach to assess the impact on data subjects
+C02/SEC.raw.md,C02,SEC,original,Q04a,R11,5;3,OK,5,8,False,The kind and sensitivity of the personal data
+C02/SEC.raw.md,C02,SEC,original,Q04a,R11,8,OK,8,8,False,regardless of the progress of any internal investigation
+C02/SEC.raw.md,C02,SEC,original,Q04a,R16b,,OK-NOPAGE,1;7,3,False,Customer Data Protection
+C02/SEC.raw.md,C02,SEC,original,Q04a,R16b,2,OK,2;3,11,False,Controls for handling incidents involving loss or leakage of customer data
+C02/SEC.raw.md,C02,SEC,original,Q04a,R16b,2,OK,2,16,False,"ascertaining the nature of the incidents, the causes of the incidents and identity of customers affected"
+C02/SEC.raw.md,C02,SEC,original,Q04a,R16b,3,OK,3,16,False,as soon as practicable after the AI concerned is aware of or notified of the incident
+C02/SEC.raw.md,C02,SEC,original,Q04a,R02,36,OK,36,15,False,has caused or is likely to cause the leakage of material volume of customer data
+C02/SEC.raw.md,C02,SEC,original,Q04a,R02,35,OK,35,5,False,shows signs of data compromise
+C02/SEC.raw.md,C02,SEC,original,Q04a,PH01,,NOT-FOUND,,4,False, returned no hits. The 
+C02/SEC.raw.md,C02,SEC,original,Q04a,PH01,,OK-NOPAGE,6,29,True,"Samples, demands and messages from an attacker are received only into the evidence process. Nobody requests further samples, visits attacker links or uploads attacker material to an outside service."
+C02/SEC.raw.md,C02,SEC,original,Q04a,PH01,,OK-NOPAGE,16,9,False,Full images are examined only inside the bank's laboratory.
+C02/SEC.raw.md,C02,SEC,original,Q04a,PH01,,OK-NOPAGE,10,22,False,"An unverified claim, or the size of the data store, does not by itself make everyone in the store a notification batch."
+C02/SEC.raw.md,C02,SEC,original,Q04b,PH01,,NOT-FOUND,,4,False,A remote access account
+C02/SEC.raw.md,C02,SEC,original,Q04b,PH01,,NOT-FOUND,,3,False,preserve session logs
+C02/SEC.raw.md,C02,SEC,original,Q04b,PH01,,OK-NOPAGE,6,3,False,within four hours
+C02/SEC.raw.md,C02,SEC,original,Q04b,R02,32,OK,32,14,False,"Digital evidence handling, including identification, collection, acquisition, preservation of evidence and chain of custody"
+C02/SEC.raw.md,C02,SEC,original,Q04b,R01,653;91-92,OK,92,39,True,"(h) managing contracts and other communications with suppliers of computer-related services and products adopted for the systems in order to ensure that— (i) the CI operator concerned complies with category 1 obligations, category 2 obligations and category 3 obligations"
+C02/SEC.raw.md,C02,SEC,original,Q04b,R03,14,OK,14,15,False,all passwords are promptly changed if they have been or are suspected of being compromised
+C02/SEC.raw.md,C02,SEC,original,Q04b,R16b,,OK-NOPAGE,1;7,3,False,Customer Data Protection
+C02/SEC.raw.md,C02,SEC,original,Q04b,R16b,5,FRAGMENTS,5,21,False,remote access by AIs' staff or service providers from external networks ... should be subject to robust authentication (e.g. two-factor authentication)
+C02/SEC.raw.md,C02,SEC,original,Q04b,R11,5;2,OK,5,16,False,Removing the access rights of users suspected to have committed or contributed to the data breach
+C02/SEC.raw.md,C02,SEC,original,Q04b,R11,5;2,OK,5,11,False,Keeping a proper record of the compromised system for further investigation
+C02/SEC.raw.md,C02,SEC,original,Q04b,R10,4;169-170,OK,167;169,4,False,contractual or other means
+C02/SEC.raw.md,C02,SEC,original,Q04b,R11,4,OK,4,9,False,Requiring the data processor to take immediate remedial measures
+C02/SEC.raw.md,C02,SEC,original,Q04b,R12,4;8,OK,8,17,False,data retrieved from the service providers are accurate and available in Hong Kong on a timely basis
+C02/SEC.raw.md,C02,SEC,original,Q04b,R01,50,OK,47;50,10,False,"in the possession, or under the control, of the operator"
+C02/SEC.raw.md,C02,SEC,original,Q04b,R01,50;52-53,OK,52;53,7,False,to preserve the state of the system
+C02/SEC.raw.md,C02,SEC,original,Q04b,PH01,,FRAGMENTS,6,27,True,"SEC drafts a written preservation and production request ... covering session and access logs, account records, support tickets, change records and any bank data the supplier holds."
+C02/SEC.raw.md,C02,SEC,original,Q04b,PH01,,OK-NOPAGE,6,13,False,never received by ordinary email or through the supplier's own remote access path
+C02/SEC.raw.md,C02,SEC,original,Q04b,PH01,,OK-NOPAGE,6,6,False,in any case within four hours
+C02/SEC.raw.md,C02,SEC,original,Q04b,PH01,,OK-NOPAGE,6,8,False,the supplier's account until SEC has reconciled them
+C02/SEC.raw.md,C02,SEC,original,Q04b,PH01,,OK-NOPAGE,7,11,False,disables the account and every other account of the same vendor
+C02/SEC.raw.md,C02,SEC,original,Q04b,PH01,,NOT-FOUND,,4,False,have my funds disappeared?
+C02/SEC.raw.md,C02,SEC,original,Q04b,PH01,,NOT-FOUND,,4,False,your funds are safe
+C03/COM.raw.md,C03,COM,original,,PH01,,OK-NOPAGE,10,4,False,as soon as practicable
+C03/COM.raw.md,C03,COM,original,,R11,8,OK,8,3,False,When to notify?
+C03/COM.raw.md,C03,COM,original,,R11,8,OK,8,24,False,"A notification should generally be given as soon as practicable after becoming aware of the incident, regardless of the progress of any internal investigation."
+C03/COM.raw.md,C03,COM,original,,R11,8,OK,8,3,False,How to notify?
+C03/COM.raw.md,C03,COM,original,,R11,8,OK,8,16,False,"The data subjects can be notified directly by phone, in writing, via email or in person."
+C03/COM.raw.md,C03,COM,original,,R11,7,OK,7,9,False,A list of the types of personal data involved
+C03/COM.raw.md,C03,COM,original,,R11,7,FRAGMENTS,7,20,False,Information and advice on the actions the data subjects can take to protect themselves ... from identity theft or fraud
+C03/COM.raw.md,C03,COM,original,,R11,5,OK,5,27,True,"a combination of Hong Kong Identity Card information, date of birth, address, credit card details and bank account information is more likely to result in identity theft"
+C03/COM.raw.md,C03,COM,original,,R16b,,OK-NOPAGE,1;7,3,False,Customer Data Protection
+C03/COM.raw.md,C03,COM,original,,R16b,3,OK,3,9,False,"the customer data stolen, lost or leaked is sensitive"
+C03/COM.raw.md,C03,COM,original,,R16b,3,OK,3,17,False,expected to report the incident to the HKMA and notify the affected customers as soon as practicable
+C03/COM.raw.md,C03,COM,original,,PH01,2,DOC,R16b,22,False,"in case the AI concerned decided not to notify affected customers, it should provide justification on why it did not do so"
+C03/COM.raw.md,C03,COM,original,,R05,1,OK,1,13,False,the customers affected or likely to be affected through the most effective means
+C03/COM.raw.md,C03,COM,original,,R16a,3,NOT-FOUND,,17,False,"Were the affected individuals notified? Yes / No / No, will do so within ( ) days"
+C03/COM.raw.md,C03,COM,original,,R10,486,NOT-FOUND,,10,False, found no statutory breach-notification duty. R16b p.3 confirms there is 
+C03/COM.raw.md,C03,COM,original,,PH01,,OK-NOPAGE,10,15,False,are notified as soon as practicable. They are not held back for the wider review.
+C03/COM.raw.md,C03,COM,original,,PH01,,FRAGMENTS,10,32,True,"Personal call from a named team with an offer to call back on the number on the customer's card ... SMS, push and email may carry an alert but never a link."
+C03/COM.raw.md,C03,COM,original,,PH01,,OK-NOPAGE,10,14,False,Details changed after the incident started are checked by the Fraud team before use.
+C03/COM.raw.md,C03,COM,original,,PH01,,OK-NOPAGE,13,12,False,"Offered identity-protection monitoring at the bank's cost for 12 months, on opt-in."
+C03/COM.raw.md,C03,COM,original,,PH01,,OK-NOPAGE,3,13,False,"Approve the audience for customer notices | CMT chair | LC, SEC, DPO"
+C03/COM.raw.md,C03,COM,original,,PH01,,OK-NOPAGE,10,4,False,as soon as practicable
+C03/COM.raw.md,C03,COM,original,,PH01,,NOT-FOUND,,16,False," and the three data types | SEC, from the log record (PH01 s.11.4) | 12:45 | "
+C03/COM.raw.md,C03,COM,original,,PH01,,NOT-FOUND,,4,False,No other customers affected
+C03/COM.raw.md,C03,COM,original,,R16b,3,OK,3,17,False,"If a large number of customers are affected, the AI concerned should consider making a public announcement"
+C03/COM.raw.md,C03,COM,original,,R11,8,FRAGMENTS,8,17,False,"are not immediately identifiable or if public interest exists, then public announcements ... may be more effective"
+C03/COM.raw.md,C03,COM,original,,R09,33,OK,33,4,False,consistent and up-to-date messages
+C03/COM.raw.md,C03,COM,original,,R05,2,OK,2,7,False,include the key facts of the incident
+C03/COM.raw.md,C03,COM,original,,R16a,3,OK,3,14,False,Has your company/organisation issued or does your company/organisation intend to issue a media statement?
+C03/COM.raw.md,C03,COM,original,,PH01,,OK-NOPAGE,10,22,False,"An unverified claim, or the size of the data store, does not by itself make everyone in the store a notification batch"
+C03/COM.raw.md,C03,COM,original,,PH01,,OK-NOPAGE,10,16,False,The CMT chair decides whether a public statement under section 11 covers customers not notified individually
+C03/COM.raw.md,C03,COM,original,,R11,7,NOT-FOUND,,13,False," the source of the breach. That is optional, so describing the source as "
+C03/COM.raw.md,C03,COM,original,,R16b,,OK-NOPAGE,3;7,4,False,as soon as practicable
+C03/LC.raw.md,C03,LC,original,Q08a,R10,4;169,FRAGMENTS,169,30,True,"All practicable steps shall be taken to ensure that any personal data ... held by a data user is protected against unauthorized or accidental access, processing, erasure, loss or use"
+C03/LC.raw.md,C03,LC,original,Q08a,R10,,NOT-FOUND,,3,False, (0 hits) and 
+C03/LC.raw.md,C03,LC,original,Q08a,R16a,1,OK,1,25,False,"Although it is not mandatory under the Ordinance for data users to give data breach notifications, data users are encouraged to give such notifications timely"
+C03/LC.raw.md,C03,LC,original,Q08a,R11,6;4,OK,6,38,True,"the data user should notify the PCPD and the affected data subjects as soon as practicable after becoming aware of the data breach, particularly if the data breach is likely to result in a real risk of harm"
+C03/LC.raw.md,C03,LC,original,Q08a,R11,8,OK,8,8,False,regardless of the progress of any internal investigation
+C03/LC.raw.md,C03,LC,original,Q08a,R11,8,OK,8,5,False,Oral notifications are not accepted.
+C03/LC.raw.md,C03,LC,original,Q08a,R11,5,OK,5,8,False,is more likely to result in identity theft
+C03/LC.raw.md,C03,LC,original,Q08a,R11,1,OK,1,4,False,suspected or actual breach
+C03/LC.raw.md,C03,LC,original,Q08a,R16b,,OK-NOPAGE,1;7,3,False,Customer Data Protection
+C03/LC.raw.md,C03,LC,original,Q08a,R16b,3,OK,3,24,False,"while there is no statutory requirement on AIs to report privacy incidents to the Privacy Commissioner, the AI concerned should seriously consider doing so"
+C03/LC.raw.md,C03,LC,original,Q08a,R16b,3,OK,2;3,4,False,it should provide justification
+C03/LC.raw.md,C03,LC,original,Q08a,PH01,,OK-NOPAGE,5,13,False,the PCPD Guidance on Data Breach Handling and the Data Breach Notification Form
+C03/LC.raw.md,C03,LC,original,Q08a,PH01,,OK-NOPAGE,2,14,False,"goes on the facts held at the time, with unverified items marked as unverified"
+C03/LC.raw.md,C03,LC,original,Q08b,R16b,3,OK,3,9,False,"the customer data stolen, lost or leaked is sensitive"
+C03/LC.raw.md,C03,LC,original,Q08b,R16b,3,OK,3,20,False,notify the affected customers as soon as practicable after the AI concerned is aware of or notified of the incident
+C03/LC.raw.md,C03,LC,original,Q08b,R16b,3,OK,2;3,4,False,it should provide justification
+C03/LC.raw.md,C03,LC,original,Q08b,R05,1,OK,1,6,False,affected or likely to be affected
+C03/LC.raw.md,C03,LC,original,Q08b,PH01,,FRAGMENTS,10,21,False,Customers whose exposure is confirmed ... are notified as soon as practicable. They are not held back for the wider review.
+C03/LC.raw.md,C03,LC,original,Q08b,PH01,,OK-NOPAGE,10,16,False,"No later than 12 hours after the first confirmation of exposure, the DPO and LC review"
+C03/LC.raw.md,C03,LC,original,Q08b,PH01,,OK-NOPAGE,10,22,False,"An unverified claim, or the size of the data store, does not by itself make everyone in the store a notification batch."
+C03/SEC.raw.md,C03,SEC,original,Q07a,PH01,,NOT-FOUND,,3,False,"up to 18,000"
+C03/SEC.raw.md,C03,SEC,original,Q07a,PH01,,OK-NOPAGE,10,8,False,held in the same place as confirmed records
+C03/SEC.raw.md,C03,SEC,original,Q07a,R11,4;1,OK,4,7,False,How many data subjects might be affected?
+C03/SEC.raw.md,C03,SEC,original,Q07a,R11,7,OK,7,9,False,The categories and approximate number of data subjects involved
+C03/SEC.raw.md,C03,SEC,original,Q07a,R11,7,OK,7,10,False,The categories and approximate number of personal data records involved
+C03/SEC.raw.md,C03,SEC,original,Q07a,R11,8,OK,8,24,False,"After the full details of the incident are revealed, all information should be submitted to the PCPD and other law enforcement agencies without delay."
+C03/SEC.raw.md,C03,SEC,original,Q07a,R16b,,OK-NOPAGE,1;7,3,False,Customer Data Protection
+C03/SEC.raw.md,C03,SEC,original,Q07a,R16b,2,OK,2,16,False,"ascertaining the nature of the incidents, the causes of the incidents and identity of customers affected"
+C03/SEC.raw.md,C03,SEC,original,Q07a,R03,18,OK,18,6,False,(iii) Access attempts to critical files
+C03/SEC.raw.md,C03,SEC,original,Q07a,R03,18,OK,18,5,False,(vi) Modifications to audit policies
+C03/SEC.raw.md,C03,SEC,original,Q07a,R03,18,OK,18,10,False,Retained logs should contain sufficient information to support after-the-fact investigation
+C03/SEC.raw.md,C03,SEC,original,Q07a,R10,486;169,NOT-FOUND,,14,False,particular regard to— (a) the kind of data and the harm that could result
+C03/SEC.raw.md,C03,SEC,original,Q07a,R02,36,NOT-FOUND,,21,False,"leakage of material volume of customer data, where 'material' is defined by the CI operator in the business continuity management plan"
+C03/SEC.raw.md,C03,SEC,original,Q07a,R16a,2,OK,2,4,False,Number of individuals affected*
+C03/SEC.raw.md,C03,SEC,original,Q07a,R16a,2,OK,2,5,False,Types of personal data involved*
+C03/SEC.raw.md,C03,SEC,original,Q07a,R16a,2,OK,2,8,False,Did you engage a service provider / contractor
+C03/SEC.raw.md,C03,SEC,original,Q07a,R02,35;2,NOT-FOUND,,9,False," (hits only R02 p35 and R11 p2, both definitional), "
+C03/SEC.raw.md,C03,SEC,original,Q07a,PH01,,OK-NOPAGE,10,15,False,"evidence that their data was accessed, copied or misused, are notified as soon as practicable"
+C03/SEC.raw.md,C03,SEC,original,Q07a,PH01,,OK-NOPAGE,10,25,False,"No later than 12 hours after the first confirmation of exposure, the DPO and LC review, with SEC's evidence, whether the scope should be widened."
+C03/SEC.raw.md,C03,SEC,original,Q07a,PH01,,FRAGMENTS,10,29,True,"is set by evidence and risk ... An unverified claim, or the size of the data store, does not by itself make everyone in the store a notification batch."
+C03/SEC.raw.md,C03,SEC,original,Q07a,PH01,,OK-NOPAGE,9,8,False,A sample result is recorded as a sample
+C03/SEC.raw.md,C03,SEC,original,Q07b,PH01,,NOT-FOUND,,6,False,"not closed, closure test not passed"
+C03/SEC.raw.md,C03,SEC,original,Q07b,R03,14,OK,14,15,False,all passwords are promptly changed if they have been or are suspected of being compromised
+C03/SEC.raw.md,C03,SEC,original,Q07b,R11,5;2,OK,5,12,False,Changing users' passwords and system configurations to block any (further) unauthorised access
+C03/SEC.raw.md,C03,SEC,original,Q07b,R11,5;2,OK,5,16,False,Removing the access rights of users suspected to have committed or contributed to the data breach
+C03/SEC.raw.md,C03,SEC,original,Q07b,R16a,4,OK,4;6,13,False,Change login details for the compromised device / software / database / system
+C03/SEC.raw.md,C03,SEC,original,Q07b,R10,4;169,OK,165;166;169;170,6,False,All practicable steps shall be taken
+C03/SEC.raw.md,C03,SEC,original,Q07b,R05,,OK-NOPAGE,1,5,False,Incident response and management procedures
+C03/SEC.raw.md,C03,SEC,original,Q07b,R05,1,OK,1,9,False,as soon as practicable rectify or contain the problem
+C03/SEC.raw.md,C03,SEC,original,Q07b,R16b,5,OK,5,9,False,should be subject to robust authentication (e.g. two-factor authentication)
+C03/SEC.raw.md,C03,SEC,original,Q07b,R02,45,OK,45,7,False,Compromised accounts have been removed or isolated
+C03/SEC.raw.md,C03,SEC,original,Q07b,PH01,,OK-NOPAGE,7,39,True,"SEC captures session and token state (10 minutes at most), then terminates all sessions, revokes tokens and keys, and disables the account and every other account of the same vendor. The vendor's remote path is blocked at the perimeter."
+C03/SEC.raw.md,C03,SEC,original,Q07b,PH01,,OK-NOPAGE,7,34,True,"A credential is closed only when a replayed token and a logon with the old credential both fail, and the result and time are logged. Until then the access window is treated as open."
+C04/COM.raw.md,C04,COM,original,,PH01,,NOT-FOUND,,3,False,not yet started
+C04/COM.raw.md,C04,COM,original,,PH01,,NOT-FOUND,,14,False,The number of waiting payments is being confirmed and will be given at 22:00
+C04/COM.raw.md,C04,COM,original,,R05,2,OK,2,28,True,the steps that affected customers need to take in the circumstances in order to gain or regain access to the relevant banking services or to protect their interests
+C04/COM.raw.md,C04,COM,original,,R05,3,OK,3,23,False,The HKMA should be kept informed during the process and copies of public communication materials should be submitted to the HKMA for reference.
+C04/COM.raw.md,C04,COM,original,,R09,33,OK,33,3,False,consistent and up-to-date
+C04/COM.raw.md,C04,COM,original,,R09,33,OK,33,6,False,the steps that customers may take
+C04/COM.raw.md,C04,COM,original,,R09,33,FRAGMENTS,33,18,False,any estimated service resumption time and ... how customers can protect their interests (e.g. apply for compensation ...)
+C04/COM.raw.md,C04,COM,original,,R07,5,OK,5,11,False,AIs should inform the HKMA promptly if their BCP is activated.
+C04/COM.raw.md,C04,COM,original,,R07,13-14,NOT-FOUND,,14,False,ongoing and clear communication is likely to assist in maintaining the confidence of customers
+C04/COM.raw.md,C04,COM,original,,PH01,,OK-NOPAGE,11,39,True,"at least every six hours between 07:00 and 22:00, and at once on any change in service status. Each update states what is confirmed, what is being verified, what customers can do and when the next update is due."
+C04/COM.raw.md,C04,COM,original,,PH01,,OK-NOPAGE,8,7,False,Order is never set by customer size.
+C04/COM.raw.md,C04,COM,original,,PH01,,OK-NOPAGE,6;8;14,7,False,call-back to a number already on file
+C04/COM.raw.md,C04,COM,original,,PH01,,FRAGMENTS,5,16,False,"at once on any of: BCP activation, ... a change in service status, a public statement"
+C04/COM.raw.md,C04,COM,original,,R05,3,OK,3,6,False,Handling of customers' and media's enquiry
+C04/COM.raw.md,C04,COM,original,,R05,3,OK,3,22,False,deploy swiftly adequate resources and communication channels (e.g. customer service hotlines and extended office hours of branch services) to handle such enquiries
+C04/COM.raw.md,C04,COM,original,,R09,17,OK,17,4,False,available at all times
+C04/COM.raw.md,C04,COM,original,,R07,15,OK,15,9,False,pre-arrangement with telecommunication companies for automated telephone call diversion
+C04/COM.raw.md,C04,COM,original,,R14b,8,FRAGMENTS,8,8,False,contingent staffing ... to enable more timely responses
+C04/COM.raw.md,C04,COM,original,,R02,33,OK,33,12,False,"multiple channels (e.g. phone, email) are available to effectively communicate with stakeholders"
+C04/COM.raw.md,C04,COM,original,,PH01,,OK-NOPAGE,13,14,False,"Claims are registered by call-back, relationship manager or branch, each with a case reference."
+C04/COM.raw.md,C04,COM,original,,PH01,,OK-NOPAGE,8,18,False,Up to 10% of hourly capacity is kept for urgent cases referred by branches and the contact centre.
+C04/COM.raw.md,C04,COM,original,,PH01,,OK-NOPAGE,10,12,False,"SMS, push and email may carry an alert but never a link."
+C04/LC.raw.md,C04,LC,original,Q11a,R01,44,OK,44,15,False,must be made as soon as practicable and in any event within the specified time
+C04/LC.raw.md,C04,LC,original,Q11a,R01,653,PAGE,44,17,False,include information on the nature of the computer-system security incident and identify the critical computer system concerned
+C04/LC.raw.md,C04,LC,original,Q11a,R01,653,FRAGMENTS,44,11,False,in the specified form and way ... within the specified time
+C04/LC.raw.md,C04,LC,original,Q11a,R01,97,OK,97,11,False,48 hours after the notification concerned is made under section 28(1)
+C04/LC.raw.md,C04,LC,original,Q11a,R02,36,OK,36,6,False,within 48 hours of the notification
+C04/LC.raw.md,C04,LC,original,Q11a,R02,37,OK,37,3,False,as supplementary material
+C04/LC.raw.md,C04,LC,original,Q11a,PH01,,OK-NOPAGE,5,29,True,"For an electronic filing, LC saves the system's submission receipt or dispatch record at the moment of filing. If no receipt is shown, LC asks the recipient for one"
+C04/LC.raw.md,C04,LC,original,Q11a,PH01,,OK-NOPAGE,5,17,False,Facts found after a report are sent as supplementary information by the route the external document sets.
+C04/LC.raw.md,C04,LC,original,Q11b,R05,2,OK,2,5,False,Reporting incident to the HKMA
+C04/LC.raw.md,C04,LC,original,Q11b,R05,2,OK,2,13,False,The HKMA may require the AI concerned to provide further information or updates.
+C04/LC.raw.md,C04,LC,original,Q11b,R05,3,OK,3,6,False,Handling of customers' and media's enquiry
+C04/LC.raw.md,C04,LC,original,Q11b,R05,3,OK,3,23,False,The HKMA should be kept informed during the process and copies of public communication materials should be submitted to the HKMA for reference.
+C04/LC.raw.md,C04,LC,original,Q11b,R07,5,OK,5,29,True,AIs should inform the HKMA promptly if their BCP is activated. The HKMA should also receive periodic progress reports upon being notified until the final resolution of the crisis.
+C04/LC.raw.md,C04,LC,original,Q11b,R06,3,NOT-FOUND,,7,False,must not exceed its 'tolerance for disruption'
+C04/LC.raw.md,C04,LC,original,Q11b,R06,,NOT-FOUND,,5,False," in R06 and R14b, and "
+C04/LC.raw.md,C04,LC,original,Q11b,PH01,,OK-NOPAGE,5,14,False,"every four hours during the first 24 hours, then at 08:00 and 18:00 daily"
+C04/LC.raw.md,C04,LC,original,Q11b,PH01,,OK-NOPAGE,4,5,False,LC is told at once
+C04/SEC.raw.md,C04,SEC,original,Q10a,R06,3,NOT-FOUND,,22,False,Continue to deliver critical operations when disruptions occur ... disruptions to an AI's critical operations must not exceed its 'tolerance for disruption'
+C04/SEC.raw.md,C04,SEC,original,Q10a,R07,3,OK,3,10,False,use of another delivery channel to provide the same operation
+C04/SEC.raw.md,C04,SEC,original,Q10a,R07,11,OK,11,10,False,"may entail record reconstruction and verification, establishment of new controls"
+C04/SEC.raw.md,C04,SEC,original,Q10a,R07,8,OK,8,20,False,The result of the time-frame assessment in the business impact analysis is the key determination factor for the recovery priority
+C04/SEC.raw.md,C04,SEC,original,Q10a,R07,5,OK,5,11,False,AIs should inform the HKMA promptly if their BCP is activated.
+C04/SEC.raw.md,C04,SEC,original,Q10a,R02,34,OK,34,15,False,sustaining the CI operator's ability to continue essential operation during disruptions arising from computer-security incidents
+C04/SEC.raw.md,C04,SEC,original,Q10a,R05,1,OK,1,11,False,The top priority should be to safeguard the interests of customers
+C04/SEC.raw.md,C04,SEC,original,Q10a,R06,6,OK,6,13,False,prioritise a critical operation that would more sooner breach its tolerance for disruption
+C04/SEC.raw.md,C04,SEC,original,Q10a,PH01,,NOT-FOUND,,3,False," (hits PH01 only), "
+C04/SEC.raw.md,C04,SEC,original,Q10a,PH01,,OK-NOPAGE,3,14,False,"Activate alternate payment processing (section 8) | CMT chair, on SEC's written security clearance"
+C04/SEC.raw.md,C04,SEC,original,Q10a,PH01,,OK-NOPAGE,8,14,False,"that it shares no hosts, accounts, keys or network path with any affected system"
+C04/SEC.raw.md,C04,SEC,original,Q10a,PH01,,OK-NOPAGE,8,18,False,"The first batch is a pilot of at most 20 instructions, reconciled end to end before full operation."
+C04/SEC.raw.md,C04,SEC,original,Q10a,PH01,,FRAGMENTS,8,27,True,"(1) SME payroll, earliest value date first ... Up to 10% of hourly capacity is kept for urgent cases ... Order is never set by customer size."
+C04/SEC.raw.md,C04,SEC,original,Q10b,R09,19,FRAGMENTS,19,40,True,AIs should also implement sufficient controls to maintain and verify the integrity of the information processed by their Internet banking systems ... reconcile data file balances after transaction updates and to check the integrity of data transmitted between different systems.
+C04/SEC.raw.md,C04,SEC,original,Q10b,R07,11,OK,11,10,False,"may entail record reconstruction and verification, establishment of new controls"
+C04/SEC.raw.md,C04,SEC,original,Q10b,PH01,,FRAGMENTS,8,71,True,"Each instruction is released once only, under a unique processing ID. Before a suspected duplicate or a retried instruction is released, two checks are made and logged: (a) intent ... (b) status ... If either check is incomplete, or the status of an instruction cannot be established, the instruction is held. Items in flight at the failure are held as status unknown until an independent record shows they did not settle."
+C04/SEC.raw.md,C04,SEC,original,Q10b,PH01,,OK-NOPAGE,8,12,False,Any unexplained difference stops all releases until it is explained and logged.
+C05/COM.raw.md,C05,COM,original,,R11,8,OK,8,3,False,When to notify?
+C05/COM.raw.md,C05,COM,original,,R11,8,OK,8,18,False,"as soon as practicable after becoming aware of the incident, regardless of the progress of any internal investigation"
+C05/COM.raw.md,C05,COM,original,,R11,8,OK,8,27,True,"If a data breach results in particularly serious harm or affects a large number of individuals, using multiple methods to publicise the breach is a reasonable approach."
+C05/COM.raw.md,C05,COM,original,,R11,7,OK,5;7,4,False,identity theft or fraud
+C05/COM.raw.md,C05,COM,original,,R11,7,OK,7,4,False,being alert to phishing
+C05/COM.raw.md,C05,COM,original,,R11,5,OK,5,8,False,is more likely to result in identity theft
+C05/COM.raw.md,C05,COM,original,,R11,4,OK,4,9,False,Requesting internet companies to remove any relevant cached links
+C05/COM.raw.md,C05,COM,original,,R16b,,OK-NOPAGE,1;7,3,False,Customer Data Protection
+C05/COM.raw.md,C05,COM,original,,R16b,3,OK,3,20,False,notify the affected customers as soon as practicable after the AI concerned is aware of or notified of the incident
+C05/COM.raw.md,C05,COM,original,,R16b,2,OK,2;3,4,False,it should provide justification
+C05/COM.raw.md,C05,COM,original,,R05,1,OK,1,15,False,proactively notify the customers affected or likely to be affected through the most effective means
+C05/COM.raw.md,C05,COM,original,,PH01,,OK-NOPAGE,10,10,False,A customer with no evidenced delivery gets one consolidated notice.
+C05/COM.raw.md,C05,COM,original,,PH01,,OK-NOPAGE,10,8,False,are not held back for the wider review
+C05/COM.raw.md,C05,COM,original,,PH01,,OK-NOPAGE,10,6,False,publication or offer of the data
+C05/COM.raw.md,C05,COM,original,,PH01,,OK-NOPAGE,10,5,False,reviewed whenever new evidence arrives
+C05/COM.raw.md,C05,COM,original,,PH01,,OK-NOPAGE,10,6,False,Approval and scheduling are not delivery.
+C05/COM.raw.md,C05,COM,original,,PH01,,NOT-FOUND,,24,False," with no time limit. At C03 that left the 80 without a verifiable notice while their data was published, which conflicts with the external "
+C05/COM.raw.md,C05,COM,original,,R09,16-17,FRAGMENTS,17,58,True,"Whenever AIs become aware of fake or suspicious emails, websites, Apps or similar scams that might give the public the false impression that they originate from the AI ... AIs should consider and decide in a timely manner how to inform their customers and the public more widely and report the matter to the Hong Kong Police Force"
+C05/COM.raw.md,C05,COM,original,,R09,16-17,OK,17,22,False,"AIs should notify promptly their customers through issuing press releases (or other similarly effective means), and report the matter to the HKMA"
+C05/COM.raw.md,C05,COM,original,,R09,16-17,OK,17,13,False,AIs should make attempts to remove the fake or suspicious items where practicable.
+C05/COM.raw.md,C05,COM,original,,R09,16-17,OK,17,29,True,"issue their press releases as soon as practicable after they become aware of the scams, and report the cases to the HKMA immediately after the press releases are issued."
+C05/COM.raw.md,C05,COM,original,,R09,16,OK,16,5,False,delivered through multiple effective channels
+C05/COM.raw.md,C05,COM,original,,R09,17,OK,17,4,False,available at all times
+C05/COM.raw.md,C05,COM,original,,R09,18,OK,18,5,False,promptly suspend their e-banking accounts
+C05/COM.raw.md,C05,COM,original,,PH01,,OK-NOPAGE,10,3,False,never a link
+C05/COM.raw.md,C05,COM,original,,PH01,,NOT-FOUND,,5,False,Nobody ... visits attacker links
+C05/LC.raw.md,C05,LC,original,Q14a,PH01,,NOT-FOUND,,5,False,no payment has been made
+C05/LC.raw.md,C05,LC,original,Q14a,R16c,83,OK,83,6,False,as soon as it is reasonable
+C05/LC.raw.md,C05,LC,original,Q14a,R16c,455,PAGE,83,17,False,before he does that act and he does that act with the consent of an authorized officer
+C05/LC.raw.md,C05,LC,original,Q14a,R16d,575;20,OK,20;21;22,4,False,reckless as to whether
+C05/LC.raw.md,C05,LC,original,Q14a,PH01,,OK-NOPAGE,12,19,False,The Board's policy is that the bank does not pay a ransom. Any departure is for the Board alone.
+C05/LC.raw.md,C05,LC,original,Q14a,PH01,,FRAGMENTS,12,10,False,Treasury holds all preparatory steps ... until the Board decides.
+C05/LC.raw.md,C05,LC,original,Q14b,PH01,,NOT-FOUND,,5,False,"supplier's account, not yet reconciled"
+C05/LC.raw.md,C05,LC,original,Q14b,R09,17,OK,17,28,True,should consider and decide in a timely manner how to inform their customers and the public more widely and report the matter to the Hong Kong Police Force
+C05/LC.raw.md,C05,LC,original,Q14b,R09,17,FRAGMENTS,17,16,False,notify promptly their customers through issuing press releases ... and report the matter to the HKMA
+C05/LC.raw.md,C05,LC,original,Q14b,R09,17,OK,17,11,False,make attempts to remove the fake or suspicious items where practicable
+C05/LC.raw.md,C05,LC,original,Q14b,R11,4,OK,4,21,False,Notifying the relevant law enforcement agencies if identity theft or other criminal activities have been or are likely to be committed
+C05/LC.raw.md,C05,LC,original,Q14b,R11,7,OK,7,10,False,other parties who may be able to take remedial actions
+C05/LC.raw.md,C05,LC,original,Q14b,R10,486;119;3,PAGE,117,6,False,the prevention or detection of crime
+C05/LC.raw.md,C05,LC,original,Q14b,R10,486;119;3;3,OK,18;116;119;123;128;166,5,False,would be likely to prejudice
+C05/LC.raw.md,C05,LC,original,Q14b,R16c,455;83,OK,64;67;83,18,False,shall not be treated as a breach of any restriction upon the disclosure of information imposed by contract
+C05/LC.raw.md,C05,LC,original,Q14b,PH01,,OK-NOPAGE,3,10,False,Report to the Police | LC | CMT chair informed
+C05/LC.raw.md,C05,LC,original,Q14b,PH01,,OK-NOPAGE,3,4,False,LC and SEC jointly
+C05/LC.raw.md,C05,LC,original,Q14b,PH01,,OK-NOPAGE,16,8,False,other third party only under a signed agreement
+C05/LC.raw.md,C05,LC,original,Q14b,R11,8,DOC,R16a,5,False,update of a previous notification
+C05/SEC.raw.md,C05,SEC,original,Q13a,R03,17,OK,17,10,False,a backup copy that is physically disconnected from the CCS
+C05/SEC.raw.md,C05,SEC,original,Q13a,R04,8,OK,8,20,False,to recover and restore critical data promptly in the event that a cyberattack compromises both the production and backup environments
+C05/SEC.raw.md,C05,SEC,original,Q13a,R08,18,OK,18,29,True,only properly tested and approved systems are promoted to the production environment. System and user acceptance testing should be carried out in an environment separated from the production environment.
+C05/SEC.raw.md,C05,SEC,original,Q13a,R07,13,OK,13,14,False,should be adequately controlled to ensure that they are reliable for business resumption purposes
+C05/SEC.raw.md,C05,SEC,original,Q13a,R07,11,OK,11,11,False,the verification of the safety and readiness of the permanent site
+C05/SEC.raw.md,C05,SEC,original,Q13a,R01,653;93,OK,93,10,False,A recovery plan for resuming the provision of essential services
+C05/SEC.raw.md,C05,SEC,original,Q13a,R14a,2,NOT-FOUND,,6,False," to review it): R14b, PDF p5, "
+C05/SEC.raw.md,C05,SEC,original,Q13a,R03,11,OK,11,10,False,the moment when a change is deployed to production environments
+C05/SEC.raw.md,C05,SEC,original,Q13a,PH01,,OK-NOPAGE,9,42,True,"(1) A new build from trusted media with data from the immutable backup, in an isolated recovery environment; (2) the standby system, only if (1) fails, under the same checks. An affected system is never repaired in place for return to service."
+C05/SEC.raw.md,C05,SEC,original,Q13a,PH01,,OK-NOPAGE,9,5,False,integrity and separation checks passed
+C05/SEC.raw.md,C05,SEC,original,Q13b,R08,18,OK,18,34,True,Production data should not be used in development or acceptance testing unless the data has been de-sensitised (i.e. not disclosing personal or sensitive information) and prior approval from the information owner has been obtained.
+C05/SEC.raw.md,C05,SEC,original,Q13b,R03,17,FRAGMENTS,17,20,False,"Data used for testing should be carefully selected, protected and controlled ... relevant requirements outlined in SPM TM-G-1 section 4.2.4."
+C05/SEC.raw.md,C05,SEC,original,Q13b,R09,19,OK,19,18,False,reconcile data file balances after transaction updates and to check the integrity of data transmitted between different systems
+C05/SEC.raw.md,C05,SEC,original,Q13b,R07,11,OK,11,6,False,may entail record reconstruction and verification
+C05/SEC.raw.md,C05,SEC,original,Q13b,R14b,2,OK,2,8,False,reconciliation procedures to maintain accuracy following a bypass
+C05/SEC.raw.md,C05,SEC,original,Q13b,PH01,,FRAGMENTS,9,73,True,"Before production data, or an extract of it, is used in testing, SEC records in the test record that the data has been de-sensitised and the de-sensitisation checked, and that the information owner approved its use in advance ... A candidate passes offline testing only if reconciliation shows no unexplained difference. One unexplained difference is a fail. A sample result is recorded as a sample, not as a pass of the whole set."
+C06/COM.raw.md,C06,COM,original,,PH01,,OK-NOPAGE,9,6,False,One unexplained difference is a fail
+C06/COM.raw.md,C06,COM,original,,PH01,,OK-NOPAGE,9,5,False,Missing any item means hold
+C06/COM.raw.md,C06,COM,original,,PH01,,NOT-FOUND,,10,False,Figures are being checked and will be given at 07:00
+C06/COM.raw.md,C06,COM,original,,R05,1,OK,1,19,False,"whether the bank would reimburse any losses incurred by them and if so, how they can apply for compensation"
+C06/COM.raw.md,C06,COM,original,,R05,2,FRAGMENTS,2,24,False,the steps that affected customers need to take ... to gain or regain access to the relevant banking services or to protect their interests
+C06/COM.raw.md,C06,COM,original,,R09,33,OK,33,3,False,consistent and up-to-date
+C06/COM.raw.md,C06,COM,original,,R09,33,OK,33,5,False,any estimated service resumption time
+C06/COM.raw.md,C06,COM,original,,R09,33,OK,33,3,False,apply for compensation
+C06/COM.raw.md,C06,COM,original,,PH01,,OK-NOPAGE,9,6,False,One unexplained difference is a fail.
+C06/COM.raw.md,C06,COM,original,,PH01,,OK-NOPAGE,9,5,False,Missing any item means hold.
+C06/COM.raw.md,C06,COM,original,,PH01,,OK-NOPAGE,13,11,False,"late-payment charges from a missed payroll cut-off, are reimbursed on claim"
+C06/COM.raw.md,C06,COM,original,,PH01,,OK-NOPAGE,13,8,False,customers are told when to expect a decision
+C06/COM.raw.md,C06,COM,original,,R05,1;2,OK,1;2,24,False,"Where necessary, the AI should also notify other affected AIs (so that they can in turn notify their affected customers) as soon as practicable."
+C06/COM.raw.md,C06,COM,original,,R07,13,OK,13,3,False,"counterparties, business partners"
+C06/COM.raw.md,C06,COM,original,,R07,13,NOT-FOUND,,16,False,ongoing and clear communication is likely to assist in maintaining the confidence of customers and counterparties
+C06/COM.raw.md,C06,COM,original,,R07,14,OK,14,9,False,Important conversations with external parties should be properly logged
+C06/COM.raw.md,C06,COM,original,,PH01,,OK-NOPAGE,14,4,False,COM controls the wording
+C06/COM.raw.md,C06,COM,original,,PH01,,OK-NOPAGE,14,16,False,Every incoming request is verified by call-back to a number already on file before any reply.
+C06/COM.raw.md,C06,COM,original,,PH01,,OK-NOPAGE,14,24,False,"a verified call and a written notice the same day, then updates at 08:00, 13:00 and 18:00 until every item is settled or returned"
+C06/COM.raw.md,C06,COM,original,,PH01,,OK-NOPAGE,8,4,False,an independent receiving-side record
+C06/LC.raw.md,C06,LC,original,Q17a,R10,4;169,NOT-FOUND,,21,False,"must adopt contractual or other means to prevent unauthorized or accidental access, processing, erasure, loss or use of the data transferred"
+C06/LC.raw.md,C06,LC,original,Q17a,R10,2;167,OK,167,7,False,from being kept longer than is necessary
+C06/LC.raw.md,C06,LC,original,Q17a,R10,2;168,OK,168,8,False,processes personal data on behalf of another person
+C06/LC.raw.md,C06,LC,original,Q17a,R10,3;168,OK,168,16,False,"shall not, without the prescribed consent of the data subject, be used for a new purpose"
+C06/LC.raw.md,C06,LC,original,Q17a,R12,6,OK,6,3,False,segregation or compartmentalisation
+C06/LC.raw.md,C06,LC,original,Q17a,R12,6,OK,6,4,False,on a need basis
+C06/LC.raw.md,C06,LC,original,Q17a,R16b,,OK-NOPAGE,1;7,3,False,Customer Data Protection
+C06/LC.raw.md,C06,LC,original,Q17a,R16b,6,OK,5;6;8,3,False,strong data encryption
+C06/LC.raw.md,C06,LC,original,Q17a,R08,18,OK,18,8,False,de-sensitised (i.e. not disclosing personal or sensitive information)
+C06/LC.raw.md,C06,LC,original,Q17a,PH01,,OK-NOPAGE,16,36,True,By default the firm receives a minimised data set with customer personal data masked. Full images are examined only inside the bank's laboratory. A full copy leaves the bank only with LC's and SEC's written approval.
+C06/LC.raw.md,C06,LC,original,Q17b,PH01,,OK-NOPAGE,9,6,False,One unexplained difference is a fail
+C06/LC.raw.md,C06,LC,original,Q17b,R06,5-6,NOT-FOUND,,21,False,regular and timely reports to the Board ... particularly when significant deficiencies could affect the delivery of the AI's critical operations
+C06/LC.raw.md,C06,LC,original,Q17b,R06,6,OK,6,13,False,The Board bears ultimate responsibility for ensuring that an AI remains operationally resilient
+C06/LC.raw.md,C06,LC,original,Q17b,R06,3,OK,3,3,False,must not exceed
+C06/LC.raw.md,C06,LC,original,Q17b,R07,5,OK,5,14,False,have the ultimate responsibility for business continuity planning and the effectiveness of their BCP
+C06/LC.raw.md,C06,LC,original,Q17b,PH01,,OK-NOPAGE,4,14,False,"When it reaches 100%, the CMT chair convenes the Board or its Risk Committee"
+C06/LC.raw.md,C06,LC,original,Q17b,PH01,,OK-NOPAGE,15,20,False,within 12 hours of: 100% of a tolerance reached; any decision reserved to the Board; a request from a regulator
+C06/LC.raw.md,C06,LC,original,Q17b,PH01,,OK-NOPAGE,15,8,False,Legal advice is in a separate privileged section.
+C06/SEC.raw.md,C06,SEC,original,Q16a,PH01,,NOT-FOUND,,3,False,"status unknown, held"
+C06/SEC.raw.md,C06,SEC,original,Q16a,R08,18,OK,18,22,False,A formal acceptance process should be established to ensure that only properly tested and approved systems are promoted to the production environment.
+C06/SEC.raw.md,C06,SEC,original,Q16a,R09,19,OK,19,18,False,reconcile data file balances after transaction updates and to check the integrity of data transmitted between different systems
+C06/SEC.raw.md,C06,SEC,original,Q16a,R05,1,OK,1,11,False,The top priority should be to safeguard the interests of customers
+C06/SEC.raw.md,C06,SEC,original,Q16a,R07,11,OK,11,15,False,is as difficult and critical to the business as the process to activate the BCP
+C06/SEC.raw.md,C06,SEC,original,Q16a,R06,3;6,OK,6,3,False,bears ultimate responsibility
+C06/SEC.raw.md,C06,SEC,original,Q16a,PH01,,OK-NOPAGE,9,22,False,"One unexplained difference is a fail. A sample result is recorded as a sample, not as a pass of the whole set."
+C06/SEC.raw.md,C06,SEC,original,Q16a,PH01,,FRAGMENTS,3;9,28,True,Missing any item means hold ... The Board may narrow the scope of recovery ... the narrower scope must still pass every item above that applies to it.
+C06/SEC.raw.md,C06,SEC,original,Q16a,PH01,,OK-NOPAGE,3,6,False,No gate condition may be waived.
+C06/SEC.raw.md,C06,SEC,original,Q16b,R08,19,OK,19,21,False,"a process for rolling-back changes to re-instate the original programs, system configuration or data in the event of production release problems"
+C06/SEC.raw.md,C06,SEC,original,Q16b,R08,19,OK,19,8,False,a post implementation verification of the changes made
+C06/SEC.raw.md,C06,SEC,original,Q16b,R07,5,OK,5,3,False,periodic progress reports
+C06/SEC.raw.md,C06,SEC,original,Q16b,PH01,,FRAGMENTS,9,51,True,"Releases from the recovered system stop at once on any of: a security indicator from the incident; one unexplained reconciliation difference; any duplicate, replayed or wrong payment; an instruction whose status cannot be established ... Rollback disconnects the recovered system from payment interfaces ... Restart needs a new pass through 9.3."
+C07/COM.raw.md,C07,COM,original,,PH01,,NOT-FOUND,,3,False,report of misuse
+C07/COM.raw.md,C07,COM,original,,R09,17,OK,17,17,False,available at all times for customers to seek and obtain help with respect to possible unauthorized transactions
+C07/COM.raw.md,C07,COM,original,,R09,18,OK,18,14,False,promptly suspend their e-banking accounts in cases where fraudulent or suspicious activities are detected
+C07/COM.raw.md,C07,COM,original,,R09,18,FRAGMENTS,18,40,True,unless a customer acts fraudulently or with gross negligence ... he or she should not be responsible for any direct loss suffered by him or her as a result of unauthorized transactions ... (please refer to the Code for details)
+C07/COM.raw.md,C07,COM,original,,R09,32,OK,32,16,False,suspending the transactions in a timely manner and/or contacting the customers concerned through a reliable channel
+C07/COM.raw.md,C07,COM,original,,R05,1,OK,1,19,False,"whether the bank would reimburse any losses incurred by them and if so, how they can apply for compensation"
+C07/COM.raw.md,C07,COM,original,,R11,4,OK,4,21,False,Notifying the relevant law enforcement agencies if identity theft or other criminal activities have been or are likely to be committed
+C07/COM.raw.md,C07,COM,original,,PH01,,OK-NOPAGE,13,5,False,Staff do not promise reimbursement.
+C07/COM.raw.md,C07,COM,original,,PH01,,OK-NOPAGE,13,5,False,each with a case reference
+C07/COM.raw.md,C07,COM,original,,PH01,,OK-NOPAGE,10,3,False,reports of misuse
+C07/COM.raw.md,C07,COM,original,,PH01,,NOT-FOUND,,3,False,executed in simulation
+C07/COM.raw.md,C07,COM,original,,R16a,3,OK,3,5,False,Were the affected individuals notified?
+C07/COM.raw.md,C07,COM,original,,R10,486;166-167,OK,166,19,False,All practicable steps shall be taken to ensure that— (a) personal data is accurate having regard to the purpose
+C07/COM.raw.md,C07,COM,original,,R10,486;166-167,OK,167,29,True,"the data is not used for that purpose unless and until those grounds cease to be applicable to the data, whether by the rectification of the data or otherwise"
+C07/COM.raw.md,C07,COM,original,,R11,1,OK,1,5,False,sending emails to unintended parties
+C07/COM.raw.md,C07,COM,original,,R11,1;2,OK,2,6,False,protected against unauthorised or accidental access
+C07/COM.raw.md,C07,COM,original,,R11,8,OK,6;7;8,4,False,as soon as practicable
+C07/COM.raw.md,C07,COM,original,,PH01,,OK-NOPAGE,10,26,True,A customer with evidenced delivery of current content gets nothing further until there is something new. A customer with no evidenced delivery gets one consolidated notice.
+C07/COM.raw.md,C07,COM,original,,PH01,,OK-NOPAGE,10,10,False,Contact details are taken only from the bank's verified records.
+C07/COM.raw.md,C07,COM,original,,PH01,,OK-NOPAGE,10,6,False,Approval and scheduling are not delivery.
+C07/COM.raw.md,C07,COM,original,,R10,1-8,PAGE,166,5,False,accuracy and duration of retention
+C07/LC.raw.md,C07,LC,original,Q20a,R01,44,FRAGMENTS,44,35,True,"If the notification is not made in the specified form and way, the CI operator must subsequently submit a written record ... in the specified form and way to the Commissioner within the specified time."
+C07/LC.raw.md,C07,LC,original,Q20a,R01,97,OK,97,11,False,48 hours after the notification concerned is made under section 28(1).
+C07/LC.raw.md,C07,LC,original,Q20a,R01,81-82,OK,82,9,False,took all reasonable precautions and exercised all due diligence
+C07/LC.raw.md,C07,LC,original,Q20a,R02,35,FRAGMENTS,35,14,False,detected and timely removed or quarantined ... does not constitute a computer-system security incident
+C07/LC.raw.md,C07,LC,original,Q20a,R02,,OK-NOPAGE,36,5,False,a reasonable degree of certainty
+C07/LC.raw.md,C07,LC,original,Q20a,R02,,OK-NOPAGE,36,6,False,within 48 hours of the notification
+C07/LC.raw.md,C07,LC,original,Q20a,PH01,,FRAGMENTS,5,16,False,"If no receipt is shown, LC asks the recipient for one ... and logs the request."
+C07/LC.raw.md,C07,LC,original,Q20b,R03,,DOC,R02,9,False,as far as practicable based on the information available
+C07/LC.raw.md,C07,LC,original,Q20b,R01,44,OK,44,25,False,the CI operator must further submit a written report of the incident in the specified form and way to the Commissioner within the specified time
+C07/LC.raw.md,C07,LC,original,Q20b,R01,97,OK,97,19,False,14 days after the date on which the CI operator concerned becomes aware of the computer-system security incident concerned
+C07/LC.raw.md,C07,LC,original,Q20b,R02,37,OK,37,8,False,via the designated secured channel within 14 days
+C07/LC.raw.md,C07,LC,original,Q20b,R02,37,OK,37,3,False,as supplementary material
+C07/LC.raw.md,C07,LC,original,Q20b,PH01,,OK-NOPAGE,5,4,False,Annexes E and F
+C07/SEC.raw.md,C07,SEC,original,Q19a,PH01,,NOT-FOUND,,4,False,supplier's account – unreconciled
+C07/SEC.raw.md,C07,SEC,original,Q19a,R02,,OK-NOPAGE,42;44,3,False,Earliest Identifiable Time
+C07/SEC.raw.md,C07,SEC,original,Q19a,R02,,OK-NOPAGE,42;44,3,False,Time Becoming Aware
+C07/SEC.raw.md,C07,SEC,original,Q19a,R02,32,OK,32,25,False,"(3) Investigating the cause and impact of the incident; (4) Recording the incident response process, including details of the incident, actions taken and decisions made"
+C07/SEC.raw.md,C07,SEC,original,Q19a,R03,18,OK,18,14,False,Retained logs should contain sufficient information to support after-the-fact investigation of computer-system security incident(s)
+C07/SEC.raw.md,C07,SEC,original,Q19a,R02,20,OK,20,21,False,synchronise the internal clocks of all CCSs components with a primary time source to enable accurate log-event correlation across the systems
+C07/SEC.raw.md,C07,SEC,original,Q19a,R11,6;5,FRAGMENTS,6,26,True,"A comprehensive record of the incident is therefore required, which should include all facts relating to the breach ... to the containment and remedial actions taken"
+C07/SEC.raw.md,C07,SEC,original,Q19a,PH01,,NOT-FOUND,,29,True,"Every timeline entry keeps the original timestamp, the measured offset, the normalised HKT time and its uncertainty. Events closer together than their combined uncertainty are recorded as 'order undetermined'."
+C07/SEC.raw.md,C07,SEC,original,Q19a,PH01,,OK-NOPAGE,6,6,False,Analysis is on verified copies only.
+C07/SEC.raw.md,C07,SEC,original,Q19a,PH01,,OK-NOPAGE,6,8,False,the supplier's account until SEC has reconciled them
+C07/SEC.raw.md,C07,SEC,original,Q19b,PH01,,OK-NOPAGE,10,3,False,reports of misuse
+C07/SEC.raw.md,C07,SEC,original,Q19b,R03,19,OK,19,13,False,A Designated AI should implement measures to detect computer-system security incidents affecting CCSs
+C07/SEC.raw.md,C07,SEC,original,Q19b,R03,19,OK,19,13,False,"monitor and analyse threat intelligence in relation to CCSs, and take appropriate actions"
+C07/SEC.raw.md,C07,SEC,original,Q19b,R05,1,OK,1,9,False,as soon as practicable rectify or contain the problem
+C07/SEC.raw.md,C07,SEC,original,Q19b,R02,32,OK,32,7,False,Containing the incident to prevent further harm
+C07/SEC.raw.md,C07,SEC,original,Q19b,R09,32,OK,32,24,False,may involve suspending the transactions in a timely manner and/or contacting the customers concerned through a reliable channel to verify the transactions or activities
+C07/SEC.raw.md,C07,SEC,original,Q19b,R01,653;52,OK,52;53,4,False,to monitor the system
+C07/SEC.raw.md,C07,SEC,original,Q19b,PH01,,OK-NOPAGE,7,13,False,Services still working are kept running unless SEC finds active spread to them.
+C07/SEC.raw.md,C07,SEC,original,Q19b,PH01,,FRAGMENTS,18,21,False,Restrictions stay in force ... until their release condition is met and the decision-maker in section 3 has logged the release.
+C07/SEC.raw.md,C07,SEC,original,Q19b,PH01,,OK-NOPAGE,18,6,False,at once on any security trigger
+C08/COM.raw.md,C08,COM,original,,PH01,,OK-NOPAGE,9,16,False,"A sample result is recorded as a sample, not as a pass of the whole set."
+C08/COM.raw.md,C08,COM,original,,PH01,,OK-NOPAGE,11,53,True,A closing update is issued only when: the service runs in production and SEC confirms it is stable; queued instructions are settled or returned; the notification register shows evidenced delivery to all affected customers; every open case has a named owner; and LC confirms the regulators have been told. Until then updates continue.
+C08/COM.raw.md,C08,COM,original,,R09,33,FRAGMENTS,13;33,9,False,consistent and up-to-date messages ... on a timely basis
+C08/COM.raw.md,C08,COM,original,,R05,3,OK,3,21,False,The HKMA should be kept informed during the process and copies of public communication materials should be submitted to the HKMA
+C08/COM.raw.md,C08,COM,original,,R07,5,OK,5,16,False,should also receive periodic progress reports upon being notified until the final resolution of the crisis
+C08/COM.raw.md,C08,COM,original,,R06,13,FRAGMENTS,13,12,False,"Communication, where appropriate, should take place during the incident ... and after"
+C08/COM.raw.md,C08,COM,original,,PH01,,OK-NOPAGE,18,25,False,The CMT hands over to standing teams only when each open item has a named receiving owner who has signed acceptance of a specific list.
+C08/COM.raw.md,C08,COM,original,,PH01,,OK-NOPAGE,18,20,False,"Each handover pack starts with a page listing what is not evidenced. Items without evidence transfer as open, not done."
+C08/COM.raw.md,C08,COM,original,,PH01,,OK-NOPAGE,18,12,False,Restrictions stay in force after handover until their release condition is met
+C08/COM.raw.md,C08,COM,original,,PH01,,OK-NOPAGE,10,6,False,Approval and scheduling are not delivery.
+C08/COM.raw.md,C08,COM,original,,R11,6;5,OK,6,18,False,"A comprehensive record of the incident is therefore required, which should include all facts relating to the breach"
+C08/COM.raw.md,C08,COM,original,,R11,8,FRAGMENTS,8,20,False,"After the full details of the incident are revealed, all information should be submitted to the PCPD ... without delay"
+C08/COM.raw.md,C08,COM,original,,R16b,2,OK,2;3,4,False,it should provide justification
+C08/COM.raw.md,C08,COM,original,,R02,32,FRAGMENTS,32,10,False,Recording the incident response process ... Conducting a post-incident review
+C08/LC.raw.md,C08,LC,original,Q23a,PH01,,NOT-FOUND,,3,False,cannot be verified
+C08/LC.raw.md,C08,LC,original,Q23a,PH01,,DOC,R07,7,False,until the final resolution of the crisis
+C08/LC.raw.md,C08,LC,original,Q23a,PH01,,OK-NOPAGE,9,5,False,LC's confirmation of regulatory steps
+C08/LC.raw.md,C08,LC,original,Q23a,R01,33,FRAGMENTS,30;33;44,26,True,the operator must notify ... the regulating authority that regulates the operator of the event within 1 month after the date on which the event occurs
+C08/LC.raw.md,C08,LC,original,Q23a,R01,34,FRAGMENTS,10;14;15;31;34;35;36;39;91;92;95;96,10,False,affects ... the computer-system security of the critical computer system
+C08/LC.raw.md,C08,LC,original,Q23a,R03,11,OK,11,8,False,when a change is deployed to production environments
+C08/LC.raw.md,C08,LC,original,Q23a,PH01,,OK-NOPAGE,18,14,False,only when each open item has a named receiving owner who has signed acceptance
+C08/LC.raw.md,C08,LC,original,Q23a,PH01,,OK-NOPAGE,18,8,False,"Items without evidence transfer as open, not done."
+C08/LC.raw.md,C08,LC,original,Q23a,PH01,,OK-NOPAGE,18,15,False,At handover LC takes over the register of external deadlines and commitments item by item
+C08/LC.raw.md,C08,LC,original,Q23a,PH01,,OK-NOPAGE,18,15,False,Cap. 653 section 22 and the HKMA Code of Practice for Designated AIs section 6.1
+C08/LC.raw.md,C08,LC,original,Q23b,R03,18,OK,18,25,False,The logs should be retained for a minimum period of 6 months. Such logs should be secured so that they cannot be deleted or altered
+C08/LC.raw.md,C08,LC,original,Q23b,R01,50,FRAGMENTS,50;53;55;61,15,False,"to produce ... any document ... relevant, or likely to be relevant, to the investigation"
+C08/LC.raw.md,C08,LC,original,Q23b,R10,2;167,OK,167,16,False,kept longer than is necessary for the fulfillment of the purpose (including any directly related purpose)
+C08/LC.raw.md,C08,LC,original,Q23b,R10,58,NOT-FOUND,,24,False,must take all practicable steps to erase personal data ... no longer required ... unless— (a) any such erasure is prohibited under any law
+C08/LC.raw.md,C08,LC,original,Q23b,R11,3,OK,3,14,False,as the relevant records may be required by regulatory authorities or law enforcement agencies
+C08/LC.raw.md,C08,LC,original,Q23b,R11,6;5,OK,6,9,False,A comprehensive record of the incident is therefore required
+C08/LC.raw.md,C08,LC,original,Q23b,R12,6,OK,6,9,False,is either retrieved from the service provider or destroyed
+C08/LC.raw.md,C08,LC,original,Q23b,PH01,,OK-NOPAGE,17,12,False,before any minimum retention an applicable external document sets for that record
+C08/LC.raw.md,C08,LC,original,Q23b,PH01,,OK-NOPAGE,17,13,False,released for disposal only on LC's written confirmation and the record owner's approval
+C08/SEC.raw.md,C08,SEC,original,Q22a,R08,18,OK,18,12,False,only properly tested and approved systems are promoted to the production environment
+C08/SEC.raw.md,C08,SEC,original,Q22a,R03,19,OK,19,4,False,and take appropriate actions
+C08/SEC.raw.md,C08,SEC,original,Q22a,R06,13,OK,13,5,False,full life-cycle of any incidents
+C08/SEC.raw.md,C08,SEC,original,Q22a,R06,13,OK,13,10,False,supported by an inventory of internal and third party resources
+C08/SEC.raw.md,C08,SEC,original,Q22a,R02,33,OK,33,15,False,are familiar with both their own roles and responsibilities and those of other team members
+C08/SEC.raw.md,C08,SEC,original,Q22a,R07,11,OK,11,15,False,is as difficult and critical to the business as the process to activate the BCP
+C08/SEC.raw.md,C08,SEC,original,Q22a,PH01,,OK-NOPAGE,18,25,False,The CMT hands over to standing teams only when each open item has a named receiving owner who has signed acceptance of a specific list.
+C08/SEC.raw.md,C08,SEC,original,Q22a,PH01,,OK-NOPAGE,18,20,False,"Each handover pack starts with a page listing what is not evidenced. Items without evidence transfer as open, not done."
+C08/SEC.raw.md,C08,SEC,original,Q22a,PH01,,OK-NOPAGE,18,22,False,Restrictions stay in force after handover until their release condition is met and the decision-maker in section 3 has logged the release.
+C08/SEC.raw.md,C08,SEC,original,Q22a,PH01,,OK-NOPAGE,9,16,False,"A sample result is recorded as a sample, not as a pass of the whole set."
+C08/SEC.raw.md,C08,SEC,original,Q22b,R06,13,OK,13,14,False,Root cause analysis of incidents to help with the prevention or minimisation of recurrence.
+C08/SEC.raw.md,C08,SEC,original,Q22b,R02,33,FRAGMENTS,33,26,True,"(i) Facts and causes of the incident; (ii) Gaps in the existing governance, risk management and compliance contributed to the incident ... (iv) Improvement actions recommended."
+C08/SEC.raw.md,C08,SEC,original,Q22b,R02,43-44,OK,43,7,False,Initial Attack Vector / Point of Intrusion
+C08/SEC.raw.md,C08,SEC,original,Q22b,R02,43-44,OK,43,4,False,Root Cause Analysis Summary
+C08/SEC.raw.md,C08,SEC,original,Q22b,R02,43-44,OK,44,12,False,Whether the root cause was identified in previous security assessment or audit
+C08/SEC.raw.md,C08,SEC,original,Q22b,R03,14,OK,14,15,False,all passwords are promptly changed if they have been or are suspected of being compromised
+C08/SEC.raw.md,C08,SEC,original,Q22b,R03,14,OK,14,4,False,changed after every use
+C08/SEC.raw.md,C08,SEC,original,Q22b,R16b,,OK-NOPAGE,1;7,3,False,Customer Data Protection
+C08/SEC.raw.md,C08,SEC,original,Q22b,R16b,5,OK,5,6,False,should be subject to robust authentication
+C08/SEC.raw.md,C08,SEC,original,Q22b,R01,653;92,OK,92,7,False,managing contracts and other communications with suppliers
+C08/SEC.raw.md,C08,SEC,original,Q22b,R10,4;169,OK,169,12,False,"the integrity, prudence and competence of persons having access to the data"
+C08/SEC.raw.md,C08,SEC,original,Q22b,PH01,,OK-NOPAGE,7,34,True,"A credential is closed only when a replayed token and a logon with the old credential both fail, and the result and time are logged. Until then the access window is treated as open."
+C08/SEC.raw.md,C08,SEC,original,Q22b,PH01,,OK-NOPAGE,7,31,True,Vendor access is reinstated only when: the cause of the compromise is known; the access meets 7.2; secrets readable by the old access are rotated; and SEC signs off in writing.
+C08/SEC.raw.md,C08,SEC,original,Q22b,PH01,,OK-NOPAGE,6,8,False,the supplier's account until SEC has reconciled them
+C01/CEO.final.md,C01,CEO,CEO final,,PH01,,OK-NOPAGE,4;11,5,False,a critical operation is disrupted
+C01/CEO.final.md,C01,CEO,CEO final,,PH01,1,NOT-FOUND,,14,False,consider pausing mobile transfer submission at the application layer while balance view stays on
+C01/CEO.final.md,C01,CEO,CEO final,,R05,1,OK,1,3,False,Immediate incident response
+C01/CEO.final.md,C01,CEO,CEO final,,R05,1,OK,1,21,False,The top priority should be to safeguard the interests of customers who have been or may be affected by the incident.
+C01/CEO.final.md,C01,CEO,CEO final,,R06,3,NOT-FOUND,,13,False,disruptions to an AI's critical operations must not exceed its 'tolerance for disruption'
+C01/CEO.final.md,C01,CEO,CEO final,,PH01,1;32-33;43,PAGE,9,3,False,mobile transfer submission
+C01/CEO.final.md,C01,CEO,CEO final,,PH01,,OK-NOPAGE,9,7,False,(3) mobile transfer submission reopened with limits
+C01/CEO.final.md,C01,CEO,CEO final,,PH01,,OK-NOPAGE,8,20,False,Items in flight at the failure are held as status unknown until an independent record shows they did not settle.
+C01/CEO.final.md,C01,CEO,CEO final,,PH01,,OK-NOPAGE,7,6,False,Services still working are kept running
+C01/CEO.final.md,C01,CEO,CEO final,,R02,,OK-NOPAGE,33,3,False,impacted business operations
+C01/CEO.final.md,C01,CEO,CEO final,,R02,,OK-NOPAGE,33,9,False,"Otherwise, more time should be allocated to evidence collection"
+C01/CEO.final.md,C01,CEO,CEO final,,R02,32,OK,32,14,False,"Digital evidence handling, including identification, collection, acquisition, preservation of evidence and chain of custody"
+C01/CEO.final.md,C01,CEO,CEO final,,R01,52,OK,52;53,7,False,to preserve the state of the system
+C01/CEO.final.md,C01,CEO,CEO final,,R05,2,OK,2,15,False,notify the HKMA immediately and provide it with whatever information is available at the time
+C01/CEO.final.md,C01,CEO,CEO final,,R05,2,OK,2,9,False,should not wait until it has rectified the problem
+C01/CEO.final.md,C01,CEO,CEO final,,R05,2,OK,2,5,False,Reporting incident to the HKMA
+C01/CEO.final.md,C01,CEO,CEO final,,R05,2;3,OK,3,6,False,Handling of customers' and media's enquiry
+C01/CEO.final.md,C01,CEO,CEO final,,R02,97,PAGE,35;42,3,False,actual adverse effect
+C01/CEO.final.md,C01,CEO,CEO final,,R02,,FRAGMENTS,35,18,False,"has disrupted, is disrupting ... the core function ... 12 hours after the CI operator ... becomes aware"
+C01/CEO.final.md,C01,CEO,CEO final,,PH01,,OK-NOPAGE,2,3,False,30 minutes before
+C01/CEO.final.md,C01,CEO,CEO final,,PH01,,OK-NOPAGE,10,4,False,as soon as practicable
+C01/CEO.final.md,C01,CEO,CEO final,,R05,1,FRAGMENTS,1,16,False,proactively notify ... through the most effective means ... whether the bank would reimburse any losses
+C01/CEO.final.md,C01,CEO,CEO final,,PH01,,NOT-FOUND,,5,False,do not use that channel
+C01/CEO.final.md,C01,CEO,CEO final,,R05,1;2;3,OK,3,6,False,Handling of customers' and media's enquiry
+C01/CEO.final.md,C01,CEO,CEO final,,PH01,,OK-NOPAGE,1,3,False,Internal bank procedure
+C01/CEO.final.md,C01,CEO,CEO final,,R09,,OK-NOPAGE,33,7,False,shortly after the commencement of any disruption
+C01/CEO.final.md,C01,CEO,CEO final,,R05,2,DOC,R14b,3,False,cyber security incident
+C01/CEO.final.md,C01,CEO,CEO final,,PH01,,OK-NOPAGE,3,20,False,Approve public statements and replies to media | CMT chair; alternate COO if the chair is unreachable for 15 minutes
+C02/CEO.final.md,C02,CEO,CEO final,,PH01,,OK-NOPAGE,4,5,False,an extortion demand is received
+C02/CEO.final.md,C02,CEO,CEO final,,PH01,,OK-NOPAGE,10,6,False,Approval and scheduling are not delivery
+C02/CEO.final.md,C02,CEO,CEO final,,R16b,4,FRAGMENTS,2,6,False,ascertaining ... identity of customers affected
+C02/CEO.final.md,C02,CEO,CEO final,,R11,8,OK,8,8,False,regardless of the progress of any internal investigation
+C02/CEO.final.md,C02,CEO,CEO final,,R10,4;169,FRAGMENTS,169,25,False,All practicable steps shall be taken to ensure that any personal data ... held by a data user is protected against unauthorized or accidental access
+C02/CEO.final.md,C02,CEO,CEO final,,R03,14,OK,14,15,False,all passwords are promptly changed if they have been or are suspected of being compromised
+C02/CEO.final.md,C02,CEO,CEO final,,R11,5;2,OK,5,16,False,Removing the access rights of users suspected to have committed or contributed to the data breach
+C02/CEO.final.md,C02,CEO,CEO final,,PH01,,OK-NOPAGE,12,14,False,the bank does not pay a ransom. Any departure is for the Board alone
+C02/CEO.final.md,C02,CEO,CEO final,,PH01,455;83,DOC,R16c,11,False,as soon as it is reasonable for him to do so
+C02/CEO.final.md,C02,CEO,CEO final,,PH01,575;20,NOT-FOUND,,14,False,being reckless as to whether ... the person is a terrorist or terrorist associate
+C02/CEO.final.md,C02,CEO,CEO final,,PH01,,NOT-FOUND,,5,False,"by 11:30 HKT, or earlier"
+C02/CEO.final.md,C02,CEO,CEO final,,R11,4;2,OK,4,6,False,Notifying the relevant law enforcement agencies
+C02/CEO.final.md,C02,CEO,CEO final,,PH01,455;84,DOC,R16c,9,False,any matter which is likely to prejudice any investigation
+C02/CEO.final.md,C02,CEO,CEO final,,R05,2,NOT-FOUND,,4,False,no direct rule located
+C02/CEO.final.md,C02,CEO,CEO final,,PH01,,OK-NOPAGE,12,25,False,"None, unless the CMT chair authorises it in writing on a joint LC and SEC recommendation, for a stated limited purpose, after consulting the Police."
+C02/CEO.final.md,C02,CEO,CEO final,,R09,17,OK,17,17,False,available at all times for customers to seek and obtain help with respect to possible unauthorized transactions
+C02/CEO.final.md,C02,CEO,CEO final,,R07,14,OK,14,8,False,broadcasting of messages to mobile phones of staff
+C02/CEO.final.md,C02,CEO,CEO final,,R10,4;169,OK,169,11,False,"protected against unauthorized or accidental access, processing, erasure, loss or use"
+C02/CEO.final.md,C02,CEO,CEO final,,R16b,2,OK,2,21,False,are not supposed to disclose customer data to the related parties of the customers concerned without the consent from the customers
+C02/CEO.final.md,C02,CEO,CEO final,,R07,,NOT-FOUND,,14,False," across all files found R07 p.12, R12 p.2 and R16b p.7, none on point. "
+C02/CEO.final.md,C02,CEO,CEO final,,R05,3,OK,3,18,False,deploy swiftly adequate resources and communication channels (e.g. customer service hotlines and extended office hours of branch services)
+C02/CEO.final.md,C02,CEO,CEO final,,PH01,,OK-NOPAGE,3,10,False,Approve staff and frontline scripts | COM | LC clears
+C02/CEO.final.md,C02,CEO,CEO final,,R09,33,OK,33,7,False,shortly after the commencement of any disruption
+C02/CEO.final.md,C02,CEO,CEO final,,R09,33;1,NOT-FOUND,,10,False,No substantive reply ... a statement will follow by 10:30
+C02/CEO.final.md,C02,CEO,CEO final,,R05,2,OK,2,9,False,may prejudice any ongoing criminal proceedings or any investigation
+C02/CEO.final.md,C02,CEO,CEO final,,R05,2,NOT-FOUND,,4,False,what we are checking
+C02/CEO.final.md,C02,CEO,CEO final,,R05,2,NOT-FOUND,,4,False,what you can do
+C02/CEO.final.md,C02,CEO,CEO final,,R05,2,FRAGMENTS,2,13,False,the steps that affected customers need to take ... to protect their interests
+C02/CEO.final.md,C02,CEO,CEO final,,R09,33,FRAGMENTS,33,17,False,an AI is expected to issue a press release ... shortly after the commencement of any disruption
+C02/CEO.final.md,C02,CEO,CEO final,,R05,2,FRAGMENTS,2,21,False,include the key facts of the incident and the steps that affected customers need to take ... to protect their interests
+C02/CEO.final.md,C02,CEO,CEO final,,R05,2,OK,2,9,False,may prejudice any ongoing criminal proceedings or any investigation
+C02/CEO.final.md,C02,CEO,CEO final,,PH01,,OK-NOPAGE,11,22,False,The bank never denies receipt of a demand. It states whether a payment has been made only as a verified present fact.
+C02/CEO.final.md,C02,CEO,CEO final,,PH01,,OK-NOPAGE,11,21,False,"Each update states what is confirmed, what is being verified, what customers can do and when the next update is due."
+C03/CEO.final.md,C03,CEO,CEO final,,R11,4-8;6;4;7;8,OK,8,3,False,When to notify?
+C03/CEO.final.md,C03,CEO,CEO final,,R11,4-8;6;4;7;8,OK,8,3,False,How to notify?
+C03/CEO.final.md,C03,CEO,CEO final,,R11,7,OK,7,5,False,approximate number of data subjects
+C03/CEO.final.md,C03,CEO,CEO final,,R11,7,OK,7,6,False,approximate number of personal data records
+C03/CEO.final.md,C03,CEO,CEO final,,R11,4;2;4;2;7-8;2,NOT-FOUND,,4,False,no direct rule located
+C03/CEO.final.md,C03,CEO,CEO final,,PH01,,NOT-FOUND,,10,False,. PH01 s.7.4 says a credential is closed only when 
+C03/CEO.final.md,C03,CEO,CEO final,,R03,14,OK,14,15,False,all passwords are promptly changed if they have been or are suspected of being compromised
+C03/CEO.final.md,C03,CEO,CEO final,,R11,5,OK,5,16,False,Removing the access rights of users suspected to have committed or contributed to the data breach
+C03/CEO.final.md,C03,CEO,CEO final,,R16a,4,OK,4;6,13,False,Change login details for the compromised device / software / database / system
+C03/CEO.final.md,C03,CEO,CEO final,,R02,45,OK,45,7,False,Compromised accounts have been removed or isolated
+C03/CEO.final.md,C03,CEO,CEO final,,R03,5;4;45,NOT-FOUND,,4,False,no direct rule located
+C03/CEO.final.md,C03,CEO,CEO final,,R16a,1,OK,1,7,False,may take about 10-15 minutes to complete
+C03/CEO.final.md,C03,CEO,CEO final,,R11,6,OK,6,26,True,"as soon as practicable after becoming aware of the data breach, particularly if the data breach is likely to result in a real risk of harm"
+C03/CEO.final.md,C03,CEO,CEO final,,R11,8,OK,8,5,False,Oral notifications are not accepted
+C03/CEO.final.md,C03,CEO,CEO final,,R10,4;169,NOT-FOUND,,6,False,); R16a pp.1 and 3 (verified: 
+C03/CEO.final.md,C03,CEO,CEO final,,R16a,1-3,NOT-FOUND,,10,False,"); R11 pp.1, 5, 6, 8 (verified); R16b p.3 (verified: "
+C03/CEO.final.md,C03,CEO,CEO final,,R16b,3,OK,3;7,4,False,as soon as practicable
+C03/CEO.final.md,C03,CEO,CEO final,,R16b,2,OK,2;3,3,False,should provide justification
+C03/CEO.final.md,C03,CEO,CEO final,,R16b,3,OK,3;7,4,False,as soon as practicable
+C03/CEO.final.md,C03,CEO,CEO final,,R11,,NOT-FOUND,,9,False," found only R11, R16a, R16b and PH01, which say "
+C03/CEO.final.md,C03,CEO,CEO final,,PH01,,OK-NOPAGE,10,7,False,not held back for the wider review
+C03/CEO.final.md,C03,CEO,CEO final,,PH01,,OK-NOPAGE,10,5,False,No later than 12 hours
+C03/CEO.final.md,C03,CEO,CEO final,,R11,8,OK,8,5,False,"directly by phone, in writing"
+C03/CEO.final.md,C03,CEO,CEO final,,PH01,,NOT-FOUND,,4,False,What we have done
+C03/CEO.final.md,C03,CEO,CEO final,,PH01,,NOT-FOUND,,13,False,We have stopped the unauthorised access we identified and are investigating with specialists
+C03/CEO.final.md,C03,CEO,CEO final,,PH01,,NOT-FOUND,,14,False,We have taken steps to block the unauthorised access and are investigating with specialists
+C03/CEO.final.md,C03,CEO,CEO final,,PH01,,NOT-FOUND,,5,False,We have added extra checks...
+C03/CEO.final.md,C03,CEO,CEO final,,R11,7,OK,7,20,False,A description of the measures taken or to be taken to mitigate the loss or to prevent further unauthorised access
+C03/CEO.final.md,C03,CEO,CEO final,,R16b,3;8;2;3,NOT-FOUND,,8,False,", adopted: R16b p.3 (verified); R11 p.8 (verified: "
+C03/CEO.final.md,C03,CEO,CEO final,,R11,8,NOT-FOUND,,10,False,); R09 s.8.2.2; R05 p.2 (scan-checked); R16a p.3 (verified). COM's 
+C04/CEO.final.md,C04,CEO,CEO final,,R07,5,OK,5,13,False,periodic progress reports upon being notified until the final resolution of the crisis
+C04/CEO.final.md,C04,CEO,CEO final,,PH01,,OK-NOPAGE,8,12,False,"shares no hosts, accounts, keys or network path with any affected system"
+C04/CEO.final.md,C04,CEO,CEO final,,R06,3,NOT-FOUND,,13,False,disruptions to an AI's critical operations must not exceed its 'tolerance for disruption'
+C04/CEO.final.md,C04,CEO,CEO final,,R07,11,OK,11,8,False,"record reconstruction and verification, establishment of new controls"
+C04/CEO.final.md,C04,CEO,CEO final,,R02,34,OK,34,5,False,continue essential operation during disruptions
+C04/CEO.final.md,C04,CEO,CEO final,,R01,33-34,OK,24;34;91,5,False,essential to the core function
+C04/CEO.final.md,C04,CEO,CEO final,,R01,33-34,OK,29;30;33;36;43;100,3,False,within 1 month
+C04/CEO.final.md,C04,CEO,CEO final,,PH01,,NOT-FOUND,,4,False,"same amount, different beneficiary"
+C04/CEO.final.md,C04,CEO,CEO final,,R09,19,OK,19,18,False,reconcile data file balances after transaction updates and to check the integrity of data transmitted between different systems
+C04/CEO.final.md,C04,CEO,CEO final,,PH01,,FRAGMENTS,5,18,False,"LC saves the system's submission receipt ... If no receipt is shown, LC asks the recipient for one"
+C04/CEO.final.md,C04,CEO,CEO final,,R05,3,OK,3,9,False,The HKMA should be kept informed during the process
+C04/CEO.final.md,C04,CEO,CEO final,,R07,5,OK,5,3,False,periodic progress reports
+C04/CEO.final.md,C04,CEO,CEO final,,R05,2,OK,2,14,False,gain or regain access to the relevant banking services or to protect their interests
+C04/CEO.final.md,C04,CEO,CEO final,,R09,33,OK,33,5,False,any estimated service resumption time
+C04/CEO.final.md,C04,CEO,CEO final,,R09,33,OK,33,3,False,consistent and up-to-date
+C04/CEO.final.md,C04,CEO,CEO final,,PH01,,OK-NOPAGE,11,21,False,"Each update states what is confirmed, what is being verified, what customers can do and when the next update is due"
+C04/CEO.final.md,C04,CEO,CEO final,,PH01,,NOT-FOUND,,13,False,We will call you ... only if we need to confirm a duplicate
+C04/CEO.final.md,C04,CEO,CEO final,,PH01,,NOT-FOUND,,3,False,only for duplicates
+C04/CEO.final.md,C04,CEO,CEO final,,R05,3,OK,3,10,False,customer service hotlines and extended office hours of branch services
+C04/CEO.final.md,C04,CEO,CEO final,,R09,19,OK,19,8,False,the integrity of data transmitted between different systems
+C04/CEO.final.md,C04,CEO,CEO final,,R09,19,NOT-FOUND,,4,False,no direct rule located
+C04/CEO.final.md,C04,CEO,CEO final,,PH01,,OK-NOPAGE,8,17,False,Payroll batches are confirmed with the SME's authorised contact by call-back to a number already on file
+C05/CEO.final.md,C05,CEO,CEO final,,R16b,3,OK,3,8,False,notify the affected customers as soon as practicable
+C05/CEO.final.md,C05,CEO,CEO final,,R03,17,OK,17,5,False,physically disconnected from the CCS
+C05/CEO.final.md,C05,CEO,CEO final,,R03,17,OK,17,10,False,a backup copy that is physically disconnected from the CCS
+C05/CEO.final.md,C05,CEO,CEO final,,R08,18,FRAGMENTS,18,28,True,Production data should not be used in development or acceptance testing unless the data has been de-sensitised ... and prior approval from the information owner has been obtained
+C05/CEO.final.md,C05,CEO,CEO final,,R08,18;17;19;11;2;4,NOT-FOUND,,4,False,no direct rule located
+C05/CEO.final.md,C05,CEO,CEO final,,PH01,,OK-NOPAGE,9,22,False,"One unexplained difference is a fail. A sample result is recorded as a sample, not as a pass of the whole set"
+C05/CEO.final.md,C05,CEO,CEO final,,PH01,,NOT-FOUND,,4,False,we will not pay
+C05/CEO.final.md,C05,CEO,CEO final,,PH01,,OK-NOPAGE,11,3,False,verified present fact
+C05/CEO.final.md,C05,CEO,CEO final,,R16c,83,OK,83,6,False,as soon as it is reasonable
+C05/CEO.final.md,C05,CEO,CEO final,,R16c,83-84;20,NOT-FOUND,,4,False,no direct rule located
+C05/CEO.final.md,C05,CEO,CEO final,,R09,17,NOT-FOUND,,5,False,LC clears the legal wording
+C05/CEO.final.md,C05,CEO,CEO final,,R09,17,OK,17,13,False,AIs should make attempts to remove the fake or suspicious items where practicable
+C05/CEO.final.md,C05,CEO,CEO final,,R09,17,OK,17,9,False,report the matter to the Hong Kong Police Force
+C05/CEO.final.md,C05,CEO,CEO final,,R10,119;3;3,OK,18;116;119;123;128;166,5,False,would be likely to prejudice
+C05/CEO.final.md,C05,CEO,CEO final,,R09,17,OK,17,11,False,as soon as practicable after they become aware of the scams
+C05/CEO.final.md,C05,CEO,CEO final,,PH01,,OK-NOPAGE,10,10,False,A customer with no evidenced delivery gets one consolidated notice
+C05/CEO.final.md,C05,CEO,CEO final,,R11,8,FRAGMENTS,6;7;8,13,False,as soon as practicable ... regardless of the progress of any internal investigation
+C05/CEO.final.md,C05,CEO,CEO final,,PH01,,OK-NOPAGE,10,4,False,as soon as practicable
+C05/CEO.final.md,C05,CEO,CEO final,,R09,,OK-NOPAGE,17,4,False,as soon as practicable
+C05/CEO.final.md,C05,CEO,CEO final,,R09,16,FRAGMENTS,16,7,False,prominently displayed ... through multiple effective channels
+C05/CEO.final.md,C05,CEO,CEO final,,R09,17,OK,17,19,False,AIs are expected to issue their press releases as soon as practicable after they become aware of the scams
+C05/CEO.final.md,C05,CEO,CEO final,,R09,17,NOT-FOUND,,4,False,no direct rule located
+C06/CEO.final.md,C06,CEO,CEO final,,R08,18;19,OK,19,10,False,a process for rolling-back changes to re-instate the original programs
+C06/CEO.final.md,C06,CEO,CEO final,,R06,6,OK,6,5,False,The Board bears ultimate responsibility
+C06/CEO.final.md,C06,CEO,CEO final,,R12,6,OK,6,3,False,segregation or compartmentalisation
+C06/CEO.final.md,C06,CEO,CEO final,,PH01,,OK-NOPAGE,9,6,False,One unexplained difference is a fail
+C06/CEO.final.md,C06,CEO,CEO final,,PH01,,OK-NOPAGE,9,5,False,Missing any item means hold
+C06/CEO.final.md,C06,CEO,CEO final,,PH01,,OK-NOPAGE,9,5,False,must still pass every item
+C06/CEO.final.md,C06,CEO,CEO final,,R08,18,OK,18,12,False,only properly tested and approved systems are promoted to the production environment
+C06/CEO.final.md,C06,CEO,CEO final,,PH01,,NOT-FOUND,,3,False,cannot be verified
+C06/CEO.final.md,C06,CEO,CEO final,,PH01,,OK-NOPAGE,9,14,False,if it holds a current security clearance under 8.2 and its own reconciliation ties
+C06/CEO.final.md,C06,CEO,CEO final,,R05,1,OK,1,11,False,The top priority should be to safeguard the interests of customers
+C06/CEO.final.md,C06,CEO,CEO final,,R05,1,NOT-FOUND,,4,False,no direct rule located
+C06/CEO.final.md,C06,CEO,CEO final,,PH01,,OK-NOPAGE,3,6,False,No gate condition may be waived
+C06/CEO.final.md,C06,CEO,CEO final,,R08,19,OK,19,5,False,a process for rolling-back changes
+C06/CEO.final.md,C06,CEO,CEO final,,R08,19,OK,19,4,False,a post implementation verification
+C06/CEO.final.md,C06,CEO,CEO final,,R07,,NOT-FOUND,,4,False,no direct rule located
+C06/CEO.final.md,C06,CEO,CEO final,,PH01,4;169;2;167,DOC,R10,7,False,from being kept longer than is necessary
+C06/CEO.final.md,C06,CEO,CEO final,,R06,6,OK,6,13,False,The Board bears ultimate responsibility for ensuring that an AI remains operationally resilient
+C06/CEO.final.md,C06,CEO,CEO final,,R09,33,OK,33,3,False,consistent and up-to-date
+C06/CEO.final.md,C06,CEO,CEO final,,R09,33,OK,33,4,False,consistent and up-to-date messages
+C06/CEO.final.md,C06,CEO,CEO final,,PH01,,OK-NOPAGE,14,17,False,"a verified call and a written notice the same day, then updates at 08:00, 13:00 and 18:00"
+C06/CEO.final.md,C06,CEO,CEO final,,R05,2,OK,2,18,False,notify other affected AIs (so that they can in turn notify their affected customers) as soon as practicable
+C06/CEO.final.md,C06,CEO,CEO final,,R07,13,OK,13,3,False,"counterparties, business partners"
+C07/CEO.final.md,C07,CEO,CEO final,,R02,43-46;35,OK,35,6,False,detected and timely removed or quarantined
+C07/CEO.final.md,C07,CEO,CEO final,,R01,82,OK,82,8,False,all reasonable precautions and exercised all due diligence
+C07/CEO.final.md,C07,CEO,CEO final,,R09,18,OK,18,6,False,acts fraudulently or with gross negligence
+C07/CEO.final.md,C07,CEO,CEO final,,PH01,,NOT-FOUND,,4,False,supplier's account – unreconciled
+C07/CEO.final.md,C07,CEO,CEO final,,R02,32;18;20;44;6;5,NOT-FOUND,,4,False,no direct rule located
+C07/CEO.final.md,C07,CEO,CEO final,,R03,19;1;32;32;52,NOT-FOUND,,4,False,no direct rule located
+C07/CEO.final.md,C07,CEO,CEO final,,R02,35,OK,35,12,False,a computer-system security threat that is detected and timely removed or quarantined
+C07/CEO.final.md,C07,CEO,CEO final,,PH01,,OK-NOPAGE,5,11,False,"If no receipt is shown, LC asks the recipient for one"
+C07/CEO.final.md,C07,CEO,CEO final,,R09,18,OK,18,6,False,acts fraudulently or with gross negligence
+C07/CEO.final.md,C07,CEO,CEO final,,PH01,,OK-NOPAGE,10,3,False,reports of misuse
+C07/CEO.final.md,C07,CEO,CEO final,,PH01,2;166,DOC,R10,19,False,All practicable steps shall be taken to ensure that— (a) personal data is accurate having regard to the purpose
+C07/CEO.final.md,C07,CEO,CEO final,,R11,8,OK,8,17,False,"in sufficient time for its benefits to be maximised, in particular to reduce the risk of harm"
+C07/CEO.final.md,C07,CEO,CEO final,,R16b,3,OK,3;7,4,False,as soon as practicable
+C07/CEO.final.md,C07,CEO,CEO final,,R11,8,OK,8,17,False,"in sufficient time for its benefits to be maximised, in particular to reduce the risk of harm"
+C07/CEO.final.md,C07,CEO,CEO final,,R16b,3,OK,3,8,False,notify the affected customers as soon as practicable
+C07/CEO.final.md,C07,CEO,CEO final,,R10,2;166-167;1-2;16,NOT-FOUND,,4,False,no direct rule located
+C08/CEO.final.md,C08,CEO,CEO final,,R10,2;167,OK,167,6,False,not kept longer than is necessary
+C08/CEO.final.md,C08,CEO,CEO final,,R06,13,OK,13,5,False,Root cause analysis of incidents
+C08/CEO.final.md,C08,CEO,CEO final,,R08,18,OK,18,8,False,only properly tested and approved systems are promoted
+C08/CEO.final.md,C08,CEO,CEO final,,R01,,DOC,R02,4,False,Root Cause Analysis Summary
+C08/CEO.final.md,C08,CEO,CEO final,,R02,43,OK,36;42;43,9,False,as far as practicable based on the information available
+C08/CEO.final.md,C08,CEO,CEO final,,R02,37,OK,37,3,False,as supplementary material
+C08/CEO.final.md,C08,CEO,CEO final,,R06,13,OK,13,14,False,Root cause analysis of incidents to help with the prevention or minimisation of recurrence
+C08/CEO.final.md,C08,CEO,CEO final,,R02,43,OK,42;43,14,False,All fields should be completed as far as practicable based on the information available
+C08/CEO.final.md,C08,CEO,CEO final,,R02,37,OK,37,3,False,as supplementary material
+C08/CEO.final.md,C08,CEO,CEO final,,R01,33,FRAGMENTS,29;30;32;33;35;36;37;39,19,False,the regulating authority that regulates the operator ... within 1 month after the date on which the event occurs
+C08/CEO.final.md,C08,CEO,CEO final,,R01,43,OK,43,37,True,"If there is any revision to an emergency response plan after it is submitted, the CI operator must submit the revised plan to the Commissioner within 1 month after the date on which the revision is made."
+C08/CEO.final.md,C08,CEO,CEO final,,R02,32,FRAGMENTS,12;32,10,False,are endorsed by the Board ... or the senior management
+C08/CEO.final.md,C08,CEO,CEO final,,R03,2;167,DOC,R10,6,False,not kept longer than is necessary
+C08/CEO.final.md,C08,CEO,CEO final,,R03,2;167;58,NOT-FOUND,,6,False,unless ... prohibited under any law
+C08/CEO.final.md,C08,CEO,CEO final,,PH01,,OK-NOPAGE,11,4,False,what is being verified
+C08/CEO.final.md,C08,CEO,CEO final,,R09,33,FRAGMENTS,13;33,9,False,consistent and up-to-date messages ... on a timely basis
+C08/CEO.final.md,C08,CEO,CEO final,,PH01,,OK-NOPAGE,11,7,False,"what is confirmed, what is being verified"
+Q25/CEO.Q25.raw.md,Q25,CEO,Q25,,R09,33,OK,33,20,False,is expected to issue a press release (or make a similarly effective notification) shortly after the commencement of any disruption
+Q25/CEO.Q25.raw.md,Q25,CEO,Q25,,PH01,,OK-NOPAGE,1,12,False,"Where this playbook and an external requirement differ, the external requirement prevails."
+Q25/CEO.Q25.raw.md,Q25,CEO,Q25,,PH01,,OK-NOPAGE,1,16,False,Internal times in this playbook are the bank's own targets. They never extend an external deadline.
+Q25/CEO.Q25.raw.md,Q25,CEO,Q25,,PH01,,OK-NOPAGE,2,14,False,"to hold or to switch to an approved alternate process, never to go ahead"
+Q25/CEO.Q25.raw.md,Q25,CEO,Q25,,PH01,,OK-NOPAGE,2,7,False,a report to a regulator or authority
+Q25/CEO.Q25.raw.md,Q25,CEO,Q25,,R09,,OK-NOPAGE,33,4,False,shortly after the commencement
+Q25/CEO.Q25.raw.md,Q25,CEO,Q25,,PH01,,OK-NOPAGE,2,5,False,External reports are not held

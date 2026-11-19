@@ -1,0 +1,2 @@
+{"ts_hkt": "2026-11-17T12:35:58+08:00", "run": "PERMTEST-1", "role": "SELFTEST", "agent_id": "t1", "agent_type": null, "tool": "Bash", "decision": "BLOCK", "input": {"command": "cat x"}}
+{"ts_hkt": "2026-11-17T12:35:58+08:00", "run": "PERMTEST-1", "role": "SELFTEST", "agent_id": null, "agent_type": null, "tool": "mcp__sources__search", "decision": "allow", "input": {"query": "x"}}
