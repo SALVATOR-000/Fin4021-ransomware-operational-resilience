@@ -1,0 +1,30 @@
+{
+ "run": "B1",
+ "label": "B1 rerun, Opus 5.5 Extra (xhigh)",
+ "facilitator_session": "d100158c-6b9a-41eb-a884-27e401f54bd4",
+ "agents": {
+  "SEC": "a745cc2472e6117d0",
+  "LC": "a15c7d58118da15ce",
+  "COM": "a4689c796f683bd28",
+  "CEO": "a7a559e5c2dded944"
+ },
+ "turn": {
+  "SEC": 8,
+  "LC": 8,
+  "COM": 8,
+  "CEO": 9
+ },
+ "card_in_progress": null,
+ "cards_done": [
+  "C01",
+  "C02",
+  "C03",
+  "C04",
+  "C05",
+  "C06",
+  "C07",
+  "C08",
+  "Q25"
+ ],
+ "note": "turn = facilitator message number in each role transcript"
+}

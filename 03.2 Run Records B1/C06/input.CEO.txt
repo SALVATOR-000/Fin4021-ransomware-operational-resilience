@@ -1,0 +1,592 @@
+C06 · Tuesday, 17 November 2026 · 20:00 HKT · H+36
+Facts at release. A pre-arranged offline laboratory test on a recovery image reconciled 118 out of 120 payment instructions. The two mismatches are unexplained. The laboratory found no recurring encryption activity during its test window. Some SMEs report missed payroll cut-offs. A retained Hong Kong forensic firm asks for a copy of a diagnostic image containing customer data. Two counterparties request an operational status update for unsettled instructions.
+• Q16 · SEC. a. Decide whether to start staged production recovery, hold, or permit a narrower service mode, and specify the authorisation gate. b. Define the stop and rollback criteria if any production activity is authorised.
+• Q17 · LC. a. Decide whether the forensic firm should receive the diagnostic image or a narrower data set, and specify the conditions for transfer and use. b. Decide what to escalate to the board about the disruption and any decision requiring its attention.
+• Q18 · COM. a. Prepare a customer status update for the recovery position actually approved. You may give conditional wording for different choices. b. Decide what to tell affected banks or counterparties about unsettled instructions, through which channel and on what schedule.
+
+Sealed SEC answer for C06:
+<<<
+SEC (Information Security Lead): locked response for C06, Tuesday 17 Nov 2026, 20:00 HKT (H+36)
+
+Assigned units: Q16a and Q16b only. I have taken the facilitator's handoff on the status of my Q13a and Q13b items into account.
+
+Records that do not exist yet, and how I treat them:
+- The handoff confirms that no card records the I1–I8 / S1–S7 results, the PH01 9.2 data preconditions, the RC1–RC8 results, or SEC's C04 clearance of the alternate process.
+- I do not treat any of those as passed.
+- No conflict was found between PH01 and any applicable external requirement for these units.
+
+---------------------------------------------------------------
+UNIT Q16a: Staged production recovery, hold, or a narrower service mode; the authorisation gate
+
+DECISION
+1. HOLD staged production recovery of the recovered image. No PH01 9.4 stage, including the 20-instruction pilot, may touch a live payment interface.
+   - The lab test reconciled 118 of 120 instructions, and the 2 mismatches are unexplained. Under PH01 9.2, one unexplained difference is a FAIL.
+   - 120 instructions is a sample. Even 120 out of 120 would be recorded only as a sample, not as a pass of the whole set.
+   - So the first PH01 9.3 gate item (offline pass) is not met. No gate item may be waived (PH01 s.3).
+2. A narrower recovered-system mode, such as Board-narrowed "payroll only", is also NOT available now.
+   - PH01 9.3 lets the Board narrow the scope, but the narrower scope must still pass every applicable gate item.
+   - While the cause of the mismatches is unknown, they cannot be shown to lie outside any narrower scope.
+3. The only narrower service mode SEC will support tonight is the PH01 s.8 alternate process, payroll first (PH01 8.4). It is CONDITIONAL on SEC's clearance under PH01 8.2 being logged now:
+   - checks C1–C7 from C04, with evidence;
+   - a reconciliation check confirming that its own reconciliation ties (PH01 8.7).
+   Condition in the PH01 2.3 four-item format:
+   - Verifier: SEC.
+   - Latest time: 21:00 HKT (judgment).
+   - Default if not verified: HOLD. This is a security condition, so it can never default to going ahead.
+   - Close-out: logged.
+   If cleared, the chair activates (or confirms the earlier activation) and declares BCP activation (PH01 4.4); LC is told at once. Activation is the chair's decision (PH01 s.3), not SEC's.
+
+ACTIONS (simulated, for the log)
+
+H1, 20:00: decision log.
+- Record "recovered image: offline FAIL (sample test 118/120, 2 unexplained); production HOLD".
+- Record that it is unverified whether the image is the candidate (1) build that passed I1–I8 and S1–S7. If it is not, it is not an eligible candidate (PH01 9.1).
+
+H2, 20:00 to 20:30: preserve evidence.
+- Preserve the test record, the image hash, and the full trace of both mismatched instructions (inputs, candidate output, ledger, simulated acknowledgements) in the evidence register.
+- Check whether the test record shows de-sensitisation and the information owner's prior approval (PH01 9.2; R08 4.2.4).
+- If either is missing: log it as a breach of the test-data rule, tell LC and the DPO, and quarantine that data set. The FAIL result stands either way.
+
+H3, 20:30: protect the live register.
+- If the two mismatched items correspond to real queued instructions (re-identified through the custodian's tokenisation key), Payments Ops marks them "status unknown, held" in the live instruction register (PH01 8.6).
+- This prevents the alternate process paying them wrongly or twice.
+
+H4, by 23:00: preliminary root cause to the chair (judgment). For each mismatch, classify the cause as one of:
+- (a) data in the backup or image corrupted or tampered with: the integrity check fails, so test the next-earlier immutable point, still candidate (1). The standby only if candidate (1) fails;
+- (b) an error in reconstructing events since the backup, or a static-data difference;
+- (c) a test-harness or tokenisation mapping error: fix it, document it, then rerun.
+- Whatever the cause, a FULL-set rerun of RC1–RC8 is required, followed by a new pass through PH01 9.3. The 118/120 result stays on record as a fail.
+
+H5. "No recurring encryption activity during the test window" is recorded as a limited observation. It does not replace the indicator scan (I4) or the separation checks (S1–S7).
+
+AUTHORISATION GATE (PH01 9.3)
+Production use of the recovered system needs ALL of the following, each logged with evidence and signer:
+- (1) an offline pass under 9.2 on the full set, with the data preconditions logged;
+- (2) integrity and separation checks I1–I8 and S1–S7 passed;
+- (3) rollback rehearsed to the target set in 9.5 (Q16b);
+- (4) the reconciliation plan for changes since the backup, and the live test plan, ready;
+- (5) business acceptance by the payments information owner;
+- (6) LC's confirmation of regulatory steps, including the Cap. 653 s.22 deployment record;
+- (7) the CMT chair's (Chief Executive's) authorisation.
+Then the PH01 9.4 stages, each advanced by the chair after the previous stage has run clean for the period set in the change record. Judgment for those periods:
+- Stage 1: 20 instructions reconciled end to end.
+- Stage 2: at least four consecutive clean hourly reconciliations before stage 3.
+Passing a target time never releases the gate. Reports to regulators continue whatever the gate's state (PH01 2.4).
+
+OWNER
+- Gate evidence for items 1–3, plus the hold and the stop: SEC.
+- Execution: Payments Ops and the IT Ops recovery team.
+- Production authorisation: the CMT chair, after the full gate.
+- The Board may narrow the scope but cannot waive any item.
+
+TIMES
+- 20:00: HOLD logged.
+- 20:30: evidence and register flags.
+- 21:00: alternate-process clearance, or HOLD.
+- 23:00: preliminary root cause.
+- Rerun and gate review only after the cause is explained.
+
+DESTINATION / CHANNEL
+- Decision log, test record, evidence register, instruction register.
+- The CMT room or phone bridge, through the chair to the Board.
+
+BASIS: EXTERNAL
+1. R08, SPM TM-G-1, s.4.2.4, PDF p18.
+   - Quote: "A formal acceptance process should be established to ensure that only properly tested and approved systems are promoted to the production environment."
+   - Authority: HKMA supervisory policy module.
+   - Why it applies: a candidate that failed reconciliation is not "properly tested".
+2. R09, SPM TM-E-1, s.5.1.2, PDF p19: "reconcile data file balances after transaction updates and to check the integrity of data transmitted between different systems". Unexplained mismatches mean integrity is unverified.
+3. R05, HKMA circular of 22 Jun 2010, PDF p1 (checked against the scan): "The top priority should be to safeguard the interests of customers". A system with unexplained mismatches risks wrong or duplicate payments. Payroll should therefore move only through a verified route.
+4. R07, SPM TM-G-2, s.4.3.2, PDF p11: the full recovery phase "is as difficult and critical to the business as the process to activate the BCP".
+5. R06, SPM OR-2, s.1.3 (PDF p3) and s.3.4 (PDF p6): the tolerance has now been exceeded. The Board "bears ultimate responsibility" for appropriate action. This calls for Board escalation (LC's Q17b), not for releasing an unsafe system.
+6. For LC: R01 Cap. 653 s.22 and R03 s.6.1.1, PDF p11. Any later deployment of the rebuilt system to production is logged with its deployment time.
+
+NO DIRECT RULE LOCATED externally for the pass mark or the gate items.
+- Terms searched: "reconcil", "rollback", "rolling-back", "restor".
+- Only PH01 9.2, 9.3 and 9.5 set them. The staging periods and the root-cause classes are professional judgment.
+
+BASIS: INTERNAL (Internal bank procedure: PH01, v1.0, effective 1 Oct 2026)
+- s.9.2: "One unexplained difference is a fail. A sample result is recorded as a sample, not as a pass of the whole set."
+- s.9.3: "Missing any item means hold ... The Board may narrow the scope of recovery ... the narrower scope must still pass every item above that applies to it."
+- s.3: "No gate condition may be waived."
+- Also s.8.2, s.8.4, s.8.6, s.2.3, s.4.4 and s.9.1.
+
+CONFLICT CHECK
+- None found.
+
+---------------------------------------------------------------
+UNIT Q16b: Stop and rollback criteria for any production activity authorised
+
+A. ALTERNATE PROCESS (the narrow mode, if cleared tonight)
+
+Stop at once. SEC or the Head of Payments Ops may stop without prior approval and then tells the chair (PH01 8.7). Stop on any of:
+- one unexplained difference in the hourly reconciliation (released count and value against ledger debits and receiving-side acknowledgements);
+- any duplicate, replayed or wrong payment;
+- any security indicator (list C below). This also suspends SEC's clearance.
+Separately, an instruction whose status cannot be established is held on its own (PH01 8.6).
+
+Rollback:
+- All releases are suspended. There is no further fallback.
+- In-flight items are classified settled, not settled or unknown from independent records. Unknown items are held.
+- Restart needs the difference explained and logged. After a security indicator, SEC must re-clear (C1–C7 re-run for the affected element) and the chair must decide.
+
+B. RECOVERED SYSTEM (only after the full gate)
+
+Stop at once (PH01 9.5) on any of:
+- a security indicator (list C);
+- one unexplained reconciliation difference;
+- any duplicate, replayed or wrong payment;
+- an instruction whose status cannot be established.
+Stop authority: SEC, the Head of Payments Ops, or the IT Ops duty manager, without prior approval.
+
+Rollback:
+- The IT Ops duty manager disconnects the recovered system from the payment interfaces. Target: within 15 minutes of the stop order (judgment). The time is rehearsed and recorded as gate item 3.
+- SEC confirms the disconnection from traffic-flow logs.
+- Service returns to the alternate process only if that process holds a current clearance and its reconciliation ties. Otherwise ALL releases are suspended.
+- In-flight items are classified settled, not settled or unknown from independent records; unknown items are held.
+- The recovered system's state and logs are preserved as evidence.
+- Restart needs a NEW full pass through PH01 9.3.
+- LC is told at once (a change in service status, PH01 5.8). COM updates the public status (PH01 11.2).
+
+C. SECURITY INDICATORS (SEC's definition, judgment), applying to both A and B:
+- Any match against the forensic firm's indicator list on the recovered or alternate hosts.
+- Any authentication attempt using the revoked vendor credentials or tokens.
+- Any connection to or from the isolated segment, the workspace, or known attacker infrastructure.
+- Any unexpected admin account, privilege change or scheduled job.
+- Encryption-like file activity (mass renames, high-entropy writes).
+- Endpoint detection or logging switched off.
+- Any payment message not traceable to a processing ID in the instruction register.
+- Any new attacker contact claiming access to the recovery environment.
+
+OWNER
+- Definition of the criteria and of security stops: SEC.
+- Reconciliation and holds: the Head of Payments Ops.
+- Disconnection: the IT Ops duty manager.
+- The chair is informed after every stop and decides restart after a security stop.
+
+TIMES
+- Reconciliation every hour of operation, plus a continuous check that no processing ID is released twice.
+- Stop: immediate.
+- Disconnection target: 15 minutes.
+
+BASIS: EXTERNAL
+1. R08, SPM TM-G-1, s.4.3.1, PDF p19: change management must include "a process for rolling-back changes to re-instate the original programs, system configuration or data in the event of production release problems" and "a post implementation verification of the changes made".
+2. R09, SPM TM-E-1, s.5.1.2, PDF p19, as above.
+3. R05, PDF p1, and R09 s.8.2.1, PDF p32: protect customers' interests.
+4. For LC: R07, SPM TM-G-2, s.1.3.3, PDF p5: "periodic progress reports" to the HKMA after BCP activation.
+
+NO DIRECT RULE LOCATED externally for the stop thresholds, the disconnection time or the indicator list.
+- Terms searched: "rollback", "rolling-back", "stop", "reconcil".
+- The 15-minute target and list C are professional judgment. The thresholds come from PH01.
+
+BASIS: INTERNAL (PH01 v1.0)
+- s.9.5: "Releases from the recovered system stop at once on any of: a security indicator from the incident; one unexplained reconciliation difference; any duplicate, replayed or wrong payment; an instruction whose status cannot be established ... Rollback disconnects the recovered system from payment interfaces ... Restart needs a new pass through 9.3."
+- Also s.8.6 and s.8.7.
+
+CONFLICT CHECK
+- None found.
+
+---------------------------------------------------------------
+FACTS SEC PASSES TO THE INCIDENT TEAM
+
+To the chair and the Board (through LC's Q17b):
+- The recovery candidate failed offline testing. Production is held. The root cause is due by 23:00.
+- The tolerance has been exceeded since about 08:00 today.
+- The Board may narrow the scope, but cannot waive any gate item.
+- Tonight's service depends on the alternate-process clearance due at 21:00.
+
+To LC:
+- Service status for the HKMA and Commissioner updates: still not available, or provided by the alternate process if cleared (R02 Annex F, section D.2).
+- A possible breach of the test-data rule, if the H2 records are missing.
+
+SEC's co-decision position on the forensic firm's request. Under PH01 s.3, sharing data with a third party needs LC and SEC jointly, with the DPO consulted, so SEC gives its position for LC's Q17a:
+- No transfer of the full diagnostic image by default (PH01 16.2).
+- The firm's staff may examine the full image inside the bank's laboratory, or receive a minimised, masked extract.
+- A full copy leaves the bank only with LC's and SEC's written approval, for a stated need that cannot be met in the lab, under the PH01 s.16 agreement terms, and recorded in the data release record.
+
+To Payments Ops and COM:
+- The two mismatched items are held.
+- Counterparty requests are answered only after a verified call-back (PH01 14.2), with status taken from the register.
+- Missed payroll cut-offs are covered by PH01 13.2 (reimbursement on claim). Payroll stays first in the queue (PH01 8.4).
+
+---------------------------------------------------------------
+LOG-READY ACTIONS (HKT, status)
+- 20:00: Recovered image offline FAIL; production HOLD (executed).
+- 20:00 to 20:30: Test record, image hash and mismatch traces preserved; data preconditions checked (scheduled).
+- 20:30: Mismatched items held in the live register if they map to real instructions (scheduled).
+- 21:00: Alternate-process clearance under PH01 8.2, or HOLD (scheduled; default HOLD).
+- 23:00: Preliminary root cause to the chair (scheduled).
+- Full-set RC1–RC8 rerun: held until the cause is explained.
+- PH01 9.3 gate: held.
+- Continuous: stops under A and B (trigger).
+>>>
+
+Sealed LC answer for C06:
+<<<
+LC SUBMISSION – C06 (Tue 17 Nov 2026, 20:00 HKT, H+36) – Units Q17a and Q17b
+Locked before I see colleagues' answers. All actions are simulated, for the facilitator to log. There was no facilitator handoff to LC for this card.
+
+C06 facts:
+- An offline lab test of a recovery image reconciled 118 of 120 instructions. The 2 mismatches are unexplained.
+- No recurring encryption activity was seen during the test window.
+- Some SMEs report missed payroll cut-offs.
+- The retained Hong Kong forensic firm asks for a copy of a diagnostic image that contains customer data.
+- Two counterparties are asking about unsettled instructions.
+
+Missing facts:
+- What exactly the firm needs the image for.
+- What customer data the image holds: retail, SME, how many records.
+- Whether a Board or Risk Committee meeting has already been held. No card or handoff records one.
+- The CFO's running remediation total.
+
+==================================================
+UNIT Q17a – Forensic firm request for the diagnostic image
+==================================================
+Decision
+- No copy of the full image leaves the bank now.
+- The firm receives a narrower data set: the system artefacts it needs, with all customer personal data masked. This is the default under PH01 16.2.
+- If the firm shows that its work needs the unmasked image, it examines it inside the bank's laboratory only.
+- LC and SEC give no written approval for a full copy to leave the bank at this point. We would consider one only if all three are shown:
+  - (i) the work cannot be done in the lab;
+  - (ii) the data has been minimised as far as possible;
+  - (iii) every condition below is met.
+
+Conditions for transfer and use
+1. Need statement. By 21:00 HKT the firm states in writing:
+   - the analysis it needs;
+   - why masked data or in-lab work would not do;
+   - the named analysts.
+2. Contract check. By 21:00 LC checks the master services agreement itself. Under PH01 6.5 it already contains the section 16 terms, but LC confirms rather than assumes. The terms required:
+   - use only for this incident and on the bank's instructions;
+   - confidentiality;
+   - processing in Hong Kong;
+   - no sub-contracting or onward disclosure without consent;
+   - immediate reporting of any loss;
+   - bank audit rights;
+   - return or destruction with a certificate.
+   If any term is missing, nothing is transferred until LC has a signed addendum.
+3. Minimisation.
+   - SEC's forensic lead prepares the extract (logs, binaries, configuration, metadata).
+   - Customer identifiers (names, HKID numbers, phone numbers, account data) are masked or tokenised.
+   - The DPO checks the masking before release.
+   - A SHA-256 manifest goes with it.
+   - Target: ready by 00:30 HKT 18 Nov, subject to SEC capacity. In-lab access can start at once.
+4. Transfer.
+   - Only by a bank-hosted encrypted transfer, or on bank-issued encrypted media collected by the evidence custodian.
+   - Never by email, the firm's own file-sharing, or any internet storage.
+   - Transfer record: from, to, time, purpose, signatures (PH01 6.3).
+   - Original evidence stays with the custodian; the firm works on verified copies.
+5. Use and access.
+   - Named analysts only, on a need-to-know basis.
+   - Kept separate from the firm's other clients' data.
+   - Attacker material is not uploaded to any outside service (PH01 6.6).
+   - Any request to the firm from a third party or authority goes to LC.
+6. Retention.
+   - The firm's copies are under LC's legal hold (PH01 17.1).
+   - When the engagement ends, or at LC's request, they are returned or destroyed within 30 days with a certificate, unless LC directs preservation (PH01 17.2).
+7. Records: evidence register, data release record, and decision log.
+
+Owners and timing
+- Decision: LC and SEC jointly (PH01 s.3), with the DPO and the forensic lead consulted.
+- Decision logged by 20:15 HKT.
+- Reply to the firm by 20:45, by call-back to a number on file, then in writing by a route that does not depend on corporate email unless SEC has logged email as safe.
+
+Recipient and channel
+- The retained Hong Kong forensic firm's engagement lead.
+- Data only by the transfer methods in condition 4.
+
+Basis: external
+- R10, Cap. 486 Personal Data (Privacy) Ordinance. Status: statute.
+  - DPP4(2), PDF p.169: a data user engaging a data processor "must adopt contractual or other means to prevent unauthorized or accidental access, processing, erasure, loss or use of the data transferred".
+  - DPP2(3), PDF p.167: contractual or other means to prevent transferred data "from being kept longer than is necessary".
+  - DPP2(4), PDF p.168: a data processor is a person who "processes personal data on behalf of another person".
+  - DPP3, PDF p.168: personal data "shall not, without the prescribed consent of the data subject, be used for a new purpose".
+  - Professional judgment: investigating a breach of the same data is arguably a directly related purpose. Masking removes most of the question.
+- R12, SPM SA-2 Outsourcing. Status: non-statutory guideline; applied by analogy to a service engagement.
+  - 2.5.2, PDF p.6: safeguards include confidentiality undertakings, "segregation or compartmentalisation" of data, and access "on a need basis".
+  - Footnote 1: the common-law duty of confidentiality covers corporate customers too, so SME data in the image is also protected.
+- R16b, HKMA circular "Customer Data Protection". Status: supervisory circular.
+  - Annex D, PDF p.5: controls against transmission of customer data through internet storage services.
+  - Annex E, PDF p.6: "strong data encryption" on portable media, and records of their use.
+- R08, SPM TM-G-1. Status: non-statutory guideline. 4.2.4, PDF p.18: production data should be "de-sensitised (i.e. not disclosing personal or sensitive information)". This is about testing, so I use it only as a general principle.
+
+Internal bank procedure (PH01 v1.0)
+- 16.2: "By default the firm receives a minimised data set with customer personal data masked. Full images are examined only inside the bank's laboratory. A full copy leaves the bank only with LC's and SEC's written approval."
+- Also relied on: 16.1 contract terms, 6.5 the master services agreement, 6.3 custody, 17.1 and 17.2 legal hold and retention, and s.3.
+- Conflict check: none. PH01 is stricter than the external sources and consistent with them.
+
+==================================================
+UNIT Q17b – Escalation to the Board
+==================================================
+Decision: escalate to the Board now.
+- The 24-hour tolerance for outbound domestic transfers and SME payroll was reached at about 08:00 HKT 17 Nov. It is now about 150%.
+- PH01 15.2 requires the Board or its Risk Committee to meet within 12 hours of reaching 100%. That window closes now, at 20:00 HKT.
+- No card or handoff records a meeting. LC therefore advises the CEO (CMT chair) to convene the Board or Risk Committee at once, by telephone or video, targeting 21:30 HKT tonight.
+- If a meeting was already held, this becomes an urgent update meeting with the decisions below. If none was held, the decision log records that the 12-hour limit was missed.
+
+Board paper: LC drafts the legal and authorities sections by 21:00. Legal advice goes in a separate privileged section (PH01 15.3).
+
+Items for the Board
+For the Board to note:
+1. Disruption against tolerance.
+   - Outbound transfers and SME payroll have been down for 36 hours or more against a 24-hour tolerance.
+   - Mobile transfer submission is still interrupted.
+   - SMEs report missed payroll cut-offs. Call volumes are high and some customers cannot reach the bank.
+   - Under OR-2 the Board "bears ultimate responsibility for ensuring that an AI remains operationally resilient".
+2. Recovery position.
+   - The candidate failed offline testing: under PH01 9.2, "One unexplained difference is a fail", and there are two.
+   - It cannot go to production until the mismatches are explained and it passes again. SEC's Q16 recommendation is attached.
+   - The status of the alternate payment process is the CEO's decision on SEC's clearance (PH01 8.2), reported to the Board for information.
+
+Decisions for the Board:
+3. Scope of recovery. The Board may narrow the scope, for example to payroll only (PH01 9.3), and must minute any change.
+   - LC's legal advice: the Board cannot waive any gate.
+   - A narrower scope must pass every check in 9.3 that applies to it.
+   - The failed candidate cannot be used for any scope until its own pass is achieved.
+4. Customer remediation.
+   - Under PH01 13.2, SME late-payment charges and other documented direct losses are reimbursed on claim.
+   - The CFO reports the running total.
+   - If the projection is likely to exceed the HKD 5 million incident total, LC recommends the Board approve a revised total in advance, so SME claims are not stalled. Only the Board or Risk Committee can do this (PH01 13.7).
+   - While a revised total is awaited, claims continue to be registered and acknowledged.
+5. Payment posture. The Board is asked to reaffirm the no-payment policy.
+   - No payment has been made and no departure is proposed.
+   - Gates (a)–(g) remain unconfirmed.
+
+For the Board to note:
+6. Data and authorities.
+   - 320 records confirmed and published; 18,000 unverified.
+   - A fake verification page is active and has been referred to the Police.
+   - Customer notification status.
+   - Deadlines: Cap. 653 Annex F, statutory 30 Nov (internal target 27 Nov); HKMA updates at 08:00 and 18:00 daily; PCPD updates; Police referral.
+   - The insurer's position.
+7. Third parties.
+   - The vendor credential compromise: reinstatement only on the PH01 7.5 gates; contract position.
+   - The forensic firm decision under Q17a.
+8. Privileged section (legal exposure):
+   - Cap. 653 s.28 compliance and the evidence gaps closed at C04;
+   - possible regulatory directions;
+   - PDPO DPP4 exposure and any PCPD investigation;
+   - customer and counterparty claims;
+   - the HKMA supervisory response.
+
+Owners and channels
+- CEO: convenes the meeting and decides any escalation (PH01 s.3), with LC consulted.
+- LC: drafts the legal and authorities sections and the privileged advice.
+- CFO: remediation total and insurer.
+- SEC and Payments Operations: recovery facts.
+- Board paper by hand, or by an encrypted Board route if SEC has logged it safe.
+- Meeting by telephone or video, with a Board minute.
+- Professional judgment: tell the HKMA in its next update that the tolerance has been exceeded and the Board is engaged.
+
+Basis: external
+- R06, SPM OR-2. Status: non-statutory guideline.
+  - 3.2, PDF pp.5–6: senior management should provide "regular and timely reports to the Board ... particularly when significant deficiencies could affect the delivery of the AI's critical operations".
+  - 3.4, PDF p.6: "The Board bears ultimate responsibility for ensuring that an AI remains operationally resilient".
+  - PDF p.3: disruptions "must not exceed" the tolerance for disruption.
+- R07, SPM TM-G-2. Status: non-statutory guideline. 2.1.1, PDF p.5: the Board and senior management "have the ultimate responsibility for business continuity planning and the effectiveness of their BCP".
+- No direct rule located that sets a timeframe for Board escalation in the external sources. Searched "Board" and "tolerance" in R06, R07, R13 and R14b. The timing comes from PH01.
+
+Internal bank procedure (PH01 v1.0)
+- 4.3: "When it reaches 100%, the CMT chair convenes the Board or its Risk Committee".
+- 15.2: meets "within 12 hours of: 100% of a tolerance reached; any decision reserved to the Board; a request from a regulator".
+- 15.3: Board paper contents; "Legal advice is in a separate privileged section."
+- Also relied on: 9.2, 9.3, 13.7 and 12.1.
+- Conflict check: none.
+
+No files were created.
+>>>
+
+Sealed COM answer for C06:
+<<<
+## COM submission for C06: Tuesday 17 November 2026, 20:00 HKT (H+36)
+
+I locked this before seeing colleagues' answers. There is no handoff for C06. All actions are simulated, for the facilitator to log.
+
+**What the card tells me**
+- **Confirmed:**
+  - The offline laboratory test on the recovery image reconciled 118 of 120 payment instructions. The 2 differences are unexplained.
+  - The lab saw no repeat of the encryption activity during its test window only.
+  - Some SMEs have missed payroll cut-offs.
+  - Two counterparties have asked for the status of their unsettled instructions.
+- **Unknown at this card:**
+  - The recovery position the CEO will approve (SEC under Q16, Board under Q17b).
+  - Whether the secondary process from C04 was activated, and whether it is still running.
+  - Which lines the C05 updates actually carried.
+  - How many instructions have been settled, are not settled, or have unknown status.
+- **Expected position: hold.** PH01 s.9.2 says "One unexplained difference is a fail", and s.9.3 says "Missing any item means hold". On these facts the restored system cannot pass the gate tonight, and nor can a narrower scope (s.9.3). Below I give wording for each possible decision. Nothing is released until the CEO's decision is logged.
+
+---
+
+## Q18 a. Customer status update
+
+### Decision
+Publish one self-contained update at 21:00 HKT. It reflects the recovery position the CEO has logged, and repeats no earlier text that I cannot verify.
+- **If the CEO has not logged a decision by 20:45:** the 21:00 update states the verified position (the restored system is not in use). A further update goes out at once when the decision is logged.
+- **If the Board decides later tonight:** a further update goes out at once on that decision.
+- **After that:** the next update is at 07:00 HKT on Wednesday, plus an immediate update on any change of service (PH01 s.11.2).
+- **Channels:** website status page, press release, official social media (text only, no link), app banner (if trusted), IVR, branch notices, and staff script v6.
+- **HKMA copy:** COM gives a copy to LC at release; LC sends it to the HKMA and asks for a receipt (PH01 ss.5.5 and 5.8).
+
+### Owners
+- **Approves:** the CEO, or the COO if the CEO is unreachable for 15 minutes. LC clears; SEC and Operations fact-check.
+- **Executes:** COM.
+- **Supplies facts:** the Head of Payments Operations gives the payment figures from the instruction register. COM gives the data-notification figures from the notification register.
+
+### Release conditions (PH01 s.2.3)
+| ID | Line | Verifier | Latest time | Default if not verified |
+|---|---|---|---|---|
+| V1 | Recovery position | CEO's logged decision, with every s.9.3 item evidenced for any production use | 20:45 | Version H below |
+| V2 | Status of the alternate process (running, paused, never activated) | Head of Payments Operations and SEC clearance log | 20:45 | Say "queued payments remain on hold" |
+| V3 | Any figures | Owner confirms from the record (PH01 s.11.4) | 20:45 | "Figures are being checked and will be given at 07:00" |
+| V4 | Data lines (320 notified; wider claim unverified) | SEC and the COM register | 20:45 | Remove any line that is not verified |
+
+**Fixed lines in every version:**
+- The test figures (118/120) are not published.
+- No claim that "the attack is over". The lab result covers only its test window.
+- No restoration time.
+- No mention of the vendor, the system or the bank's critical infrastructure status (PH01 s.11.3).
+
+### Version H: hold (expected)
+> "Lan Tidal Bank service update – 17 November 2026, 21:00 HKT.
+>
+> **Payments.** Our main payment system is still not working. We have tested a restored version of it offline. The tests found differences we have not yet explained, so we will not use the restored system for your payments until every check is passed. We will not take risks with the accuracy of your payments. We cannot yet give a time for full service.
+>
+> [If V2 says running: Queued payments continue through our alternative process: SME payroll first (earliest pay date), then payments due today or the next business day, then others in the order received. (V3 figures)]
+>
+> [If V2 says not running: Queued payments remain on hold until they can be processed safely. We will tell you as soon as that changes.]
+>
+> Each payment will be made only once. Please do not resubmit.
+>
+> **SME customers who missed payroll.** We are sorry. Fees caused by the disruption are waived. We will reimburse documented direct losses caused by the disruption, such as late-payment charges from a missed payroll cut-off. Tell your relationship manager, any branch or our call-back service; you will get a case reference and be told when to expect a decision. On request we will give you a letter confirming the delay was caused by the bank's service disruption, which you may show to your employees or others.
+>
+> **Customer information.** [V4 lines]
+>
+> **Scam warning.** We never ask you to verify your account through links, QR codes or social media, or ask for your password, PIN or one-time password.
+>
+> Next update by 07:00 HKT tomorrow, or sooner if service changes."
+
+### Version N: narrower mode, for example payroll only
+Usable only after the CEO logs that every item in PH01 s.9.3 has passed for that scope. On tonight's facts it cannot be used.
+> "We have started using a restored system for [SME payroll only], beginning with a checked batch of up to 20 payments. We will extend it only after each stage runs without any unexplained difference. Other payments [continue through our alternative process / remain on hold]."
+
+### Version S: staged recovery
+Same condition as Version N, with stages as set out in PH01 s.9.4.
+
+### Version R: stop or rollback, if any production activity is later stopped
+> "At [time] we paused payments from the restored system after our checks flagged an issue. No payment will be made twice; we are checking the status of each one and will contact you if we need to."
+
+### Basis
+- **R05, HKMA circular of 22 Jun 2010** (quotes checked against the scan):
+  - **p.1:** tell customers "whether the bank would reimburse any losses incurred by them and if so, how they can apply for compensation".
+  - **p.2:** include "the steps that affected customers need to take ... to gain or regain access to the relevant banking services or to protect their interests".
+  - **p.3:** copies of public communication materials go to the HKMA.
+  - **Why it applies:** the significant incident is still running and SMEs are now losing money.
+- **R09, SPM TM-E-1, s.8.2.2, p.33, with footnote 26:** messages must be "consistent and up-to-date". Footnote 26 gives "any estimated service resumption time" and how customers can "apply for compensation".
+  - **Missing fact:** a verified restoration time, so none is given.
+- **Internal bank procedure (PH01, v1.0):**
+  - **s.9.2:** "One unexplained difference is a fail."
+  - **s.9.3:** "Missing any item means hold."
+  - **s.11.2:** what each update must cover and when.
+  - **s.11.4:** figures only from a confirmed record.
+  - **s.13.1:** fees waived; staff may promise this at once.
+  - **s.13.2:** "late-payment charges from a missed payroll cut-off, are reimbursed on claim".
+  - **s.13.6:** claims route and case references.
+  - **s.13.7:** "customers are told when to expect a decision".
+- **Professional judgment:** the payroll-delay confirmation letter. LC clears its wording. It is not a payment, so the s.13.7 limits do not apply to it.
+- **Conflict check:** no conflict.
+
+---
+
+## Q18 b. Counterparties and other banks with unsettled instructions
+
+### Decision
+Give operational status to **every** counterparty holding unsettled items, not only the two that asked.
+- **Sequence:** a verified call first, then a written notice the same day.
+- **Scheduled updates:** 08:00, 13:00 and 18:00 daily until every item is settled or returned (PH01 s.14.3).
+- **Two-way purpose:** ask each counterparty to check its receiving-side records for items whose status is unknown. That independent record supports the duplicate and status controls in PH01 s.8.6(b).
+
+### Owners
+- **Contact:** the Head of Payments Operations makes the operational contact (PH01 s.14.1).
+- **Wording:** COM controls the wording (PH01 s.14.1).
+- **LC review:** LC reviews the template for any implied admission of liability. This review runs alongside and does not hold the contact (my judgment, since this is operational information).
+
+### Channels
+1. **The two requests:** before any reply, each is verified by calling back on the counterparty's number already on file (PH01 s.14.2).
+2. **Verified call** by the named Payments Operations duty manager.
+3. **Written notice** through the bank's established secure interbank operations channel, or by courier letter if that channel is unavailable.
+   - Not ordinary email unless SEC has logged corporate email as safe.
+   - Never through any link or contact route the counterparty supplied in its incoming request.
+
+### Timing (HKT)
+| Time | Action |
+|---|---|
+| 21:00 | Payments Operations lists all counterparties with unsettled items, and classifies each item from independent records as settled, not settled or unknown |
+| 21:30 | Verified calls to the two counterparties that asked |
+| 23:00 | Calls to all the other counterparties with unsettled items |
+| 23:30 | Written notices to all of them, so each gets its notice the same day |
+| Desk unreachable tonight | The attempt is logged; the written notice still goes tonight; the call is made at 08:00 |
+| 18 Nov onward | Updates at 08:00, 13:00 and 18:00 |
+
+Every contact is logged with time, channel, the person reached and a receipt (R07 s.4.7.2).
+
+### Core counterparty message
+> "Lan Tidal Bank – operational status of unsettled instructions, [date/time]. Our outgoing payment system remains disrupted, and a restored system is not yet in production. [Status of the alternate process, per V2.] Attached is the status of each instruction involving you (bank reference, value date, amount, status: settled / not settled / unknown). Items with unknown status are held and will not be resent until independent records show they did not settle. Please check your receiving records for the items marked 'unknown' and confirm through our verified contact whether they were received. Please do not act on any payment instruction, recall, or change of account or contact details said to come from us unless you have verified it by calling back on our numbers on your file. Next updates: 08:00, 13:00 and 18:00 HKT daily until all items are settled or returned. Contact: [named duty manager, number on file]."
+
+**Data minimisation (judgment).** The message carries only transaction references, amounts and value dates. It carries no customer identity or contact data beyond what is needed for payment matching, and no security or technical detail. The reason: 320 customer records have already been published.
+
+### Basis
+- **R05, p.1 to p.2** (checked against the scan): "Where necessary, the AI should also notify other affected AIs (so that they can in turn notify their affected customers) as soon as practicable."
+  - **Why it applies:** receiving banks can warn their own customers, such as SME employees, that expected payments are delayed.
+- **R07, SPM TM-G-2:**
+  - **s.4.7.1, p.13:** a strategy for communicating with "counterparties, business partners"; "ongoing and clear communication is likely to assist in maintaining the confidence of customers and counterparties".
+  - **s.4.7.2, p.14:** "Important conversations with external parties should be properly logged".
+- **R09, s.8.2.2, p.33:** consistent messages to "business partners".
+- **Internal bank procedure (PH01, v1.0):**
+  - **s.14.1:** Payments Operations handles operational contact; "COM controls the wording".
+  - **s.14.2:** "Every incoming request is verified by call-back to a number already on file before any reply."
+  - **s.14.3:** "a verified call and a written notice the same day, then updates at 08:00, 13:00 and 18:00 until every item is settled or returned".
+  - **s.8.6(b):** "an independent receiving-side record" establishes whether an item settled.
+- **No direct rule located in assigned sources:** no external rule sets the content or channel of counterparty notices; those choices are professional judgment. I checked the passages above again in R05, R07 s.4.7 and R09 s.8.2.
+- **Conflict check:** no conflict.
+
+---
+
+## Simulated log entries
+| Time | Entry |
+|---|---|
+| 20:45 | Conditions V1–V4 closed, or their defaults applied |
+| 21:00 | Customer update published (Version H unless the CEO logs otherwise); copy to LC for the HKMA; staff script v6 |
+| 21:00 | Counterparty list and item statuses ready |
+| 21:30 | Verified calls to the two counterparties that asked |
+| 23:00 | Calls to all other counterparties with unsettled items |
+| 23:30 | All written notices sent |
+| 18 Nov 07:00 | Next customer update |
+| 18 Nov 08:00 | Counterparty update |
+| 18 Nov 13:00 | Counterparty update |
+| 18 Nov 18:00 | Counterparty update |
+>>>
+
+Facilitator handoffs given to the roles for C06:
+SEC:
+Q13a | SEC's candidate (1): a new build from trusted media using only data from the pre-incident immutable backup, in an isolated recovery environment; the standby only if candidate (1) fails, under the same checks; the original gateway never repaired in place and kept under evidence hold; R0 hashed working copy of the backup on a joint SEC and LC release (forensic lead consulted), carried in one way by the custodian, the original untouched; integrity checks I1-I8 (backup timing before the earliest attacker evidence, an undetermined order not treated as pre-incident; immutability; hashes; indicator scan; data only, binaries from trusted media through a channel independent of the vendor; static data; rebuilt accounts and new keys; entry route closed) and separation checks S1-S7; condition: I1-I4 show the backup suitable, verifier SEC, 12:00 target, default HOLD that restore point, then the next-earlier immutable point if one exists, the standby only if candidate (1) fails; meanwhile service only on the alternate process if its clearance is current and its reconciliation ties, otherwise releases suspended; recovery status into the 18:30 Board paper | SEC for integrity and separation (IT Ops recovery team builds; forensic firm scans; evidence custodian handles the copy; Head of Payments Ops consulted; LC directed to co-sign R0 at 08:30; Chief Executive decides production after the gate; the Board may narrow the scope) | R0 08:30; checks I1-I4 and S1-S7 09:00-12:00; suitability condition 12:00; build 12:00-16:00; recovery input to the Board paper 18:00 HKT, 17 November 2026; every step gate-based, a passed time never releases a gate | Isolated recovery environment; change record and evidence register; decision log through the CMT room or phone bridge | Candidate (1) chosen; standby and original gateway held: executed in simulation at 08:00 HKT on 17 November. R0 working copy: released in simulation at 08:30 HKT (the Chief Executive directed LC to co-sign). Checks I1-I4 and S1-S7: executed in simulation from 09:00 HKT; apart from the facts on card C06, no card records their results, so whether the 12:00 suitability condition was met, or its default (HOLD that restore point, then the next-earlier point) applied, cannot be verified. Build from 12:00 and checks I5-I8: cannot be verified (they follow the suitability result). No card states whether the recovery image named on card C06 is the candidate (1) build. Whether the alternate process holds a current clearance cannot be verified (no card records SEC's C04 clearance or hold), so whether releases continued on it cannot be verified. Recovery input to the Board paper at 18:00: executed in simulation; its content is not recorded. Production use: not executed (HOLD until the PH01 s.9.3 gate is passed).
+Q13b | SEC's preconditions before any production data is used in testing: de-sensitisation recorded and checked (deterministic tokenisation, key held by the custodian) and the payments information owner's prior approval, otherwise that data set is not used and testing with it is held; checks RC1-RC8 on the full set (restore completeness, point-in-time match, everything since the backup classified with unknown items held, tie-out with the alternate process, duplicate and replay rejection, static data, harness-only end-to-end run, payroll totals); pass mark zero unexplained differences, one is a fail and the test is rerun, a sample recorded as a sample; an offline pass covers only the isolated candidate; then every PH01 s.9.3 gate item logged, then the s.9.4 stages under the s.9.5 stop rules | SEC for check design, test record and pass or fail (Payments Ops and the IT Ops recovery team execute; payments information owner approves the data; Chief Executive decides production after the gate) | Preconditions by 15:00; RC1-RC8 16:00-22:00 HKT, 17 November 2026; gate review only after a logged pass | Isolated recovery environment, test harness and test record; nothing touches a live payment network | Preconditions due by 15:00 (de-sensitisation record, the information owner's prior approval): no card records them; the stated default if either entry is missing is that the data set is not used and testing with it is held, so which applied cannot be verified. RC1-RC8 (16:00-22:00): cannot be verified (they depend on the build and the preconditions), and the window runs past this card. Apart from the facts on card C06, no card records the result of any of RC1-RC8. Gate review: on HOLD (no logged pass is recorded). Production: not executed (HOLD).
+LC: none.
+COM: none.
+
+Using this card, your facilitator handoffs and the three sealed role
+submissions, return one final record for each scored unit in this card.
+
+Unit ID | Original answer reference | CONFIRM or OVERRIDE | Reason |
+Final action and condition | Accountable owner | HKT time, deadline or
+trigger | Recipient and channel | Final external basis |
+Final internal basis | Dispatch instruction.
+
+Give a specific reason for each confirmation or override. Use OVERRIDE
+with "Missing recommendation" as the original answer reference when
+needed. For an unchanged, adequate citation or search record, you may
+reference the exact unit and field in its sealed answer. For any new or
+corrected basis, provide the exact location and short verbatim quote, or
+the search record and professional judgment required by the common prompt.
+For the dispatch instruction use EXECUTE NOW, SCHEDULE, HOLD, or NO ACTION
+and state any execution dependency. Finish with the order of any actions
+that depend on one another on this card.
