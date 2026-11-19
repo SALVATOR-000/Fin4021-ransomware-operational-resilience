@@ -1,0 +1,254 @@
+[Document ID: R16a] [Title: PCPD Data Breach Notification Form] [Version: Revised 06/2023] [PDF pages: 6]
+[Text layer of the PDF with the same name, one block per PDF page. The PDF is the authoritative copy.]
+
+=== PDF page 1 ===
+
+Data Breach Notification Form
+A data breach is generally taken to be a breach of the security of the personal data held by a data user, which
+results in exposing the data to the risk of unauthorised or accidental access, processing, erasure, loss or use.
+Depending on the circumstances of the case, the breach in question may amount to a contravention of Data
+Protection Principle 4 of the Personal Data (Privacy) Ordinance (the Ordinance).
+Although it is not mandatory under the Ordinance for data users to give data breach notifications, data users
+are encouraged to give such notifications timely to the Office of the Privacy Commissioner for Personal Data
+(PCPD), the affected data subjects and other relevant parties when a data breach has occurred.
+This notification form is for a data user to report a data breach to the PCPD and it may take about 10-15
+minutes to complete. You may refer to our “Practical Tips for Handling Data Breach Incident” at Annex for
+more information.
+Personal Information Collection Statement
+Please be advised that it is voluntary for you to supply to the PCPD your personal data. All personal data
+submitted will only be used for purposes which are directly related to this data breach notification and the
+exercise of the regulatory powers and functions of the Privacy Commissioner for Personal Data.
+You have the right to request access to and correction of your personal data held by the PCPD. Request for
+access or correction of personal data should be made in writing to the Data Protection Officer at the address:
+12/F, Dah Sing Financial Centre, 248 Queen’s Road East, Wanchai, Hong Kong.
+The personal data submitted may be transferred to parties who may be contacted by the PCPD during the
+handling of this case including agencies who are authorised to receive information relating to law enforcement
+or prosecution.
+I understand the above and I would like to submit a data breach notification on behalf of a data user.*
+* Mandatory # Please circle as appropriate
+BASIC INFORMATION OF THE DATA USER
+User Sector :  Private Sector Company/organisation name*:
+ Public Sector
+Hong Kong office’s correspondence address :
+Email address* :
+INFORMATION OF THE CONTACT PERSON
+Name of person making this notification*: Mr / Ms / Miss #
+Job Title : Country code (for non-Hong Kong phone number) :
+Contact phone number* :
+Are you the Data Protection Officer for your company/organisation? # Yes / No
+1 Revised 06/2023
+
+=== PDF page 2 ===
+
+PARTICULARS OF THE DATA BREACH INCIDENT
+This is a new notification / an update of a previous notification.*#
+Date of the data breach : When did your company/organisation become aware of the data breach?*
+(dd/mm/yyyy)
+(dd/mm/yyyy)
+Number of individuals affected*: Please specify :
+Are there any Hong Kong residents affected?*# Yes / No / To be confirmed
+Number of Hong Kong residents affected*: Please specify :
+Types of personal data involved* :
+ Name  Hong Kong identity card number  Passport number
+ Photograph  Date of birth  Address
+ Email Address  Telephone number  Health information
+ Financial information  Employment information  Social media account information
+ Academic information  Others, please specify :
+Did you engage a service provider / contractor to handle the above personal data? # Yes / No
+Details of the data breach*:
+(Summary of the cause/suspected cause of incident and how your organisation first became aware of the breach)
+2 Revised 06/2023
+
+=== PDF page 3 ===
+
+ASSESSMENT OF THE INCIDENT AND REMEDIAL ACTIONS TAKEN
+Cause/Suspected Cause of incident* :
+ Accidental Disposal  Cyberattack (e.g. hacking)  Email Leakage
+ Postal Leakage  Loss of Physical Documents  Loss of Electronic Devices
+ Employee Misconduct  Program Bug  Server Misconfiguration
+ Burglary  Others, please specify :
+Real Risks to Data Subject(s)* :
+ Threat to personal safety  Identity theft  Financial loss
+ Damage to reputation  Loss of business opportunities  Loss of employment opportunities
+ No real risk of harm to data subject(s)  Others, please specify :
+Summary of the remedial actions taken*:
+Were the affected individuals notified? *# Yes / No / No, will do so within ( ) days
+Has your company/organisation issued or does your company/organisation intend to issue a media
+statement? *# Issued / Intend to issue / No
+Have any other authorities been notified of the data breach? (e.g. Hong Kong Police Force) *# Yes / No
+Summary of the notification made to other authorities (if applicable)* :
+Please submit the completed form and other relevant documents
+concerning the data breach (if any) by the following channels:
+ By Post / In Person
+Address: Room 1303, 13/F, Dah Sing Financial Centre, 248 Queen’s
+Road East, Wanchai, Hong Kong
+ By Fax
+Fax number: 2877 7026
+ By Email
+Email address: dbn@pcpd.org.hk
+Signature :
+Name :
+Job Title :
+Date :
+3 Revised 06/2023
+
+=== PDF page 4 ===
+
+Practical Tips for Handling Data Breach Incident Annex
+Data Breach
+Incident Accidental Disposal / Loss of Physical Document or Electronic Storage Device
+Immediate
+Remedial
+Measures
+ Try to locate the lost document / portable storage device as soon as possible
+ If recovering the lost document / portable storage device is unsuccessful,
+contact the data subjects immediately
+Measures for
+Preventing
+Future
+Recurrence
+ Use designated bags with secured zip / lock to transit document with
+personal data
+ Store document / device in a locked cabinet / drawer
+ Maintain a record keeping track of document movement
+ Use less printout and adopt digitalisation of document as far as practicable
+ Arrange centralised destruction exercise regularly
+ Seek management’s approval before the use of portable storage device
+ Install Mobile Device Management software which can wipe the data from
+the portable storage device remotely if it is lost
+ Purge the personal data upon fulfilment of the original collection purpose
+Data Breach
+Incident Cyberattack (e.g. Hacking / Brute Force Attack / Ransomware Attack etc.)
+Immediate
+Remedial
+Measures
+ Disconnect the compromised device from the Internet and any network to
+which it is linked
+ Perform an offline complete scan of the computer network using anti-virus
+software. Ignore any pop-ups telling you to connect to the Internet. If any
+malware is found, follow the software’s instructions on how to quarantine
+or remove the malicious files
+ Change login details for the compromised device / software / database /
+system
+ Notify the relevant law enforcement agencies if identity theft or other
+criminal activities are or suspected to be committed
+Measures for
+Preventing
+Future
+Recurrence
+1.  Install a two tier firewall and enable end-point protection
+ Use most updated version of operating systems and anti-virus programs
+ Apply the latest security patches and virus signatures for all devices,
+including offline virtual machines
+ Set a limit on the number of requests in a minute to a user login page from
+a single IP address
+ Set up CAPTCHA1 on the login page to guard against brute force attacks
+ Do back up on a regular basis
+ Carry out network segmentation by dividing the corporate network into
+subnets and dedicating each subnet to specific needs and functions. Only
+those with “a need-to-know” can access specified domains
+A CAPTCHA is a program that protects websites against bots by generating and grading tests that
+humans can pass but current computer programs cannot. For example, humans can read distorted text
+but computer programs cannot.
+4 Revised 06/2023
+
+=== PDF page 5 ===
+
+Data Breach
+Incident Immediate
+Remedial
+Measures
+Measures for
+Preventing
+Future
+Recurrence
+Data Breach
+Incident Immediate
+Remedial
+Measures
+Measures for
+Preventing
+Future
+Recurrence
+Email or Postal Leakage
+ Try to recall the email / retrieve the letter if possible
+ If recalling / retrieving is unsuccessful, contact and request the unintended
+recipients to delete the email / destroy the letter immediately
+ Adopt four-eyes principle (i.e. counter-check the document by different
+staff) to ensure that all recipients’ names, contact information, content and
+/ or attachments are correct
+ Use open-window envelope for posting if possible
+ Minimise the kinds of personal data contained in an email
+ Disable autocomplete function of the email system to prevent sending email
+to a similar but incorrect email address
+ Name files properly in the first place such that the file name can truly reflect
+the content with an aim to minimising the chance of attaching wrong
+document in an email
+ Use shared drive for internal transfer of files containing personal data
+ Use strong password to protect email attachments containing personal data.
+Provide the recipient with the password of the attachment by another means
+Staff Misconduct
+ Disable the account / access right of the staff concerned
+ Notify the relevant law enforcement agencies if criminal activities are or
+likely to be committed
+ Install Data Loss Prevention system / tool to scan external outgoing emails
+and quarantine those with sensitive information, such as HKID number and
+credit card details. Management’s approval is required before the release of
+the quarantined email
+ Allow authorised access to personal data only on a case-by-case basis,
+need-to-use basis or role-based approach
+ Lock up restricted and confidential document at all time
+ Review the system log records proactively to detect any irregularity at an
+early stage
+ Perform full IT audit on departing staff upon their cessation of employment
+5 Revised 06/2023
+
+=== PDF page 6 ===
+
+Data Breach
+Incident Immediate
+Remedial
+Measures
+Measures for
+Preventing
+Future
+Recurrence
+Data Breach
+Incident Immediate
+Remedial
+Measures
+Measures for
+Preventing
+Future
+Recurrence
+Phishing
+ Disconnect the compromised device from the Internet and any network to
+which it is linked
+ Perform an offline complete scan of the computer network using anti-virus
+software. Ignore any pop-ups telling you to connect to the Internet. If any
+malware is found, follow the software’s instructions on how to quarantine
+or remove the malicious files
+ Change login details for the compromised device / software / database /
+system
+ Do not respond to any email that request you to provide login details or
+sensitive information (e.g. bank account details)
+ Avoid opening any suspicious email attachment
+ Carefully check the email address domain name for suspicious email
+ Hover over a URL in an email to see the true destination before clicking to
+ensure legitimacy
+ Install anti-phishing and anti-spam software
+ Arrange personal data security awareness training to staff
+Program Bug or System Misconfiguration
+ Disable the access to the concerned program / system / platform
+ Contact the responsible vendor immediately if the concerned program /
+system / platform is developed / maintained by a third party
+ Perform tests (including integrated tests, user acceptance test) to verify the
+program / system before moving it to the production environment
+ Carry out vulnerability scanning and penetration testing to the system
+regularly and after any significant changes
+ Check proper permissions have been set for files and folders on a regular
+basis
+ Enter contract / agreement with a vendor with good reputation and track
+record in the industry. The contract / agreement must incorporate robust
+privacy protection requirements
+6 Revised 06/2023

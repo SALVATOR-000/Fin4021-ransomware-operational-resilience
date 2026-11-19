@@ -1,0 +1,17 @@
+Using this card, your facilitator handoffs and the three sealed role
+submissions, return one final record for each scored unit in this card.
+
+Unit ID | Original answer reference | CONFIRM or OVERRIDE | Reason |
+Final action and condition | Accountable owner | HKT time, deadline or
+trigger | Recipient and channel | Final external basis |
+Final internal basis | Dispatch instruction.
+
+Give a specific reason for each confirmation or override. Use OVERRIDE
+with "Missing recommendation" as the original answer reference when
+needed. For an unchanged, adequate citation or search record, you may
+reference the exact unit and field in its sealed answer. For any new or
+corrected basis, provide the exact location and short verbatim quote, or
+the search record and professional judgment required by the common prompt.
+For the dispatch instruction use EXECUTE NOW, SCHEDULE, HOLD, or NO ACTION
+and state any execution dependency. Finish with the order of any actions
+that depend on one another on this card.
