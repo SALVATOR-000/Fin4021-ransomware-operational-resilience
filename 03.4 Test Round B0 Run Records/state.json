@@ -1,0 +1,29 @@
+{
+ "run": "B1",
+ "facilitator_session": "95776c3c-b7d7-4601-9612-14ede2bcfe53",
+ "agents": {
+  "SEC": "ab0fbe4033590e158",
+  "LC": "ad27b807566733fb5",
+  "COM": "a3c234250143c8765",
+  "CEO": "aeab662ee30eae708"
+ },
+ "turn": {
+  "SEC": 8,
+  "LC": 8,
+  "COM": 8,
+  "CEO": 9
+ },
+ "card_in_progress": null,
+ "cards_done": [
+  "C01",
+  "C02",
+  "C03",
+  "C04",
+  "C05",
+  "C06",
+  "C07",
+  "C08",
+  "Q25"
+ ],
+ "note": "turn = facilitator message number in each role transcript"
+}

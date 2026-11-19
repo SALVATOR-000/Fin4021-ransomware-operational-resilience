@@ -1,0 +1,7 @@
+C02 · Monday, 16 November 2026 · 09:30 HKT · H+1:30
+Facts at release. The attacker demands 6 BTC by 02:00 HKT on 17 November and claims to have copied customer files. The attacker provides a screenshot showing several rows of apparent identity data. Its origin is unverified. A Hong Kong support vendor operated a remote access account for the gateway and says it can preserve session logs on request. The verified secure filing channel is now available. Branch staff have received calls asking whether funds have disappeared. A reporter asks whether the bank has paid a ransom and requests a comment by 10:00 HKT.
+• Q04 · SEC. a. Decide how to validate the sample while limiting further exposure of customer data. b. Decide what evidence to request from the vendor and how to receive it.
+• Q05 · LC. a. Recommend a payment posture and specify the legal or other checks that would change or constrain it. b. Decide whether any contact with the attacker should be authorised at this point, and define who can authorise and conduct that contact.
+• Q06 · COM. a. Decide the wording and distribution of instructions for branch and contact-centre staff. b. Decide whether and how to answer the reporter before the deadline, taking account of the public status supplied by the facilitator.
+
+Facilitator handoff to SEC for C02: none.

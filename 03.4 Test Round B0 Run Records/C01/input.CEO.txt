@@ -1,0 +1,457 @@
+You are taking part in a simulated Hong Kong bank incident. Use only the
+released card, the facilitator's handoffs addressed to you, and the exact
+documents in your allowed source manifest. Search only within those files.
+Use professional expertise to explain judgment and label it as such. Treat
+unverified scenario statements as unverified. Describe simulated actions
+for the facilitator to log.
+
+For each assigned a/b unit, return:
+- Unit ID.
+- Decision and action, including any condition or hold.
+- Accountable owner and executing party if different.
+- HKT deadline, action time or observable trigger.
+- Recipient or operational destination and channel.
+- Basis and application to the facts known at this card.
+
+For a direct rule, give the document ID and title, exact section, paragraph
+or page and heading, and a short verbatim quote that establishes the rule.
+State its authority and why its trigger and scope apply. For an unnumbered
+document use the page, heading and paragraph position. A general principle
+may support your reasoning. Identify any detail it leaves to judgment.
+
+For a detail governed by professional judgment, state the judgment and
+its rationale. If a direct rule cannot be located, write "No direct rule
+located in assigned sources" and list the relevant files and exact search
+terms used, with any reading or search limitation. If an applicable rule
+exists but a fact needed to apply it is unknown, cite the rule and state
+the missing fact and conditional action.
+
+When PH01 appears in the allowed manifest, check it for the same decision
+detail. Cite its version, section and short verbatim quote using the label
+"Internal bank procedure". Record the external and internal support
+independently. If the manual conflicts with an applicable external
+requirement, identify the conflict and propose an action consistent with
+the external requirement. When PH01 is absent from your allowed manifest,
+mark the internal basis N/A.
+
+Reading note. Your only access to the allowed documents is the source tools:
+list_sources, search, read_page and view_scan_page. You have no other file,
+shell or web access. Search the text version first, then read the page before
+you rely on it. Cite a document by its document ID and PDF page, adding the
+section or paragraph number where the document has one. R05 is a scanned
+letter: cite it by PDF page and heading, and check a quotation against the page
+image before you quote it. When a search finds nothing, record the document IDs
+and the exact search terms you used.
+
+You are the CEO of Lan Tidal Bank. You own the final simulated decision
+on every scored unit. Wait for the facilitator to provide this card's
+sealed SEC, LC and COM answers or explicit missing-answer markers. Use
+the same allowed reference material as the other roles in this run.
+Resolve conflicts across their recommendations and state the authorisation
+and sequence for actions that depend on each other. Preserve the link to
+each original answer. A new condition that changes execution counts as
+an override. Mark CONFIRM if you select a branch explicitly stated in the original answer and keep its action, timing, recipient, and conditions as written. Mark OVERRIDE if you materially change any of those. Adding a reason or filling in a record field alone still counts as CONFIRM. You may issue a final decision for a missing recommendation.
+
+C01 · Monday, 16 November 2026 · 08:00 HKT · H+0
+Facts at release. Lan Tidal Bank Limited is a fictional Hong Kong-incorporated licensed bank with eight branches, 180,000 retail customers and 12,000 SME customers. The bank has effective critical infrastructure operator designation. Its domestic transfer and payroll processing is a core function of the designated infrastructure, and its payment gateway is a designated critical computer system. At 08:00 the bank confirms that unauthorised commands encrypted gateway components and disrupted outbound domestic transfers and payroll submission. Mobile customers can still view balances. Branches are open. Failover capability is unverified. The bank has a verified telephone route for critical infrastructure incident notification. Its terminal for the verified secure filing channel is currently unavailable. The dispatch log is empty.
+• Q01 · SEC. a. What will you isolate first, and how will you avoid unnecessarily disabling available banking services? b. What evidence will you secure before systems are changed, and how will you record its custody?
+• Q02 · LC. a. Decide the initial HKMA reporting action, including what information to send now. b. Separately decide whether a critical infrastructure incident notification is triggered. Specify the awareness point, applicable time limit, recipient and feasible initial channel.
+• Q03 · COM. a. Decide how and when to alert affected or likely affected customers about the service disruption. b. Decide whether to publish a public holding statement, through which channel and with what approval.
+
+Sealed SEC answer for C01:
+<<<
+SEC (Information Security Lead), locked response for C01, Monday 16 Nov 2026, 08:00 HKT (H+0). This answers only Q01a and Q01b. No handoff was received for SEC.
+
+Facts I take as confirmed from the card: unauthorised commands encrypted payment gateway components. Outbound domestic transfers and payroll submission are down. Mobile balance view still works and branches are open.
+
+Facts I treat as unverified: whether the attack is still spreading, how the attacker got in (route, credential, vendor path), whether failover works or is clean, whether the filing terminal is part of the affected estate, whether any data was taken, and whether corporate email is safe.
+
+All actions below are simulated, for the facilitator to log. I assume severity 1 was declared at 08:00 (PH01 4.1: "a critical operation is disrupted"). The facilitator should confirm the declaration time, because every internal timer below runs from it.
+
+== Q01a: What I isolate first and how available services are protected ==
+
+Decision and action:
+1. **08:00–08:10: confirm whether the attack is spreading.** I run a triage of no more than 10 minutes using EDR/SIEM telemetry: are new encryption events, new command executions or new hosts touched outside the gateway segment?
+   - If anything is still spreading, I do not wait for the 10 minutes or for evidence capture. Containment goes first.
+   - If nothing is spreading, volatile capture (Q01b) runs inside the same 10-minute cap.
+2. **By about 08:10: isolate at the network layer.**
+   - **Who executes:** Network/firewall operations, on my instruction, under an emergency change record.
+   - **What changes:**
+     - The payment-gateway segment is put into quarantine: block all inbound and outbound traffic except a single forensic/management VLAN reachable only from the incident response jump host.
+     - The route the attacker used is blocked: the admin, jump, remote-access or vendor path into that segment. Which path it was is unverified. Until it is identified, I suspend all privileged and vendor remote sessions into the gateway segment through the privileged access system.
+     - Gateway service and admin accounts known to be used in the unauthorised commands are disabled and their sessions and tokens revoked, after a session/token state capture of no more than 10 minutes.
+   - **What does not change:** hosts are not powered off, rebooted, restored or failed over. Encrypted hosts stay powered on in quarantine.
+3. **Services kept running:**
+   - Mobile balance view, branch systems, the core ledger, card authorisation and the channels leading into the gateway stay up.
+   - At the boundary of those systems, I block only the specific flows to and from the quarantined gateway segment. Flows that are needed and inspected stay open.
+   - The incoming customer channel will fail because the gateway is down. The front end should reject or queue new submissions with a service message, not let them silently sit "in flight". That needs Payments Operations and COM coordination.
+4. **Stop and widen triggers:**
+   - Widen isolation to a working service only if I find active spread to it, such as encryption, attacker commands or lateral logons. If that would remove a working customer service, I first consult the Head of IT Operations and the CMT chair and log it.
+   - Precondition before quarantine is applied: IT Operations confirms the console or out-of-band management route, so we do not lock ourselves out.
+   - Validation after quarantine: run reachability tests from both sides of the boundary, and check that mobile balance view and branch systems are healthy. Log the results and the time.
+5. **Failover is on hold.** No failover or standby activation until:
+   - Failover is shown not to share hosts, accounts, keys or a network path with the affected systems, and
+   - The evidence hold for the gateway is released.
+   This hold is a security condition. The default if it is not cleared is to hold or use an approved alternate process. The default is never to go ahead. Alternate payment processing needs my written clearance before the CMT chair can activate it.
+   Condition per PH01 2.3: I verify it; the latest time is 12:00 HKT, which is 50% of the 24h tolerance; the default is hold; I log a close-out when verified.
+
+Owner: SEC decides. Network/firewall operations and IT Operations execute. I must consult the Head of IT Operations. I must also consult the CMT chair only if a working customer service would be removed.
+
+Timing:
+- Spread triage ends 08:10.
+- Isolation is in place as soon as possible, target 08:10–08:15.
+- First SEC status report to the CMT chair at 09:00, then hourly until containment is confirmed.
+- The transfer/payroll tolerance (24h, PH01 4.2) runs out at 08:00 on 17 Nov. 50% is reached at 20:00 on 16 Nov, when the chair tells the Board chair.
+
+Recipient and channel:
+- Firewall/network change through the emergency change record.
+- Decision log entry (PH01 Annex A fields).
+- Verbal briefing to the CMT chair and Head of IT Operations in the CMT room.
+
+Basis:
+- **External:**
+  - R05, HKMA circular "Incident response and management procedures", 22 Jun 2010, PDF p.1, heading "Immediate incident response". Quote checked against the scan: "The AI concerned should immediately analyse the cause of the incident and as soon as practicable rectify or contain the problem. The top priority should be to safeguard the interests of customers who have been or may be affected by the incident."
+    - Authority: HKMA supervisory circular to all AIs.
+    - Why it applies: this is a significant incident that disrupts a critical payment service.
+    - Left to judgment: how containment is done.
+    - Application: contain fast, but keep balance view and branches running because that protects customers.
+  - R09, SPM TM-E-1 V.4, PDF p.32, s.8.2.1: "The top priority should be to protect the interests of customers who have been or may be affected by the incident." It applies because mobile/e-banking transfer submission is affected.
+  - R02, OCCICS Code of Practice (Generic) v1.0, PDF p.32, s.7.2.3(a)(v)(1). Playbooks must cover "Containing the incident to prevent further harm". This sits under Division 3 obligations (emergency response plan), which apply to a designated CI operator.
+    - Authority: Code issued under Cap. 653 s.8. It is not subsidiary legislation, but the Commissioner may issue directions with reference to it (s.1.1.4, PDF p.4).
+    - Left to judgment: technical method and sequencing.
+- **Internal bank procedure:** PH01 v1.0 (effective 1 Oct 2026).
+  - s.7.1 "Isolation order": "SEC isolates at the network layer first: the affected segment and the route used. Hosts are not powered off. Services still working are kept running unless SEC finds active spread to them."
+  - s.3, Authority matrix, row "Isolate a system or segment": SEC decides; consult the Head of IT Operations, and the CMT chair if a working customer service will be removed.
+  - s.7.3 covers session/token capture of 10 minutes at most before termination.
+  - s.8.2 covers SEC's written clearance for alternate processing.
+- **Conflict check:** none found. PH01 is consistent with R05, R09 and R02.
+- **Professional judgment:** I isolate at the network layer rather than shutting hosts down because that keeps volatile memory and encryption keys that may be in memory. Blocking the gateway at the boundary, rather than shutting down channels, keeps the services that are currently working (balance view, branches) available.
+
+== Q01b: Evidence secured before systems change, and custody ==
+
+Decision and action:
+1. **08:00: evidence hold.** I place an evidence hold on the payment gateway hosts and their supporting systems, including directory/admin hosts used in the commands and the jump/PAM path once identified. The hold blocks reboot, rebuild, restore, failover and deletion without my logged release for each item. IT Operations and Payments Operations are told at once.
+2. **08:00–08:10: before containment changes anything, capped at 10 minutes, and only if nothing is spreading:**
+   - Memory images of one or two representative encrypted gateway hosts.
+   - Running processes and network connections.
+   - Active sessions and token state for the accounts used.
+   - Firewall/PAM session snapshots.
+   If anything is spreading, containment goes first and I take these from the isolated hosts afterwards.
+3. **After isolation:**
+   - Disk images of the affected hosts.
+   - Exports of gateway, OS, directory, PAM/session-recording, firewall, EDR and SIEM logs.
+   - Copies of the ransom note and encrypted samples. These are handled only inside the evidence process: no outside uploads and no visits to attacker links.
+   - Gateway transaction and queue state at failure, for Payments Operations to reconcile in-flight items.
+   - Change records.
+   - Clock offset readings against the bank's primary time source.
+4. **Log retention:** I ask IT Operations to stop log rotation and backup recycling for in-scope systems now. LC issues the written legal hold. The immutable backups are protected: they are not mounted on any affected network.
+5. **Suppliers:** I draft written preservation and production requests for any supplier that supports, hosts or has remote access to the gateway by 09:00. LC clears the wording. The vendor relationship owner sends them. Which suppliers are in scope is unknown until the vendor list is checked against the third-party register.
+6. **Retained forensic firm:** I engage it at severity 1. Sharing incident data with it is decided jointly by LC and SEC.
+
+Custody:
+- **Custodian:** an SEC designate who does not administer the gateway.
+- **Fields recorded for each item (PH01 Annex B):**
+  - evidence ID, description and source system;
+  - HKT acquisition time and clock offset;
+  - collector, witness, and tool with version;
+  - SHA-256 hash and storage location (offline, encrypted, access-controlled);
+  - every transfer (from, to, time, purpose, signatures) and every access.
+- **Analysis:** only on verified hash copies.
+- **Scope rule:** production artefacts stay held. Analysis copies are offline only. Nothing goes back to production.
+
+Dependency (time-critical): the secure filing terminal is unavailable.
+- By 08:30 HKT I will log whether it is within the affected estate or under evidence hold, and whether it can be released.
+  - If it is not affected, I release it to LC.
+  - If it is affected, I hold it, image it later, and say so. LC then uses the Compliance standby device, if logged as working and enrolled, or another permitted route.
+- By 08:30 I will also log whether corporate email is safe. Until then I treat it as not safe.
+- Neither check delays any external report. LC's verified telephone route is unaffected.
+
+Owner: SEC. The evidence custodian and SEC forensic analysts execute, with the retained forensic firm assisting. LC owns the legal hold and clearance of supplier requests.
+
+Timing:
+- Hold at 08:00.
+- Volatile capture by 08:10, capped.
+- Filing terminal and email logs by 08:30.
+- Supplier preservation requests drafted by 09:00, escalated if not confirmed within 4 hours.
+- First evidence register summary in the 09:00 status report.
+
+Recipient and channel:
+- Evidence register.
+- Decision log.
+- Emergency change record.
+- Supplier requests sent in writing to the contract contact, with call-back confirmation. Records are received only through bank-hosted encrypted transfer or bank-issued encrypted media, never by email.
+
+Basis:
+- **External:**
+  - R02, s.7.2.3(a)(v)(2), PDF p.32. Playbooks must cover "Digital evidence handling, including identification, collection, acquisition, preservation of evidence and chain of custody".
+  - R02, s.7.2.3(f), PDF p.33: "When balancing the need for timely system recovery and digital evidence handling, the CI operator should prioritize incidents which had impacted business operations, require swift damage containment or need immediate system recovery. Otherwise, more time should be allocated to evidence collection."
+    - Application: business operations are affected, so the time spent on evidence before containment is kept short. How long is left to judgment; PH01 sets 10 minutes.
+  - R02, s.7.2.3(h), PDF p.33: engage "capable incident response and forensic examination personnel".
+  - R03, HKMA Sectoral Code for Designated AIs, PDF p.18, s.6.2.23(c): logs "should be retained for a minimum period of 6 months. Such logs should be secured so that they cannot be deleted or altered". This applies because the gateway is a designated critical computer system (CCS). Missing fact: whether current retention and immutability meet this. To be confirmed.
+  - R01, Cap. 653, s.36(2)(b), PDF p.52. The Commissioner may by written notice require the operator "to preserve the state of the system". This is context only and not triggered at C01. Keeping held systems in their current state makes it easy to comply with any such notice.
+- **Internal bank procedure:** PH01 v1.0.
+  - s.6.1 "Evidence hold": "No reboot, rebuild, restore, failover or deletion on a held system without SEC's logged release for that item."
+  - s.6.2: "Collection of volatile evidence before containment is capped at 10 minutes."
+  - s.6.3 "Custody": "The evidence custodian is an SEC designate who does not administer the affected systems."
+  - Also: s.6.4 (clocks), s.6.6 (attacker material), s.6.7 (supplier preservation requests within one hour), s.5.6 and 5.7 (30-minute terminal and email logs), s.17.1 (LC legal hold), Annex B.
+- **Conflict check:** none found. PH01 s.6.2 matches R02 s.7.2.3(f).
+
+== Facts I pass to the incident team (CMT/LC/COM) at the 08:15 briefing and 09:00 report ==
+1. **For LC:**
+   - Confirmed and unverified items for the HKMA and Cap. 653 reports: gateway encrypted by unauthorised commands; core function (domestic transfers and payroll) disrupted from about 08:00 or earlier. The exact detection time comes from the SIEM timeline.
+   - Containment checkbox status for the Cap. 653 forms (R02 Annex, PDF p.45: segments isolated, accounts removed, IPs blocked).
+   - Filing terminal and email status by 08:30.
+2. **For COM and Payments:**
+   - Balance view and branches are working and are being kept running.
+   - The transfer/payroll restoration time is unknown.
+   - Failover is unverified and on hold.
+   - New transfer submissions should be refused or queued visibly, not accepted silently.
+3. **For the DPO/LC:** there is no evidence yet of data access or exfiltration. This is unverified. Exfiltration analysis is running, and any indicator will be escalated at once.
+4. **For Payments:** the snapshot of in-flight and queued instructions has been preserved. Items in flight stay "status unknown" until independent records show their status.
+5. **Open dependencies:**
+   - Attacker entry route and credential (drives vendor lockout).
+   - Supplier list for preservation requests.
+   - Clean status of failover and the immutable backup.
+   - 12:00 security-clearance checkpoint for alternate processing.
+>>>
+
+Sealed LC answer for C01:
+<<<
+LC response to C01 (Monday 16 Nov 2026, 08:00 HKT, H+0). It covers Q02a and Q02b only. Locked before I see colleagues' answers. Facilitator handoff to LC: none. All actions below are simulated, for the facilitator to log.
+
+Facts I rely on, as released: at 08:00 the bank confirmed unauthorised commands that encrypted parts of the payment gateway, which is a designated critical computer system. Outbound domestic transfers and payroll submission are disrupted, and these are a core function of the designated infrastructure. Mobile balance view still works and branches are open. Unverified: whether failover works, the root cause, how far the attack has spread, and whether any data was exposed. Phone route to the Commissioner: verified. Terminal for the verified secure filing channel: unavailable. Dispatch log: empty.
+
+---
+
+**Q02a – Initial HKMA reporting**
+
+- **Decision and action:** Report to the HKMA now by telephone to the bank's HKMA supervisory contact, using the printed Regulator Contact Register. Follow up with a short written initial report by a route that does not rely on the affected systems or on corporate email until SEC has logged email as safe. No internal review, approval or extra fact-finding may hold this report. Internal review runs alongside it.
+- **What to send now:**
+  - Bank name; LC as contact, with call-back numbers.
+  - Awareness time: 08:00 HKT, 16 Nov.
+  - Nature: confirmed unauthorised commands encrypted parts of the payment gateway (a ransomware-type act). Treated as a cyber attack.
+  - Impact: outbound domestic transfers and payroll submission disrupted. Mobile balance view working. Branches open.
+  - Customer exposure: 180,000 retail and 12,000 SME customers. The number actually affected is unverified. Payroll timing is a risk for SME customers.
+  - Marked UNVERIFIED: whether failover works, root cause and spread, data exposure (none confirmed so far), and whether there is an extortion demand (none received so far).
+  - Actions under way: containment and evidence preservation (SEC), CMT convened.
+  - Parallel filings: the bank is notifying the Commissioner under Cap. 653 s.28 (Q02b). COM is preparing customer and public communications, and copies will be sent to the HKMA.
+  - Next update time.
+- **Owner:** LC, who owns all regulator reports (PH01 s.5.1). Executing party: LC duty officer. SEC supplies the technical facts.
+- **Timing:**
+  - Call target: by 08:30 HKT. The rule says "immediately"; the 30-minute figure is my professional judgment.
+  - Written confirmation: target 10:00 HKT.
+  - Updates: every 4 hours for the first 24 hours (12:00, 16:00, 20:00, 24:00, 04:00, 08:00), then 08:00 and 18:00 daily. Also update at once on any of: BCP activation, confirmed data exposure, an extortion demand, a change in service status, or a public statement.
+- **Recipient and channel:** HKMA supervisory team, by phone. Then written follow-up by a route the HKMA accepts. I could not find an HKMA filing channel in the assigned sources, so I will ask the HKMA on the call which route it accepts and log the answer.
+- **External basis:**
+  - **R05**, HKMA circular "Incident response and management procedures", 22 Jun 2010 (supervisory circular, not statute). PDF p.2, heading "Reporting incident to the HKMA". Quote checked against the scan image: "once an AI has become aware that a significant incident has occurred, the AI concerned should notify the HKMA immediately and provide it with whatever information is available at the time." Also: "an AI should not wait until it has rectified the problem before reporting the incident to the HKMA."
+    - Why it applies: losing a critical payment channel for a large customer base through a cyber attack is a "significant incident". That classification is my professional judgment, because the circular does not define the term.
+  - **R09**, SPM TM-E-1, V.4, s.8.2.5, PDF p.33 (statutory guideline status not verified; HKMA Supervisory Policy Manual guidance). Quote: "should notify the HKMA promptly in accordance with the relevant arrangements set out by the HKMA from time to time." It does not specify the channel.
+  - **R07**, SPM TM-G-2, V.2, s.1.3.3, PDF p.5. Its classification (p.1) is "A non-statutory guideline issued by the MA as a guidance note". Quote: "AIs should inform the HKMA promptly if their BCP is activated."
+    - Status at this card: BCP activation has not been declared and failover is unverified.
+    - Conditional action: as soon as the CMT chair declares BCP activation (PH01 s.4.4), LC tells the HKMA promptly and sends periodic progress reports.
+- **Left to judgment:** the exact minutes behind "immediately", the HKMA channel, and how detailed the first report is.
+- **Internal bank procedure (PH01 v1.0):**
+  - s.5.1: "LC owns every report to a regulator or authority".
+  - s.2.4: "The initial report goes on the facts held at the time, with unverified items marked as unverified".
+  - s.5.8: "LC updates the HKMA supervisory contact every four hours during the first 24 hours".
+  - s.5.7: "An open email check never delays a report."
+  - s.1.4: internal times "never extend an external deadline."
+  - No conflict with the external requirements.
+
+---
+
+**Q02b – Critical infrastructure incident notification under Cap. 653 s.28**
+
+- **Decision:** Notification is triggered. This is a serious incident, so the 12-hour limit applies.
+- **Action:**
+  - Notify the Commissioner of Critical Infrastructure (Computer-system Security) now, by the verified telephone route.
+  - On the call, give the information R02 7.3.6(b) requires:
+    - (i) Nature: unauthorised commands encrypted gateway components (ransomware-type), disrupting a core function.
+    - (ii) Critical computer system involved: the payment gateway.
+    - (iii) Brief summary: discovered and confirmed 08:00 HKT; outbound domestic transfers and payroll disrupted; failover, root cause and data exposure unverified; containment under way.
+  - Log the time, the person reached, any reference number and a summary (PH01 s.5.5). Ask for a reference or receipt in the same call.
+  - Then file the specified form (Annex E or the sector form) through the designated secure channel within 48 hours of the call.
+  - Because the normal terminal is down:
+    - At declaration, Compliance tests and logs the standby filing device and whether it is enrolled for this channel.
+    - SEC logs within 30 minutes whether the terminal can be released.
+    - If neither works, LC asks the Commissioner's office during the call which alternative route it accepts, and logs the answer (PH01 s.5.6).
+- **Owner:** LC. Executing party: LC duty officer. SEC supplies the facts.
+- **Awareness point:** 08:00 HKT, 16 Nov 2026, when the bank "confirms" the unauthorised commands. That meets R02 7.3.5's test of "a reasonable degree of certainty".
+- **Clocks:**
+  - (1) Initial notification: as soon as practicable, and no later than **20:00 HKT on Mon 16 Nov**. Internal target: phone call by 09:00 HKT.
+  - (2) Written record in specified form: within 48 hours of the phone notification. Example: a call at 09:00 Mon means a deadline of 09:00 Wed 18 Nov. The exact time is set from the logged call time. Target: Tue 17 Nov.
+  - (3) Written report in specified form (Annex F or sector form): within 14 days after the awareness date, which I compute as by **Mon 30 Nov 2026**. That date count is my professional judgment and should be checked by a second LC officer under PH01 s.5.3. Internal target: 27 Nov. Supplementary information follows as facts emerge.
+- **Recipient:** the Commissioner, not the HKMA.
+  - Section 28 sits in Part 4, Division 3 (R01 PDF p.43). Under s.2 (PDF p.9), "category 3 obligation means an obligation imposed by Division 3 of Part 4".
+  - R03 s.1.1.3 (PDF p.3) directs designated AIs to the Commissioner's guidance for category 3 obligations.
+  - Tell the HKMA that the filing has been made, as part of the Q02a updates.
+- **External basis:**
+  - **R01**, Cap. 653 Protection of Critical Infrastructures (Computer Systems) Ordinance (statute; verified copy, version date 10 Sep 2026).
+    - s.2 definition, PDF p.10: an event involving "access, without lawful authority" or another unlawful act that "has an actual adverse effect on the computer-system security of the critical computer system". Applied: unauthorised encryption of a designated system meets both limbs.
+    - s.28(1), PDF pp.43-44: "If a CI operator becomes aware that a computer-system security incident has occurred in respect of a critical computer system ... the operator must notify the Commissioner".
+    - s.28(2), PDF p.44: "as soon as practicable and in any event within the specified time". Under s.28(2)(b)(ii), a notification not made in the specified form must still "include information on the nature of the computer-system security incident and identify the critical computer system concerned".
+    - s.28(3): a later written record in specified form. s.28(4): a written report.
+    - s.28(5)-(6): failure is an offence, with a fine of up to $5,000,000 on indictment.
+    - Schedule 6, item 1(a), PDF p.97: "If the computer-system security incident concerned has disrupted, is disrupting or is likely to disrupt the core function ... 12 hours after the CI operator concerned becomes aware of the incident." Item 2: "48 hours after the notification concerned is made under section 28(1)." Item 3: "14 days after the date on which the CI operator concerned becomes aware".
+    - Applied: disruption of the core function is confirmed, so the 12-hour limit applies, not 48 hours.
+  - **R02**, OCCICS Code of Practice (Generic), v1.0 (a code of practice under Cap. 653 s.8; per s.1.1.4 it "is not subsidiary legislation", but can be admitted in evidence under R01 s.9).
+    - s.7.3.3(b), PDF p.35: example "Ransomware attack that causes suspension of an essential service".
+    - s.7.3.4, PDF p.35: serious incident "must be notified within 12 hours".
+    - s.7.3.5, PDF p.36: awareness test.
+    - s.7.3.6(b), PDF p.36: "the CI operator may first make the notification to a designated telephone number ... and then submit a specified form ... within 48 hours".
+    - s.7.3.6(c): sector-specific requirements still apply, so Q02a runs alongside this.
+- **Missing facts and conditions:**
+  - Whether the bank's verified phone number is the Commissioner's "designated telephone number". I treat it as such because the card calls it the verified route for CI incident notification. If it turns out not to be, a notification that states the nature of the incident and names the system still satisfies s.28(2)(b)(ii).
+  - Whether a filing route will be available for the 48-hour written record. LC asks on the call; condition owner is Compliance/LC.
+  - No internal condition may hold this call (PH01 s.2.4).
+- **Internal bank procedure (PH01 v1.0):**
+  - s.5.2 names "Cap. 653, section 28 and Schedule 6, and the Commissioner's Code of Practice section 7.3" and "does not restate their triggers, recipients or time limits".
+  - s.5.3: a deadline tracker, with each clock "checked by a second LC officer within 30 minutes".
+  - s.5.6: standby filing device and alternate route.
+  - s.4.1: Severity 1, "a critical operation is disrupted".
+  - No conflict with the external requirements.
+
+---
+
+**Governance and clearance**
+
+- No legal or governance condition holds either report.
+- LC clears the content. The CMT chair is informed.
+- SEC confirms facts in parallel, and its corrections go in the next update.
+
+**Outside the assigned units, for the facilitator's awareness only:**
+- Under PH01 s.3, a Police report is LC's decision. I am flagging it for the CMT and not deciding it in this unit.
+- PCPD notification is not triggered on current facts, because no data exposure is confirmed. LC will reassess if exposure is found.
+>>>
+
+Sealed COM answer for C01:
+<<<
+COM response for C01, Q03a and Q03b (Monday 16 Nov 2026, 08:00 HKT, H+0). I locked this response before seeing any colleague's answer. No handoff was received.
+
+Summary: affected customers get a link-free alert and calls from 08:45 HKT. A public holding statement goes out by 09:00 HKT. Both need CMT chair approval and LC clearance, and SEC and Operations must check every factual line. Neither waits for LC's HKMA report or the Cap. 653 notification, which are on separate tracks. All actions below are simulated, for the facilitator to log.
+
+---
+## Q03a: Alerting affected and likely affected customers
+
+**Decision and action**
+1. **Audience.** All customers are treated as likely affected, because outbound domestic transfers and payroll submission are down bank-wide. The approval asked of the CMT chair is "all 180,000 retail and 12,000 SME customers, likely affected".
+   - **Priority 1:** SME customers with payroll batches or value dates of today or the next business day. These follow the same urgency order as PH01 8.4, never customer size.
+   - **Priority 2:** retail and SME customers with pending or rejected outbound instructions since the disruption began.
+   - **Priority 3:** everyone else.
+2. **Channels**
+   - Priority 1 SMEs get a personal call from a named relationship-manager or contact-centre team. The team offers to call back on the number printed on the customer's card, or on the number on file.
+   - Everyone gets a short SMS or app push **alert with no link**. App push is used only if SEC logs that the push platform is outside the affected segment. Otherwise SMS only, from verified contact records; any contact details changed after the incident began are checked by Fraud first.
+   - The same text goes into the contact-centre IVR message, frontline scripts and branch counter notices.
+   - The secure inbox is not used until SEC logs that it is trusted. Any written follow-up goes by letter.
+   - Corporate email is not used until SEC logs it safe.
+3. **Wording.** This is conditional on approval, and every factual line needs SEC and Operations sign-off.
+   - Confirmed: "Since this morning, Lan Tidal Bank's outbound local transfers and payroll submission are disrupted because of a cyber security incident we are handling. You can still view balances in the mobile app, and our branches are open."
+   - Being verified: "We are working to restore the service and are checking alternative processing. We will give a restoration time once it is confirmed."
+   - What customers can do: "Keep this message for reference. Do not resubmit the same payment repeatedly. For urgent payments or payroll, call [hotline on the back of your card] or your relationship manager. Fees and charges caused by this disruption will be waived. Documented direct losses caused by the disruption, such as late-payment charges, can be claimed through our hotline, your relationship manager or a branch. We will never send you a link or ask for your password or one-time password. Next update by [time]."
+   - Not said: the attacker, vendor or affected system, the bank's designation status, unconfirmed figures, or any promise that branches can make outbound transfers (that is not confirmed).
+4. **Supporting actions**
+   - Brief frontline staff and the contact centre by 08:40. COM approves the script and LC clears it.
+   - Ask Operations to add hotline capacity and consider extended branch hours.
+   - Open the delivery register at the first send. Approval and scheduling do not count as delivery. Completion figures go to LC daily.
+
+**Owners**
+- Audience approval: CMT chair (Chief Executive).
+- Text: LC clears it; SEC and Head of Payments Operations confirm the facts.
+- Drafting, sending and the register: COM.
+- Calls: Payments Operations, RMs and the contact centre.
+- Push-platform and inbox trust: SEC.
+
+**Timing (HKT)**
+- 08:20: draft to the CMT.
+- 08:40: approvals done and scripts live.
+- 08:45: first Priority 1 calls and the SMS batch start. All alert batches dispatched by 10:00 (my judgment).
+- Precondition logged under PH01 2.3: CMT chair approval and LC clearance by 08:40, verified by COM. If the chair is not reached by then, the COO approves as alternate. The default is to go ahead with the confirmed-facts-only text. Any line that is not confirmed is dropped, and the missing confirmation is logged afterwards.
+
+**Basis (external)**
+- **R05**, HKMA circular "Incident response and management procedures", 22 Jun 2010, PDF p.1, heading "Customer notifications" (quote checked against the scan): "The AI should proactively notify the customers affected or likely to be affected through the most effective means and advise them of the steps or precautionary measures that they need to take as well as whether the bank would reimburse any losses". Also PDF p.3, heading "Handling of customers' and media's enquiry": "deploy swiftly adequate resources and communication channels (e.g. customer service hotlines and extended office hours of branch services)".
+- **R09**, SPM TM-E-1 V.4, §8.2.2 (PDF p.33): "proactively notify the customers affected, or likely to be affected, through the most effective means".
+- **Authority:** HKMA supervisory guidance to authorized institutions (AIs). It applies because this is a significant incident that disrupts a critical banking service channel and affects a large customer base.
+- **Left to judgment:** the exact timing, the channel mix and how the audience is divided into priority groups.
+
+**Basis (internal)** — Internal bank procedure, PH01 v1.0:
+- §10.1: "COM drafts and sends; the CMT chair approves the audience; LC clears the text".
+- §10.2: "SMS, push and email may carry an alert but never a link."
+- §10.3: "Approval and scheduling are not delivery."
+- §13.1: fee waiver "Staff may promise this at once."
+- §13.2: direct losses "reimbursed on claim".
+- §3: frontline scripts are approved by COM and cleared by LC.
+- No conflict with the external rules found.
+
+**Judgment:** an alert that carries no link and points customers to the number on their card is the most effective safe channel during a live attack, when phishing is likely.
+
+---
+## Q03b: Public holding statement
+
+**Decision and action**
+1. Publish a holding statement with the same confirmed, being-verified and what-you-can-do content as in Q03a. It also says that services other than outbound transfers and payroll are running, and gives a "next update by 12:00 HKT" line.
+2. **Channels**
+   - Bank website notice. This needs SEC to log that the website and its content system are outside the affected segment. If SEC has not logged that by 08:50, use the fallback below.
+   - Press release to media by a distribution route that does not use corporate email until SEC logs email safe.
+   - The same text on branch posters, the IVR and social media accounts, with no links to anything except the bank's own homepage.
+   - Fallback: press release, branch notices and IVR only, with the web notice added once SEC confirms.
+3. **Copy to HKMA.** LC sends a copy to HKMA at the time of release and logs it as a public-statement trigger for an HKMA update (PH01 5.8).
+4. **Not dependent on Q02.** Release does not wait for LC's HKMA or Cap. 653 notifications. It is better practice for LC to have made at least the first HKMA phone call before release. COM will check with LC at 08:45, but the statement is not held for that call.
+5. **Next updates.** Updates at least every 6 hours between 07:00 and 22:00, and at once on any change in service status. The next one is due by 12:00.
+6. **Spokesperson.** The CMT chair is the only spokesperson. All staff refer media to COM.
+
+**Approval**
+- CMT chair approves. If the chair is unreachable for 15 minutes, the COO approves as alternate.
+- LC clears the text. SEC and Operations check the facts.
+- LC also confirms that the wording does not prejudice any Police referral or investigation.
+- COM releases the statement and keeps the communications log.
+
+**Timing (HKT)**
+- Approval by 08:50 and release by 09:00.
+- Default if approval is late: escalate to the COO at 08:50+15 min under PH01 §3, and release on the COO's approval.
+
+**Basis (external)**
+- **R05**, PDF p.2, heading "Public announcement" (quote checked against the scan): "consider making a public announcement where the situation so warrants, such as … (a) where the nature of the incident is serious, for example if the incident entails the disruption of any essential and critical banking service channel … or (b) where a large number of customers have been or may be affected". Same page: the need to inform the public "may need to be weighed against … whether a public announcement may prejudice any ongoing criminal proceedings or any investigation." PDF p.3: "copies of public communication materials should be submitted to the HKMA for reference."
+- **R09** TM-E-1 §8.2.3 (PDF p.33): "an AI is expected to issue a press release (or make a similarly effective notification) shortly after the commencement of any disruption to its critical e-banking service that could affect a significant number of customers if the AI does not have reasonable confidence that the service can be resumed in the near future."
+- **How the trigger applies:** the outage covers about 192,000 customers, failover is unverified, and the bank therefore has no reasonable confidence of a near-term restoration.
+- **R07** TM-G-2 §4.7.1–4.7.2 (PDF pp.13–14): communication strategy; "clearly indicate who can speak to the media".
+- **Left to judgment:** the exact release time ("shortly after") and the choice of channel.
+
+**Basis (internal)** — Internal bank procedure, PH01 v1.0:
+- §3: "Approve public statements and replies to media | CMT chair; alternate COO if the chair is unreachable for 15 minutes | LC clears; SEC and Operations fact-check".
+- §11.1: "The CMT chair is the only spokesperson."
+- §11.2: "at least every six hours between 07:00 and 22:00".
+- §11.3: "does not name the attacker, the vendor, the affected system or the bank's designation status".
+- §11.4: figures are published only once confirmed from a record.
+- §5.1: COM supplies copies of public material.
+- No conflict with the external rules: these limits on content are consistent with R05's caution about prejudicing an investigation.
+
+---
+**Unverified items I depend on, for the facilitator:**
+- whether failover works
+- whether the website, push platform, secure inbox and email are uncompromised (SEC to log)
+- whether branches can take outbound payments (Operations)
+- the time of LC's first HKMA contact (Q02)
+>>>
+
+Facilitator handoffs given to the roles for C01:
+SEC: none.
+LC: none.
+COM: none.
+
+Using this card, your facilitator handoffs and the three sealed role
+submissions, return one final record for each scored unit in this card.
+
+Unit ID | Original answer reference | CONFIRM or OVERRIDE | Reason |
+Final action and condition | Accountable owner | HKT time, deadline or
+trigger | Recipient and channel | Final external basis |
+Final internal basis | Dispatch instruction.
+
+Give a specific reason for each confirmation or override. Use OVERRIDE
+with "Missing recommendation" as the original answer reference when
+needed. For an unchanged, adequate citation or search record, you may
+reference the exact unit and field in its sealed answer. For any new or
+corrected basis, provide the exact location and short verbatim quote, or
+the search record and professional judgment required by the common prompt.
+For the dispatch instruction use EXECUTE NOW, SCHEDULE, HOLD, or NO ACTION
+and state any execution dependency. Finish with the order of any actions
+that depend on one another on this card.

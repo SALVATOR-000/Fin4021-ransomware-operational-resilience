@@ -1,0 +1,497 @@
+C07 · Wednesday, 18 November 2026 · 12:00 HKT · H+52
+Facts at release. A forensic partner has delivered time-stamped records from the gateway, identity provider and vendor remote access service. Some clocks differ by up to four minutes. A new indicator seen in the incident has appeared on a quarantined host. Its relationship to the original compromise is unverified. A validated file identifies the same 320 affected customers and corrects contact details for 12 of them. Thirty-one customers have reported suspected scams. Attribution remains unverified. The facilitator will supply the notification dispatch record.
+• Q19 · SEC. a. Decide how to produce a reviewable technical timeline, including how to record clock offsets and uncertainties. b. Decide whether to retain, raise or reduce monitoring and containment in light of the new indicator and the recorded recovery state.
+• Q20 · LC. a. Use the actual notification record to decide whether a specified-form follow-up is required, outstanding, late or already satisfied. Identify any applicable clock and immediate action. b. For the same statutory incident-reporting process as in Q20a, decide how to prepare, assign and submit the separate written incident report. State who is responsible, to whom it is submitted, what is submitted and by when.
+• Q21 · COM. a. Decide how to route suspected scam and customer remediation cases, including what the bank can promise at this stage. b. Decide how to correct the notification list and deliver follow-ups without unnecessary duplicate messages.
+
+Sealed SEC answer for C07:
+<<<
+SEC (Information Security Lead): locked response for C07, Wednesday 18 Nov 2026, 12:00 HKT (H+52). This covers only Q19a and Q19b. I have taken the facilitator's handoff record as the record of execution state.
+
+Facts from C07 and the handoff:
+- A forensic partner has delivered time-stamped records from the gateway, the identity provider (IdP) and the vendor remote access service. Some clocks differ by up to 4 minutes.
+- A new indicator seen in the incident has appeared on a quarantined host. Whether it is linked to the original compromise is unverified.
+- Attribution is unverified.
+- The original gateway is still quarantined and under evidence hold. The recovered image is on HOLD. Vendor access is still revoked.
+
+Not verifiable from any card:
+- the result of the credential closure test;
+- my secondary-process clearance decisions due 19:00 on 16 Nov and 21:00 on 17 Nov, and so whether any secondary releases are running;
+- whether the records were delivered through the approved channel.
+
+All actions below are simulated, for the facilitator to log.
+
+== Q19a: A reviewable technical timeline, with clock offsets and uncertainty ==
+
+**Decision.** SEC builds and owns one master technical timeline in the offline forensic lab, using verified copies only. It is versioned, reproducible and reviewed by a second person. Confirmed facts, inferences and unverified items are labelled separately. No attribution is stated.
+
+**Actions**
+1. **Intake, starting 12:00.** The evidence custodian logs the partner's delivery in the evidence register: Annex B fields, SHA-256 checked against the manifest, and the delivery channel used.
+   - If the delivery did not come by bank-hosted encrypted transfer or on bank-issued encrypted media, the custodian records that as a limitation. The records are kept and used, but marked accordingly.
+   - Vendor remote access service records stay the supplier's account until SEC has reconciled them with the bank's own PAM, firewall and IdP logs.
+2. **Fields for every timeline entry:**
+   - entry ID
+   - source system and evidence ID
+   - original timestamp exactly as recorded, with its stated or assumed time zone
+   - measured offset and how it was measured
+   - normalised HKT time
+   - uncertainty (±)
+   - event description
+   - status (confirmed, inferred or unverified)
+   - analyst and reviewer
+3. **Measuring the offset for each source.** Use the best available method and record which one:
+   - (a) the clock offset recorded at acquisition (Annex B);
+   - (b) the source's time-sync logs against the bank's primary time source;
+   - (c) anchor events seen in two or more sources, such as one session's IdP authentication, VPN or PAM session start, and firewall flow.
+
+   If the offset drifts, it is applied piecewise over time. Uncertainty is the measurement error plus the residual drift. Where only the "up to 4 minutes" bound is known, uncertainty is set at ±4 minutes.
+4. **Ordering rule.** Events closer together than their combined uncertainty are recorded as "order undetermined". No causal step (for example "credential used, then export") is asserted unless the order is established beyond the combined uncertainty or by a shared session or transaction ID.
+5. **Making it reviewable:**
+   - Normalisation scripts and tools are versioned and hashed.
+   - Every entry can be traced back to its source excerpt by evidence ID.
+   - Each change goes into a version log.
+   - An independent reviewer re-derives a sample of offsets and all of the key-event entries. The reviewer is the retained forensic firm working on masked data, or an SEC analyst not involved in building the timeline.
+   - Personal data is masked or tokenised in the timeline (DPO informed).
+6. **Key questions the timeline must answer, each with an uncertainty band:**
+   - first use of the vendor credential (start of dwell time; this decides the backup suitability check from Q13a);
+   - the time of the export of 80 customers and of the set of 320;
+   - whether any use occurred after revocation (the closure-test question);
+   - when the new indicator first appeared;
+   - any gaps in log coverage that overlap attacker activity.
+
+**Owner and executing party.** SEC is accountable. SEC forensic analysts build the timeline; the evidence custodian handles intake; the forensic firm or an independent analyst reviews.
+
+**Times (HKT; targets are my judgment, not gates).**
+- Intake and hashing by 14:00 on 18 Nov.
+- Version 1, with key events and uncertainty bands, by 20:00 on 18 Nov.
+- Reviewed version by 12:00 on 19 Nov.
+- If LC's written-report deadline (Q20b) is earlier, the timeline is delivered by that deadline as it stands, with open items marked as unverified.
+
+**Recipients and channels.**
+- Evidence register and the master timeline file on the offline lab system.
+- Summary entries in the decision log.
+- A printed or secure-lab copy to LC for the Q20 reporting and to the CEO (CMT chair). Not sent by corporate email unless email has been logged as safe.
+
+**Basis, external:**
+- **R02, OCCICS Code of Practice, s.7.2.3(a)(v)(2) and (4), PDF p.32.** Playbooks must cover "chain of custody" and "Recording the incident response process, including details of the incident, actions taken and decisions made".
+  - Authority: Code issued under Cap. 653 s.8; Division 3 obligations of a CI operator.
+  - It requires the record but leaves the method, offsets and uncertainty to judgment.
+- **R02, s.6.2.23(g), PDF p.20:** "synchronise the internal clocks of all CCSs components with a primary time source to enable accurate log-event correlation across the systems."
+  - Under R02 s.1.1.3, the HKMA Sectoral Code (R03) governs this Category 2 area for designated AIs. R03 s.6.2.23 (PDF p.18) does not state a clock-sync item, so I use R02(g) as a general principle.
+  - The 4-minute differences show a shortfall to record and fix after the incident.
+- **R03, HKMA Sectoral Code, s.6.2.23(d), PDF p.18:** logs "should contain sufficient information to support after-the-fact investigation".
+
+**Basis, internal (Internal bank procedure, PH01 v1.0):**
+- **s.6.4 "Clocks":** "Every timeline entry keeps the original timestamp, the measured offset, the normalised HKT time and its uncertainty. Events closer together than their combined uncertainty are recorded as 'order undetermined'."
+- **s.6.3:** analysis on verified copies only.
+- **s.6.7(b) and (d):** delivery channel, and supplier records reconciled.
+- **Conflict check:** none.
+
+== Q19b: Monitoring and containment after the new indicator ==
+
+**Decision.** Raise monitoring. Keep and verify all containment. Reduce nothing.
+- The quarantine, evidence hold, vendor revocation and the HOLD on the recovered system all stay in place.
+- Confirmation of containment is reopened until the new indicator is explained, so SEC status reports go back to hourly.
+
+**Actions** (SOC, EDR and Network teams execute; the evidence custodian witnesses):
+1. **12:00–12:30: verify the quarantine is holding.**
+   - Confirm the host's network isolation: no outbound flows, no new sessions, no admin logons.
+   - If isolation has failed or there is outbound traffic, tighten the block at the network layer at once. Do not power off.
+2. **Capture before any change.**
+   - Image memory and record process, file and registry artefacts for the indicator, with hashes, in the evidence register.
+   - The indicator is not removed, the host is not rebooted, and nothing is deleted until capture is complete and SEC has logged a release.
+3. **Classify the indicator.** Decide whether it is new activity or an old artefact being surfaced:
+   - new activity: a live process, a fresh file time, or new network attempts;
+   - old artefact: for example, found by a fresh scan or delayed execution.
+
+   Place it on the Q19a timeline with an uncertainty band. Its link to the original compromise is recorded as unverified until it is shown.
+4. **Hunt across every environment, results by 14:00 HKT** (judgment target). Add the indicator to EDR, SIEM, DNS and proxy detection and blocking, then sweep:
+   - all production systems;
+   - the secondary-process path;
+   - the isolated recovery environment and the candidate image;
+   - the lab environment;
+   - the backup working copy;
+   - systems that the vendor credential could reach.
+
+   If the indicator is found in the immutable backup or the candidate image, the candidate fails integrity and the Q13a backup-timing assessment is reopened.
+5. **Secondary process (conditional; its status cannot be verified).**
+   - If any secondary releases are running, the Q16b standing trigger applies: an incident indicator stops releases at once. The Head of Payments Operations or SEC stops them, and the CEO is told.
+   - Releases resume only when the sweep shows the secondary path is clean, SEC re-confirms its s.8.2 clearance in writing, and reconciliation ties.
+   - If no releases are running, no secondary activation goes ahead until the same sweep and written clearance are complete.
+   - Professional judgment: this delays payroll. A sweep completed quickly (target 14:00) keeps the delay short. Releasing payments through a path that might be compromised would cause worse harm to customers.
+6. **Recovered system.** The HOLD remains. The candidate is added to the scan, and any future gate pack must show the new indicator was checked for.
+7. **Vendor and credentials.** Vendor reinstatement stays on HOLD. Check the indicator against the vendor identifiers and captured tokens. If it shows use after revocation, the access window is treated as open and the Q07a scope period is extended up to the present.
+8. **Stop and escalation triggers.** Any of the following is escalated at once to the CEO, LC and DPO:
+   - the indicator found outside quarantine;
+   - outbound traffic from the quarantined host;
+   - any link between the indicator and access to customer data.
+
+**Owner and executing party.** SEC decides and is accountable. The SOC, EDR, Network and IT Operations teams execute. The Head of Payments Operations stops any secondary releases. The CEO is told; changes that affect customer services are consulted with the Head of IT Operations.
+
+**Times (HKT, 18 Nov).** Isolation check and capture 12:00–12:30. Sweep results 14:00. Hourly SEC reports from 13:00.
+
+**Recipients and channels.** Emergency change record, evidence register, decision log, and verbal briefing to the CEO.
+
+**Facts for LC:**
+- A new indicator, with its relationship to the original compromise unverified.
+- Containment status.
+- Any stop of secondary releases. A change in service status triggers the HKMA update under PH01 s.5.8. Further facts for statutory reporting go as supplementary information under s.5.9.
+
+**Basis, external:**
+- **R05, HKMA circular (22 Jun 2010), p.1, "Immediate incident response":** "as soon as practicable rectify or contain the problem. The top priority should be to safeguard the interests of customers".
+- **R03, HKMA Sectoral Code, s.6.2.26(a)–(b), PDF p.19:** "implement measures to detect computer-system security incidents affecting CCSs" and "monitor and analyse threat intelligence in relation to CCSs, and take appropriate actions".
+  - Applies to the gateway and its supporting critical computer systems. The detail is left to judgment.
+- **R02, s.6.2.23(f), PDF p.20:** "All events suspected of being triggered by a computer-system security incident should be logged and monitored."
+- **R02, s.7.2.3(f), PDF p.33:** balance recovery against evidence handling. Here containment is verified first and evidence is captured before any change.
+- **R11, PCPD Guidance, PDF p.4–5, Step 2:** containment includes "thoroughly checking whether other interconnected systems containing personal data are affected".
+
+**Basis, internal (Internal bank procedure, PH01 v1.0):**
+- **s.7.1:** network-layer isolation; hosts not powered off.
+- **s.6.1:** no deletion or rebuild without SEC's logged release.
+- **s.2.5:** "SEC reports to the chair every hour until containment is confirmed".
+- **s.9.5:** "a security indicator from the incident" stops releases from the recovered system.
+- **s.8.2:** clearance for the secondary process.
+- **s.7.5:** reinstatement conditions.
+- **Gap:** PH01 s.8.7 lists only reconciliation stops for the alternate process. Applying the security-indicator stop to it is my Q16b standing control and professional judgment, consistent with R05's priority on customer protection.
+- **Conflict check:** none.
+
+== Facts passed to the incident team ==
+1. **To LC (Q20):**
+   - Timeline v1 at 20:00 HKT, with uncertainty bands.
+   - Facts that are confirmed: the 320 customers, the export times within their bands, use of the vendor credential.
+   - Facts that are unverified: the 18,000 claim, attribution, the link of the new indicator.
+   - The log-coverage gaps and the clock-sync shortfall, for the written report.
+2. **To the CEO:** containment confirmation reopened; sweep result at 14:00; any stop of secondary releases; recovered system still on HOLD.
+3. **To the DPO and COM:**
+   - The validated file confirms the same 320 customers, so the timeline sets no new scope.
+   - SEC will cross-check the 31 scam reports against the 320 and against the fake-page indicators. Any victim outside the 320 is evidence that could widen the scope.
+4. **To Fraud:** the new indicator and the fake-page indicators for monitoring.
+>>>
+
+Sealed LC answer for C07:
+<<<
+LC answer for C07 (Wednesday 18 November 2026, 12:00 HKT, H+52). Units: Q20a and Q20b only. Locked before I saw colleagues' answers. It is based on the facilitator's dispatch record for C07 as quoted in the handoff.
+
+**What the dispatch record shows (Commissioner path)**
+- 16 Nov, by 09:00: notification by telephone, not in the specified form. Exact time, reference number and receipt are not verified. It was not established that the number used is the Commissioner's designated number.
+- 16 Nov, by 19:00 (or before 20:00 by a route the Commissioner named): Annex E filed, described as both the specified-form notification and the s.28(3) written record. The route used and the receipt are not verified.
+- 16 Nov, 18:30: call to the Commissioner's office. Its outcome (reference number, logged time, whether the number is designated) is not verified.
+- Supplementary information sent on 16 and 17 Nov. No receipts verified.
+- Annex F (written report): not dispatched.
+
+---
+
+## Q20a – Is the specified-form follow-up required, outstanding, late or satisfied?
+
+**Decision: required, and satisfied on the record, but not yet proven.**
+- The follow-up was required because the 09:00 call was not in the specified form (s.28(3)).
+- On the record it is satisfied. The Annex E filing on the evening of 16 Nov falls well inside the 48 hours after the call. It also falls inside the 12-hour limit, so it independently counts as a notification in the specified form under s.28(2)(b)(i).
+- It is not yet proven because there is no verified receipt or route.
+- The 48-hour clock has already run. Measured from a call made no later than 09:00 on 16 Nov, it ended no later than **09:00 HKT on Wed 18 Nov, three hours ago**. If the filing cannot be evidenced, the bank risks being treated as late.
+
+**Clocks**
+| Item | Rule | Time |
+|---|---|---|
+| s.28(1) notification | Sch.6 item 1(a): 12 hours | Ended 20:00 on 16 Nov. Met by the call if its content is accepted, and by the Annex E if its receipt is proven. |
+| s.28(3) written record | Sch.6 item 2: 48 hours after the notification | Ended by 09:00 on 18 Nov, depending on the logged call time. |
+| s.28(4) written report | Sch.6 item 3 | Due 30 Nov 2026 (see Q20b). |
+
+**Immediate action**
+1. **By 13:00 HKT.**
+   - The LC duty officer gets the submission receipt or dispatch record from whichever device filed on 16 Nov: the standby device, the released terminal, or the route the Commissioner named. Compliance's device log should show which.
+   - LC then calls the Commissioner's office on the verified route and asks it to confirm four things:
+     - (a) the reference number and time it logged for the morning call;
+     - (b) receipt of the Annex E filing, with its reference and receipt time;
+     - (c) receipt of each piece of supplementary information;
+     - (d) whether the number the bank called is the designated incident number.
+   - Every answer is logged under PH01 s.5.5.
+2. **If the Commissioner confirms receipt of the Annex E:** mark the item "satisfied (receipt evidenced)" in the deadline tracker. A second LC officer checks the entry.
+3. **If receipt cannot be confirmed, or the Commissioner has no record:**
+   - File the Annex E again at once through the designated secure channel, by 14:00 HKT. Mark it as a re-submission of the 16 Nov filing.
+   - Attach the evidence the bank holds of the original attempt (time, device, operator).
+   - Disclose openly that receipt could not be verified.
+   - LC logs the item as a possible missed deadline. The CMT reconvenes (PH01 s.18.5). LC tells the CMT chair, informs the HKMA at the next update, and records it in the Board paper.
+   - The bank does not argue the point beyond the evidence it actually holds.
+4. **New indicator on the quarantined host.**
+   - If SEC reaches reasonable certainty that it is the same incident, it is sent to the Commissioner as supplementary information.
+   - If it is a new unauthorised act with an actual adverse effect on a critical computer system, it is a new s.28 incident with its own awareness point (R02 s.7.3.5). The clock would be 12 hours if the core function is affected, otherwise 48 hours.
+   - **Missing facts:** whether the host is part of a critical computer system and whether it is related to the original incident. SEC confirms both (Q19b) and logs the time it reaches certainty. LC opens a provisional tracker line now.
+
+**Owner:** LC, executed by the LC duty officer, with a second LC officer checking. SEC supplies the device log and the indicator facts.
+
+**Recipient and channel:** the Commissioner of Critical Infrastructure (Computer-system Security). Telephone on the verified route for confirmation; designated secure channel for any re-filing.
+
+**External basis**
+- **R01, Cap. 653 (statute)**
+  - s.28(2)(b), PDF p.44: notification must be "(i) ... in the form and way specified under section 10 ... or (ii) despite not being made in the specified form and way, include information on the nature of the computer-system security incident and identify the critical computer system concerned."
+  - s.28(3): "If the notification is not made in the specified form and way, the CI operator must subsequently submit a written record ... in the specified form and way to the Commissioner within the specified time."
+  - s.28(5): failing to comply with (1), (3) or (4) is an offence.
+  - Schedule 6, PDF p.97, item 2: "48 hours after the notification concerned is made under section 28(1)."
+  - Application: the call was not in the specified form, so a written record was required.
+- **R02, OCCICS Code of Practice v1.0 (code of practice, not subsidiary legislation)**
+  - Annex E, PDF p.42: "Pursuant to section 28(2)(b)(i)".
+  - s.7.3.6(b), PDF p.36: telephone first, "then submit a specified form (Annex E or a sector-specific form) through a designated secured channel within 48 hours of the notification".
+  - s.7.3.5: awareness at "a reasonable degree of certainty".
+- **Professional judgment.** Compliance is a question of fact. Without a receipt the bank cannot prove it. Confirming with the recipient, and re-filing openly if needed, is the step most consistent with the statute.
+
+**Internal bank procedure (PH01 v1.0)**
+- s.5.5: "If no receipt is shown, LC asks the recipient for one in the same call or by return, and logs the request."
+- s.18.5: "The CMT reconvenes at once on any ... missed external deadline".
+- s.5.3: second-officer check of the tracker.
+- No conflict with the external requirements.
+
+---
+
+## Q20b – Written incident report (Cap. 653 s.28(4), Annex F)
+
+**Decision.** Prepare and file the written report in the specified form: Annex F, or a sector-specific form only if the Regulator Contact Register (RCR) records that the Commissioner has specified one for designated AIs.
+- **To:** the Commissioner, through the designated secure channel. Not the HKMA: this is a category 3 obligation (R01 s.2, PDF p.9; R03 s.1.1.3). The HKMA receives a copy for information under its own supervisory process.
+- **Statutory deadline:** within 14 days after the date of awareness (16 Nov), so **by Monday 30 November 2026**. LC treats 30 Nov as the latest date. I could not confirm the day-counting convention because the Interpretation and General Clauses Ordinance is not in the manifest, so I am taking the conservative reading.
+- **Internal target:** file by **Friday 27 November 2026, 17:00 HKT**. That leaves a margin for any problem with the channel.
+
+**Who does what**
+- Accountable: LC (PH01 s.5.1). LC owns the form and the submission.
+- Drafting lead: the LC duty officer, who compiles the sections.
+- Section owners, each confirming their facts in writing:
+
+| Section | Content | Owner |
+|---|---|---|
+| A | CI operator; critical computer system name and physical location (payment gateway; site to be confirmed) | SEC |
+| B1–B4 | Nature, description, initial attack vector, root cause summary. Vendor credential use; attribution marked unverified. Whether the root cause appeared in a previous assessment or audit | SEC with the forensic firm |
+| B5–B7 | Earliest time, awareness time (16/11/2026 08:00), how first detected | SEC, using the Q19a timeline in HKT with clock offsets of up to 4 minutes and their uncertainties |
+| B8 | Hardware and software with vulnerabilities | SEC; the vendor via the relationship owner, through the evidence process |
+| C1, C2, C7 | Scope, service impact, duration (transfers and payroll disrupted from 16 Nov 08:00; recovery state as logged) | Head of Payments Operations with SEC |
+| C3 | Data impact: 320 customers confirmed and publicly mirrored; 18,000-record claim unverified | DPO. Counts and data types only, no customer personal data on the form (minimised, DPP 4) |
+| C4 | Customer and third-party impact: SME payroll, counterparties, 31 suspected scam reports | Payments Operations and Head of Fraud |
+| C5 | Financial impact estimate | CFO |
+| D | Containment, recovery status, planned measures, timeline, external teams (forensic firm, vendor) | SEC |
+| E1 | Stakeholders: Board, HKMA, Police (with case reference number if verified), PCPD, affected customers, counterparties | LC |
+| E2 | Media communications and dates | COM |
+| F | Reporting entity details | LC |
+
+- **Fact-checking:** each fact must come from a record. Unverified items are marked "unverified" and are not left out (PH01 s.2.4, s.11.4).
+- **Sign-off:** a second LC officer checks the form against Annex F and the deadline tracker. The CMT chair is informed and reviews in parallel. No internal approval may delay filing past the external deadline (PH01 s.2.4).
+
+**Schedule (HKT)**
+| Date | Step |
+|---|---|
+| 18 Nov | Assign sections and set the template |
+| 23 Nov, 17:00 | Section inputs due |
+| 24 Nov | LC consolidated draft |
+| 25–26 Nov | Fact check, plus Compliance test of the filing route logged |
+| 27 Nov | File |
+| 28–30 Nov | Fallback window |
+
+**Submission:** through the designated secure channel. The submission receipt is saved at the moment of filing (PH01 s.5.5). If no receipt appears, LC asks the Commissioner the same day. After filing, any new facts, such as the root cause or the outcome of the new indicator, go as supplementary material (R02 s.7.3.7(a)).
+
+**External basis**
+- **R01, Cap. 653, s.28(4), PDF p.44:** "After a CI operator makes a notification ... in the specified form and way, or submits a written record of such an incident under subsection (3), the CI operator must further submit a written report of the incident in the specified form and way to the Commissioner within the specified time."
+- **R01, Schedule 6, item 3, PDF p.97:** "14 days after the date on which the CI operator concerned becomes aware of the computer-system security incident concerned."
+- **R01, s.28(5)–(6):** failure is an offence, with a fine of up to $5,000,000 on indictment.
+- **R02, s.7.3.7(a), PDF p.37:** "submit a written report in a specified form (Annex F or a sector-specific form) via the designated secured channel within 14 days ... If additional information become available after submitting the written report, the CI operator should also provide such information to the Commissioner as supplementary material."
+- **R02, Annex F, PDF pp.43–46:** heading "Pursuant to section 28(4)"; "All fields should be completed as far as practicable based on the information available."
+- **R02, s.7.3.7(b):** sector-specific requirements still apply. That is why the HKMA copy is sent.
+- **Left to judgment:** how far the root cause analysis can be completed in 14 days. Where it is incomplete, it is marked as preliminary and followed by supplementary material.
+
+**Internal bank procedure (PH01 v1.0)**
+- s.5.2: LC applies "Cap. 653, section 28 and Schedule 6, and the Commissioner's Code of Practice section 7.3 and its Annexes E and F".
+- s.5.6: "LC first confirms from the external document the form and the way of submission that report requires, and records them in the deadline tracker."
+- s.1.4: internal times "never extend an external deadline".
+- s.18.4: at handover LC "takes over the register of external deadlines".
+- No conflict with the external requirements.
+
+**Simulated actions for the facilitator to log (HKT)**
+- 12:05: decision log entry and tracker entries.
+- 13:00: receipt retrieval and confirmation call to the Commissioner.
+- 14:00: conditional Annex E re-filing.
+- On SEC certainty about the new indicator: provisional new-incident line.
+- 18 Nov: Annex F section assignments issued.
+- 23, 24 and 26 Nov: drafting milestones.
+- 27 Nov: Annex F filed through the designated secure channel, receipt saved.
+- Statutory latest: 30 Nov 2026.
+>>>
+
+Sealed COM answer for C07:
+<<<
+COM response for C07, Q21a and Q21b (Wednesday 18 Nov 2026, 12:00 HKT, H+52). I locked this response before seeing any colleague's answer.
+
+Summary: each of the 31 scam reports becomes a case with a reference and a named owner, sorted by type, and staff promise only what PH01 pre-approves or LC confirms. On the notification list, nothing in the record shows any of the 320 customers has received a notice, so each gets one consolidated notice by 19:00 HKT, using LC-confirmed contact details for 12 of them. All actions below are simulated, for the facilitator to log.
+
+**Handoffs reviewed (Q09a and Q15a)**
+- The Chief Executive approved the audiences: the 80 on 16 Nov at 12:45, and the 320 on 17 Nov at 08:45.
+- No card records LC's clearance, any dispatch, any call outcome, any letter or any delivery-register entry.
+- The dispatch record the card said the facilitator would supply is not in this handoff.
+- COM therefore treats **all 320 as having no evidenced delivery**. Approval and scheduling are not delivery (PH01 §10.3).
+
+**Possible conflict with the external rule (PH01 §1.3)**
+- Under the playbook, the notices waited on an LC clearance that was never logged, possibly for about 48 hours.
+- R16b expects notice "as soon as practicable" to customers whose sensitive data was leaked, and R11 says notification should be given "regardless of the progress of any internal investigation".
+- An open-ended internal hold does not fit those external expectations. Under PH01 §1.3, "the external requirement prevails".
+- COM records this difference in the decision log and tells LC at once.
+- **Proposed action:**
+  - LC clears the consolidated text by 13:30, orally if necessary, with the clearance logged by the CMT chair.
+  - If LC has not cleared it by then, the CMT chair directs sending of the facts-only core text (exposure, publication, scam warning, contact), which SEC and the DPO have already confirmed.
+  - Lines that need LC (authorities line, liability wording) are left out until cleared.
+
+---
+## Q21a: Routing scam and remediation cases, and what can be promised
+
+**Decision: one case route, starting 12:30 HKT**
+1. **Intake.** Each of the 31 reports, and every new one, gets a case reference in the case register, opened by the contact centre, a branch or a relationship manager.
+   - Every case has a named owner, needed under PH01 §11.5 before closure.
+   - Customers are given their case reference and are called back on the number on file, or can call the number on their card.
+2. **Immediate protection, within 1 hour of a report** (Fraud):
+   - Offer to suspend e-banking, card or account access.
+   - Attempt to recall or freeze funds with the receiving bank.
+   - Advise the customer to report to the Police.
+   - Strong authentication before any account is reactivated.
+3. **Triage by Fraud**, then route by type:
+
+| Type | Owner | What staff can promise now |
+|---|---|---|
+| **Unauthorised transaction** (customer did not make or authorise it) | Head of Fraud with LC, under PH01 §13.3 and TM-E-1 §4.4 / Code of Banking Practice | Personal customers: only the LC-confirmed line: "Under the Code of Banking Practice, unless a customer acts fraudulently or with gross negligence, you are not responsible for direct losses from unauthorised transactions; your case will be assessed on that basis." Business customers: assessed under their terms. |
+| **Scam where the customer made the payment** (e.g. via the fake verification page or an impersonation call) | Head of Fraud with LC, case by case (§13.4) | No promise of reimbursement. Promise only: case reference, recall attempt, the date by which they will hear about a decision. |
+| **Attempt only, no loss** | Fraud | Advice, account protection, case logged. |
+| **Direct loss from the disruption** (e.g. missed payroll charges) | Head of Payments Operations (§13.2) | "Documented direct losses caused by the disruption are reimbursed on claim." |
+| **Disruption fees** | Any staff (§13.1) | Waived. Can be promised at once. |
+| **Data-exposed customers (the 320)** | COM / DPO (§13.5) | 12 months' identity-protection monitoring at the bank's cost, on opt-in. |
+
+4. **Approval limits (PH01 §13.7).**
+   - Above HKD 50,000 per customer, the CMT chair approves.
+   - The incident total is capped at HKD 5 million; going above it needs the Board's revised total.
+   - The CFO tracks the total. While a decision is pending, customers are told when to expect it.
+5. **Feedback to scope and authorities**
+   - Fraud tells the DPO, LC and SEC whether each of the 31 is among the 320 or outside them.
+   - Scams hitting customers **outside** the 320 could be "reports of misuse" (PH01 §10.4(c)). They are a scope-review trigger for Group B. The decision is LC's and the DPO's, then the Chief Executive's.
+   - LC handles Police and HKMA reporting.
+   - This is a missing fact: the card does not say who the 31 are. Conditional action: if any are outside the 320, COM prepares a notice for the affected batch, to be sent as soon as practicable once the Chief Executive decides.
+6. **Frontline Script v7.** COM approves it and LC clears it, by 13:30. It sets out the promises in the table above exactly, plus: "Staff do not promise reimbursement of scam losses."
+
+**Owners**
+- Fraud: intake protection and triage.
+- Head of Fraud with LC: §13.3 and §13.4 decisions.
+- Head of Payments Operations: §13.2.
+- COM: scripts and customer wording.
+- CFO: the running total.
+
+**Basis (external)**
+- **R09**, SPM TM-E-1 V.4:
+  - §4.4.2 (PDF p.17): "a convenient and easily accessible channel (e.g. Internet banking or dedicated hotline) available at all times for customers to seek and obtain help with respect to possible unauthorized transactions".
+  - §4.4.3 (PDF p.18): "a mechanism for customers to promptly suspend their e-banking accounts".
+  - §4.4.4 (PDF p.18): "unless a customer acts fraudulently or with gross negligence … he or she should not be responsible for any direct loss suffered by him or her as a result of unauthorized transactions conducted through his or her account (please refer to the Code for details)".
+  - §4.3.2 (PDF p.17): report scams to the Police.
+  - **Authority:** HKMA supervisory guidance. It applies to unauthorised e-banking transactions by personal customers. The Code itself is not in my manifest, so its detailed wording is left to LC.
+- **R05** p.1, "Customer notifications" (checked against the scan): advise "whether the bank would reimburse any losses incurred by them and if so, how they can apply for compensation".
+- **Left to judgment:** the 1-hour protection target and how cases are triaged.
+
+**Basis (internal)** — Internal bank procedure, PH01 v1.0:
+- §13.1 to §13.7: fees, direct losses, unauthorised transactions, scam losses, data-exposed customers, claims route and approval limits.
+  - §13.4: "Staff do not promise reimbursement."
+  - §13.6: "Claims are registered by call-back, relationship manager or branch, each with a case reference."
+- §10.4(c): "reports of misuse" is a scope factor.
+- §11.5: every open case has a named owner.
+- No conflict with the external rules found.
+
+---
+## Q21b: Correcting the list and delivering follow-ups without duplicates
+
+**Decision**
+1. **One master list by 13:30 HKT.**
+   - The validated file (320 customers) becomes the only notification list, keyed by customer ID. It replaces the earlier batches C1, A-nd and A-d.
+   - SEC and the DPO confirm the list and the data fields for each customer.
+   - COM rebuilds the delivery register with one row per customer, matched to any attempt records that are found.
+2. **The 12 corrected contacts**
+   - Contact details are used only from the bank's verified records. The corrections come from a forensic file, so **Fraud checks all 12 against verified records** (and against any change made after 08:00 on 16 Nov) by 14:30, before use.
+   - Any earlier attempt to old details is treated as not delivered.
+   - If an earlier letter or call went to a wrong person, the DPO and LC assess whether that is a further disclosure.
+   - If a correction cannot be verified by 14:30, that customer is contacted at a branch or by their relationship manager instead. The unverified number is not used.
+3. **Duplicate rule (PH01 §10.6)**
+   - **No evidenced delivery (the default, given the handoff):** one consolidated notice covering everything current:
+     - the exposure;
+     - the publication of the data;
+     - the fake verification page and the scam warning;
+     - how to report a scam and get help (Q21a);
+     - the support offered and the contact line.
+   - **Evidenced delivery of the 17 Nov consolidated content** (if records are found): one short supplementary notice. The new content is the rising scam reports, the case route and the remediation promises in Q21a. These customers do not get the full notice again.
+   - The register shows each customer's status before every send. If a customer has already been reached, the next caller sees it and does not call again.
+4. **Channel:** named-team call (no PIN, OTP or full HKID requested; offer to call back on the number on the card), then a letter posted 18 Nov. No SMS, push or email. Secure inbox only if SEC logs it as trusted. Up to 3 attempts, then follow-up on a risk basis (branch or relationship manager) with the reason logged.
+5. **Timing (HKT)**
+   - 13:30: master list and LC clearance (see the conflict note above).
+   - 14:30: Fraud check of the 12.
+   - 14:30–19:00: calls.
+   - 18 Nov: letters posted.
+   - Register figures (attempted, delivered with evidence, failed, followed up) to LC by 20:00, then daily.
+   - Any customer among the 320 who reports a scam case (Q21a) is reached by their case owner, not by a separate notification call. Both are recorded in the same register row.
+
+**Owners**
+- Audience: unchanged, the same 320 the Chief Executive approved. If the validated file adds or removes anyone, COM asks the Chief Executive to approve the change.
+- Text: LC clears it; SEC and the DPO confirm the facts and fields.
+- List, register and sending: COM.
+- Checking the 12: Fraud.
+- Calls: Fraud and the contact centre.
+- Letters: Operations.
+
+**Basis (external)**
+- **R16b**, HKMA circular "Customer Data Protection", 14 Oct 2014, PDF p.3 (first paragraph): "notify the affected customers as soon as practicable".
+- **R11**, PCPD Guidance, June 2023:
+  - PDF p.8, "When to notify?": "regardless of the progress of any internal investigation".
+  - PDF p.8, "How to notify?": "directly by phone, in writing".
+  - PDF p.7: a list of what a notification should include.
+- **R09** §4.2.3 (PDF p.16): "If AIs are aware of any notifications that cannot be delivered to the customers concerned, they should use a risk-based approach to following up those situations."
+- **Why these apply:** the data exposure is confirmed and has been published, and delivery to date is unproven.
+- **Left to judgment:** the timing and how the notices are consolidated.
+
+**Basis (internal)** — Internal bank procedure, PH01 v1.0:
+- §10.3: "Approval and scheduling are not delivery."
+- §10.5: "Contact details are taken only from the bank's verified records. Details changed after the incident started are checked by the Fraud team before use."
+- §10.6: "A customer with evidenced delivery of current content gets nothing further until there is something new. A customer with no evidenced delivery gets one consolidated notice."
+- §10.1 and §10.2: who approves and clears, and approved channels.
+- §1.3: "Where this playbook and an external requirement differ, the external requirement prevails."
+- §1.4: internal times "never extend an external deadline".
+
+---
+**Open items for the facilitator:**
+- The dispatch and delivery-register record, which was not supplied.
+- LC's clearance or the CMT chair's direction by 13:30.
+- Which of the 31 are among the 320.
+- The Fraud check of the 12 corrected contacts.
+- Any misdirected earlier notices.
+- Whether the secure inbox is trusted.
+- SEC's view of the new indicator. If it shows renewed compromise, the public scam and status lines are updated at once under PH01 §11.2.
+>>>
+
+Facilitator handoffs given to the roles for C07:
+SEC:
+Q01a | Spread triage, then network quarantine of the payment gateway segment and the entry route; all privileged and vendor remote sessions into the segment suspended until the route is known; accounts used disabled after a capture of no more than 10 minutes; hosts stay on; only flows to and from the gateway blocked; front ends reject or queue new transfer submissions with a service message; failover and alternate processing on hold | SEC (executing: Network/Firewall Operations, IT Operations) | Triage 08:00-08:10 HKT; quarantine 08:10-08:15 HKT; hourly SEC reports from 09:00; failover cleanliness checkpoint 12:00 HKT (default hold), 16 November 2026 | Emergency change record; decision log; CMT room briefing | Triage and quarantine: executed in simulation from 08:00 HKT on 16 November and still in force (no later decision lifted them). Cannot be verified: whether the out-of-band console route was confirmed first, and the results of the reachability and health tests (no card records them). Failover: not executed (the 12:00 checkpoint defaulted to hold; no SEC written clearance of failover is recorded). Alternate processing: see Q16a and the current execution state.
+Q01b | Evidence hold on the gateway and its support systems; capped volatile capture only if nothing is spreading, then disk images and log exports; log rotation and backup recycling stopped; immutable backups kept unmounted; snapshot of in-flight and queued instructions to Payments; custody record with all PH01 Annex B fields; retained forensic firm engaged; SEC logs filing-terminal and corporate-email status; supplier preservation and production requests | SEC (executing: evidence custodian, SEC analysts; LC owns the legal hold and clears supplier wording; vendor relationship owner sends supplier requests) | Hold 08:00 HKT; volatile capture by 08:10; terminal and email logs by 08:30; supplier requests 09:00; escalation if unconfirmed by 12:00, 16 November 2026 | Evidence register, decision log, change record; supplier records only by bank-hosted encrypted transfer or bank-issued encrypted media | Hold, capture, log exports and forensic firm engagement: executed in simulation from 08:00 HKT on 16 November; the hold is still in force and the original gateway remains under evidence hold. Cannot be verified: the 08:30 terminal and email logs and their results, and whether the 09:00 supplier requests went (no card records the vendor-list match or LC's clearance). Card C07 states that a forensic partner has delivered time-stamped records from the gateway, identity provider and vendor remote access service.
+Q07a | Tiered scope estimate (T1 confirmed export: 80 customers; T2 evidence of access or staging; T3 reachable, export not shown: up to 18,000 in the same workspace; T4 other stores reachable by the credential); timeline of every session that used the vendor credential from its first use; volume, access, reach and coverage tests; reconciliation with the vendor's records; tiers reported hourly; any increase escalated at once | SEC (executing: SEC analysts, forensic firm on masked data; DPO told of each tier change) | From 12:00 HKT; tier status in each hourly report; written scope paper by 20:00 HKT; review deadline 24:00 HKT, 16 November 2026 | Evidence register and decision log; verbal briefing in the CMT room; paper or secure lab system, not corporate email | Work and the T1 = 80 notice: executed in simulation from 12:00 HKT on 16 November. Scope paper: executed in simulation by 20:00 HKT on 16 November; its content cannot be verified. Tier results: cannot be verified (no card records them). Card C05 states that a public mirror matches 320 customers' records including the original 80; card C07 states that a validated file identifies the same 320. The 18,000-record claim remains unverified.
+Q07b | Capture of session and token state; termination and revocation at every layer; every account of the same vendor disabled; secrets readable through the vendor access rotated after the custodian's capture, no held host rebuilt; persistence sweep; closure test (a replayed token and a logon with the old credential must both fail); monitoring; vendor reinstatement on hold | SEC (IAM, Network and IT Operations execute; Chief Executive decides any reinstatement on SEC's written sign-off) | Capture 12:00-12:10 HKT; revocation by 12:15; closure test logged by 12:30, 16 November 2026; trigger: any post-revocation use leads to an immediate re-block and Q07a extended to the present | Emergency change record, decision log, evidence register | Capture, revocation, account lockout, rotation, persistence sweep and monitoring: executed in simulation from 12:00 HKT on 16 November. Closure-test result and whether the access window is closed: cannot be verified (no card records them). Vendor access reinstatement: not executed (HOLD).
+Q16a | Recovered system on HOLD (the 118/120 result fails the PH01 s.9.2 pass mark and is a sample only); SEC clears or re-confirms the secondary process under s.8.2 by 21:00, default hold; if cleared, the Chief Executive activates it and logs BCP activation, pilot of up to 20 instructions if a first activation, then payroll by earliest value date; fix the failed test (image identity, root cause of both mismatches, missing Q13a records, full-set re-run); future production only through the full s.9.3 gate and the Chief Executive's authorisation | SEC (Head of IT Operations and Head of Payments Operations execute; Chief Executive authorises) | Hold logged 20:05 HKT; clearance by 21:00 HKT, 17 November 2026, default hold; re-test when the fix is ready | Decision log; written clearance or refusal to the Chief Executive; Board pack; facts to LC and COM | Recovered-system hold: executed in simulation from 20:05 HKT on 17 November and in force; the recovered image has not been used in production. Clearance review: executed in simulation; its 21:00 result (signed or refused) is not recorded on any card, so whether the secondary process was activated cannot be verified. Root-cause work: executed in simulation; results cannot be verified. Full-set re-test: not recorded. Production use: not executed.
+Q16b | Stop triggers (security indicator; one unexplained reconciliation difference; any duplicate, replayed or wrong payment; any item of unknown status; unexplained counterparty or clearing reject; loss of monitoring); anyone named may stop without prior approval; rollback by network disconnection with no power-off, fallback to the secondary process only if cleared and its reconciliation ties, otherwise all releases suspended; restart only through a new s.9.3 pass | SEC (Head of Payments Operations for reconciliation triggers; IT Operations duty manager disconnects; Chief Executive told at once) | From the first release; reconciliation hourly; stop at once on any trigger | Change record, decision log, instruction register, evidence register; immediate notice to the Chief Executive | Standing control in force from 20:05 HKT on 17 November. No stop is recorded on any card; whether any release activity took place cannot be verified.
+Current execution state | The original gateway remains quarantined and under evidence hold. The recovered image has not been used in production (HOLD since 20:05 HKT on 17 November). The secondary process: SEC's clearance decisions due at 19:00 HKT on 16 November (C04) and 21:00 HKT on 17 November (C06) are not recorded on any card, so whether it was activated, piloted or released any payments cannot be verified. Vendor access remains revoked and has not been reinstated.
+LC:
+Q02b | Telephone notification to the Commissioner giving the nature of the incident, the critical computer system involved and a short summary; reference number requested on the call; call logged under PH01 s.5.5; then the written record in the specified form within 48 hours of the logged call and the written report within 14 days | LC (executing: LC duty officer; second LC officer checks the deadline tracker) | Awareness 08:00 HKT 16 November 2026; statutory latest for the notification 20:00 HKT 16 November; call by 09:00 HKT at the latest; written record within 48 hours of the logged call; written report by 30 November 2026 | Commissioner of Critical Infrastructure (Computer-system Security), verified telephone route; then the designated secure channel | Call: executed in simulation by 09:00 HKT on 16 November. Channel: telephone. Content: the nature of the incident, the critical computer system involved and a short summary. Form: no specified form. Exact call time, reference number and receipt: not verified (no card records them); whether the bank's verified number is the Commissioner's designated telephone number was not established. Written record in the specified form: see Q11a.
+Q11a | Annex E (or the HKMA sector form if the contact register shows one) filed through the designated secure channel, box B1 ticked, content as in LC's sealed C04 answer item 1; stated as both the specified-form notification and the s.28(3) written record of the morning call; receipt saved on filing; separate call to the Commissioner's office for the reference and logged time of the morning call; if no filing device was logged working by 19:00, filing by the route the Commissioner names before 20:00; written report (Annex F) due 30 November, internal target 27 November | LC (executing: LC duty officer; SEC confirms facts; second LC officer checks the form) | Call 18:30 HKT; filing by 19:00 HKT; statutory limit 20:00 HKT 16 November 2026; report by 30 November 2026 | Commissioner of Critical Infrastructure (Computer-system Security); designated secure channel through the standby device or the released terminal, or the route the Commissioner names | Filing: executed in simulation by 19:00 HKT on 16 November, or before 20:00 HKT by the route the Commissioner named; which route was used cannot be verified (no card records the filing-device log); receipt not verified. Call to the Commissioner's office: executed in simulation by 18:30 HKT; its outcome (reference number, logged time, designated status of the number) cannot be verified. Written report (Annex F): not dispatched in any run record as at 12:00 HKT on 18 November; due 30 November 2026.
+C01 awareness time (HKT) | Designation status | Actual notification: time (HKT), channel, form used, receipt status
+08:00 HKT, 16 November 2026 (card C01: the bank confirms the unauthorised commands) | Effective critical infrastructure operator designation; domestic transfer and payroll processing is a core function of the designated infrastructure; the payment gateway is a designated critical computer system (card C01) | Commissioner: telephone notification by 09:00 on 16 November, no specified form (see Q02b); supplementary information through the secure channel from 09:30 on 16 November (demand and data claim, decided at C02), in the afternoon of 16 November (confirmed data export, decided at C03) and on 17 November (publication of the 320 records, decided at C05), exact times not recorded; Annex E by 19:00 on 16 November, or before 20:00 by the route the Commissioner named (see Q11a); all executed in simulation; no receipt verified. HKMA: telephone report by 08:30 on 16 November; written confirmation by 10:00 (route cannot be verified); scheduled updates at 12:00, 16:00, 20:00 and 24:00 on 16 November, 04:00, 08:00, 18:00 and 24:00 on 17 November and 08:00 on 18 November; event updates and copies at 09:00, 09:55, 10:00 and 12:30 on 16 November; the status call at 18:30 and written follow-up at 19:30 on 16 November (route depends on that call and cannot be verified); the update on the publication and the fake page by 08:30 on 17 November and the report after the 09:15 scam press release; the copy of the 21:00 customer update on 17 November; all executed in simulation; no form; receipts not verified. Cannot be verified: copies of the public updates decided at C03 and C04 (their release cannot be verified) and any BCP activation report (activation of the secondary process cannot be verified).
+COM:
+Q09a | COM's core message to the original 80 by named-team personal call, then a same-day letter to the verified address; no SMS, push or email; secure inbox only once SEC logs it trusted; bracketed lines only as SEC and LC confirm them; delivery register from the first attempt | COM (Chief Executive approves the audience; LC clears; SEC and the DPO confirm facts; Fraud and the contact centre call; Operations sends letters) | Approval and clearance 12:45 HKT; calls from 13:00, every customer attempted by 18:00; letters posted 16 November 2026 | The 80 customers, by personal call then letter | Audience approval: executed in simulation at 12:45 HKT on 16 November. Calls and letters: dispatch depended on LC's clearance at 12:45, which no card records, and the decision does not say the notices go without it, so dispatch cannot be verified. No call outcomes, letters or delivery-register entries are recorded.
+Q15a | Audience of 320 approved by the Chief Executive in batches C1 (240 new), A-nd (those of the 80 without evidenced delivery) and A-d (those of the 80 with evidenced delivery); consolidated notice in COM's C05 wording for C1 and A-nd, supplementary notice for A-d; per-customer fields confirmed by SEC and the DPO before the letter is final; authorities line only for reports LC confirms with receipts; named-team call then letter, no SMS; risk-based follow-up after 3 attempts | COM (Chief Executive approves the audience; LC clears; SEC and the DPO confirm the list and fields; Fraud and the contact centre call; Operations sends letters) | Approval and clearance 08:45 HKT; calls from 09:00; every customer attempted by 13:00; letters posted 17 November 2026; register figures to LC by 18:00 | The 320 by named-team call, then letter | Audience approval: executed in simulation at 08:45 HKT on 17 November. Calls and letters: dispatch after LC's clearance at 08:45, otherwise HOLD with escalation every 30 minutes; no card records the clearance, so which branch applied and whether any notice was dispatched cannot be verified. No call outcomes, letters, delivery-register entries or register figures are recorded. Card C07 states that a validated file identifies the same 320 customers and corrects contact details for 12 of them.
+
+Using this card, your facilitator handoffs and the three sealed role
+submissions, return one final record for each scored unit in this card.
+
+Unit ID | Original answer reference | CONFIRM or OVERRIDE | Reason |
+Final action and condition | Accountable owner | HKT time, deadline or
+trigger | Recipient and channel | Final external basis |
+Final internal basis | Dispatch instruction.
+
+Give a specific reason for each confirmation or override. Use OVERRIDE
+with "Missing recommendation" as the original answer reference when
+needed. For an unchanged, adequate citation or search record, you may
+reference the exact unit and field in its sealed answer. For any new or
+corrected basis, provide the exact location and short verbatim quote, or
+the search record and professional judgment required by the common prompt.
+For the dispatch instruction use EXECUTE NOW, SCHEDULE, HOLD, or NO ACTION
+and state any execution dependency. Finish with the order of any actions
+that depend on one another on this card.
