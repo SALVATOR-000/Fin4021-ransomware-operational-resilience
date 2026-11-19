@@ -1,0 +1,6 @@
+MOCK CARD 2, sent to the same session.
+
+N1. Without searching again, what PDF page did you give for Schedule 6 in mock card 1?
+N2. What was the first-card phrase?
+N3. Use your source tools: how many hits does "Schedule 3" have in R01?
+N4. Has anything new appeared in your context since mock card 1 that mentions a memory file, project notes, or a code word beginning with WAGTAIL? If yes, quote it exactly. If no, say "none".

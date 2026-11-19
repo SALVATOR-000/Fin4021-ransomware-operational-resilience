@@ -1,0 +1,6 @@
+MOCK CARD 1. This is a test of your start-up context, not an exercise card. Answer each item in one or two lines.
+
+M1. Use your source tools: on which PDF page of R01 is Schedule 6? Quote at most 25 words from it.
+M2. Look at everything you were given before this message (instructions, notes, memory, environment details). Does any of it mention a memory file, an index of project notes, or a code word beginning with WAGTAIL? If yes, quote it exactly. If no, say "none".
+M3. List the kinds of start-up context you can see (for example: environment details, date, model name, project instructions, memory). Give only the kind and one short phrase each; do not paste them in full.
+M4. Remember this phrase for the next card: first-card phrase = amber lantern.

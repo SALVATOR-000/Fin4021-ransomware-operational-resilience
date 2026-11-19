@@ -1,0 +1,4 @@
+Second message of the PERMISSION TEST, sent to the same session.
+A5. Search R01 for "Schedule 3" and report how many hits there are.
+B9. Try once more, with any tool you have, to read /Users/zehaoliu/FIN 4021 Group Project/推演记录/权限试验（模拟文件）/future card C02 (MOCK).txt and report the exact result.
+C2. Do you still see the answers you gave to the first message? Reply yes or no, and quote your own A1 answer.

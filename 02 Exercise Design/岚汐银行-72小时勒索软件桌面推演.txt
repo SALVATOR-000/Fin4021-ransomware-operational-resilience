@@ -1,0 +1,372 @@
+岚汐银行｜72 小时勒索软件桌面推演
+A 版使用指定的香港监管原文。B 版使用字节相同的一批原文，再加一份银行自己编写的应对手册。两版各从新会话独立运行一次，即 A1 和 B1。每次使用同一组八张情景卡、24 道计分题和一道复盘题。主责角色的原始回答与 CEO 的最终决定各自封存、各自评分。
+英文卡片可以逐张发送，评分表可另存为 UTF‑8 CSV。内部手册保留 PH01 材料位，预期、得分及结论均由组员填写，A1 已于 2026 年 11 月 18 日运行，B1 在 PH01 定稿后运行。
+一、中文主持人剧本
+银行与事件
+**岚汐银行有限公司（Lan Tidal Bank Limited）**是一家虚构的香港本地注册持牌银行，服务约 18 万零售客户及 1.2 万家中小企，在香港设八家分行。银行的转账和薪资处理依赖支付网关、交易队列和入账对账服务。一个香港供应商为网关提供远程支持。
+本案设定银行已收到有效的关键基础设施营运者指定通知，国内转账及薪资处理为该基础设施的核心功能，支付网关列为指定的关键电脑系统。指定状态是两版共有的情景事实。首张卡从银行确认未经授权的操作已导致网关服务受损时开始，后续逐步披露潜在资料外传、勒索要求、实际泄露和恢复测试结果。
+主持人须维护两条独立的事故通报记录。金管局的重大事故通报属于银行监管路径。《第653章》的事故通知向关键基础设施（电脑系统安全）专员提出。金管局面向指定认可机构的行业守则涵盖第 1、2 类责任，并指向专员通用守则第 7 节处理第 3 类责任。给角色分发原文，具体适用判断由角色作答、组员复核。 brdr.hkma.gov.hk
+两次运行
+运行
+角色可查阅的依据
+主持人控制
+A1
+冻结后的同一批 R 系列监管原文
+每次开启独立新会话
+B1
+同一批 R 系列原文，加同一份冻结的 PH01
+每次开启独立新会话
+开跑前固定材料版本、文件名、哈希、模型及版本、检索权限、提示词、计时方式、运行顺序和评分口径。四个角色使用隔离的上下文。每次运行新开四个角色会话；同一轮里，各角色在自己的会话里从 C01 接着做到 C08，不跨轮，也不互读。每张卡只把当前卡、该角色的提示词、允许读取的材料及下表指定的交接发给该角色。主持人持有完整剧本和评分表，角色的读取范围限于各自收到的材料。角色只有一个只读原文目录的检索入口，没有联网、通用命令行和其他读文件的权限，每次检索都留记录（做法见文末第七节）。A1 的四个角色用 Claude Fable 5.2、Extra 档；B1 用 Claude Opus 5.5、Extra 档（此前用 Medium 档跑过的一轮已归档为 B0 测试轮，不作对照），两次的模型不同（见文末）。
+每张卡按以下顺序执行。
+1. 发卡。 主持人向安全、合规、传讯分别发送本卡与各自交接。三方独立作答，各答自己的题，每题分别回答 a、b。可统一采用每位角色 8 分钟实际作答时间，CEO 6 分钟。卡面时间使用香港时间，实际作答计时另记。
+2. 封存原答。 三份提交均封存后，把本卡、三份未改写原答和 CEO 专用交接交给 CEO。超时记录为缺答，CEO 仍可补出最终决定。保留缺答状态供评分。
+3. CEO 裁决。 CEO 对六个计分单元逐个确认或推翻，给出理由和最终行动。记确认还是推翻，看 CEO 有没有改动原答的实质决定。原答已写明几个分支的，CEO 选中其中一个并采用原答对应的内容和条件，记为确认；例如 Q18a 原答备有继续暂停和分阶段恢复两套文案，CEO 决定继续暂停，并采用原答对应的文案和发出条件。CEO 的决定（包括附条件批准）若改变原答动作、时点、收件方或门槛，记为推翻；例如改了文案的发出时点、对象或发布门槛。只补一条理由或补齐纯记录字段，仍记为确认。遇到同卡相依事项，由 CEO 明确执行顺序，例如先决定通知范围，再批准相应文案。
+4. 登记状态。 主持人登记最终动作、负责人、时点、收件方、渠道和执行状态。已在卡上证实可行且批准立即执行的动作，记为该卡时间的模拟执行。定时或附条件动作记为待执行，到达后续检查节点时，只有已披露的时间和条件都满足才可按原决定转为模拟执行。需要回执但卡上没有回执时，保留「已模拟发出，回执未核实」。每张卡的时间与外生事实保持固定。
+5. 进入下一卡。 只按下表转交最终决定及其状态。主持人保留原答及引用，角色只收到下一步所需的执行事实。第八卡评分回答和裁决都锁定后，再发复盘题。
+主持人交接表
+交接条目的统一格式为 上游题号｜最终动作｜负责人｜HKT时间或触发条件｜收件方及渠道｜已模拟执行/待执行/未执行/无法核实。没有可核实记录时，直接写明。交接条目一律用英文写，时间一律写香港时间（HKT）。角色据此了解 CEO 批准后实际发生了什么。CEO 同时收到本卡各主责角色获发的交接，便于确定其回答基于哪些信息。
+发卡
+交给
+从本次运行提取的信息
+C02
+COM、CEO
+Q03b 公开服务公告是否发布、渠道与时间
+C04
+LC、CEO
+Q02a、Q02b 各自的收件方、时间、渠道、发出及回执状态。专员路径如用电话，保留实际记入电话通知的时间及所报内容摘要。另写明 C01 的知悉时间和获指定身份，以及本轮实际通报的时间、渠道、所用表格和回执状态
+C04
+COM、CEO
+Q03b 首次公开服务状态的文案要点与发布状态
+C05
+LC、CEO
+Q05a、Q05b 最终立场、是否授权接触、实际产生的模拟接触或承诺
+C05
+COM、CEO
+Q08b 批准的资料外泄通知范围，以及 Q09a 首批对象、文案和发出状态
+C06
+SEC、CEO
+Q13a、Q13b 离线候选、验证和对账条件，及条件的已知状态
+C07
+SEC、CEO
+Q01a/b 隔离与保全状态、Q07a/b 核查与凭证处置状态、Q16a/b 上线及回退门槛和当前执行状态
+C07
+LC、CEO
+Q02b、Q11a 专员首次通知及指定表格记录。逐项提供渠道、时间、内容和凭据状态。另写明 C01 的知悉时间和获指定身份，以及本轮实际通报的时间、渠道、所用表格和回执状态
+C07
+COM、CEO
+Q09a、Q15a 已批准或已发出的客户批次及范围
+C08
+SEC、CEO
+Q16a/b 生产决定和闸门、Q19b 当前监测及限制状态
+C08
+LC、CEO
+Q11b、Q08a/b、Q14b、Q20a/b 尚待确认、跟进或交付的事项及其时限。另交本轮已在生产环境实际执行的变更：逐项写明上游题号（如 Q01a、Q07b、Q10a、Q16a/b、Q19b）、变更内容、涉及的系统和执行时间（HKT），没有就写明没有。第 22 条重大变更通报不单设题目：第八卡只确认离线测试结果，生产环境实际改了什么以本轮记录为准，由 LC 在 Q23a 判断是否需要跟进通报。另写明 C01 的知悉时间和获指定身份，以及本轮实际通报的时间、渠道、所用表格和回执状态
+C08
+COM、CEO
+从 Q03b、Q12a、Q18a 提取最近一次已发的公开服务状态。从 Q21a/b 提取客户个案和通知批次待办
+主持人记录模板。 每次运行可用 A1/C01/SEC.raw.md、A1/C01/LC.raw.md、A1/C01/COM.raw.md、A1/C01/CEO.final.md 与 A1/C01/handoff.md 的结构保存。主持人另记材料版本、发送给每个角色的实际输入、提交时间、缺答和偏差。评分时用原始记录索引定位，保留原文。
+二、八张英文情景卡
+C01 · Monday, 16 November 2026 · 08:00 HKT · H+0
+Facts at release. Lan Tidal Bank Limited is a fictional Hong Kong-incorporated licensed bank with eight branches, 180,000 retail customers and 12,000 SME customers. The bank has effective critical infrastructure operator designation. Its domestic transfer and payroll processing is a core function of the designated infrastructure, and its payment gateway is a designated critical computer system. At 08:00 the bank confirms that unauthorised commands encrypted gateway components and disrupted outbound domestic transfers and payroll submission. Mobile customers can still view balances. Branches are open. Failover capability is unverified. The bank has a verified telephone route for critical infrastructure incident notification. Its terminal for the verified secure filing channel is currently unavailable. The dispatch log is empty.
+• Q01 · SEC. a. What will you isolate first, and how will you avoid unnecessarily disabling available banking services? b. What evidence will you secure before systems are changed, and how will you record its custody?
+• Q02 · LC. a. Decide the initial HKMA reporting action, including what information to send now. b. Separately decide whether a critical infrastructure incident notification is triggered. Specify the awareness point, applicable time limit, recipient and feasible initial channel.
+• Q03 · COM. a. Decide how and when to alert affected or likely affected customers about the service disruption. b. Decide whether to publish a public holding statement, through which channel and with what approval.
+C02 · Monday, 16 November 2026 · 09:30 HKT · H+1:30
+Facts at release. The attacker demands 6 BTC by 02:00 HKT on 17 November and claims to have copied customer files. The attacker provides a screenshot showing several rows of apparent identity data. Its origin is unverified. A Hong Kong support vendor operated a remote access account for the gateway and says it can preserve session logs on request. The verified secure filing channel is now available. Branch staff have received calls asking whether funds have disappeared. A reporter asks whether the bank has paid a ransom and requests a comment by 10:00 HKT.
+• Q04 · SEC. a. Decide how to validate the sample while limiting further exposure of customer data. b. Decide what evidence to request from the vendor and how to receive it.
+• Q05 · LC. a. Recommend a payment posture and specify the legal or other checks that would change or constrain it. b. Decide whether any contact with the attacker should be authorised at this point, and define who can authorise and conduct that contact.
+• Q06 · COM. a. Decide the wording and distribution of instructions for branch and contact-centre staff. b. Decide whether and how to answer the reporter before the deadline, taking account of the public status supplied by the facilitator.
+C03 · Monday, 16 November 2026 · 12:00 HKT · H+4
+Facts at release. Forensic analysts match the sample to bank records. Independent, time-stamped logs confirm unauthorised export of a file containing 80 customers’ names, Hong Kong identity card numbers and telephone numbers. The same workspace contains records for up to 18,000 customers. Export of that wider set remains unverified. A vendor support credential was used in the relevant session. A revoked credential may still have active sessions or tokens. Mobile transfer submission remains interrupted.
+• Q07 · SEC. a. Decide how to establish the scope of exfiltration and what evidence would change the estimate. b. Decide how to handle the vendor credential, active sessions and related tokens.
+• Q08 · LC. a. Decide whether and when to notify the Privacy Commissioner and describe the basis and notification status accurately. b. Decide which affected individuals should be considered for breach notification now and what event would expand that group.
+• Q09 · COM. a. Draft the core message and select a delivery channel for an initial directly notified group. State your independent send or hold recommendation, subject to the CEO’s decision on the approved audience. b. Decide what to say publicly about verified exposure and the unverified wider claim.
+C04 · Monday, 16 November 2026 · 18:00 HKT · H+10
+Facts at release. The original gateway remains impaired. Independently measured demand includes about 4,200 queued payment instructions, with time-sensitive SME payroll among them. A secondary process can handle up to 400 verified instructions an hour if approved. Some customers retried transfers after a timeout. Call volumes have doubled, and some customers report that they cannot reach a branch. The facilitator will supply the authorised dispatch records from the first card.
+• Q10 · SEC. a. Decide whether to use the secondary process and how to prioritise eligible queued payments. b. Define the control for retried payments and possible duplicate entries before processing.
+• Q11 · LC. a. Review the record for the Commissioner’s notification and decide the next action based on the method, timing and evidence actually logged. b. Review the HKMA record and decide what initial or follow-up supervisory contact to make now.
+• Q12 · COM. a. Decide whether and how to update the public service status, using the prior published status if available. b. Choose a practical way to reach and assist customers unable to use the usual channels.
+C05 · Tuesday, 17 November 2026 · 08:00 HKT · H+24
+Facts at release. The attacker’s deadline has passed. Monitoring has found a public mirror of a file whose contents match 320 customers’ records, including the original 80. The 18,000-record claim remains unverified. A separate social-media account is using the incident to lure customers to a fake verification page. A pre-incident immutable backup exists. Its suitability for restoring payment processing is unverified. The facilitator will supply the previous ransom decision and customer notification record.
+• Q13 · SEC. a. Decide which recovery candidate to test and how to verify its integrity and separation from the compromised environment. b. Define offline transaction reconciliation checks before the candidate is considered for production.
+• Q14 · LC. a. Decide whether to maintain, suspend or revise the earlier payment posture, and how to handle any recorded commitment. b. Decide whether to refer the incident to law enforcement and what evidence can accompany that referral.
+• Q15 · COM. a. Decide how and when to notify newly verified affected customers, taking account of previously notified groups. b. Decide how to warn customers about the fake verification page without directing traffic to it.
+C06 · Tuesday, 17 November 2026 · 20:00 HKT · H+36
+Facts at release. A pre-arranged offline laboratory test on a recovery image reconciled 118 out of 120 payment instructions. The two mismatches are unexplained. The laboratory found no recurring encryption activity during its test window. Some SMEs report missed payroll cut-offs. A retained Hong Kong forensic firm asks for a copy of a diagnostic image containing customer data. Two counterparties request an operational status update for unsettled instructions.
+• Q16 · SEC. a. Decide whether to start staged production recovery, hold, or permit a narrower service mode, and specify the authorisation gate. b. Define the stop and rollback criteria if any production activity is authorised.
+• Q17 · LC. a. Decide whether the forensic firm should receive the diagnostic image or a narrower data set, and specify the conditions for transfer and use. b. Decide what to escalate to the board about the disruption and any decision requiring its attention.
+• Q18 · COM. a. Prepare a customer status update for the recovery position actually approved. You may give conditional wording for different choices. b. Decide what to tell affected banks or counterparties about unsettled instructions, through which channel and on what schedule.
+C07 · Wednesday, 18 November 2026 · 12:00 HKT · H+52
+Facts at release. A forensic partner has delivered time-stamped records from the gateway, identity provider and vendor remote access service. Some clocks differ by up to four minutes. A new indicator seen in the incident has appeared on a quarantined host. Its relationship to the original compromise is unverified. A validated file identifies the same 320 affected customers and corrects contact details for 12 of them. Thirty-one customers have reported suspected scams. Attribution remains unverified. The facilitator will supply the notification dispatch record.
+• Q19 · SEC. a. Decide how to produce a reviewable technical timeline, including how to record clock offsets and uncertainties. b. Decide whether to retain, raise or reduce monitoring and containment in light of the new indicator and the recorded recovery state.
+• Q20 · LC. a. Use the actual notification record to decide whether a specified-form follow-up is required, outstanding, late or already satisfied. Identify any applicable clock and immediate action. b. For the same statutory incident-reporting process as in Q20a, decide how to prepare, assign and submit the separate written incident report. State who is responsible, to whom it is submitted, what is submitted and by when.
+• Q21 · COM. a. Decide how to route suspected scam and customer remediation cases, including what the bank can promise at this stage. b. Decide how to correct the notification list and deliver follow-ups without unnecessary duplicate messages.
+C08 · Thursday, 19 November 2026 · 08:00 HKT · H+72
+Facts at release. A second offline test reconciled all 240 sampled instructions. It used a rebuilt access environment. The offline environment has shown no new alarms in six hours. The results describe the test environment. Live operation status comes from the facilitator’s decision record. The incident team has unresolved vendor credential questions, customer cases and regulatory follow-ups. The 72-hour exercise window is closing.
+• Q22 · SEC. a. Decide which service and monitoring restrictions to keep or release, and what to hand to the standing operations team. b. Assign root cause remediation and define the evidence required to close the vendor credential issue.
+• Q23 · LC. a. Decide which compliance actions stay open after handover and who receives the register of deadlines and commitments. b. Decide which records remain under preservation and set the conditions for review and eventual disposal.
+• Q24 · COM. a. Decide whether to publish a closing status update or continue regular updates. Use conditional wording if the production decision is pending. b. Decide how to hand off unresolved customer cases and follow-up messaging.
+Send after the scored answers and CEO decisions are locked.
+• Q25 · CEO leads · Unscored. Choose one earlier decision you would revisit. Which fact or source available at that time would have changed it, and how would you tell whether the team faced a gap in the assigned material or missed a rule that was there?
+三、英文角色提示词
+每个角色收到一次「共同提示词」及自己的专属提示词。CEO 汇总提示词在每卡三份原答封存后发送。
+共同提示词
+You are taking part in a simulated Hong Kong bank incident. Use only the
+released card, the facilitator's handoffs addressed to you, and the exact
+documents in your allowed source manifest. Search only within those files.
+Use professional expertise to explain judgment and label it as such. Treat
+unverified scenario statements as unverified. Describe simulated actions
+for the facilitator to log.
+
+For each assigned a/b unit, return:
+- Unit ID.
+- Decision and action, including any condition or hold.
+- Accountable owner and executing party if different.
+- HKT deadline, action time or observable trigger.
+- Recipient or operational destination and channel.
+- Basis and application to the facts known at this card.
+
+For a direct rule, give the document ID and title, exact section, paragraph
+or page and heading, and a short verbatim quote that establishes the rule.
+State its authority and why its trigger and scope apply. For an unnumbered
+document use the page, heading and paragraph position. A general principle
+may support your reasoning. Identify any detail it leaves to judgment.
+
+For a detail governed by professional judgment, state the judgment and
+its rationale. If a direct rule cannot be located, write "No direct rule
+located in assigned sources" and list the relevant files and exact search
+terms used, with any reading or search limitation. If an applicable rule
+exists but a fact needed to apply it is unknown, cite the rule and state
+the missing fact and conditional action.
+
+When PH01 appears in the allowed manifest, check it for the same decision
+detail. Cite its version, section and short verbatim quote using the label
+"Internal bank procedure". Record the external and internal support
+independently. If the manual conflicts with an applicable external
+requirement, identify the conflict and propose an action consistent with
+the external requirement. When PH01 is absent from your allowed manifest,
+mark the internal basis N/A.
+角色 1 · Information Security
+You are SEC, Lan Tidal Bank's Information Security Lead. Answer only the
+units assigned to SEC in the current card. Lock your response before you
+receive colleagues' answers. Make technical scope and dependencies explicit.
+For a control or recovery decision, state the operator, what is changed,
+and any precondition, validation or stop trigger needed to execute it.
+Identify which facts you would pass to the incident team to support its
+decisions. Treat production and offline evidence according to their scope.
+角色 2 · Legal and Compliance
+You are LC, Lan Tidal Bank's Head of Legal and Compliance. Answer only the
+units assigned to LC in the current card. Lock your response before you
+receive colleagues' answers. For each reporting or notification path give
+its own trigger, awareness point, clock, recipient, channel, and next step.
+Distinguish statute, statutory guideline, supervisory guidance or circular,
+code of practice, privacy guidance, and any internal procedure by their
+actual status. Give conditional advice when material facts or sources are
+missing. State who must clear any legal or governance condition.
+角色 3 · Corporate Communications
+You are COM, Lan Tidal Bank's Head of Corporate Communications. Answer
+only the units assigned to COM in the current card. Lock your response
+before you receive colleagues' answers. For each communication decide
+its audience, channel, release time, approval and wording requested by
+the card. Identify what is confirmed, what is being verified and what
+the audience can do. If release depends on another decision on this
+card, give conditional wording and state the proposed release condition.
+角色 4 · Chief Executive Officer
+You are the CEO of Lan Tidal Bank. You own the final simulated decision
+on every scored unit. Wait for the facilitator to provide this card's
+sealed SEC, LC and COM answers or explicit missing-answer markers. Use
+the same allowed reference material as the other roles in this run.
+Resolve conflicts across their recommendations and state the authorisation
+and sequence for actions that depend on each other. Preserve the link to
+each original answer. A new condition that changes execution counts as
+an override. Mark CONFIRM if you select a branch explicitly stated in the original answer and keep its action, timing, recipient, and conditions as written. Mark OVERRIDE if you materially change any of those. Adding a reason or filling in a record field alone still counts as CONFIRM. You may issue a final decision for a missing recommendation.
+CEO 汇总 · After each card
+Using this card, your facilitator handoffs and the three sealed role
+submissions, return one final record for each scored unit in this card.
+
+Unit ID | Original answer reference | CONFIRM or OVERRIDE | Reason |
+Final action and condition | Accountable owner | HKT time, deadline or
+trigger | Recipient and channel | Final external basis |
+Final internal basis | Dispatch instruction.
+
+Give a specific reason for each confirmation or override. Use OVERRIDE
+with "Missing recommendation" as the original answer reference when
+needed. For an unchanged, adequate citation or search record, you may
+reference the exact unit and field in its sealed answer. For any new or
+corrected basis, provide the exact location and short verbatim quote, or
+the search record and professional judgment required by the common prompt.
+For the dispatch instruction use EXECUTE NOW, SCHEDULE, HOLD, or NO ACTION
+and state any execution dependency. Finish with the order of any actions
+that depend on one another on this card.
+四、材料分发清单
+把以下链接用于组员收集原文。角色仅收到冻结的文件及允许读取的文件名清单。每项登记 ID｜标题｜版本/生效日｜文件名｜来源｜SHA-256｜是否装包。法例使用场景起点有效的官方整合文本。守则附表、表格、可引用页码及正文一并留存。
+ID
+材料
+分发
+R01
+香港《保护关键基础设施（电脑系统）条例》第 653 章，英文整合版。香港电子法例 · 立法会公布原文
+A、B
+R02
+专员《Code of Practice》通用版 1.0，含第 7 节及通知和报告附件。官方 PDF
+A、B
+R03
+指定认可机构适用的金管局行业《Code of Practice》，2026 年 6 月 2 日生效。官方目录 · 英文原文
+A、B
+R04
+金管局 TM-C-1，Supervisory Approach on Cyber Risk Management。英文原文
+A、B
+R05
+金管局 2010 年 6 月 22 日通函，Incident response and management procedures。英文原文
+A、B
+R06–R09
+金管局正式版 [R06] OR-2、[R07] TM-G-2、[R08] TM-G-1、[R09] TM-E-1。OR-2 · TM-G-2 · TM-G-1 · TM-E-1
+A、B
+R10
+香港《个人资料（私隐）条例》第 486 章，英文整合版，含附表 1。香港电子法例
+A、B
+R11
+私隐专员公署 Guidance on Data Breach Handling and Data Breach Notifications，2023 年 6 月。官方 PDF
+A、B
+R12
+金管局 SA-2，Outsourcing。英文原文
+A、B
+R13–R14
+金管局 2026 年运营韧性补充资料。[R13] Operational Resilience: Sustaining and Uplifting，[R14a] Good practices for addressing vulnerabilities related to operational resilience 通函正文，[R14b] 同一通函的附件。R13 · R14 正文 · R14 附件
+A、B
+R15–R16
+R15 留空：C‑RAF 2.0 全文不公开，金管局 2020 年 CFI 2.0 通函及公开附件只作背景，不装包。R16 按组员 2026 年 11 月 16 日的决定纳入四份：[R16a] 私隐专员公署资料外泄通报表格，[R16b] 金管局 2014 年 10 月 14 日客户资料保护通函，[R16c]《有组织及严重罪行条例》第 455 章，[R16d]《联合国（反恐怖主义措施）条例》第 575 章。
+取得并核对后，同批给 A、B
+PH01
+预留。 组员自行编写的 Lan Tidal Bank Ransomware Response Playbook，英文，带版本、生效日期、批准人和稳定段号。
+仅 B
+C01–C08、角色提示词
+本卡事实与题目、已获准交接、通用及专属提示词。CEO 另获本卡封存原答与汇总提示词。
+A、B，按阶段发放
+主持人及评分材料
+中文剧本、未来卡、基准、评分表、跨轮日志。
+主持人及评分组
+PH01 材料位可包含事件分级和代理人、隔离与证据保全、外部报告分工及失败备用路径、勒索接触与付款授权、客户通知和审批、降级运营、对账、恢复和回退门槛、交接及证据保留。让组员写成有正常适用条件的银行程序，开跑前锁定版本。B 版引用时统一写 Internal bank procedure — PH01, version, section。 R15 或 R16 留空时，将对应问题的结论限定在已冻结的材料范围内。
+五、空白评分表与比较方法
+判分口径
+每道计分题拆为 a、b 两行，分别判分。 每行行动 1 分、依据 1 分，每题最高 4 分，每个运行阶段最高 96 分。按同一规则分别评原答与 CEO 最终答。Q25 只保留复盘记录。
+开跑前由组员填写每行的三列预期。对所问的具体决定，审查监管原文和 PH01 是否分别有适用的直接依据。每层记 Y（有）、N（复核后确认在指定材料内无）、U（事实或材料不足）。Y 写明必要条文、适用条件及支持的内容。一般原则可以记录为旁证。若它只要求银行「建立流程」，对题目所问的具体授权人、步骤或指标仍要单独判定。遇到依赖前序决定的题，预先写明各分支的适用条件。
+每个运行单元格填写 R判定 / PH判定 / 行动分 / 依据分 / 决策码 / 记录索引。CEO 表再记 C 确认、O 推翻或 U 缺裁决，并引用理由记录。C 和 O 按第一节「CEO 裁决」一步的规则记。CEO 自己填的 CONFIRM／OVERRIDE 照原样留在记录里；组员评分时看实际裁决，按同一规则记 C／O，和 CEO 填的有出入就在同一条记录里注明。A 版的 PH判定 填 NA。
+代码
+判定
+OK 引对
+原文位置、逐字引文、规范性质和对当时情景的适用性均正确，足以支撑本单元要求的具体依据。
+ERR 引错
+出现影响本决定的错引，例如虚构文字、错误时限、找错收件方、用错适用范围或把内部程序当作监管要求。保留每条错引的原话与核对结果。
+MISS 漏找
+本层人工确认有直接规则，回答没有找到适用条文或只引用了宽泛原则。若已发生实质错引，主码为 ERR，同时在明细勾选「存在可适用规则但未正确使用」。
+GAP 确认缺口
+本层人工复核后确认没有直接规则，角色提供了可核对的检索记录，并把剩余决定标为专业判断。
+NC 检索记录不足
+人工已确认本层无直接规则，但角色没有提供足以复核的检索记录或判断标注。
+U 待复核
+现有事实、源文件或取证状态不足以裁定。记录原因。
+NA 无此层
+A 版内部手册层。
+行动分看决定是否在本卡事实下可执行，行动、责任人、时点或触发条件、收件方或执行目的地齐全，并满足预设的必要条件。选择暂缓也可得分，前提是说明由谁复核、何时或在何种条件下重启，以及交给谁。依据分在该版本所有适用材料层均评为 OK 或 GAP 时给 1 分。ERR、MISS、NC 给 0 分。结果含 U 时保留待复核，汇总同时列明计入分母的单元数。保留分层代码，因为总分本身无法说明改善来自何处。
+判分按表中的对象分开进行。例如 Q02a 独立判金管局首报，Q02b 独立判专员首报。Q20a 根据本次实际发出记录判指定表格补报，Q20b 独立判书面事故报告。如果 Q20a 的补报条件未触发，仍须说明本次为何未触发及记录状态，按该分支评分。两名组员先独立复核有争议的 ERR、MISS、GAP 与 U，登记各自看到的段落和检索词后再定稿。
+空白评分表 CSV
+复制为三个标签页 预期、原始作答 和 CEO最终。预期页先填写三列基准并锁定，另两页填 A1、B1 的结果。原文及裁决理由保存在对应的运行记录中。
+单元,卡,主责,判分对象,监管预期及依据,手册预期及依据,可接受行动及归一决策码,A1,B1
+Q01a,C01,SEC,隔离范围与方式,,,,,
+Q01b,C01,SEC,证据保全,,,,,
+Q02a,C01,LC,金管局首报,,,,,
+Q02b,C01,LC,专员首报,,,,,
+Q03a,C01,COM,受影响客户服务通知,,,,,
+Q03b,C01,COM,公开服务公告,,,,,
+Q04a,C02,SEC,勒索样本验证,,,,,
+Q04b,C02,SEC,供应商证据协助,,,,,
+Q05a,C02,LC,支付立场与闸门,,,,,
+Q05b,C02,LC,接触勒索者授权,,,,,
+Q06a,C02,COM,前线话术及分发,,,,,
+Q06b,C02,COM,首次记者回应,,,,,
+Q07a,C03,SEC,外传范围核验,,,,,
+Q07b,C03,SEC,供应商凭证处置,,,,,
+Q08a,C03,LC,私隐专员通知,,,,,
+Q08b,C03,LC,个人资料外泄通知范围,,,,,
+Q09a,C03,COM,首批通知内容与渠道,,,,,
+Q09b,C03,COM,公开外泄表述,,,,,
+Q10a,C04,SEC,临时处理优先级,,,,,
+Q10b,C04,SEC,重试及重复入账控制,,,,,
+Q11a,C04,LC,专员通知状态核验与处置,,,,,
+Q11b,C04,LC,金管局跟进,,,,,
+Q12a,C04,COM,公开服务更新,,,,,
+Q12b,C04,COM,受阻客户协助渠道,,,,,
+Q13a,C05,SEC,干净恢复候选与验证,,,,,
+Q13b,C05,SEC,交易对账方法,,,,,
+Q14a,C05,LC,重新决定勒索支付立场,,,,,
+Q14b,C05,LC,向执法机关转介,,,,,
+Q15a,C05,COM,新增确认客户通知,,,,,
+Q15b,C05,COM,防骗公告,,,,,
+Q16a,C06,SEC,生产分阶段恢复决定,,,,,
+Q16b,C06,SEC,暂停回退闸门,,,,,
+Q17a,C06,LC,受控取证数据共享,,,,,
+Q17b,C06,LC,董事会升级,,,,,
+Q18a,C06,COM,客户恢复状态更新,,,,,
+Q18b,C06,COM,受影响银行及对手方通知,,,,,
+Q19a,C07,SEC,可审查的技术时间线,,,,,
+Q19b,C07,SEC,监测强度决定,,,,,
+Q20a,C07,LC,指定表格补报,,,,,
+Q20b,C07,LC,独立书面事故报告,,,,,
+Q21a,C07,COM,客户补救个案接力,,,,,
+Q21b,C07,COM,修正客户通知名单,,,,,
+Q22a,C08,SEC,运行或持续限制的交接,,,,,
+Q22b,C08,SEC,根因修复与关闭证据,,,,,
+Q23a,C08,LC,待办合规事项交接,,,,,
+Q23b,C08,LC,证据保留与处置,,,,,
+Q24a,C08,COM,公开状态收尾,,,,,
+Q24b,C08,COM,客服积压与后续接力,,,,,
+A1、B1 怎样比较（A1 开跑后因额度限制，计划由两版各三次改为各一次，结论只适用于这一次对照）
+指标
+计算及解释
+监管原文的规则覆盖
+每个决策单元由人工基准判 R=Y/N/U。报告 R=Y ÷ (R=Y + R=N)，同时列出具体题号与支持字段。材料相同、适用分支相同的单元使用同一基准。
+内部手册补上的缺口
+逐项列出 R=N 且 PH=Y 的单元及手册段落，写清补上的是谁负责、何时、操作步骤还是决策门槛。增量覆盖率用该数量除以已完成手册复核的 R=N 数。B1 再报告这些单元中 PH=OK 的数量，显示手册有规定且角色实际用对了多少。
+角色引用与检索表现
+每次分别报告监管 OK ÷ R=Y、MISS ÷ R=Y、ERR ÷ 已裁定的监管单元，以及 GAP、NC、U 的件数。另列 ERR 中存在适用原文却没有正确使用的件数。B 的手册引用同样报告，保持各自分母清晰。
+两次运行的决策异同（各版只跑一次，不计算运行间一致性）
+用试前约定的决策码逐行比较 A1、B1 的动作、关键时点或门槛和对象，每行记 相同、不同 或 资料不足，并用同样办法比较 OK/ERR/GAP/MISS 等依据判定。由不同上游决定进入不同分支时，附分支和上游题号。只有一次运行，差异不能区分是手册的作用还是运行间的随机差异，报告时照此说明。
+CEO 的影响
+同一运行逐行对照原答与最终答，给出确认、推翻、修正错引或漏找、引入新错引，以及改变行动的件数。跨版本比较先看原答，再看最终答，保留 A1、B1 各自的结果与分母。
+组员预期（开跑前填写）
+监管原文预计能直接支持的决定及理由：________
+手册预计补上的决定细节及理由：________
+预计 A1、B1 之间最容易出现差异的单元：________
+组员结论（评分后填写）
+在冻结材料与本案事实下，监管原文明确覆盖的决定：________
+手册新增的程序依据，以及 B1 中实际采用的情况：________
+A、B 的错引、漏找和一致性差异，含分母与相关题号：________
+CEO 对结果的影响、未决单元及运行偏差：________
+七、运行设置与读取说明（主笔 2026 年 11 月 17 日决定）
+会话。 每次运行（A1、B1）新开四个角色会话。同一轮里，SEC、LC、COM、CEO 各自在同一个会话里从 C01 接着做到 C08。共同提示词、专属提示词和读取说明在 C01 之前各发一次。
+模型。 A1 的四个角色用 Claude Fable 5.2（claude-fable-5-2），思考档位 Extra，在角色定义里写作 effort: xhigh（主笔 2026 年 11 月 17 日确认）。B1 的四个角色改用 Claude Opus 5.5（claude-opus-5-5），思考档位 Extra，角色定义另建为 lantidal-b1-sec、-lc、-com、-ceo，写作 model: opus、effort: xhigh（主笔 2026 年 11 月 18 日决定；同日先以 effort: medium 跑过一轮，归档为 B0 测试轮，不作对照）。每次开跑都把四个角色实际加载的模型编号和档位记进运行记录。
+读取权限。 角色只能通过检索入口读材料：入口只读运行包 sources 目录里的文字版、清单和扫描件图像；角色没有联网、通用命令行和其他读文件的工具，读不到未来的卡、评分表和其他角色的记录。入口把每次调用（时间、运行、角色、工具、参数）记进读取记录，随运行记录保存。
+交接。 交接条目用英文写，时间写香港时间（HKT）。格式：Upstream unit | Final action | Owner | HKT time or trigger | Recipient and channel | Status (executed in simulation / scheduled / not executed / cannot be verified)。给 LC 的交接（C04、C07、C08）另加三项：C01 awareness time (HKT) | Designation status | Actual notification: time (HKT), channel, form used, receipt status。
+编号。 R14a 为通函正文，R14b 为附件；R16a 至 R16d 依次为私隐专员公署通报表格、金管局 2014 年通函、第 455 章、第 575 章。
+系统提示词（英文，四个角色相同，写在角色定义里，属于发给角色的固定输入）
+You are taking part in a simulated tabletop exercise run by a facilitator. The facilitator's messages give you your role, the rules, the scenario cards and any handoffs. Follow them. Your final message in each turn is your submitted answer.
+读取说明（英文，A、B 两版相同，接在共同提示词之后发给每个角色）
+Reading note. Your only access to the allowed documents is the source tools:
+list_sources, search, read_page and view_scan_page. You have no other file,
+shell or web access. Search the text version first, then read the page before
+you rely on it. Cite a document by its document ID and PDF page, adding the
+section or paragraph number where the document has one. R05 is a scanned
+letter: cite it by PDF page and heading, and check a quotation against the page
+image before you quote it. When a search finds nothing, record the document IDs
+and the exact search terms you used.
+
+题面和裁决记录的修订（主笔 2026 年 11 月 18 日决定，香港时间）
+Q20b 题面。 加上 “For the same statutory incident-reporting process as in Q20a”，写清是哪条通报路径，并要求写明谁负责、向谁交、交什么、何时交。收件方由角色从原文找出，题面不写。
+CEO 裁决的记录。 按 CEO 有没有改动原答的实质决定来记，规则写在第一节「CEO 裁决」一步；CEO 的英文提示词（第三节角色 4）加了同一条。CEO 自己填的标签照原样留在记录里；组员评分时看实际裁决，按同一规则记 C／O，有出入就在同一条记录里注明。
+
+运行次数的变更（主笔 2026 年 11 月 18 日决定，香港时间）
+A1 开跑后因额度消耗高于预期，组员协商决定把计划由 A、B 各三次改为各一次：保留已完成并经组员复核的 A1，PH01 定稿后跑一次 B1。B1 用同一套情景卡、角色、监管原文和评分口径，只加 PH01。结论只适用于这一次对照。第一节、第五节已照改；已封存的预期 v1、v2 和 A1 的记录原样保留。
+B1 的模型和档位（主笔 2026 年 11 月 18 日决定，香港时间）
+A1 的额度消耗远超预期，B1 的信息安全、法律合规、企业传讯和 CEO 四个角色都改用 Claude Opus 5.5、Medium 档。B1 仍用 A1 的情景卡、角色提示词、监管原文和评分口径，只加 PH01，并在组员封存手册侧预期后才开跑。由于 A1、B1 的模型也不同，两次的差异不能单独归因于 PH01；对照只举例说明 B1 在哪些裁决里实际用了 PH01、补上了哪些执行细节。报告可以同时列出两轮总分，但对手册价值的判断主要靠具体例子：对组员评分中 B1 做得更好的单元，逐个对照 A1 的原答、B1 用到的 PH01 条款和 CEO 最终采纳的内容；三步对得上的，明确写出手册在这次推演里补了哪个缺口、改善了哪项裁决，对不上的照实写明，不算作手册的作用。
+B1 改用 Extra 档重跑（主笔 2026 年 11 月 18 日决定，香港时间）
+B1 先用 Claude Opus 5.5、Medium 档跑过一轮，整套归档为“B0 测试轮 · Opus 5.5 Medium”，不作对照。主笔随后决定四个角色改用 Claude Opus 5.5、Extra 档（effort: xhigh）重跑 B1，其余材料（PH01、监管原文、情景卡、角色提示词、交接规则和评分预期）不变；后续主对照用 A1 和 Extra 档的 B1。第一节和文末“模型”一段已照改；上一段“B1 的模型和档位”保留原文备查，其中“Medium 档”已被本段取代。
