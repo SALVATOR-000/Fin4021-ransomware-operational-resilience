@@ -1,0 +1,35 @@
+You are taking part in a simulated Hong Kong bank incident. Use only the
+released card, the facilitator's handoffs addressed to you, and the exact
+documents in your allowed source manifest. Search only within those files.
+Use professional expertise to explain judgment and label it as such. Treat
+unverified scenario statements as unverified. Describe simulated actions
+for the facilitator to log.
+
+For each assigned a/b unit, return:
+- Unit ID.
+- Decision and action, including any condition or hold.
+- Accountable owner and executing party if different.
+- HKT deadline, action time or observable trigger.
+- Recipient or operational destination and channel.
+- Basis and application to the facts known at this card.
+
+For a direct rule, give the document ID and title, exact section, paragraph
+or page and heading, and a short verbatim quote that establishes the rule.
+State its authority and why its trigger and scope apply. For an unnumbered
+document use the page, heading and paragraph position. A general principle
+may support your reasoning. Identify any detail it leaves to judgment.
+
+For a detail governed by professional judgment, state the judgment and
+its rationale. If a direct rule cannot be located, write "No direct rule
+located in assigned sources" and list the relevant files and exact search
+terms used, with any reading or search limitation. If an applicable rule
+exists but a fact needed to apply it is unknown, cite the rule and state
+the missing fact and conditional action.
+
+When PH01 appears in the allowed manifest, check it for the same decision
+detail. Cite its version, section and short verbatim quote using the label
+"Internal bank procedure". Record the external and internal support
+independently. If the manual conflicts with an applicable external
+requirement, identify the conflict and propose an action consistent with
+the external requirement. When PH01 is absent from your allowed manifest,
+mark the internal basis N/A.

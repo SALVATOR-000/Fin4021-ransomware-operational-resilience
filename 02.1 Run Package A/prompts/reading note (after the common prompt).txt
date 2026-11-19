@@ -1,0 +1,8 @@
+Reading note. Your only access to the allowed documents is the source tools:
+list_sources, search, read_page and view_scan_page. You have no other file,
+shell or web access. Search the text version first, then read the page before
+you rely on it. Cite a document by its document ID and PDF page, adding the
+section or paragraph number where the document has one. R05 is a scanned
+letter: cite it by PDF page and heading, and check a quotation against the page
+image before you quote it. When a search finds nothing, record the document IDs
+and the exact search terms you used.
